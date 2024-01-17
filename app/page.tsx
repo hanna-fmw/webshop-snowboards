@@ -1,6 +1,6 @@
-import Footer from './components/Footer'
-import HeroSection from './components/HeroSection'
-import ProductContainer from './components/ProductContainer'
+import Footer from './components/organism/footer/Footer'
+import HeroSection from './components/molecules/heroSection/HeroSection'
+import ProductContainer from './components/molecules/productContainer/ProductContainer'
 import styles from './page.module.css'
 
 export default function Home() {

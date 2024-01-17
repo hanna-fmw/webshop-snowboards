@@ -4,7 +4,9 @@ body {
 	overflow-x: hidden;
 	margin: 0;
 	box-sizing: border-box;
+	font-family: var(--font-gtAmericaMonoLight);
 }
+
 /* :root {
   --max-width: 1100px;
   --border-radius: 12px;

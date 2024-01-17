@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './HeroSection.module.css'
+import styles from './heroSection.module.css'
 import { unstable_getImgProps as getImgProps } from 'next/image'
 
 const { heroContainer, heroImage, heroText } = styles
