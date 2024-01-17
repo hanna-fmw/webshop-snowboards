@@ -1,7 +1,7 @@
 import localFont from 'next/font/local'
 
 import type { Metadata } from 'next'
-import { Inter, Roboto_Mono } from 'next/font/google'
+import { Inter, Roboto_Mono,Sometype_Mono, Red_Hat_Mono, Fira_Code  } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/molecules/navbar/Navbar'
 
