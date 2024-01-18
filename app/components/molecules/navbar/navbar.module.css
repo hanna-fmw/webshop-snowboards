@@ -1,4 +1,39 @@
-.nav {
-	padding: 2rem;
+.navContainer {
 	font-family: var(--font-primary);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem;
+}
+
+.navbarItems {
+	display: flex;
+	gap: 1rem;
+}
+
+.cartItems {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.cartItems .cartItemCount {
+	color: var(--color-primary);
+}
+
+.link {
+	margin-right: 10px;
+	text-decoration: none;
+	color: black;
+}
+
+.link:hover {
+	text-decoration: underline;
+	text-underline-offset: 5px;
+}
+
+@media (min-width: 768px) {
+	.navbarItems {
+		display: none;
+	}
 }

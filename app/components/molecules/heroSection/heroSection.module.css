@@ -19,8 +19,9 @@
 	align-items: center;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 768px) {
 	.heroImage {
 		min-height: 100%;
+		object-fit: cover;
 	}
 }
