@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import MyButton from './text'
+
+// import Text from './text'
+import Text from './text'
 
 const meta = {
-	title: '/MyButton',
-	component: MyButton,
+	title: '/Text',
+	component: Text,
 	parameters: {
 		//Centrerar på canvas i Storybook.
 		layout: 'centered',
@@ -19,7 +21,7 @@ const meta = {
 		label: { control: 'text' },
 		borderRadius: { control: 'number' },
 	},
-} satisfies Meta<typeof MyButton>
+} satisfies Meta<typeof Text>
 
 export default meta
 type Story = StoryObj<typeof meta>

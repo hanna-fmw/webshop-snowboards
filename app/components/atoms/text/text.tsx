@@ -1,4 +1,4 @@
-import "./myButton.css" 
+import styles from './text.module.css'
 
 type MyButtonProps = {
 	label?: string
@@ -7,15 +7,12 @@ type MyButtonProps = {
 	onClick?: () => void
 }
 
-const MyButton = ({ label = 'Knapp', buttonBackground = 'coral', borderRadius}: MyButtonProps) => {
+const Text = ({ label = 'Knapp', buttonBackground = 'coral' }: MyButtonProps) => {
 	return (
-		<button className='buttonStyle' style={{ backgroundColor: buttonBackground, borderRadius  }}>
+		<button className={styles.textStyle} style={{ backgroundColor: buttonBackground }}>
 			{label}
 		</button>
 	)
 }
 
-export default MyButton
-
-
-
+export default Text

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './heroSection.module.css'
 import { unstable_getImgProps as getImgProps } from 'next/image'
 
-const { heroContainer, heroImage, heroMobile, heroText } = styles
+const { heroContainer, heroImage, heroText } = styles
 
 const HeroSection = () => {
 	//unstable_getImgProps to be able to use srcSet to change image based on screen size in latest Next.js version
