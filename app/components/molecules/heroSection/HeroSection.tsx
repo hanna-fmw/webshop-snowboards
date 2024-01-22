@@ -24,7 +24,9 @@ const HeroSection = () => {
 			</picture> */}
 
 			<Image src='/hero/hero_desktop.png' width={1440} height={937} className={heroImage} alt='Hero image' />
-			<Button className='btn-hero' onClick={() => {}} label='SHOP NOW' />
+			<Button variant='btn-hero' onClick={() => {}}>
+				SHOP NOW
+			</Button>
 		</div>
 	)
 }

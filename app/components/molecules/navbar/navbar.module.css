@@ -1,6 +1,6 @@
 .navContainer {
 	font-family: var(--font-primary);
-	color: var(--color-text-dark);
+	color: var(--color-dark);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -22,7 +22,7 @@
 }
 
 .cartItems .cartItemCount {
-	color: var(--color-primary);
+	color: var(--color-TUR-green);
 }
 
 /* .navLinks {

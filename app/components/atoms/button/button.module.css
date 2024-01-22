@@ -3,22 +3,22 @@
 	justify-content: space-between;
 	align-items: center;
 	background-color: transparent;
-	color: var(--color-text-dark);
+	color: var(--color-dark);
 	border: 1.5px solid #c1c1c1;
 	padding: 0.8rem 1.5rem;
 	cursor: pointer;
 }
 
 .btn.default-dark {
-	background-color: var(--color-text-darkgrey);
-	color: var(--color-text-light);
+	background-color: var(--color-darkgrey);
+	color: var(--color-white);
 	border: 1.5px solid #c1c1c1;
 	padding: 0.8rem 1.5rem;
 	cursor: pointer;
 }
 
 .btn.large-dark {
-	background-color: var(--color-text-darkgrey);
+	background-color: var(--color-darkgrey);
 	color: #fff;
 	width: 100%;
 	padding: 0.8rem 7.4rem;
@@ -27,26 +27,26 @@
 }
 
 .btn.large-dark:hover {
-	background-color: var(--color-text-light);
-	color: var(--color-text-black);
-	border: 1px solid var(--color-text-dark);
+	background-color: var(--color-white);
+	color: var(--color-black);
+	border: 1px solid var(--color-dark);
 	font-weight: 700;
 }
 
 .btn.large-green {
 	background-color: #00b140;
-	color: #fff;
+	color: var(--color-white);
 	width: 100%;
 	padding: 0.8rem 7.4rem;
 	border: none;
 }
 
 .btn.large-light {
-	background-color: var(--color-text-light);
+	background-color: var(--color-white);
 	color: var(--color-text-black);
 	width: 100%;
 	padding: 0.8rem 7.4rem;
-	border: 1px solid var(--color-text-dark);
+	border: 1px solid var(--color-dark);
 	font-weight: 700;
 }
 
@@ -57,11 +57,14 @@
 }
 
 .btn.btn-hero {
+	background-color: transparent;
+	color: var(--color-dark);
 	position: absolute;
 	left: 2.5rem;
 	bottom: 2.5rem;
-	color: var(--color-text-light);
-	padding: 1.2rem;
+	color: var(--color-white);
+	padding: 0.8rem 1.5rem;
 	border: 1px solid #fff;
 	z-index: 10;
+	cursor: pointer;
 }

@@ -71,6 +71,12 @@ button {
 	font-weight: 400;
 }
 
+p {
+	line-height: 0.2;
+	font-size: 0.8rem;
+	color: #232323;
+}
+
 /* Typography */
 :root {
 	--font-primary: 'code-saver', sans-serif;
@@ -90,34 +96,32 @@ button {
 
 /* Colors */
 :root {
-	--color-primary: #00b140;
-	--color-text-darkgrey: #333;
-	--color-text-dark: #232323;
-	--color-text-black: #000;
-	--color-text-light: #fff;
-	--color-background-dark: #333;
-	--color-background-light: #fff;
+	--color-TUR-green: #00b140;
+	--color-darkgrey: #333;
+	--color-dark: #232323;
+	--color-black: #000;
+	--color-white: #fff;
 	--color-active-link: rgba(35, 35, 35, 0.6);
 }
 
 body {
 	font-family: var(--font-primary);
 	font-size: var(--font-size-body);
-	color: var(--color-text-dark);
+	color: var(--color-dark);
 	background-color: var(--color-background-light);
 }
 
 h1 {
 	font-family: var(--font-primary);
 	font-size: var(--font-size-h1);
-	color: var(--color-text-dark);
+	color: var(--color-dark);
 	margin-bottom: var(--spacing-medium);
 }
 
 h2 {
 	font-family: var(--font-primary);
 	font-size: var(--font-size-h2);
-	color: var(--color-text-dark);
+	color: var(--color-dark);
 	margin-bottom: var(--spacing-medium);
 }
 
