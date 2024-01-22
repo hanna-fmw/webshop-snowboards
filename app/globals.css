@@ -61,18 +61,20 @@
 }
 
 html,
-body {
+body,
+button {
 	max-width: 100vw;
 	overflow-x: hidden;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: var(--font-gtAmericaMonoLight);
+	font-family: code-saver;
+	font-weight: 400;
 }
 
 /* Typography */
 :root {
-	--font-primary: '--font-gtAmericaMonoLight', sans-serif;
-	--font-secondary: 'Arial', sans-serif;
+	--font-primary: 'code-saver', sans-serif;
+	--font-scondary: 'gtAmericaMonoLight', sans-serif;
 	--font-size-h1: 0.75rem; /*12px*/
 	--font-size-h2: 0.75rem;
 	--font-size-h3: 0.75rem;
@@ -89,11 +91,13 @@ body {
 /* Colors */
 :root {
 	--color-primary: #00b140;
-	--color-text-dark: #333;
+	--color-text-darkgrey: #333;
+	--color-text-dark: #232323;
+	--color-text-black: #000;
 	--color-text-light: #fff;
 	--color-background-dark: #333;
 	--color-background-light: #fff;
-	--color-active-link: rgba(0, 0, 0, 0.6);
+	--color-active-link: rgba(35, 35, 35, 0.6);
 }
 
 body {

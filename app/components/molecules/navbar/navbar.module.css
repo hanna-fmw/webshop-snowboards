@@ -1,14 +1,18 @@
 .navContainer {
 	font-family: var(--font-primary);
+	color: var(--color-text-dark);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1.5rem;
+	height: 4.375rem;
+	padding: 0.8rem 2rem;
 }
 
-.navbarItems {
+.navItems {
 	display: flex;
+	align-items: center;
 	gap: 1rem;
+	max-height: 5rem;
 }
 
 .cartItems {
@@ -21,19 +25,29 @@
 	color: var(--color-primary);
 }
 
-.link {
-	margin-right: 10px;
+/* .navLinks {
+	margin-right: 0.625rem;
+} */
+
+.navLink {
+	margin-right: 2rem;
 	text-decoration: none;
-	color: black;
 }
 
-.link:hover {
+.navLink:hover {
 	text-decoration: underline;
 	text-underline-offset: 5px;
+	color: var(--color-active-link);
 }
 
 @media (min-width: 768px) {
-	.navbarItems {
+	.hamburgerMenu {
+		display: none;
+	}
+}
+
+@media (max-width: 767px) {
+	.navLinks {
 		display: none;
 	}
 }

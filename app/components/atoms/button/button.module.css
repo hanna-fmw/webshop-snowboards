@@ -1,0 +1,67 @@
+.btn.default {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: transparent;
+	color: var(--color-text-dark);
+	border: 1.5px solid #c1c1c1;
+	padding: 0.8rem 1.5rem;
+	cursor: pointer;
+}
+
+.btn.default-dark {
+	background-color: var(--color-text-darkgrey);
+	color: var(--color-text-light);
+	border: 1.5px solid #c1c1c1;
+	padding: 0.8rem 1.5rem;
+	cursor: pointer;
+}
+
+.btn.large-dark {
+	background-color: var(--color-text-darkgrey);
+	color: #fff;
+	width: 100%;
+	padding: 0.8rem 7.4rem;
+	border: none;
+	transition: background-color 0.3s, border 0.3s, color 0.3s;
+}
+
+.btn.large-dark:hover {
+	background-color: var(--color-text-light);
+	color: var(--color-text-black);
+	border: 1px solid var(--color-text-dark);
+	font-weight: 700;
+}
+
+.btn.large-green {
+	background-color: #00b140;
+	color: #fff;
+	width: 100%;
+	padding: 0.8rem 7.4rem;
+	border: none;
+}
+
+.btn.large-light {
+	background-color: var(--color-text-light);
+	color: var(--color-text-black);
+	width: 100%;
+	padding: 0.8rem 7.4rem;
+	border: 1px solid var(--color-text-dark);
+	font-weight: 700;
+}
+
+.arrowIcon {
+	margin-left: 1rem;
+	width: 7px;
+	height: 7px;
+}
+
+.btn.btn-hero {
+	position: absolute;
+	left: 2.5rem;
+	bottom: 2.5rem;
+	color: var(--color-text-light);
+	padding: 1.2rem;
+	border: 1px solid #fff;
+	z-index: 10;
+}

@@ -1,6 +1,8 @@
+'use client'
 import React from 'react'
 import styles from './heroSection.module.css'
 import Image, { unstable_getImgProps as getImgProps } from 'next/image'
+import Button from '../../atoms/button/Button'
 
 const { heroContainer, heroImage, heroText } = styles
 
@@ -22,6 +24,7 @@ const HeroSection = () => {
 			</picture> */}
 
 			<Image src='/hero/hero_desktop.png' width={1440} height={937} className={heroImage} alt='Hero image' />
+			<Button className='btn-hero' onClick={() => {}} label='SHOP NOW' />
 		</div>
 	)
 }
