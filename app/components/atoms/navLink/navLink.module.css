@@ -1,0 +1,16 @@
+.navLink {
+	margin-right: 2rem;
+	text-decoration: none;
+}
+
+.navLink:hover {
+	text-decoration: underline;
+	text-underline-offset: 5px;
+	color: var(--color-active-link);
+}
+
+.navLinkHover {
+	text-decoration: underline;
+	text-underline-offset: 5px;
+	color: var(--color-active-link);
+}
