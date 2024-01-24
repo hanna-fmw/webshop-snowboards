@@ -8,9 +8,9 @@
 	padding: 0.8rem 2rem;
 }
 
-/* .navLinks {
-	margin-right: 0.625rem;
-  } */
+.logo {
+	margin-right: 3rem;
+}
 
 .navLink {
 	margin-right: 2rem;
@@ -32,6 +32,7 @@
 }
 .hamburgerMenu {
 	display: block;
+	margin-left: 4rem;
 }
 
 @media (min-width: 768px) {
