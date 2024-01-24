@@ -77,6 +77,10 @@ p {
 	color: #232323;
 }
 
+ul {
+	list-style-type: none;
+}
+
 /* Typography */
 :root {
 	--font-primary: 'code-saver', sans-serif;

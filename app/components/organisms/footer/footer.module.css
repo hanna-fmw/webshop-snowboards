@@ -1,0 +1,84 @@
+.footer {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 1.2rem;
+	margin-bottom: 1.2rem;
+}
+
+@media (max-width: 767px) {
+	.footer {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 20px;
+	}
+
+	.addressBlock {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.customerSupportBlock {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.socialMediaBlock {
+		grid-column: 1;
+		grid-row: 3;
+	}
+
+	.linkBlock {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.deliveryInfoBlock {
+		grid-column: 2;
+		grid-row: 2;
+	}
+
+	.copyrightInfo {
+		grid-column: 1;
+		grid-row: 4;
+	}
+}
+
+/* Large screens */
+@media (min-width: 768px) {
+	.footer {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		grid-gap: 20px;
+	}
+
+	.addressBlock {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.customerSupportBlock {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.socialMediaBlock {
+		grid-column: 3;
+		grid-row: 1;
+	}
+
+	.linkBlock {
+		grid-column: 4;
+		grid-row: 1;
+	}
+
+	.deliveryInfoBlock {
+		grid-column: 5;
+		grid-row: 2;
+	}
+
+	.copyrightInfo {
+		grid-column: 1;
+		grid-row: 2;
+	}
+}
