@@ -21,7 +21,7 @@ export default function Home() {
 				<ProductGrid>
 					<div>
 						<ProductCard>
-							<Figure image='/products/BUBO150.png' />
+							<Figure image='/products/BUBO154.png' />
 							<TextBlock
 								itemName='WORK SHOP X TUR BUBO 154.4'
 								itemLength='154.4 CM'
@@ -32,7 +32,7 @@ export default function Home() {
 					</div>
 					<div>
 						<ProductCard>
-							<Figure image='/products/BUBO154.png' />
+							<Figure image='/products/BUBO150.png' />
 							<TextBlock
 								itemName='WORK SHOP X TUR BUBO 154.4'
 								itemLength='154.4 CM'
