@@ -4,12 +4,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 4.375rem;
+	height: 3rem;
 	padding: 0.8rem 2rem;
-}
-
-.logo {
-	margin-right: 3rem;
 }
 
 .navLink {

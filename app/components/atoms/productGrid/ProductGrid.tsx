@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './productGrid.module.css'
 
 type ProductGridProps = {
 	children?: React.ReactNode
@@ -6,7 +7,7 @@ type ProductGridProps = {
 
 const ProductGrid = ({ children }: ProductGridProps) => {
 	return (
-		<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+		<div className={styles.productGrid}>
 			{children}
 			{/* <div>ProductCard</div>
 			<div>ProductCard</div>

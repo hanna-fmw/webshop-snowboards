@@ -8,12 +8,12 @@ const { heroContainer, heroImage, heroText } = styles
 
 const HeroSection = () => {
 	//unstable_getImgProps to be able to use srcSet to change image based on screen size in latest Next.js version
-	const {
-		props: { srcSet: desktop },
-	} = getImgProps({ src: '/hero/hero_desktop.png', alt: 'Hero Image Desktop', width: '1440', height: '937' })
-	const {
-		props: { srcSet: mobile },
-	} = getImgProps({ src: '/hero/hero_mobile.png', alt: 'Hero Image Mobile', width: '390', height: '580' })
+	// const {
+	// 	props: { srcSet: desktop },
+	// } = getImgProps({ src: '/hero/hero_desktop.png', alt: 'Hero Image Desktop', width: '1440', height: '937' })
+	// const {
+	// 	props: { srcSet: mobile },
+	// } = getImgProps({ src: '/hero/hero_mobile.png', alt: 'Hero Image Mobile', width: '390', height: '580' })
 
 	return (
 		<div className={heroContainer}>
@@ -24,6 +24,9 @@ const HeroSection = () => {
 			</picture> */}
 
 			<Image src='/hero/hero_desktop.png' width={1440} height={937} className={heroImage} alt='Hero image' />
+
+			<Image src='/logo/sun_logo.png' width={800} height={1000} className={styles.sunLogo} alt='Hero image' />
+
 			<Button variant='btn-hero' onClick={() => {}}>
 				SHOP NOW
 			</Button>

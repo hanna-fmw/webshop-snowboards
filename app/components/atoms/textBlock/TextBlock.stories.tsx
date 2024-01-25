@@ -18,9 +18,12 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
 	args: {
-		itemName: 'PLUV',
-		itemDetail: 'DIRECTIONAL FREESTYLE',
-		itemLength: '145 CM/149 cm/155 CM/159 CM/164 CM',
+		itemName: 'WORK SHOP X TUR BUBO 154.4',
+		itemLength: '154.4 CM',
+		itemDetailLine1: 'EXPERIMENTAL BIG VOLUME',
+		itemDetailLine2: 'FLAT BUOYANCY PROFILE',
 	},
-	render: (args) => <TextBlock itemName={args.itemName} itemDetail={args.itemDetail} itemLength={args.itemLength} />,
+	render: (args) => (
+		<TextBlock itemName={args.itemName} itemDetailLine1={args.itemDetailLine1} itemLength={args.itemLength} itemDetailLine2={args.itemDetailLine2} />
+	),
 }

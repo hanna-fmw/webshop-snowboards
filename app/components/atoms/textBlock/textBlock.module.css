@@ -1,0 +1,7 @@
+.textBlock {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1rem;
+	gap: 3rem;
+	width: 100%;
+}

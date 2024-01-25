@@ -1,0 +1,36 @@
+/* .productCard {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+} */
+
+/* @media (max-width: 767px) {
+	.productCard {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+	}
+} */
+
+/* .productCard {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1.2rem;
+} */
+
+/* Large screens */
+/* @media (min-width: 768px) {
+
+} */
+
+@media (max-width: 767px) {
+	.productCard {
+		width: 90vw;
+	}
+}
+
+@media (min-width: 768px) {
+	.productCard {
+		width: 350px;
+		height: auto;
+	}
+}

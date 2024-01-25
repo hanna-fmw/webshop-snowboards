@@ -12,6 +12,7 @@
 	height: auto;
 	min-height: 100%;
 	z-index: -1;
+	filter: blur(4px);
 }
 
 .heroContent {
@@ -20,9 +21,31 @@
 	align-items: center;
 }
 
-@media (max-width: 768px) {
+.sunLogo {
+	position: absolute;
+	top: 25%;
+	left: 10%;
+	z-index: 40;
+	height: 50%;
+	width: auto;
+	overflow: hidden;
+}
+
+@media (max-width: 767px) {
 	.heroImage {
 		min-height: 100%;
 		object-fit: cover;
+	}
+}
+
+@media (min-width: 768px) {
+	.sunLogo {
+		position: absolute;
+		top: 28%;
+		left: 50%;
+		height: 70%;
+		width: auto;
+		transform: translate(-65%, -25%);
+		z-index: 40;
 	}
 }

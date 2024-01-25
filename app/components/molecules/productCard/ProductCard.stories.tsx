@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import ProductContainer from './ProductContainer'
+import ProductCard from './ProductCard'
 import TextBlock from '../../atoms/textBlock/TextBlock'
 import Image from 'next/image'
-import pluv from "../../../../public/products/PLUV.png"
+import pluv from '../../../../public/products/PLUV.png'
 
 const meta = {
-	title: '/Molecules/ProductContainer',
-	component: ProductContainer,
+	title: '/Molecules/ProductCard',
+	component: ProductCard,
 	parameters: {
 		layout: 'centered',
 	},
 	tags: ['autodocs'],
-} satisfies Meta<typeof ProductContainer>
+} satisfies Meta<typeof ProductCard>
 
 export default meta
 
@@ -22,7 +22,7 @@ export const Default: Story = {
 	args: {},
 	render: (args) => (
 		<div style={{ width: '350px', height: '450px', border: '2px black solid' }}>
-			<ProductContainer />
+			<ProductCard />
 		</div>
 	),
 }
@@ -30,9 +30,9 @@ export const Default: Story = {
 export const SampleContent: Story = {
 	args: {},
 	render: (args) => (
-		<ProductContainer>
+		<ProductCard>
 			<Image src={pluv} width={350} height={450} alt='placeholder' />
-			<TextBlock itemName='PLUV' itemDetail='DIRECTIONAL FREESTYLE' itemLength='145 CM/149 cm/155 CM/159 CM/164 CM' />
-		</ProductContainer>
+			<TextBlock itemName='PLUV' itemDetailLine1='DIRECTIONAL FREESTYLE' itemLength='155 CM' />
+		</ProductCard>
 	),
 }

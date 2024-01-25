@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
 	args: {
-		price: '4900',
+		price: '4900.00',
 	},
-	render: (args) => <PriceBlock price={args.price} currency='EUR' />,
+	render: (args) => <PriceBlock price={args.price} currency='SEK' />,
 }

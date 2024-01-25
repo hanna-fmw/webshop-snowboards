@@ -2,15 +2,13 @@
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	margin-top: 1.2rem;
-	margin-bottom: 1.2rem;
+	margin-top: 7rem;
 }
 
 @media (max-width: 767px) {
 	.footer {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-gap: 20px;
 	}
 
 	.addressBlock {
@@ -49,7 +47,7 @@
 	.footer {
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
-		grid-gap: 20px;
+		width: 60vw;
 	}
 
 	.addressBlock {

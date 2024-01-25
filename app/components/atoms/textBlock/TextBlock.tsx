@@ -1,26 +1,32 @@
 import React from 'react'
 import PriceBlock from '../priceBlock/PriceBlock'
+import styles from './textBlock.module.css'
 
 type TextBlockProps = {
 	children?: React.ReactNode
 	itemName?: string
-	itemDetail?: string
+	itemDetailLine1?: string
 	itemLength?: string
+	itemDetailLine2?: string
 }
 
-const TextBlock = ({ itemName, itemLength, itemDetail, children }: TextBlockProps) => {
+const TextBlock = ({ itemName, itemLength, itemDetailLine1, itemDetailLine2, children }: TextBlockProps) => {
 	return (
-		<div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+		<div className={styles.textBlock}>
 			<div>
 				<p>{itemName}</p>
-				<p>{itemDetail}</p>
+				<p>{itemDetailLine1}</p>
 				<p>{itemLength}</p>
+				<p>{itemDetailLine2}</p>
 				{children}
-				{/* <p>PLUV</p>
-				<p>DIRECTIONAL FREESTYLE</p>
-				<p>145 CM/149 cm/155 CM/159 CM/164 CM</p> */}
+				{/* <TextBlock
+					itemName='WORK SHOP X TUR BUBO 154.4'
+					itemLength='154.4 CM'
+					itemDetailLine1='EXPERIMENTAL BIG VOLUME'
+					itemDetailLine2='FLAT BUOYANCY PROFILE'
+				/> */}
 			</div>
-			<PriceBlock price={6000} currency='EUR' />
+			<PriceBlock price='6000.00' currency='SEK' />
 		</div>
 	)
 }

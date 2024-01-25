@@ -1,0 +1,169 @@
+(function($) { 'use strict';
+	// Calculate clients viewport
+	const w = window,
+	d = document,
+	e = d.documentElement,
+	g = d.getElementsByTagName('body')[0];
+
+	let x = w.innerWidth || e.clientWidth || g.clientWidth, // Viewport Width
+	y = w.innerHeight || e.clientHeight || g.clientHeight; // Viewport Height
+
+	// Global vars
+	const htmlEl = document.documentElement;
+	const body = document.body;
+	let htmlOffsetTop = parseInt(window.getComputedStyle(htmlEl).marginTop);
+
+	$(document).ready(function($){
+
+		// Give .stick-to-top element negative top margin, so it will stick to top of the page
+		const stickToTop = document.querySelector('.stick-to-top');
+
+		if(stickToTop){
+			setTimeout(function(){
+				body.classList.add('has-stick-to-top');
+				let stickToTopPageOffset = window.pageYOffset + stickToTop.getBoundingClientRect().top;
+
+				stickToTop.style.marginTop = Math.round(-stickToTopPageOffset + htmlOffsetTop) + 'px';
+			}, 500);
+		}
+
+		// Spacer responsive height
+		const spacerBlock = document.querySelectorAll('.wp-block-spacer');
+
+		if(spacerBlock && x > 600){
+			Array.prototype.forEach.call(spacerBlock, function(el){
+				let spacerBlockHeight = el.clientHeight;
+				let spacerRespBlockHeight = (spacerBlockHeight / 19.2).toFixed(2);
+
+				el.style.height = spacerRespBlockHeight + 'vw';
+			});
+		}
+
+		// On scroll
+
+		var animateBlock = $('.h-animate--from-top, .h-animate--from-left, .h-animate--from-right, .h-animate--from-bottom, .js-reveal--from-top, .js-reveal--from-bottom, .wp-block-separator');
+
+		var fnOnScroll = function(){
+			animateBlock.each(function(){
+				var $this = $(this);
+				var animateBlockOffsetTop = $this.offset().top;
+				var activationOffset;
+
+				// Determinate distance to initiate animation relative to viewport height - add date-offset attribute to animating element. Default is date-offset="1.2"
+				if($this.data('offset'))
+					activationOffset = $this.data('offset');
+				else
+					activationOffset = 1.2;
+
+				if((window.pageYOffset > animateBlockOffsetTop - y / activationOffset)){
+					$this.addClass('scrolled-to');
+				}
+			});
+		};
+
+		fnOnScroll();
+
+		window.onscroll = function() {
+			setTimeout(function(){
+				fnOnScroll();
+			},300);
+		};
+
+		// Shop featured category responsive height
+		const featuredCatBlock = document.querySelectorAll('.wc-block-featured-category, .wc-block-featured-product');
+
+		if(featuredCatBlock && x > 600){
+			Array.prototype.forEach.call(featuredCatBlock, function(el){
+				let featuredCatBlockHeight = el.clientHeight;
+				let featuredCatRespBlockHeight = (featuredCatBlockHeight / 19.2).toFixed(2);
+				if(featuredCatBlockHeight > 500){
+					el.style.minHeight = featuredCatRespBlockHeight + 'vw';
+				}
+				else if(featuredCatBlockHeight == 500 && x < 991){
+					el.style.minHeight = '40vw';
+				}
+			});
+		}
+
+		// Add class .active-nav-item for navigation block current page item
+		document.body.querySelectorAll( '.wp-block-navigation' ).forEach( function( navBlock ) {
+			navBlock.querySelectorAll( '[href="' + window.location.href + '"]' ).forEach( function( navActiveLink ) {
+				navActiveLink.parentNode.classList.add( 'active-nav-item' );
+			});
+		});
+
+		// Move injected product gallery image in product block
+		const productGridLink = document.body.querySelectorAll( '.wc-block-grid__product-link' );
+
+		productGridLink.forEach( function( productImgWrap ) {
+			const additionalProductImg = productImgWrap.querySelector( '.wc-block-grid__product-image ~ img' );
+			if(additionalProductImg)
+				productImgWrap.querySelector('.wc-block-grid__product-image').append(additionalProductImg);
+		});
+
+		// Woocommerce product filters
+
+		const tkProductFilters = $('div.tk-product-filters');
+
+		if(tkProductFilters.length){
+			const tkProductFiltersTrig = document.querySelector('.tk-product-filters-trigger');
+			const tkProductFiltersTrigParent = tkProductFiltersTrig.closest('.wp-block-buttons');
+			const wooOrderingFilter = document.querySelector('.woocommerce-ordering');
+			const wooOrderingFilterParent = wooOrderingFilter.parentElement;
+
+			wooOrderingFilterParent.insertBefore(tkProductFiltersTrigParent, wooOrderingFilter);
+			body.classList.add('has-tk-product-filter');
+			tkProductFilters.closest('.wp-block-columns').addClass('tk-product-filters-wrap');
+			tkProductFiltersTrig.closest('.wp-block-buttons').classList.add('tk-product-filters-trigger-wrap');
+
+			tkProductFiltersTrig.addEventListener('click', function(e) {
+				e.preventDefault();
+
+				if(tkProductFilters.hasClass('open')){
+					tkProductFilters.slideUp().removeClass('open').addClass('closed');
+				}
+				else {
+					tkProductFilters.slideDown().addClass('open').removeClass('closed');
+				}
+
+				return false;
+			});
+		}
+
+		// Add Show class to body
+		body.classList.add('show');
+
+	}); // End Document Ready
+
+	document.addEventListener('DOMContentLoaded', function(){
+
+		// Calculate clients viewport
+
+		x=w.innerWidth||e.clientWidth||g.clientWidth; // Viewport Width
+		y=w.innerHeight||e.clientHeight||g.clientHeight; // Viewport Height
+
+		// Scroll to element with target ID, if it doesn't exist go to root URL with added hash from href attribute of clicked link
+		$(document).on('click', '.site-header a[href^="#"]', function(e){
+			e.preventDefault();
+			let urlHash = e.target.closest('a').getAttribute('href');
+			let urlHashRemoveHashSign = urlHash.replace('#', '');
+			let targetEl = document.getElementById(urlHashRemoveHashSign);
+
+			if(!body.classList.contains( 'show' )){
+				body.classList.add('show');
+			}
+
+			if(targetEl){
+				$('html, body').animate({
+					scrollTop: $($.attr(this, 'href')).offset().top - y / 6
+				}, 500);
+				return false;
+			}
+			else{
+				window.location = '/' + urlHash;
+			}
+		});
+
+	}, false);
+
+})(jQuery);
