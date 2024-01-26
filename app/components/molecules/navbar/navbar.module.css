@@ -52,6 +52,7 @@
 
 	.navLinks {
 		display: flex;
+		margin-left: 2rem;
 	}
 
 	.heroSection,
