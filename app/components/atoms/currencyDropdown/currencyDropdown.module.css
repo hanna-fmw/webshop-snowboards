@@ -1,0 +1,49 @@
+.dropdownContainer {
+	position: relative;
+	display: inline-block;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(--color-white);
+	width: 100%;
+	padding: 0.4rem 0.5rem;
+	font-size: 0.8125rem;
+	cursor: pointer;
+	outline: none;
+	border: 1px solid var(--color-dark);
+}
+
+.dropdown {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 70;
+	width: 98%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
+	background-color: var(--color-white);
+	border: 1px solid var(--color-dark);
+	border-top: none;
+}
+
+/* .menuItems {
+	padding: 0.2rem 0;
+} */
+
+.menuItem {
+	padding: 0.4rem 0.5rem;
+	color: #333;
+	cursor: pointer;
+	font-size: 0.8125rem;
+	transition: background-color 0.3s ease;
+}
+
+/* .menuItem:hover,
+.menuItem:focus {
+	background-color: #f0f0f0;
+} */
+/* 
+.activeItem {
+	background-color: #d9dadb;
+} */

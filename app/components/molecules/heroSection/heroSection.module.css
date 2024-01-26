@@ -2,12 +2,13 @@
 	position: relative;
 	overflow-y: hidden;
 	height: 100vh;
+	position: relative;
 }
 
 .heroImage {
 	object-fit: cover;
 	object-position: center;
-	position: relative;
+	/* position: relative; */
 	width: 100vw;
 	height: auto;
 	min-height: 100%;
@@ -21,13 +22,15 @@
 	align-items: flex-start;
 	color: white;
 	position: absolute;
-	left: 1rem;
+	left: 20%;
 	bottom: 0.8rem;
+	width: 60%;
+	margin: 0 auto;
 }
 
 .sunLogo {
 	position: absolute;
-	top: 25%;
+	top: 22%;
 	right: 10%;
 	/* transform: translate(-25%, -25%); */
 	z-index: 40;

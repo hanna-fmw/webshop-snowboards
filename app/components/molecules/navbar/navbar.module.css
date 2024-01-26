@@ -35,13 +35,14 @@
 	.navLinks {
 		display: none;
 	}
-	/* 
-	.hamburgerMenu {
-		display: block;
-	} */
 }
 
 @media (min-width: 768px) {
+	.navContainer {
+		width: 60vw;
+		margin: 0 auto;
+	}
+
 	.navItems {
 		display: flex;
 		align-items: center;
