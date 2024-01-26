@@ -19,7 +19,7 @@ const Navbar = ({ children }: NavbarProps) => {
 				<div className={styles.navLinks}>
 					<NavLink url='/'>[a]. HOME</NavLink>
 					<NavLink url='/'>[b]. SHOP</NavLink>
-					<NavLink url='/'>[c]. ABOUT</NavLink>
+					<NavLink url='/about'>[c]. ABOUT</NavLink>
 					<NavLink url='/'>[d]. SUPPORT</NavLink>
 				</div>
 				{/* {children} */}
