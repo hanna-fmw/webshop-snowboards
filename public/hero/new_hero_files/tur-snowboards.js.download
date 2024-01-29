@@ -1,8 +1,0 @@
-(function($) { 'use strict';
-    // Add class .active-nav-item for navigation block current page item when link is relative
-    document.body.querySelectorAll( '.wp-block-navigation' ).forEach( function( navBlock ) {
-        navBlock.querySelectorAll( '[href="' + window.location.pathname + '"]' ).forEach( function( navActiveLink ) {
-            navActiveLink.parentNode.classList.add( 'active-nav-item' );
-        });
-    });
-})(jQuery);

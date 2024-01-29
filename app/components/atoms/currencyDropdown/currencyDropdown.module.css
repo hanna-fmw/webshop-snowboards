@@ -1,6 +1,7 @@
 .dropdownContainer {
 	position: relative;
 	display: inline-block;
+	z-index: 20;
 }
 
 .button {
@@ -20,22 +21,19 @@
 	position: absolute;
 	top: 100%;
 	left: 0;
-	z-index: 70;
+	/* z-index: 70; */
 	width: 98%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
 	background-color: var(--color-white);
 	border: 1px solid var(--color-dark);
 	border-top: none;
 }
 
-/* .menuItems {
-	padding: 0.2rem 0;
-} */
-
 .menuItem {
 	padding: 0.4rem 0.5rem;
 	color: #333;
 	cursor: pointer;
 	font-size: 0.8125rem;
+	background-color: var(--color-white);
 	transition: background-color 0.3s ease;
 }
 

@@ -3,7 +3,6 @@ import Footer from './components/organisms/footer/Footer'
 import HeroSection from './components/molecules/heroSection/HeroSection'
 import ProductCard from './components/molecules/productCard/ProductCard'
 import styles from './page.module.css'
-import footerStyles from '../app/components/organisms/footer/footer.module.css'
 import ProductGrid from './components/atoms/productGrid/ProductGrid'
 import Figure from './components/atoms/figure/Figure'
 import TextBlock from './components/atoms/textBlock/TextBlock'
@@ -65,8 +64,6 @@ export default function Home() {
 					</div>
 				</ProductGrid>
 			</section>
-
-			
 		</main>
 	)
 }
