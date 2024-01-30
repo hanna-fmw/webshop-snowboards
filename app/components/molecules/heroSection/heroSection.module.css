@@ -21,9 +21,10 @@
 	align-items: flex-start;
 	color: white;
 	position: absolute;
-	left: 21%;
+	left: 2rem;
+	/* left: 21%;
+	width: 60%; */
 	bottom: 2rem;
-	width: 60%;
 	margin: 0 auto;
 }
 

@@ -84,6 +84,7 @@
 
 	.about {
 		padding-top: 2rem;
+		padding: 2rem;
 		margin: 0 auto;
 		display: grid;
 		grid-template-columns: 1fr auto auto 2fr;
@@ -91,7 +92,7 @@
 		grid-auto-rows: auto;
 		column-gap: 2.5rem;
 		row-gap: 1.5rem;
-		max-width: 58vw;
+		/* max-width: 58vw; */
 	}
 
 	.ats {

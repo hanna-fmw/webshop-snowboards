@@ -1,7 +1,6 @@
 .dropdownContainer {
 	position: relative;
 	display: inline-block;
-	z-index: 20;
 }
 
 .button {

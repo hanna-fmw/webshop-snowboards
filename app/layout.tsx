@@ -1,4 +1,5 @@
 import localFont from 'next/font/local'
+import Link from 'next/link'
 
 import type { Metadata } from 'next'
 import { Inter, Roboto_Mono, Sometype_Mono, Red_Hat_Mono, Fira_Code } from 'next/font/google'
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`}>
 				<Navbar />
 				{children}
+					<div className={styles.footerContainer}>
 				<Footer>
 					<ul className={styles.addressBlock}>
 						<li>TUR SNOWBOARDS</li>
@@ -50,8 +52,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					</ul>
 
 					<ul className={styles.socialMediaBlock}>
-						<li>INSTAGRAM</li>
-						<li>FACEBOOK</li>
+						<li>
+							<Link href='https://instagram.com/tursnowboards' className={styles.socialMediaBlockLink}>
+								INSTAGRAM
+							</Link>
+						</li>
+						<li>
+							<Link href='https://www.facebook.com/tursnowboards' className={styles.socialMediaBlockLink}>
+								FACEBOOK
+							</Link>
+						</li>
 					</ul>
 
 					<ul className={styles.linkBlock}>
@@ -71,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<li>©TURSNOWBOARDS2023</li>
 					</ul>
 				</Footer>
+					</div>
 			</body>
 		</html>
 	)
