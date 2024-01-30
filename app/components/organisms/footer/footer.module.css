@@ -1,8 +1,5 @@
 .footer {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	margin-top: 10rem;
+	margin-top: 7rem;
 }
 
 @media (max-width: 767px) {
@@ -31,9 +28,14 @@
 		grid-row: 1;
 	}
 
-	.deliveryInfoBlock {
+	.customerInfoBlock {
 		grid-column: 2;
 		grid-row: 2;
+	}
+
+	.deliveryInfoBlock {
+		grid-column: 2;
+		grid-row: 3;
 	}
 
 	.copyrightInfo {
@@ -49,9 +51,8 @@
 		grid-template-columns: repeat(6, auto);
 		/* margin: 7rem auto; */
 		/* max-width: 58vw; */
-	}
-	.footerContainer {
 		padding: 2rem;
+		width: 100vw;
 	}
 
 	.addressBlock {
@@ -94,5 +95,12 @@
 		grid-column: 1;
 		grid-row: 2;
 		padding-left: 0;
+	}
+}
+
+@media (min-width: 1800px) {
+	.footer {
+		width: 58vw;
+		margin: 0 auto;
 	}
 }

@@ -40,7 +40,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`}>
 				<Navbar />
 				{children}
-					<div className={styles.footerContainer}>
 				<Footer>
 					<ul className={styles.addressBlock}>
 						<li>TUR SNOWBOARDS</li>
@@ -81,7 +80,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<li>©TURSNOWBOARDS2023</li>
 					</ul>
 				</Footer>
-					</div>
 			</body>
 		</html>
 	)
