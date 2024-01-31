@@ -1,13 +1,13 @@
 .productGrid {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 1.4rem;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
 	.productGrid {
-		display: grid;
-		grid-template-columns: repeat(1, 1fr);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1.4rem;
 	}
 }

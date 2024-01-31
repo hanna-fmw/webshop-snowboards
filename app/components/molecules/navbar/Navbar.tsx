@@ -13,28 +13,6 @@ type NavbarProps = {
 
 const Navbar = ({ children }: NavbarProps) => {
 	return (
-		// <nav className={styles.navContainer}>
-		// 	<Image src={logotype} width={157} height={26} alt='TUR Logotype' className={styles.logo} />
-		// 	<div className={styles.navItems}>
-		// 		<div className={styles.navLinks}>
-		// 			<NavLink url='/'>[a]. HOME</NavLink>
-		// 			<NavLink url='/'>[b]. SHOP</NavLink>
-		// 			<NavLink url='/about'>[c]. ABOUT</NavLink>
-		// 			<NavLink url='/support'>[d]. SUPPORT</NavLink>
-		// 		</div>
-		// 		{/* {children} */}
-
-		// 		<div className={styles.cartContainer}>
-		// 			<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' />
-		// 			<CurrencyDropdown />
-		// 			<div className={styles.cart}>
-		// 				<Image src={cart} width={15} height={17} alt='Cart icon' />
-		// 				<small className={styles.cartItemCount}>[7]</small>
-		// 			</div>
-		// 		</div>
-		// 	</div>
-		// </nav>
-
 		<nav className={styles.nav}>
 			<ul className={styles.ul}>
 				<li className={styles.li}>
@@ -49,7 +27,7 @@ const Navbar = ({ children }: NavbarProps) => {
 				</li>
 				<li className={`${styles.li} ${styles.link}`}>
 					{' '}
-					<NavLink url='/'>[b]. SHOP</NavLink>
+					<NavLink url='/shop'>[b]. SHOP</NavLink>
 				</li>
 				<li className={`${styles.li} ${styles.link}`}>
 					<NavLink url='/about'>[c]. ABOUT</NavLink>
