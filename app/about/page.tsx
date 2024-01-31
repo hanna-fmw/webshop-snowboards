@@ -24,6 +24,7 @@ const About = () => {
 			</picture> */}
 
 				<Image src='/hero/hero_about.png' width={1440} height={937} className={aboutImage} alt='About page hero image' />
+
 				{/* <div style={{ height: '100vh' }}>
 					<Image src='/logo/sun_logo.png' width={800} height={1000} className={styles.sunLogo} alt='About page hero image' priority />
 				</div> */}

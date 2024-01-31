@@ -17,13 +17,13 @@
 	}
 
 	.text {
-		margin-bottom: 4.5rem;
+		margin-bottom: 1.5rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.supportContainer {
-		height: 100vh;
+		height: 100%;
 		width: 80vw;
 		display: grid;
 		grid-template-columns: repeat(3, auto) 2fr;
@@ -51,5 +51,12 @@
 	.text {
 		grid-column: 4;
 		grid-row: 1;
+	}
+}
+
+@media (min-width: 1800px) {
+	.supportContainer {
+		width: 58vw;
+		margin: 0 auto;
 	}
 }

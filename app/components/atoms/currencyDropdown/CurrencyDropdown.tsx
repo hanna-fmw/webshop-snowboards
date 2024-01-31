@@ -22,7 +22,7 @@ function CurrencyDropdown() {
 
 	return (
 		<div className={styles.dropdownContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-			<button className={styles.button}>
+			<button className={`${styles.button} currDropdown`}>
 				<div style={{ marginRight: '5px' }}>{value}</div>
 				<div>
 					<RiArrowDownSLine size={18} style={{ color: '#212121', transform: 'translateY(10%)' }} />

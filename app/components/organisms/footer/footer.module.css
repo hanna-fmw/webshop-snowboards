@@ -1,5 +1,8 @@
 .footer {
-	margin-top: 7rem;
+	margin-top: auto;
+	padding-top: 5rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
 }
 
 @media (max-width: 767px) {
@@ -49,9 +52,6 @@
 	.footer {
 		display: grid;
 		grid-template-columns: repeat(6, auto);
-		/* margin: 7rem auto; */
-		/* max-width: 58vw; */
-		padding: 2rem;
 		width: 100vw;
 	}
 

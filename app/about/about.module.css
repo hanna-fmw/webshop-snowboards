@@ -1,15 +1,16 @@
 .aboutContainer {
-	position: relative;
-	overflow-y: hidden;
-	overflow-x: 'hidden';
+	/* position: relative; */
+	overflow: hidden;
 	margin-bottom: 1.5rem;
 	z-index: -1;
+	position: relative;
 }
 
 .aboutImage {
 	object-fit: cover;
 	object-position: top;
 	width: 100%;
+	height: auto;
 	min-height: 100vh;
 	filter: blur(1px) brightness(95%) contrast(1.2);
 }
@@ -17,12 +18,12 @@
 .aboutContent {
 	color: var(--color-white);
 	position: absolute;
-	left: 2rem;
-	bottom: 2rem;
+	left: 1rem;
+	bottom: 10rem;
+	width: 40vw;
+	height: 5rem;
 	width: 40%;
-	z-index: 30;
-	/* margin: 0 auto;
-	width: 60vw; */
+	z-index: 100;
 }
 
 @media (max-width: 767px) {
@@ -61,7 +62,7 @@
 	}
 }
 
-@media (min-width: 767px) {
+@media (min-width: 768px) {
 	.aboutContainer {
 		max-height: 100vh;
 	}
@@ -77,13 +78,7 @@
 		width: 60vw; */
 	}
 
-	.aboutImage {
-		transform: translateY(-20%);
-		height: 100%;
-	}
-
 	.about {
-		padding-top: 2rem;
 		padding: 2rem;
 		margin: 0 auto;
 		display: grid;
@@ -92,7 +87,6 @@
 		grid-auto-rows: auto;
 		column-gap: 2.5rem;
 		row-gap: 1.5rem;
-		/* max-width: 58vw; */
 	}
 
 	.ats {
@@ -213,5 +207,16 @@
 	.text6 {
 		grid-column: 4;
 		grid-row: 6;
+	}
+}
+
+@media (min-width: 1800px) {
+	.aboutContent {
+		left: 21%;
+		width: 30%;
+	}
+	.about {
+		width: 58vw;
+		margin: 0 auto;
 	}
 }

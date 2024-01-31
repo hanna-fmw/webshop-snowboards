@@ -1,6 +1,7 @@
 .dropdownContainer {
 	position: relative;
 	display: inline-block;
+	
 }
 
 .button {
@@ -20,7 +21,7 @@
 	position: absolute;
 	top: 100%;
 	left: 0;
-	/* z-index: 70; */
+	z-index: 70;
 	width: 98%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
 	background-color: var(--color-white);
 	border: 1px solid var(--color-dark);
