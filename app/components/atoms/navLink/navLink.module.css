@@ -6,11 +6,11 @@
 .navLink:hover {
 	text-decoration: underline;
 	text-underline-offset: 5px;
-	color: var(--color-active-link);
+	color: var(--color-darkgrey);
 }
 
 .navLinkHover {
 	text-decoration: underline;
 	text-underline-offset: 5px;
-	color: var(--color-active-link);
+	color: var(--color-darkgrey);
 }

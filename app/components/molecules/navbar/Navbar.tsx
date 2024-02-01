@@ -9,6 +9,8 @@ import cart from '../../../../public/icons/cart.png'
 import CurrencyDropdown from '../../atoms/currencyDropdown/CurrencyDropdown'
 import { useModal } from '@/app/context/ModalContext'
 import Modal from '../modal/Modal'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 type NavbarProps = {
 	children?: React.ReactNode
@@ -21,6 +23,7 @@ type ContextProps = {
 
 const Navbar = ({ children }: NavbarProps) => {
 	const { isOpen, openModal }: ContextProps = useModal()
+	const pathName = usePathname()
 	// const [isOpen, setIsOpen] = useState(false)
 
 	// const openModal = () => {
@@ -37,51 +40,40 @@ const Navbar = ({ children }: NavbarProps) => {
 		<nav className={styles.nav}>
 			<ul className={styles.ul}>
 				<li className={styles.li}>
-					<NavLink url='/'>
+					<Link href='/'>
 						<Image src={logotype} width={157} height={26} alt='TUR Logotype' className={styles.logo} />
-					</NavLink>
+					</Link>
 				</li>
 
 				<li className={`${styles.li} ${styles.link}`}>
 					{' '}
-					<NavLink url='/'>[a]. HOME</NavLink>
+					<Link href='/' className={`${pathName === '/' ? styles.active : ''}`}>
+						[a]. HOME
+					</Link>
 				</li>
 				<li className={`${styles.li} ${styles.link}`}>
 					{' '}
-					<NavLink url='/shop'>[b]. SHOP</NavLink>
+					<Link href='/shop' className={`${pathName === '/shop' ? styles.active : ''}`}>
+						[b]. SHOP
+					</Link>
 				</li>
 				<li className={`${styles.li} ${styles.link}`}>
-					<NavLink url='/about'>[c]. ABOUT</NavLink>
+					<Link href='/about' className={`${pathName === '/about' ? styles.active : ''}`}>
+						[c]. ABOUT
+					</Link>
 				</li>
 				<li className={`${styles.li} ${styles.link}`}>
 					{' '}
-					<NavLink url='/support'>[d]. SUPPORT</NavLink>
+					<Link href='/support' className={`${pathName === '/support' ? styles.active : ''}`}>
+						[d]. SUPPORT
+					</Link>
 				</li>
 
 				{/* {children} */}
 
 				<li className={styles.li}>
 					<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
-					{isOpen && (
-						<Modal />
-						// <div className={styleModal.modalOverlay}>
-						// 	<IoCloseOutline size={25} onClick={closeModal} className={styleModal.closeBtn} />
-						// 	<div className={styleModal.links}>
-						// 		<Link href='/' onClick={closeModal} className={styleModal.link}>
-						// 			[a].HOME{' '}
-						// 		</Link>
-						// 		<Link href='/shop' onClick={closeModal} className={styleModal.link}>
-						// 			[b].SHOP
-						// 		</Link>
-						// 		<Link href='/about' onClick={closeModal} className={styleModal.link}>
-						// 			[c].ABOUT
-						// 		</Link>
-						// 		<Link href='/support' onClick={closeModal} className={styleModal.link}>
-						// 			[d].SUPPORT
-						// 		</Link>
-						// 	</div>
-						// </div>
-					)}
+					{isOpen && <Modal />}
 				</li>
 
 				<li className={`${styles.li} ${styles.currencyDropdown}`}>

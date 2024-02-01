@@ -93,6 +93,12 @@ body.modalOpen {
 	overflow: hidden;
 }
 
+/* .active {
+	text-decoration: underline;
+	text-underline-offset: 5px;
+	color: var(--color-darkgrey);
+} */
+
 /* Typography */
 :root {
 	--font-primary: 'code-saver', sans-serif;
