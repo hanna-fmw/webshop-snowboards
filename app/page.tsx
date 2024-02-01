@@ -6,6 +6,7 @@ import styles from './page.module.css'
 import ProductGrid from './components/atoms/productGrid/ProductGrid'
 import Figure from './components/atoms/figure/Figure'
 import TextBlock from './components/atoms/textBlock/TextBlock'
+import Link from 'next/link'
 
 export default function Home() {
 	return (
@@ -14,7 +15,7 @@ export default function Home() {
 			<section className={styles.productCardSection}>
 				<div className={styles.productCardSectionHeading}>
 					<div>TUR SNOWBOARD PRODUCTS:</div>
-					<div>&gt; SHOW ALL</div>
+					<Link href='/shop'>&gt; SHOW ALL</Link>
 				</div>
 
 				<ProductGrid>
@@ -42,7 +43,7 @@ export default function Home() {
 					</div>
 					<div>
 						<ProductCard>
-							<Figure image='/products/TUR_LABB.png' />
+							<Figure image='/products/LABB.png' />
 							<TextBlock
 								itemName='WORK SHOP X TUR BUBO 154.4'
 								itemLength='154.4 CM'
@@ -53,7 +54,7 @@ export default function Home() {
 					</div>
 					<div>
 						<ProductCard>
-							<Figure image='/products/TUR_FALC.png' />
+							<Figure image='/products/FALC.png' />
 							<TextBlock
 								itemName='WORK SHOP X TUR BUBO 154.4'
 								itemLength='154.4 CM'

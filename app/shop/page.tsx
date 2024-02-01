@@ -101,7 +101,7 @@ const Shop = () => {
 						</div>
 						<div>
 							<ProductCard>
-								<Figure image='/products/TUR_LABB.png' />
+								<Figure image='/products/LABB.png' />
 								<TextBlock
 									itemName='WORK SHOP X TUR BUBO 154.4'
 									itemLength='154.4 CM'
@@ -112,7 +112,7 @@ const Shop = () => {
 						</div>
 						<div>
 							<ProductCard>
-								<Figure image='/products/TUR_FALC.png' />
+								<Figure image='/products/FALC.png' />
 								<TextBlock
 									itemName='WORK SHOP X TUR BUBO 154.4'
 									itemLength='154.4 CM'
