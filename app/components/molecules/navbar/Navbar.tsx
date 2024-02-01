@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import styles from './navbar.module.css'
 import Image from 'next/image'
@@ -6,12 +7,32 @@ import hamburgerMenu from '../../../../public/icons/hamburger_menu_mobile.png'
 import logotype from '../../../../public/logo/logo.png'
 import cart from '../../../../public/icons/cart.png'
 import CurrencyDropdown from '../../atoms/currencyDropdown/CurrencyDropdown'
+import { useModal } from '@/app/context/ModalContext'
+import Modal from '../modal/Modal'
 
 type NavbarProps = {
 	children?: React.ReactNode
 }
 
+type ContextProps = {
+	isOpen: boolean
+	openModal: () => void
+}
+
 const Navbar = ({ children }: NavbarProps) => {
+	const { isOpen, openModal }: ContextProps = useModal()
+	// const [isOpen, setIsOpen] = useState(false)
+
+	// const openModal = () => {
+	// 	document.body.classList.add('modalOpen');
+	// 	setIsOpen(true)
+	// }
+
+	// const closeModal = () => {
+	// 	document.body.classList.remove('modalOpen');
+	// 	setIsOpen(false)
+	// }
+
 	return (
 		<nav className={styles.nav}>
 			<ul className={styles.ul}>
@@ -40,8 +61,29 @@ const Navbar = ({ children }: NavbarProps) => {
 				{/* {children} */}
 
 				<li className={styles.li}>
-					<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' />
+					<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
+					{isOpen && (
+						<Modal />
+						// <div className={styleModal.modalOverlay}>
+						// 	<IoCloseOutline size={25} onClick={closeModal} className={styleModal.closeBtn} />
+						// 	<div className={styleModal.links}>
+						// 		<Link href='/' onClick={closeModal} className={styleModal.link}>
+						// 			[a].HOME{' '}
+						// 		</Link>
+						// 		<Link href='/shop' onClick={closeModal} className={styleModal.link}>
+						// 			[b].SHOP
+						// 		</Link>
+						// 		<Link href='/about' onClick={closeModal} className={styleModal.link}>
+						// 			[c].ABOUT
+						// 		</Link>
+						// 		<Link href='/support' onClick={closeModal} className={styleModal.link}>
+						// 			[d].SUPPORT
+						// 		</Link>
+						// 	</div>
+						// </div>
+					)}
 				</li>
+
 				<li className={`${styles.li} ${styles.currencyDropdown}`}>
 					<CurrencyDropdown />
 				</li>

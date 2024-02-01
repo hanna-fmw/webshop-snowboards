@@ -88,6 +88,11 @@ ul {
 	list-style-type: none;
 }
 
+html.modalOpen,
+body.modalOpen {
+	overflow: hidden;
+}
+
 /* Typography */
 :root {
 	--font-primary: 'code-saver', sans-serif;

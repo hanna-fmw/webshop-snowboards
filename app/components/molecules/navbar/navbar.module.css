@@ -49,12 +49,19 @@ li.link {
 	padding: 0;
 }
 
-@media (min-width: 758px) {
+.hamburgerMenu {
+	cursor: pointer;
+}
+
+@media (min-width: 767px) {
 	.nav {
 		padding: 0;
 	}
 	li.link {
 		display: block;
+	}
+	.hamburgerMenu {
+		display: none;
 	}
 }
 
