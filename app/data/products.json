@@ -1,0 +1,114 @@
+[
+	{
+		"id": 1,
+		"image": "bubo150/BUBO150.png",
+		"model": "WORK SHOP X TUR BUBO 150.4",
+		"detail": "EXPERIMENTAL BIG VOLUME",
+		"profile": "FLAT BUOYANCY PROFILE",
+		"length": "150.4 CM",
+		"price": "7399,00",
+		"descriptionHeading": "OUR LEGACY WORK SHOP X TUR LTD EDITION:",
+		"descriptionText": "Work Shop TUR Snowboards Bubo Hank Grüner edition. A experimental big volume board built for maximum float and buoyancy, with the abilities to handle the hard packed days when the soft snow is nowhere to be found. When resort is you last resort.",
+		"district": "Tight tree runs, deep powder, mellow groomers and overall fun terrain.",
+		"properties": {
+			"length": "150.4 cm",
+			"features": [
+				"Tapered big volume -> playfulness + quick decisions.",
+				"Flat buoyancy profile -> maximum float + great stability.",
+				"Wood core & veneer topsheet -> minimal weight, less chatter.",
+				"Scando Grip technology -> maximum edge-hold & superior bite.",
+				"Sintered base -> go faster for longer with less maintenance.",
+				"Premium materials & craftsmanship -> for our winters."
+			],
+			"narrative": "The Bubo is a top performance riding board built for maximum float and buoyancy but also for the hard packed days when the soft snow is nowhere to be found. The Bubo is designed and inspired by mini mal surfboards, to have maximum float and stability and to have that in a shorter, playful and more quicker turning board. An overall added width with a volume packed nose and tapered tail will make it glide through the deepest of snow with ease and also help for great hold on-piste. This combined with a backseat Scando Grip technology with 2- extra contact points from the waist and back for greater edge-hold and superior bite on hard pack without it being aggressive in the nose. Made with a premium wood core blended with a wooden veneer top-sheet to prevent chatter and make it feel damp combined with a fast durable sintered base. If you are looking for a board that handles powder but also rides more than that, this is it, the Scandinavian Powder board.",
+			"additionalInfo": ["APPROVED BY SCANDINAVIA", "SHAPED WITH A PURPOSE"]
+		},
+		"technicalSpecification": "bubo150/techCharts/bubo01.svg",
+		"chart": "bubo150/techCharts/bubo02.svg",
+		"thumbnails": [
+			"BUBO_WS_150-4_01-149x149.png",
+			"BUBO_WS_150-4_02-149x149.png",
+			"BUBO_WS_150-4_03-149x149.png",
+			"BUBO_WS_150-4_04-149x149.png",
+			"BUBO_WS_150-4_05-149x149.png",
+			"BUBO_WS_150-4_06-149x149.png",
+			"BUBO_WS_150-4_08-149x149.png",
+			"BUBO_WS_154-0_07-149x149.png"
+		]
+	},
+
+	{
+		"id": 2,
+		"image": "bubo154/BUBO154.png",
+		"model": "WORK SHOP X TUR BUBO 154.4",
+		"detail": "EXPERIMENTAL BIG VOLUME",
+		"profile": "FLAT BUOYANCY PROFILE",
+		"length": "154.4 CM",
+		"price": "7399,00",
+		"descriptionHeading": "OUR LEGACY WORK SHOP X TUR LTD EDITION:",
+		"descriptionText": "Work Shop TUR Snowboards Bubo Hank Grüner edition. A experimental big volume board built for maximum float and buoyancy, with the abilities to handle the hard packed days when the soft snow is nowhere to be found. When resort is you last resort.",
+		"district": "Tight tree runs, deep powder, mellow groomers and overall fun terrain.",
+		"properties": {
+			"length": "154.4 cm",
+			"features": [
+				"Tapered big volume -> playfulness + quick decisions.",
+				"Flat buoyancy profile -> maximum float + great stability.",
+				"Wood core & veneer topsheet -> minimal weight, less chatter.",
+				"Scando Grip technology -> maximum edge-hold & superior bite.",
+				"Sintered base -> go faster for longer with less maintenance.",
+				"Premium materials & craftsmanship -> for our winters."
+			],
+			"narrative": "The Bubo is a top performance riding board built for maximum float and buoyancy but also for the hard packed days when the soft snow is nowhere to be found. The Bubo is designed and inspired by mini mal surfboards, to have maximum float and stability and to have that in a shorter, playful and more quicker turning board. An overall added width with a volume packed nose and tapered tail will make it glide through the deepest of snow with ease and also help for great hold on-piste. This combined with a backseat Scando Grip technology with 2- extra contact points from the waist and back for greater edge-hold and superior bite on hard pack without it being aggressive in the nose. Made with a premium wood core blended with a wooden veneer top-sheet to prevent chatter and make it feel damp combined with a fast durable sintered base. If you are looking for a board that handles powder but also rides more than that, this is it, the Scandinavian Powder board.",
+			"additionalInfo": ["APPROVED BY SCANDINAVIA", "SHAPED WITH A PURPOSE"]
+		},
+		"technicalSpecification": "bubo154/techCharts/bubo01.svg",
+		"chart": "bubo150/techCharts/bubo02.svg",
+		"thumbnails": [
+			"BUBO_WS_154-4_01-149x149.png",
+			"BUBO_WS_154-4_02-149x149.png",
+			"BUBO_WS_154-4_03-149x149.png",
+			"BUBO_WS_154-4_04-149x149.png",
+			"BUBO_WS_154-4_05-149x149.png",
+			"BUBO_WS_154-4_06-149x149.png",
+			"BUBO_WS_154-4_07-149x149.png",
+			"BUBO_WS_154-4_08-149x149.png"
+		]
+	},
+	{
+		"id": 3,
+		"image": "falc/FALC.png",
+		"model": "TUR FALC",
+		"designer": "[S.] BJÖRN LINDGREN",
+		"detail": "DIRECTIONAL FREESTYLE",
+		"length": "154/158/161 CM",
+		"profile": "FLAT CAMBER PROFILE",
+		"price": "8299,00",
+		"descriptionHeading": "TUR FALC [SIGNATURE BJÖRN LINDGREN]:",
+		"descriptionText": "A quick, freestyle board with high maneuverability that’s trustable at fast speeds, made to handle everything from tricky natural terrains to big mountains, banked slaloms to park and icy groomed runs.",
+		"district": "Natural and playful terrain, big mountains to tricky side hits, resort runs, slush and powder to icy conditions.",
+		"properties": {
+			"length": "154/158/161 cm.",
+			"features": [
+				"Directional freestyle -> quick & snappy turns at high speeds.",
+				"Camber with pressure inlays -> for maximum pressure & pure pop.",
+				"Wood core & veneer topsheet -> minimal weight, less chatter.",
+				"Scando Grip technology -> maximum edge-hold & superior bite.",
+				"Sintered base -> go faster for longer with less maintenance.",
+				"Premium materials & craftsmanship -> for our winters."
+			],
+			"narrative": "The Falc is a fast, edge-to-edge freestyle board shaped to maneuver the whole mountain and its different riding possibilities. From high and steep mountain sides to playful side hits to big kickers and back country jumps. The unique shape is designed with a tight side-cut radius for quick and snappy turns at high speeds. The special camber profile with its inlays around the nose and tail allows you to put pressure where it’s needed for maximum load and quick pop back. The core is made with a premium light wood and a wood veneer topsheet prevents prevent chatter when going fast. While the Scando Grip technology with 3-extra contact points on the edges for maximum edge-hold and superior bite on hard pack and icy conditions. This combination of technologies and premium materials means it works just as well in fast firm turn conditions of the morning corduroy to small technical lines in natural surroundings in the afternoon; the Falc is the quickest animal.",
+			"additionalInfo": ["APPROVED BY SCANDINAVIA", "SHAPED WITH A PURPOSE"]
+		},
+		"technicalSpecification": "falc/techChartsfalc01.svg",
+		"chart": "falc/techChartsfalc02.svg",
+		"thumbnails": [
+			"FALC-01-149x149.png",
+			"FALC-02-149x149.png",
+			"FALC-03-149x149.png",
+			"FALC-04-149x149.png",
+			"FALC-05-149x149.png",
+			"FALC-06-149x149.png",
+			"FALC-08-149x149.png"
+		]
+	}
+]

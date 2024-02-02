@@ -6,6 +6,7 @@
 @media (min-width: 768px) {
 	.productGrid {
 		display: flex;
+
 		justify-content: space-between;
 		align-items: center;
 		gap: 1.4rem;

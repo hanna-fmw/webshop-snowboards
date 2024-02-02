@@ -1,32 +1,43 @@
 import React from 'react'
-import PriceBlock from '../priceBlock/PriceBlock'
+// import PriceBlock from '../priceBlock/PriceBlock'
 import styles from './textBlock.module.css'
+import formatPrice from '@/app/utilities/formatPrice'
 
 type TextBlockProps = {
 	children?: React.ReactNode
-	itemName?: string
-	itemDetailLine1?: string
-	itemLength?: string
-	itemDetailLine2?: string
+	model?: string
+	detail?: string
+	length?: string
+	profile?: string
+	price?: any
+	currency?: 'SEK' | 'EUR'
+	formattedPrice?: string
+	designer?: string
 }
 
-const TextBlock = ({ itemName, itemLength, itemDetailLine1, itemDetailLine2, children }: TextBlockProps) => {
+const TextBlock = ({ model, length, detail, designer, profile, price = 10000, currency = 'SEK', children }: TextBlockProps) => {
+	// const formattedPrice = formatPrice(price)
 	return (
 		<div className={styles.textBlock}>
 			<div>
-				<p>{itemName}</p>
-				<p>{itemDetailLine1}</p>
-				<p>{itemLength}</p>
-				<p>{itemDetailLine2}</p>
+				<p>{model}</p>
+				<p>{designer}</p>
+				<p>{detail}</p>
+				<p>{length}</p>
+				<p>{profile}</p>
 				{children}
 				{/* <TextBlock
-					itemName='WORK SHOP X TUR BUBO 154.4'
-					itemLength='154.4 CM'
-					itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-					itemDetailLine2='FLAT BUOYANCY PROFILE'
+					model='WORK SHOP X TUR BUBO 154.4'
+					length='154.4 CM'
+					detail='EXPERIMENTAL BIG VOLUME'
+					profile='FLAT BUOYANCY PROFILE'
 				/> */}
 			</div>
-			<PriceBlock price='6000.00' currency='SEK' />
+
+			{/* <PriceBlock price='6000.00' currency='SEK' /> */}
+			<p className={styles.price}>
+				<span>{price}</span> <span>{currency}</span>
+			</p>
 		</div>
 	)
 }

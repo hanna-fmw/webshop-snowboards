@@ -88,11 +88,6 @@ ul {
 	list-style-type: none;
 }
 
-html.modalOpen,
-body.modalOpen {
-	overflow: hidden;
-}
-
 /* .active {
 	text-decoration: underline;
 	text-underline-offset: 5px;

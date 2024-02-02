@@ -80,45 +80,25 @@ const Shop = () => {
 						<div>
 							<ProductCard>
 								<Figure image='/products/BUBO154.png' />
-								<TextBlock
-									itemName='WORK SHOP X TUR BUBO 154.4'
-									itemLength='154.4 CM'
-									itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-									itemDetailLine2='FLAT BUOYANCY PROFILE'
-								/>
+								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 							</ProductCard>
 						</div>
 						<div>
 							<ProductCard>
 								<Figure image='/products/BUBO150.png' />
-								<TextBlock
-									itemName='WORK SHOP X TUR BUBO 154.4'
-									itemLength='154.4 CM'
-									itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-									itemDetailLine2='FLAT BUOYANCY PROFILE'
-								/>
+								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 							</ProductCard>
 						</div>
 						<div>
 							<ProductCard>
 								<Figure image='/products/LABB.png' />
-								<TextBlock
-									itemName='WORK SHOP X TUR BUBO 154.4'
-									itemLength='154.4 CM'
-									itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-									itemDetailLine2='FLAT BUOYANCY PROFILE'
-								/>
+								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 							</ProductCard>
 						</div>
 						<div>
 							<ProductCard>
 								<Figure image='/products/FALC.png' />
-								<TextBlock
-									itemName='WORK SHOP X TUR BUBO 154.4'
-									itemLength='154.4 CM'
-									itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-									itemDetailLine2='FLAT BUOYANCY PROFILE'
-								/>
+								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 							</ProductCard>
 						</div>
 					</ProductGrid>

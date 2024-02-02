@@ -1,5 +1,5 @@
 'use client'
-import Footer from './components/organisms/footer/Footer'
+import products from './data/products.json'
 import HeroSection from './components/molecules/heroSection/HeroSection'
 import ProductCard from './components/molecules/productCard/ProductCard'
 import styles from './page.module.css'
@@ -19,50 +19,46 @@ export default function Home() {
 				</div>
 
 				<ProductGrid>
-					<div>
+					{products.map((product, i) => {
+						return (
+							<ProductCard key={i}>
+								<Figure image={`/products/${product.image}`} />
+								<TextBlock
+									model={product.model}
+									length={product.length}
+									detail={product.detail}
+									profile={product.profile}
+									price={product.price}
+									currency='SEK'
+								/>
+							</ProductCard>
+						)
+					})}
+
+					{/* <div>
 						<ProductCard>
 							<Figure image='/products/BUBO154.png' />
-							<TextBlock
-								itemName='WORK SHOP X TUR BUBO 154.4'
-								itemLength='154.4 CM'
-								itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-								itemDetailLine2='FLAT BUOYANCY PROFILE'
-							/>
+							<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 						</ProductCard>
 					</div>
 					<div>
 						<ProductCard>
 							<Figure image='/products/BUBO150.png' />
-							<TextBlock
-								itemName='WORK SHOP X TUR BUBO 154.4'
-								itemLength='154.4 CM'
-								itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-								itemDetailLine2='FLAT BUOYANCY PROFILE'
-							/>
+							<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 						</ProductCard>
 					</div>
 					<div>
 						<ProductCard>
 							<Figure image='/products/LABB.png' />
-							<TextBlock
-								itemName='WORK SHOP X TUR BUBO 154.4'
-								itemLength='154.4 CM'
-								itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-								itemDetailLine2='FLAT BUOYANCY PROFILE'
-							/>
+							<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 						</ProductCard>
 					</div>
 					<div>
 						<ProductCard>
 							<Figure image='/products/FALC.png' />
-							<TextBlock
-								itemName='WORK SHOP X TUR BUBO 154.4'
-								itemLength='154.4 CM'
-								itemDetailLine1='EXPERIMENTAL BIG VOLUME'
-								itemDetailLine2='FLAT BUOYANCY PROFILE'
-							/>
+							<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 						</ProductCard>
-					</div>
+					</div> */}
 				</ProductGrid>
 			</section>
 		</main>

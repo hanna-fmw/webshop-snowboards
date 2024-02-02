@@ -32,7 +32,7 @@ export const SampleContent: Story = {
 	render: (args) => (
 		<ProductCard>
 			<Image src={pluv} width={350} height={450} alt='placeholder' />
-			<TextBlock itemName='PLUV' itemDetailLine1='DIRECTIONAL FREESTYLE' itemLength='155 CM' />
+			<TextBlock model='PLUV' detail='DIRECTIONAL FREESTYLE' length='155 CM' />
 		</ProductCard>
 	),
 }

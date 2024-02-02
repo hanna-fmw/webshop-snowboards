@@ -5,3 +5,7 @@
 	gap: 3rem;
 	width: 100%;
 }
+
+.price {
+	color: var(--color-TUR-green);
+}
