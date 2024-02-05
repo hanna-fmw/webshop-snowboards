@@ -27,9 +27,9 @@ const TextBlock = ({ model, length, detail, designer, profile, price = 10000, cu
 				<p>{profile}</p>
 			</div>
 
-			<p className={styles.price}>
+			<div className={styles.price}>
 				<span>{price}</span> <span>{currency}</span>
-			</p>
+			</div>
 		</div>
 	)
 }
