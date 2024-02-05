@@ -7,6 +7,7 @@ import ProductGrid from '../components/atoms/productGrid/ProductGrid'
 import ProductCard from '../components/molecules/productCard/ProductCard'
 import TextBlock from '../components/atoms/textBlock/TextBlock'
 import Figure from '../components/atoms/figure/Figure'
+import products from '../data/products.json'
 
 const Shop = () => {
 	const [value, setValue] = useState('Default sorting')
@@ -76,7 +77,24 @@ const Shop = () => {
 					</div>
 				</div>
 				<section className={styles.productCardSection}>
-					<ProductGrid>
+					{products.map((product, i) => {
+						return (
+							<ProductCard key={i}>
+								<Figure image={`/products/${product.image}`} />
+								<TextBlock
+									model={product.model}
+									designer={product.designer}
+									length={product.length}
+									detail={product.detail}
+									profile={product.profile}
+									price={product.price}
+									currency='SEK'
+								/>
+							</ProductCard>
+						)
+					})}
+
+					{/* <ProductGrid>
 						<div>
 							<ProductCard>
 								<Figure image='/products/BUBO154.png' />
@@ -101,7 +119,7 @@ const Shop = () => {
 								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
 							</ProductCard>
 						</div>
-					</ProductGrid>
+					</ProductGrid> */}
 				</section>
 			</section>
 		</main>

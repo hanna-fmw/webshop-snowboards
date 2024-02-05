@@ -70,7 +70,7 @@ li.link {
 
 @media (min-width: 1800px) {
 	.nav {
-		grid-template-columns: 1fr minmax(auto, 60vw) 1fr;
+		grid-template-columns: 1fr minmax(auto, 80vw) 1fr;
 	}
 }
 

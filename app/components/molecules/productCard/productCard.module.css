@@ -5,9 +5,8 @@
 	}
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1800px) {
 	.productCard {
-		width: 350px;
-		height: auto;
+		width: 100%;
 	}
 }

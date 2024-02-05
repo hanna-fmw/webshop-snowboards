@@ -5,19 +5,12 @@
 	align-items: center;
 	width: 100vw;
 }
-.container {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	padding-top: 4rem;
-}
 
 .shopHeader {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin-top: 1rem;
+	margin-top: 5rem;
 	margin-bottom: 1rem;
 	width: 100%;
 }
@@ -44,6 +37,7 @@
 .dropdownContainer {
 	position: relative;
 	display: inline-block;
+	margin-bottom: 1.5rem;
 }
 
 .button {
@@ -64,13 +58,13 @@
 	top: 100%;
 	left: 0;
 	z-index: 70;
-	width: 98%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
+	width: 100%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
 	background-color: var(--color-white);
-	border: 1px solid var(--color-dark);
-	border-top: none;
 }
 
 .menuItem {
+	border: 1px solid var(--color-dark);
+	border-top: none;
 	padding: 0.4rem 0.5rem;
 	color: #333;
 	cursor: pointer;
@@ -80,13 +74,25 @@
 }
 
 @media (min-width: 768px) {
+	.container {
+		width: 95vw;
+	}
+
 	.shopHeader {
 		flex-direction: row;
+		justify-content: space-between;
+		max-width: 100%;
+	}
+
+	.productCardSection {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
 	}
 }
 
-@media (min-width: 1800px) {
-	.productCardHeading {
-		width: 58vw;
+@media (min-width: 1880px) {
+	.container {
+		width: 80vw;
 	}
 }

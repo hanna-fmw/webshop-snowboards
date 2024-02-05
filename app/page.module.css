@@ -6,7 +6,7 @@
 	width: 100vw;
 }
 
-.productCardSectionHeading {
+.productCardSectionHeader {
 	display: flex;
 	justify-content: space-between;
 	margin-top: 1rem;
@@ -30,7 +30,10 @@
 
 /* Extra large screens */
 @media (min-width: 1800px) {
-	.productCardSection .productCardSectionHeading {
-		width: 58vw;
+	.productCardSectionHeader {
+		width: 80vw;
+	}
+	.productCardSection {
+		display: flex;
 	}
 }

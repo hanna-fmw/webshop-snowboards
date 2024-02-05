@@ -25,16 +25,8 @@ const TextBlock = ({ model, length, detail, designer, profile, price = 10000, cu
 				<p>{detail}</p>
 				<p>{length}</p>
 				<p>{profile}</p>
-				{children}
-				{/* <TextBlock
-					model='WORK SHOP X TUR BUBO 154.4'
-					length='154.4 CM'
-					detail='EXPERIMENTAL BIG VOLUME'
-					profile='FLAT BUOYANCY PROFILE'
-				/> */}
 			</div>
 
-			{/* <PriceBlock price='6000.00' currency='SEK' /> */}
 			<p className={styles.price}>
 				<span>{price}</span> <span>{currency}</span>
 			</p>
