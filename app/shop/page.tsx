@@ -8,10 +8,13 @@ import ProductCard from '../components/molecules/productCard/ProductCard'
 import TextBlock from '../components/atoms/textBlock/TextBlock'
 import Figure from '../components/atoms/figure/Figure'
 import products from '../data/products.json'
+import { useRouter } from 'next/navigation'
 
 const Shop = () => {
 	const [value, setValue] = useState('Default sorting')
 	const [isOpen, setIsOpen] = useState(false)
+
+	const router = useRouter()
 
 	const handleMouseEnter = () => {
 		setIsOpen(true)
@@ -25,6 +28,7 @@ const Shop = () => {
 		setValue(newValue)
 		setIsOpen(false)
 	}
+
 	return (
 		<main className={styles.main}>
 			<section className={styles.container}>
@@ -80,7 +84,7 @@ const Shop = () => {
 					{products.map((product, i) => {
 						return (
 							<ProductCard key={i}>
-								<Figure image={`/products/${product.image}`} />
+								<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
 								<TextBlock
 									model={product.model}
 									designer={product.designer}

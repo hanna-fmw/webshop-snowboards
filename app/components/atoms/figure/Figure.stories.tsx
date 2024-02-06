@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Image from 'next/image'
 import Figure from './Figure'
-import pluv from '../../../../public/products/PLUV.png'
+
+import bubo from '../../../../public/products/bubo/BUBO.png'
 
 const meta = {
 	title: '/Atoms/Figure',
@@ -27,7 +28,7 @@ export const Default: Story = {
 export const SampleImage: Story = {
 	render: () => (
 		<Figure>
-			<Image src={pluv} width={350} height={450} alt='picture' />
+			<Image src={bubo} width={350} height={450} alt='picture' />
 		</Figure>
 	),
 }

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Image from 'next/image'
-import pluv from '../../../../public/products/PLUV.png'
+import bubo from '../../../../public/products/bubo/BUBO.png'
 import styles from './productGrid.module.css'
 
 import ProductGrid from './ProductGrid'
@@ -35,16 +35,16 @@ export const SampleContent: Story = {
 	render: () => (
 		<ProductGrid>
 			<div>
-				<Image src={pluv} width={350} height={450} alt='placeholder' style={{ width: '150px', height: 'auto', margin: '1rem' }} />
+				<Image src={bubo} width={350} height={450} alt='placeholder' style={{ width: '150px', height: 'auto', margin: '1rem' }} />
 			</div>
 			<div>
-				<Image src={pluv} width={350} height={450} alt='placeholder' style={{ width: '150px', height: 'auto', margin: '1rem' }} />
+				<Image src={bubo} width={350} height={450} alt='placeholder' style={{ width: '150px', height: 'auto', margin: '1rem' }} />
 			</div>
 			<div>
-				<Image src={pluv} width={350} height={450} alt='placeholder' style={{ width: '150px', height: 'auto', margin: '1rem' }} />
+				<Image src={bubo} width={350} height={450} alt='placeholder' style={{ width: '150px', height: 'auto', margin: '1rem' }} />
 			</div>
 			<div>
-				<Image src={pluv} width={350} height={450} alt='placeholder' style={{ width: '150px', height: 'auto', margin: '1rem' }} />
+				<Image src={bubo} width={350} height={450} alt='placeholder' style={{ width: '150px', height: 'auto', margin: '1rem' }} />
 			</div>
 		</ProductGrid>
 	),

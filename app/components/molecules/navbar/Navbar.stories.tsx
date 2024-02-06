@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import styles from './navbar.module.css'
 import Image from 'next/image'
+import { useModal } from '@/app/context/ModalContext'
 
 import Navbar from './Navbar'
 

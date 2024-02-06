@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import ProductCard from './ProductCard'
 import TextBlock from '../../atoms/textBlock/TextBlock'
 import Image from 'next/image'
-import pluv from '../../../../public/products/PLUV.png'
+import bubo from "../../../../public/products/bubo/BUBO.png"
 
 const meta = {
 	title: '/Molecules/ProductCard',
@@ -31,7 +31,7 @@ export const SampleContent: Story = {
 	args: {},
 	render: (args) => (
 		<ProductCard>
-			<Image src={pluv} width={350} height={450} alt='placeholder' />
+			<Image src={bubo} width={350} height={450} alt='placeholder' />
 			<TextBlock model='PLUV' detail='DIRECTIONAL FREESTYLE' length='155 CM' />
 		</ProductCard>
 	),

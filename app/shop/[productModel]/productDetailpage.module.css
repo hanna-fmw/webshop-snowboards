@@ -1,0 +1,75 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 5rem;
+}
+
+.thumbnails {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 0.5rem;
+	cursor: pointer;
+}
+
+.thumbnailCard {
+	position: relative;
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.7);
+	/* opacity: 0; */
+	transition: opacity 0.3s ease;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* z-index: 50; */
+}
+
+.thumbnailCard:hover .overlay {
+	opacity: 0;
+}
+
+.infoContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90vw;
+}
+
+.productInfoBlock {
+	justify-content: flex-start;
+}
+
+.chart {
+	width: 100%;
+	height: auto;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}
+
+.ul {
+	margin: 0;
+	padding: 0;
+}
+
+.li:before {
+	content: '> ';
+}
+
+.additionalInfo {
+	margin-top: 1rem;
+}
+
+/* Add other styles as needed */
+
+/* .active,
+.link:hover {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 5px;
+	color: var(--color-white);
+} */

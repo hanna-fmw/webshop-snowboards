@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Image from 'next/image'
-import pluv from '../../../../public/products/PLUV.png'
+import bubo from "../../../../public/products/bubo/BUBO.png"
 import styles from './modal.module.css'
 
 import Modal from './Modal'
