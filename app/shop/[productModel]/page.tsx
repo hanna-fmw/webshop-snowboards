@@ -98,16 +98,20 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 										<div>{product.descriptionText}</div>
 										<h2>{product.districtHeading}</h2>
 										<div>{product.district}</div>
-										<h2>{product.propertiesHeading}</h2>
-										<ul className={styles.ul}>
-											<li className={styles.li}>{product.properties.length}</li>
+										{product.propertiesHeading ? (
+											<div>
+												<h2>{product.propertiesHeading}</h2>
+												<ul className={styles.ul}>
+													<li className={styles.li}>{product.properties.length}</li>
+													{product.properties?.features.map((property, i) => (
+														<li className={styles.li} key={i}>
+															{property}
+														</li>
+													))}
+												</ul>
+											</div>
+										) : null}
 
-											{product.properties.features.map((property, i) => (
-												<li className={styles.li} key={i}>
-													{property}
-												</li>
-											))}
-										</ul>
 										{product.sizeTable ? (
 											<ul>
 												{product.sizeTable.map((size, i) => {
@@ -130,16 +134,22 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												</ul>
 											))}
 										</div>
-										<h2>{product.technicalSpecificationHeading}</h2>
 
-										<Image
-											src={`/products/${product.technicalSpecification}`}
-											width={350}
-											height={150}
-											alt='Technical Specifications'
-											className={styles.chart}
-										/>
-										<Image src={`/products/${product.chart}`} width={350} height={150} alt='Technical Specifications' className={styles.chart} />
+										{product.technicalSpecificationHeading ? (
+											<div>
+												<h2>{product.technicalSpecificationHeading}</h2>
+
+												<Image
+													src={`/products/${product.technicalSpecification}`}
+													width={350}
+													height={150}
+													alt='Technical Specifications'
+													className={styles.chart}
+												/>
+												<Image src={`/products/${product.chart}`} width={350} height={150} alt='Technical Specifications' className={styles.chart} />
+											</div>
+										) : null}
+
 										<h2>{product.relatedProductsHeading}</h2>
 									</div>
 								</section>

@@ -1,8 +1,6 @@
 .footer {
 	margin-top: auto;
 	padding-top: 5rem;
-	padding-left: 2rem;
-	padding-right: 2rem;
 }
 
 .socialMediaBlockLink:hover {
@@ -16,23 +14,24 @@
 	.footer {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		width: 90vw;
-		padding-left: 0;
 	}
 
 	.addressBlock {
 		grid-column: 1;
 		grid-row: 1;
+		padding-left: 5vw;
 	}
 
 	.customerSupportBlock {
 		grid-column: 1;
 		grid-row: 2;
+		padding-left: 5vw;
 	}
 
 	.socialMediaBlock {
 		grid-column: 1;
 		grid-row: 3;
+		padding-left: 5vw;
 	}
 
 	.linkBlock {
@@ -53,6 +52,7 @@
 	.copyrightInfo {
 		grid-column: 1;
 		grid-row: 4;
+		padding-left: 5vw;
 	}
 }
 
@@ -62,6 +62,8 @@
 		display: grid;
 		grid-template-columns: repeat(6, auto);
 		width: 100vw;
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
 
 	.addressBlock {
