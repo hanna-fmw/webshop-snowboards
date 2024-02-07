@@ -86,7 +86,7 @@ const Shop = () => {
 							<ProductCard key={i}>
 								<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
 								<TextBlock
-									model={product.model}
+									model={product.name}
 									designer={product.designer}
 									length={product.length}
 									detail={product.detail}
@@ -97,33 +97,6 @@ const Shop = () => {
 							</ProductCard>
 						)
 					})}
-
-					{/* <ProductGrid>
-						<div>
-							<ProductCard>
-								<Figure image='/products/BUBO154.png' />
-								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
-							</ProductCard>
-						</div>
-						<div>
-							<ProductCard>
-								<Figure image='/products/BUBO150.png' />
-								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
-							</ProductCard>
-						</div>
-						<div>
-							<ProductCard>
-								<Figure image='/products/LABB.png' />
-								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
-							</ProductCard>
-						</div>
-						<div>
-							<ProductCard>
-								<Figure image='/products/FALC.png' />
-								<TextBlock model='WORK SHOP X TUR BUBO 154.4' length='154.4 CM' detail='EXPERIMENTAL BIG VOLUME' profile='FLAT BUOYANCY PROFILE' />
-							</ProductCard>
-						</div>
-					</ProductGrid> */}
 				</section>
 			</section>
 		</main>

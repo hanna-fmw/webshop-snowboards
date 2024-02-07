@@ -5,6 +5,7 @@ import formatPrice from '@/app/utilities/formatPrice'
 
 type TextBlockProps = {
 	children?: React.ReactNode
+	name?: string
 	model?: string
 	detail?: string
 	length?: string
@@ -15,9 +16,11 @@ type TextBlockProps = {
 	designer?: string
 	boardType?: string
 	lengthForModel?: string[]
+	
 }
 
 const TextBlock = ({
+	name,
 	model,
 	length,
 	lengthForModel,
@@ -28,12 +31,13 @@ const TextBlock = ({
 	price = 10000,
 	currency = 'SEK',
 	children,
+	
 }: TextBlockProps) => {
 	// const formattedPrice = formatPrice(price)
 	return (
 		<div className={styles.textBlock}>
 			<div>
-				<p>{model}</p>
+				<p>{name}</p>
 				<p>{designer}</p>
 				<p>{boardType}</p>
 				<p>{detail}</p>

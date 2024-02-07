@@ -8,16 +8,20 @@ import Image from 'next/image'
 import { useState } from 'react'
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
 import Button from '@/app/components/atoms/button/Button'
+import { useRouter } from 'next/navigation'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
+	console.log(params)
 	const model = params.productModel
 
 	const [isFullSize, setIsFullSize] = useState<any>(false)
 	const [selectedThumbnailIndex, setSelectedThumbnailIndex] = useState(-1)
+
+	const router = useRouter()
 
 	const handleClick = (i: number) => {
 		setSelectedThumbnailIndex(i)
@@ -123,9 +127,9 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 										<h2>{product.narrativeHeading}</h2>
 										<div>{product.narrative}</div>
 										{product.preCutSkins ? (
-											<button style={{ backgroundColor: 'white', marginBlock: '1.5rem', padding: '1rem 1.5rem', border: '1px solid black' }}>
+											<Button variant={'default'} onClick={() => router.push('/shop/skins')}>
 												ADD PRE-CUT SKINS
-											</button>
+											</Button>
 										) : null}
 										<div className={styles.additionalInfo}>
 											{product.additionalInfo.map((infoLine, i) => (

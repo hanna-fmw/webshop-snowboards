@@ -2,7 +2,8 @@
 	{
 		"id": 1,
 		"image": "bubo150/BUBO150.png",
-		"model": "WORK SHOP X TUR BUBO 150.4",
+		"model": "work-shop-x-tur-bubo-150-4",
+		"name": "WORK SHOP X TUR BUBO 150.4",
 		"designer": "",
 		"detail": "EXPERIMENTAL BIG VOLUME",
 		"profile": "FLAT BUOYANCY PROFILE",
@@ -49,7 +50,8 @@
 	{
 		"id": 2,
 		"image": "bubo154/BUBO154.png",
-		"model": "WORK SHOP X TUR BUBO 154.4",
+		"model": "work-shop-x-tur-bubo-154-4",
+		"name": "WORK SHOP X TUR BUBO 154.4",
 		"designer": "",
 		"detail": "EXPERIMENTAL BIG VOLUME",
 		"profile": "FLAT BUOYANCY PROFILE",
@@ -93,7 +95,8 @@
 	{
 		"id": 3,
 		"image": "falc/FALC.png",
-		"model": "TUR FALC",
+		"model": "falc",
+		"name": "TUR FALC",
 		"designer": "[S.] BJÖRN LINDGREN",
 		"detail": "DIRECTIONAL FREESTYLE",
 		"length": "154/158/161",
@@ -136,7 +139,8 @@
 	{
 		"id": 4,
 		"image": "korp/KORP.png",
-		"model": "TUR KORP",
+		"model": "korp",
+		"name": "TUR KORP",
 		"designer": "[S.] ZEBBE LANDMARK",
 		"detail": "DIRECTIONAL TWIN FREESTYLE",
 		"length": "152/156/160",
@@ -181,7 +185,8 @@
 	{
 		"id": 5,
 		"image": "bubo/BUBO.png",
-		"model": "TUR BUBO",
+		"model": "bubo",
+		"name": "TUR BUBO",
 		"designer": "",
 		"detail": "EXPERIMENTAL BIG VOLUME",
 		"length": "150.4/154.4",
@@ -207,9 +212,9 @@
 		"narrative": "The Bubo is a top performance riding board built for maximum float and buoyancy but also for the hard packed days when the soft snow is nowhere to be found. The Bubo is designed and inspired by mini mal surfboards, to have maximum float and stability and to have that in a shorter, playful and more quicker turning board. An overall added width with a volume packed nose and tapered tail will make it glide through the deepest of snow with ease and also help for great hold on-piste. This combined with a backseat Scando Grip technology with 2- extra contact points from the waist and back for greater edge-hold and superior bite on hard pack without it being aggressive in the nose. Made with a premium wood core blended with a wooden veneer top-sheet to prevent chatter and make it feel damp combined with a fast durable sintered base. If you are looking for a board that handles powder but also rides more than that, this is it, the Scandinavian Powder board.",
 		"preCutSkins": false,
 		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
-		"additionalInfo": ["APPROVED BY SCANDINAVIA", "Shaped with a purpose"],
-		"technicalSpecification": "budo/techCharts/budo01.svg",
-		"chart": "budo/techCharts/budo02.svg",
+		"additionalInfo": ["Approved by Scandinavia", "Shaped with a purpose"],
+		"technicalSpecification": "bubo/techCharts/bubo01.svg",
+		"chart": "bubo/techCharts/bubo02.svg",
 		"thumbnails": [
 			"bubo/thumbnails/BUBO-01-750x938.png",
 			"bubo/thumbnails/BUBO-02-750x938.png",
@@ -226,7 +231,8 @@
 	{
 		"id": 6,
 		"image": "pluv/PLUV.png",
-		"model": "TUR PLUV",
+		"model": "pluv",
+		"name": "TUR PLUV",
 		"designer": "",
 		"detail": "DIRECTIONAL FREESTYLE",
 		"length": "145/149/155/159/164 CM",
@@ -270,7 +276,8 @@
 	{
 		"id": 7,
 		"image": "buteo/BUTEO.png",
-		"model": "TUR BUTEO",
+		"model": "buteo",
+		"name": "TUR BUTEO",
 		"designer": "",
 		"detail": "DIRECTIONAL FREERIDE",
 		"length": "152/157/162 CM",
@@ -313,7 +320,8 @@
 	{
 		"id": 8,
 		"image": "labb/LABB.png",
-		"model": "TUR LABB",
+		"model": "labb",
+		"name": "TUR LABB",
 		"designer": "",
 		"boardType": "[SPLITBOARD]",
 		"detail": "DIRECTIONAL FREERIDE",
@@ -359,7 +367,8 @@
 	{
 		"id": 9,
 		"image": "tica/TICA.png",
-		"model": "TUR TICA",
+		"model": "tica",
+		"name": "TUR TICA",
 		"designer": "",
 		"boardType": "[SPLITBOARD]",
 		"detail": "DIRECTIONAL FREESTYLE",
@@ -405,7 +414,8 @@
 	{
 		"id": 10,
 		"image": "kohla_skins/KOHLA_SKINS.png",
-		"model": "KOHLA SKINS",
+		"model": "skins",
+		"name": "KOHLA SKINS",
 		"designer": "",
 		"boardType": "",
 		"detail": "PRE-CUT SKINS FOR SPLITBOARDS",
