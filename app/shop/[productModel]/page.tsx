@@ -9,11 +9,6 @@ import { useState } from 'react'
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
 import Button from '@/app/components/atoms/button/Button'
 
-// type Fullsize = {
-// 	isFullSize?: boolean
-// 	setIsFullSize?: () => void
-// }
-
 type ProductDetailsProps = {
 	params: { productModel: string }
 }
@@ -27,12 +22,11 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	const handleClick = (i: number) => {
 		setSelectedThumbnailIndex(i)
 		setIsFullSize((prev: any) => !prev)
-		console.log('är eller inte', isFullSize)
 	}
 
 	//Istället för products[0] vill vi få in products.map ((product) =>
 	const currentProduct = products.find((product) => decodeURIComponent(model) === product.model)
-	console.log('detta är current', currentProduct)
+
 	return (
 		<section className={styles.container}>
 			{/* <ProductCard>
@@ -59,7 +53,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 			)}
 			<div className={styles.thumbnails}>
 				{currentProduct?.thumbnails.map((thumbnail, i) => {
-					console.log('detta är thumbnail', thumbnail)
 					return (
 						<div key={i} className={styles.thumbnailCard} onClick={() => handleClick(i)}>
 							<div className={styles.overlay}></div>
@@ -81,9 +74,11 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 										<TextBlock
 											model={product.model}
 											designer={product.designer}
+											boardType={product.boardType}
 											length={product.length}
 											detail={product.detail}
 											profile={product.profile}
+											lengthForModel={product.lengthForModel}
 											price={product.price}
 											currency='SEK'
 										/>
@@ -101,9 +96,9 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 										<h2 style={{ color: '#00b140', marginBottom: '1rem' }}>SHIPPING WORLD WIDE! NEED SUPPORT?</h2>
 										<div>{product.descriptionHeading}</div>
 										<div>{product.descriptionText}</div>
-										<h2>DISTRICT:</h2>
+										<h2>{product.districtHeading}</h2>
 										<div>{product.district}</div>
-										<h2>PROPERTIES:</h2>
+										<h2>{product.propertiesHeading}</h2>
 										<ul className={styles.ul}>
 											<li className={styles.li}>{product.properties.length}</li>
 
@@ -113,8 +108,21 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												</li>
 											))}
 										</ul>
-										<h2>NARRATIVE:</h2>
+										{product.sizeTable ? (
+											<ul>
+												{product.sizeTable.map((size, i) => {
+													return <li key={i}>{size}</li>
+												})}
+											</ul>
+										) : null}
+
+										<h2>{product.narrativeHeading}</h2>
 										<div>{product.narrative}</div>
+										{product.preCutSkins ? (
+											<button style={{ backgroundColor: 'white', marginBlock: '1.5rem', padding: '1rem 1.5rem', border: '1px solid black' }}>
+												ADD PRE-CUT SKINS
+											</button>
+										) : null}
 										<div className={styles.additionalInfo}>
 											{product.additionalInfo.map((infoLine, i) => (
 												<ul key={i} className={styles.ul}>
@@ -122,7 +130,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												</ul>
 											))}
 										</div>
-										<h2>TECHNICAL SPECIFICATION:</h2>
+										<h2>{product.technicalSpecificationHeading}</h2>
 
 										<Image
 											src={`/products/${product.technicalSpecification}`}
@@ -132,7 +140,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											className={styles.chart}
 										/>
 										<Image src={`/products/${product.chart}`} width={350} height={150} alt='Technical Specifications' className={styles.chart} />
-										<h2>RELATED PRODUCTS:</h2>
+										<h2>{product.relatedProductsHeading}</h2>
 									</div>
 								</section>
 							) : null}

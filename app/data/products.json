@@ -10,7 +10,9 @@
 		"price": "7399,00",
 		"descriptionHeading": "OUR LEGACY WORK SHOP X TUR LTD EDITION:",
 		"descriptionText": "Work Shop TUR Snowboards Bubo Hank Grüner edition. A experimental big volume board built for maximum float and buoyancy, with the abilities to handle the hard packed days when the soft snow is nowhere to be found. When resort is you last resort.",
+		"districtHeading": "DISTRICT:",
 		"district": "Tight tree runs, deep powder, mellow groomers and overall fun terrain.",
+		"propertiesHeading": "PROPERTIES:",
 		"properties": {
 			"length": "150.4 cm",
 			"features": [
@@ -22,9 +24,14 @@
 				"Premium materials & craftsmanship -> for our winters."
 			]
 		},
+		"narrativeHeading": "NARRATIVE:",
 		"narrative": "The Bubo is a top performance riding board built for maximum float and buoyancy but also for the hard packed days when the soft snow is nowhere to be found. The Bubo is designed and inspired by mini mal surfboards, to have maximum float and stability and to have that in a shorter, playful and more quicker turning board. An overall added width with a volume packed nose and tapered tail will make it glide through the deepest of snow with ease and also help for great hold on-piste. This combined with a backseat Scando Grip technology with 2- extra contact points from the waist and back for greater edge-hold and superior bite on hard pack without it being aggressive in the nose. Made with a premium wood core blended with a wooden veneer top-sheet to prevent chatter and make it feel damp combined with a fast durable sintered base. If you are looking for a board that handles powder but also rides more than that, this is it, the Scandinavian Powder board.",
+		"preCutSkins": false,
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
 		"additionalInfo": ["Approved by Scandinavia", "Shaped with a purpose"],
+
 		"technicalSpecification": "bubo150/techCharts/bubo01.svg",
+
 		"chart": "bubo150/techCharts/bubo02.svg",
 		"thumbnails": [
 			"bubo150/thumbnails/BUBO_WS_150-4_01-750x938.png",
@@ -35,7 +42,8 @@
 			"bubo150/thumbnails/BUBO_WS_150-4_06-750x938.png",
 			"bubo150/thumbnails/BUBO_WS_150-4_08-750x938.png",
 			"bubo150/thumbnails/BUBO_WS_154-0_07-750x938.png"
-		]
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
 	},
 
 	{
@@ -49,7 +57,9 @@
 		"price": "7399,00",
 		"descriptionHeading": "OUR LEGACY WORK SHOP X TUR LTD EDITION:",
 		"descriptionText": "Work Shop TUR Snowboards Bubo Hank Grüner edition. A experimental big volume board built for maximum float and buoyancy, with the abilities to handle the hard packed days when the soft snow is nowhere to be found. When resort is you last resort.",
+		"districtHeading": "DISTRICT:",
 		"district": "Tight tree runs, deep powder, mellow groomers and overall fun terrain.",
+		"propertiesHeading": "PROPERTIES:",
 		"properties": {
 			"length": "154.4 cm",
 			"features": [
@@ -61,8 +71,11 @@
 				"Premium materials & craftsmanship -> for our winters."
 			]
 		},
+		"narrativeHeading": "NARRATIVE:",
 		"narrative": "The Bubo is a top performance riding board built for maximum float and buoyancy but also for the hard packed days when the soft snow is nowhere to be found. The Bubo is designed and inspired by mini mal surfboards, to have maximum float and stability and to have that in a shorter, playful and more quicker turning board. An overall added width with a volume packed nose and tapered tail will make it glide through the deepest of snow with ease and also help for great hold on-piste. This combined with a backseat Scando Grip technology with 2- extra contact points from the waist and back for greater edge-hold and superior bite on hard pack without it being aggressive in the nose. Made with a premium wood core blended with a wooden veneer top-sheet to prevent chatter and make it feel damp combined with a fast durable sintered base. If you are looking for a board that handles powder but also rides more than that, this is it, the Scandinavian Powder board.",
-		"additionalInfo": ["APPROVED BY SCANDINAVIA", "SHAPED WITH A PURPOSE"],
+		"preCutSkins": false,
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
+		"additionalInfo": ["APPROVED BY SCANDINAVIA", "Shaped with a purpose"],
 		"technicalSpecification": "bubo154/techCharts/bubo01.svg",
 		"chart": "bubo150/techCharts/bubo02.svg",
 		"thumbnails": [
@@ -74,7 +87,8 @@
 			"bubo154/thumbnails/BUBO_WS_154-4_06-750x938.png",
 			"bubo154/thumbnails/BUBO_WS_154-4_07-750x938.png",
 			"bubo154/thumbnails/BUBO_WS_154-4_08-750x938.png"
-		]
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
 	},
 	{
 		"id": 3,
@@ -87,7 +101,9 @@
 		"price": "8299,00",
 		"descriptionHeading": "TUR FALC [SIGNATURE BJÖRN LINDGREN]:",
 		"descriptionText": "A quick, freestyle board with high maneuverability that’s trustable at fast speeds, made to handle everything from tricky natural terrains to big mountains, banked slaloms to park and icy groomed runs.",
+		"districtHeading": "DISTRICT:",
 		"district": "Natural and playful terrain, big mountains to tricky side hits, resort runs, slush and powder to icy conditions.",
+		"propertiesHeading": "PROPERTIES:",
 		"properties": {
 			"length": "154/158/161 cm.",
 			"features": [
@@ -99,8 +115,11 @@
 				"Premium materials & craftsmanship -> for our winters."
 			]
 		},
+		"preCutSkins": false,
+		"narrativeHeading": "NARRATIVE:",
 		"narrative": "The Falc is a fast, edge-to-edge freestyle board shaped to maneuver the whole mountain and its different riding possibilities. From high and steep mountain sides to playful side hits to big kickers and back country jumps. The unique shape is designed with a tight side-cut radius for quick and snappy turns at high speeds. The special camber profile with its inlays around the nose and tail allows you to put pressure where it’s needed for maximum load and quick pop back. The core is made with a premium light wood and a wood veneer topsheet prevents prevent chatter when going fast. While the Scando Grip technology with 3-extra contact points on the edges for maximum edge-hold and superior bite on hard pack and icy conditions. This combination of technologies and premium materials means it works just as well in fast firm turn conditions of the morning corduroy to small technical lines in natural surroundings in the afternoon; the Falc is the quickest animal.",
-		"additionalInfo": ["APPROVED BY SCANDINAVIA", "SHAPED WITH A PURPOSE"],
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
+		"additionalInfo": ["APPROVED BY SCANDINAVIA", "Shaped with a purpose"],
 		"technicalSpecification": "falc/techCharts/falc01.svg",
 		"chart": "falc/techCharts/falc02.svg",
 		"thumbnails": [
@@ -111,7 +130,8 @@
 			"falc/thumbnails/FALC-05-750x938.png",
 			"falc/thumbnails/FALC-06-750x938.png",
 			"falc/thumbnails/FALC-08-750x938.png"
-		]
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
 	},
 	{
 		"id": 4,
@@ -124,7 +144,9 @@
 		"price": "6899,00",
 		"descriptionHeading": "TUR KORP [SIGNATURE ZEBBE LANDMARK]:",
 		"descriptionText": "The Korp is a high-performance, freestyle twin-directional tool that rips any situation you might encounter either at your home resort, in backcountry or out in the streets. A hommage to real snowboarding.",
+		"districtHeading": "DISTRICT:",
 		"district": "Playful in the park and all over the mountain, on-piste, side hits, semi-deep powder and the streets.",
+		"propertiesHeading": "PROPERTIES:",
 		"properties": {
 			"length": "152/156/160 cm.",
 			"features": [
@@ -137,8 +159,11 @@
 			]
 		},
 
+		"narrativeHeading": "NARRATIVE:",
 		"narrative": "The Korp is an all-mountain freestyle board that made for hitting the park, getting it done in the streets or floating all over the mountain. Crafted to easily do big, long turns in the piste but also turns quick inbetween trees, the Korp is inspired by the best parts of boards we’ve been riding as kids, all put into one that’s been missing in the collection. The nose tip is designed slightly longer than the tail for magical float when you’re out in backcountry. The twin in-between the contact points on the effective riding edge means you won’t feel any difference going down the mountain both ways. The flat camber makes the board poppy but still playful enough to jib or put down a solid nose press on rail. While the Scando Grip technology with 3-extra contact points on the edges for maximum edge-hold and superior bite on hard pack and icy conditions. In combination with the premium light wood core and special materials throughout, this is the freestyle-based board you can also take outside of the piste and still have a great time.",
-		"additionalInfo": ["APPROVED BY SCANDINAVIA", "SHAPED WITH A PURPOSE"],
+		"preCutSkins": false,
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
+		"additionalInfo": ["APPROVED BY SCANDINAVIA", "Shaped with a purpose"],
 		"technicalSpecification": "korp/techCharts/korp01.svg",
 		"chart": "korp/techCharts/korp02.svg",
 		"thumbnails": [
@@ -150,7 +175,8 @@
 			"korp/thumbnails/KORP-06-750x938.png",
 			"korp/thumbnails/KORP-07-750x938.png",
 			"korp/thumbnails/KORP-08-750x938.png"
-		]
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
 	},
 	{
 		"id": 5,
@@ -163,7 +189,9 @@
 		"price": "6999,00",
 		"descriptionHeading": "TUR BUBO:",
 		"descriptionText": "The Bubo is a experimental big volume board built for maximum float and buoyancy, with the abilities to handle the hard packed days when the soft snow is nowhere to be found. When resort is you last resort.",
+		"districtHeading": "DISTRICT:",
 		"district": "Tight tree runs, deep powder, mellow groomers and overall fun terrain.",
+		"propertiesHeading": "PROPERTIES:",
 		"properties": {
 			"length": "150.4/154.4 cm",
 			"features": [
@@ -175,8 +203,11 @@
 				"Premium materials & craftsmanship -> for our winters."
 			]
 		},
+		"narrativeHeading": "NARRATIVE:",
 		"narrative": "The Bubo is a top performance riding board built for maximum float and buoyancy but also for the hard packed days when the soft snow is nowhere to be found. The Bubo is designed and inspired by mini mal surfboards, to have maximum float and stability and to have that in a shorter, playful and more quicker turning board. An overall added width with a volume packed nose and tapered tail will make it glide through the deepest of snow with ease and also help for great hold on-piste. This combined with a backseat Scando Grip technology with 2- extra contact points from the waist and back for greater edge-hold and superior bite on hard pack without it being aggressive in the nose. Made with a premium wood core blended with a wooden veneer top-sheet to prevent chatter and make it feel damp combined with a fast durable sintered base. If you are looking for a board that handles powder but also rides more than that, this is it, the Scandinavian Powder board.",
-		"additionalInfo": ["APPROVED BY SCANDINAVIA", "SHAPED WITH A PURPOSE"],
+		"preCutSkins": false,
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
+		"additionalInfo": ["APPROVED BY SCANDINAVIA", "Shaped with a purpose"],
 		"technicalSpecification": "budo/techCharts/budo01.svg",
 		"chart": "budo/techCharts/budo02.svg",
 		"thumbnails": [
@@ -188,6 +219,226 @@
 			"bubo/thumbnails/BUBO-06-750x938.png",
 			"bubo/thumbnails/BUBO-07-750x938.png",
 			"bubo/thumbnails/BUBO-08-750x938.png"
-		]
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
+	},
+
+	{
+		"id": 6,
+		"image": "pluv/PLUV.png",
+		"model": "TUR PLUV",
+		"designer": "",
+		"detail": "DIRECTIONAL FREESTYLE",
+		"length": "145/149/155/159/164 CM",
+		"profile": "FLAT CAMBER",
+		"price": "7899,00",
+		"descriptionHeading": "TUR PLUV:",
+		"descriptionText": "Meet the Pluv – a modern, high-performance all-mountain board made for playful riding with a pinch of freestyle for every inch of the mountain. One board quiver rider? This is your board.",
+		"districtHeading": "DISTRICT:",
+		"district": "Playful terrain in and off-piste, parks, semi-deep powder days and tricky runs.",
+		"propertiesHeading": "PROPERTIES:",
+		"properties": {
+			"length": "145/149/155/159/164 cm.",
+			"features": [
+				"Directional freestyle —> great float & turns, rides switch.",
+				"Flat camber with inlays —> maximum pressure & pure pop.",
+				"Wood core & veneer topsheet —> minimal weight, less chatter.",
+				"Scando Grip technology -> maximum edge-hold & superior bite.",
+				"Sintered base -> go faster for longer with less maintenance.",
+				"Premium materials & craftsmanship -> for our winters."
+			]
+		},
+		"narrativeHeading": "NARRATIVE:",
+		"narrative": "The Pluv is a premium directional board that also rides perfectly backwards, built to work just as well in the park as it is in the back country. Designed with a blunt-shaped nose for superior float and the all-mountain feel with a wider, tapered and square-shaped tail for a longer effective edge while keeping superior float and backwards maneuverability. The special camber profile with its inlays around the nose and tail allows you to put pressure where it’s needed for maximum load and quick pop back. Made with a premium light wood core for minimal weight and a wood veneer topsheet to make the board damp and prevent chatter. Added to that is the Scando Grip technology with 3-extra contact points on the edges for maximum edge-hold and superior bite on hard pack and icy conditions. With a fast and more durable sintered base that requires less maintenance. This combined with the flex and blend of premium materials gives the board a playful and poppy feel yet incredible stability at higher speeds. If you only choose one board for everything, this is it.",
+		"preCutSkins": false,
+		"additionalInfo": ["Approved by Scandinavia", "Shaped with a purpose"],
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
+		"technicalSpecification": "pluv/techCharts/pluv01.svg",
+		"chart": "pluv/techCharts/pluv02.svg",
+		"thumbnails": [
+			"pluv/thumbnails/PLUV-01-750x938.png",
+			"pluv/thumbnails/PLUV-02-750x938.png",
+			"pluv/thumbnails/PLUV-03-750x938.png",
+			"pluv/thumbnails/PLUV-04-750x938.png",
+			"pluv/thumbnails/PLUV-05-750x938.png",
+			"pluv/thumbnails/PLUV-06-750x938.png",
+			"pluv/thumbnails/PLUV-07-750x938.png",
+			"pluv/thumbnails/PLUV-08-750x938.png"
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
+	},
+	{
+		"id": 7,
+		"image": "buteo/BUTEO.png",
+		"model": "TUR BUTEO",
+		"designer": "",
+		"detail": "DIRECTIONAL FREERIDE",
+		"length": "152/157/162 CM",
+		"profile": "DRIVE CAMBER",
+		"price": "7999,00",
+		"descriptionHeading": "TUR BUTEO:",
+		"descriptionText": "The Buteo is a top performance riding board built for high speed and big turns on the corduroy with impressive float and quickness in deep snow. Designed to make snowboard fun again.",
+		"districtHeading": "DISTRICT:",
+		"district": "Early morning corduroy, tight tree runs, deep powder, high speed terrain and big mountain runs.",
+		"propertiesHeading": "PROPERTIES:",
+		"properties": {
+			"length": "152/157/162 cm -> we suggest you size down 3-5 cm.",
+			"features": [
+				"Directional freeride -> precision turns between trees/skiers.",
+				"Drive camber+rocker -> Maneuverability & weightless float.",
+				"Wood core & veneer topsheet —> minimal weight, less chatter.",
+				"Scando Grip technology -> maximum edge-hold & superior bite.",
+				"Sintered base -> go faster for longer with less maintenance.",
+				"Premium materials & craftsmanship -> for our winters."
+			]
+		},
+		"narrativeHeading": "NARRATIVE:",
+		"narrative": "The Buteo is designed with a short tail that allows it to make shorter turns than its actual radius, while giving greater control and stability in both hardpacked and powder. While its longer nose with the cut-off top gives it incredible float. An added width and well thought-through profile makes it delicate on and off-piste, and the camber and rocker in the nose and tail helps give it quick releases but also fantastic control when needed. Made with a premium light wood core blended with a wooden veneer top-sheet to make the board damp and help remove chatter. Added to that is the Scando Grip technology with 3-extra contact points on the edges for maximum edge-hold and superior bite on hard pack. Together with a sintered graphite race-base for insanely high speed gives you a powerful yet playful board that’s incredibly unique.",
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
+		"additionalInfo": ["Approved by Scandinavia", "Shaped with a purpose"],
+		"technicalSpecification": "buteo/techCharts/buteo01.svg",
+		"chart": "buteo/techCharts/buteo02.svg",
+		"thumbnails": [
+			"buteo/thumbnails/BUTEO-01-750x938.png",
+			"buteo/thumbnails/BUTEO-02-750x938.png",
+			"buteo/thumbnails/BUTEO-03-750x938.png",
+			"buteo/thumbnails/BUTEO-04-750x938.png",
+			"buteo/thumbnails/BUTEO-05-750x938.png",
+			"buteo/thumbnails/BUTEO-06-750x938.png",
+			"buteo/thumbnails/BUTEO-07-750x938.png",
+			"buteo/thumbnails/BUTEO-08-750x938.png"
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
+	},
+	{
+		"id": 8,
+		"image": "labb/LABB.png",
+		"model": "TUR LABB",
+		"designer": "",
+		"boardType": "[SPLITBOARD]",
+		"detail": "DIRECTIONAL FREERIDE",
+		"length": "152/157/162 CM",
+		"profile": "DRIVE CAMBER",
+		"price": "10999,00",
+		"descriptionHeading": "TUR LABB [SPLITBOARD]:",
+		"descriptionText": "The Labb is the ultimate performance splitboard for the explorer seeking the highest barren peaks, deepest snow and long big turns followed by tight quick tree runs. And – it is fast.",
+		"districtHeading": "DISTRICT:",
+		"district": "Barren peaks, tight tree runs, deep powder, high speed terrain and big mountain runs.",
+		"propertiesHeading": "PROPERTIES:",
+		"properties": {
+			"length": "152/157/162 cm.",
+			"features": [
+				"Directional freeride shape -> great float & turns, rides switch.",
+				"Drive camber with inlays -> for maximum pressure & pure pop.",
+				"Wood core & veneer topsheet —> minimal weight, less chatter.",
+				"Scando Grip technology -> maximum edge-hold & superior bite.",
+				"Sintered base -> go faster for longer with less maintenance.",
+				"Premium materials & craftsmanship -> for our winters."
+			]
+		},
+		"narrativeHeading": "NARRATIVE:",
+		"narrative": "The Labb is designed with a short tail that allows it to make shorter turns than its actual radius, while giving greater control and stability in both hardpacked and powder. While its longer nose with the cut-off top gives it incredible float. An added width and well thought-through profile makes it delicate in its floating capabilities and movability, and the camber and rocker in the nose and tail helps give it quick releases but also fantastic control when needed. Made with a premium light wood core blended with a Polyamide Bio Beans topsheet for scratch resistance, carbon inlays for recovery and aluminum tip and tail protectors for durability. While the Karakoram ultra-clip 2.0 and tip-locks make it feel just like a solid board. Added to that is the Scando Grip technology with 3-extra contact points on the edges for maximum edge-hold and superior bite on hard pack. Together with a sintered graphite race-base for insanely high speed gives you a powerful yet playful board that’s incredibly unique.",
+		"preCutSkins": true,
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
+		"additionalInfo": ["Approved by Scandinavia", "Shaped with a purpose"],
+
+		"technicalSpecification": "labb/techCharts/labb01.svg",
+		"chart": "labb/techCharts/labb02.svg",
+		"thumbnails": [
+			"labb/thumbnails/LABB-01-750x938.png",
+			"labb/thumbnails/LABB-02-750x938.png",
+			"labb/thumbnails/LABB-03-750x938.png",
+			"labb/thumbnails/LABB-04-750x938.png",
+			"labb/thumbnails/LABB-05-750x938.png",
+			"labb/thumbnails/LABB-06-750x938.png",
+			"labb/thumbnails/LABB-07-750x938.png",
+			"labb/thumbnails/LABB-08-750x938.png"
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
+	},
+	{
+		"id": 9,
+		"image": "tica/TICA.png",
+		"model": "TUR TICA",
+		"designer": "",
+		"boardType": "[SPLITBOARD]",
+		"detail": "DIRECTIONAL FREESTYLE",
+		"length": "149/155/159/164 CM",
+		"profile": "FLAT CAMBER",
+		"price": "10499,00",
+		"descriptionHeading": "TUR TICA [SPLITBOARD]:",
+		"descriptionText": "The Tica is the adventurous, high-performance all-mountain splitboard for playful exploring and freestyle riding in any terrain.",
+		"districtHeading": "DISTRICT:",
+		"district": "Playful terrain in and off-piste, parks, semi-deep powder days and tricky runs.",
+		"propertiesHeading": "PROPERTIES:",
+		"properties": {
+			"length": "149/155/159/164 cm.",
+			"features": [
+				"Directional freestyle -> playful & poppy, incredible stable.",
+				"Flat camber with inlays -> for maximum pressure & pure pop.",
+				"Karakoram ultra-clip 2.0 & tip-locks -> feels like 1 board.",
+				"Wood core & veneer topsheet —> minimal weight, less chatter.",
+				"Scando Grip technology -> maximum edge-hold & superior bite.",
+				"Sintered base -> go faster for longer with less maintenance.",
+				"Premium materials & craftsmanship -> for our winters."
+			]
+		},
+		"narrativeHeading": "NARRATIVE:",
+		"narrative": "The Tica is a premium directional splitboard board that also rides perfectly backwards, built to work just as well in freestyle terrain as it is in deep powder. Designed with a blunt-shaped nose for superior float and the all-mountain feel with a wider, tapered and square-shaped tail for a longer effective edge while keeping superior float and backwards Maneuverability. The special camber profile with its inlays around the nose and tail allows you to put pressure where it’s needed for maximum load and quick pop back. Made with a premium light wood core blended with a Polyamide Bio Beans topsheet for scratch resistance, carbon inlays for recovery and aluminum tip and tail protectors for durability. While the Karakoram ultra-clip 2.0 and tip-locks hold the board together perfectly. Added to that is the Scando Grip technology with 3-extra contact points on the edges for maximum edge-hold and superior bite on hard pack and icy conditions. With a fast and more durable sintered base that requires less maintenance. This combined with the flex and blend of premium materials gives the board a playful and poppy feel yet incredible stability at higher speeds. If you only choose one board for everything, this is it.",
+		"preCutSkins": true,
+		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
+		"additionalInfo": ["Approved by Scandinavia", "Shaped with a purpose"],
+		"technicalSpecification": "tica/techCharts/tica01.svg",
+		"chart": "tica/techCharts/tica02.svg",
+		"thumbnails": [
+			"tica/thumbnails/TICA-01-750x938.png",
+			"tica/thumbnails/TICA-02-750x938.png",
+			"tica/thumbnails/TICA-03-750x938.png",
+			"tica/thumbnails/TICA-04-750x938.png",
+			"tica/thumbnails/TICA-05-750x938.png",
+			"tica/thumbnails/TICA-06-750x938.png",
+			"tica/thumbnails/TICA-07-750x938.png",
+			"tica/thumbnails/TICA-08-750x938.png"
+		],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
+	},
+	{
+		"id": 10,
+		"image": "kohla_skins/KOHLA_SKINS.png",
+		"model": "KOHLA SKINS",
+		"designer": "",
+		"boardType": "",
+		"detail": "PRE-CUT SKINS FOR SPLITBOARDS",
+		"length": "149/155/159/164 CM",
+		"lengthForModel": ["LABB L52/L57/L62", "TICA T49/T55/T59/T64"],
+		"profile": "",
+		"price": "2199,00",
+		"descriptionHeading": "SKINS:",
+		"descriptionText": "We teamed up with Kohla to provide the best possible climbing skins for your splitboard. These skins are designed to perfectly fit to each our splitboards through high precision laser cutting, giving you the confidence and performance you need in any terrain.",
+		"districtHeading": "",
+		"district": "",
+		"propertiesHeading": "",
+		"properties": {
+			"length": "",
+			"features": []
+		},
+		"sizeTable": [
+			"L52 -> LABB 152 cm",
+			"L57 -> LABB 157 cm",
+			"L62 -> LABB 162 cm",
+			"T49 -> TICA 149 cm",
+			"T55 -> TICA 155 cm",
+			"T59 -> TICA 159 cm",
+			"T64 -> TICA 164 cm"
+		],
+		"narrativeHeading": "NARRATIVE:",
+		"narrative": "Constructed from robust and highly abrasion-resistant mixmohair (65% mohair 35% nylon) to not only provide you with the perfect grip, but also make the skins extremely durable. Featuring Kohla’s newly developed Fiberseal technology, which is 100% waterproof ensuring your skin stays dry. While the new, state-of-the-art Smart Glue adhesive guarantees easy handling and removal of the skins. With elastic straps on the tail and stainless steel tip attachments to securely lock the skins into place.",
+		"preCutSkins": false,
+		"technicalSpecificationHeading": "",
+		"additionalInfo": ["Approved by Scandinavia", "Shaped with a purpose"],
+		"technicalSpecification": "",
+		"chart": "",
+		"thumbnails": [],
+		"relatedProductsHeading": "RELATED PRODUCTS:"
 	}
 ]

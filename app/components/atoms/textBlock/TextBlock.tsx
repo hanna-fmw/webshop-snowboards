@@ -13,17 +13,32 @@ type TextBlockProps = {
 	currency?: 'SEK' | 'EUR'
 	formattedPrice?: string
 	designer?: string
+	boardType?: string
+	lengthForModel?: string[]
 }
 
-const TextBlock = ({ model, length, detail, designer, profile, price = 10000, currency = 'SEK', children }: TextBlockProps) => {
+const TextBlock = ({
+	model,
+	length,
+	lengthForModel,
+	detail,
+	designer,
+	boardType,
+	profile,
+	price = 10000,
+	currency = 'SEK',
+	children,
+}: TextBlockProps) => {
 	// const formattedPrice = formatPrice(price)
 	return (
 		<div className={styles.textBlock}>
 			<div>
 				<p>{model}</p>
 				<p>{designer}</p>
+				<p>{boardType}</p>
 				<p>{detail}</p>
 				<p>{length}</p>
+				<p>{lengthForModel}</p>
 				<p>{profile}</p>
 			</div>
 

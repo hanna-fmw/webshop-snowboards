@@ -5,6 +5,13 @@
 	padding-right: 2rem;
 }
 
+.socialMediaBlockLink:hover {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+	color: var(--color-dark);
+}
+
 @media (max-width: 767px) {
 	.footer {
 		display: grid;
@@ -73,12 +80,6 @@
 		grid-column: 3;
 		grid-row: 1;
 		padding-left: 0;
-	}
-
-	.socialMediaBlockLink:hover {
-		text-decoration: underline;
-		text-underline-offset: 3px;
-		color: var(--color-active-link);
 	}
 
 	.linkBlock {
