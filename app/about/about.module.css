@@ -210,11 +210,11 @@
 
 @media (min-width: 1800px) {
 	.aboutContent {
-		left: 21%;
+		left: 20%;
 		width: 30%;
 	}
 	.about {
-		width: 58vw;
+		width: 60vw;
 		margin: 0 auto;
 	}
 }

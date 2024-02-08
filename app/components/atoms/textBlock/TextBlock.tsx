@@ -16,7 +16,6 @@ type TextBlockProps = {
 	designer?: string
 	boardType?: string
 	lengthForModel?: string[]
-	
 }
 
 const TextBlock = ({
@@ -31,7 +30,6 @@ const TextBlock = ({
 	price = 10000,
 	currency = 'SEK',
 	children,
-	
 }: TextBlockProps) => {
 	// const formattedPrice = formatPrice(price)
 	return (

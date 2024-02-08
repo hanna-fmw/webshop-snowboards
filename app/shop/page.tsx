@@ -86,7 +86,7 @@ const Shop = () => {
 							<ProductCard key={i}>
 								<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
 								<TextBlock
-									model={product.name}
+									name={product.name}
 									designer={product.designer}
 									length={product.length}
 									detail={product.detail}

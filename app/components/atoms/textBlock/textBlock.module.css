@@ -1,8 +1,8 @@
 .textBlock {
 	display: flex;
 	justify-content: space-between;
-	margin-top: 1rem;
 	width: 100%;
+	margin-bottom: 0.5rem;
 }
 
 .price {

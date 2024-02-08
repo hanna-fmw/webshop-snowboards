@@ -41,7 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`} style={{ position: 'relative' }}>
 				<ModalProvider>
 					<Navbar />
+
 					{children}
+
 					<Footer>
 						<ul className={styles.addressBlock}>
 							<li>TUR SNOWBOARDS</li>
