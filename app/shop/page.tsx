@@ -9,6 +9,24 @@ import TextBlock from '../components/atoms/textBlock/TextBlock'
 import Figure from '../components/atoms/figure/Figure'
 import products from '../data/products.json'
 import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
+
+const parentVariants = {
+	initial: { opacity: 1 },
+	animate: {
+		opacity: 1,
+
+		transition: {			
+			staggerChildren: 0.2,
+			duration: 0.5,
+		},
+	},
+}
+
+const childrenVariants = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1 },
+}
 
 const Shop = () => {
 	const [value, setValue] = useState('Default sorting')
@@ -80,24 +98,26 @@ const Shop = () => {
 						)}
 					</div>
 				</div>
-				<section className={styles.productCardSection}>
+				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
 					{products.map((product, i) => {
 						return (
-							<ProductCard key={i}>
-								<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-								<TextBlock
-									name={product.name}
-									designer={product.designer}
-									length={product.length}
-									detail={product.detail}
-									profile={product.profile}
-									price={product.price}
-									currency='SEK'
-								/>
-							</ProductCard>
+							<motion.div key={i} variants={childrenVariants}>
+								<ProductCard>
+									<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
+									<TextBlock
+										name={product.name}
+										designer={product.designer}
+										length={product.length}
+										detail={product.detail}
+										profile={product.profile}
+										price={product.price}
+										currency='SEK'
+									/>
+								</ProductCard>
+							</motion.div>
 						)
 					})}
-				</section>
+				</motion.section>
 			</section>
 		</main>
 	)
