@@ -22,8 +22,8 @@ const parentVariants = {
 
 		transition: {
 			// when: 'beforeChildren',
-			staggerChildren: 0.5,
-			duration: 1.5,
+			staggerChildren: 0.4,
+			duration: 0.8,
 		},
 	},
 }

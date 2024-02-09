@@ -10,9 +10,28 @@ import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
 import Button from '@/app/components/atoms/button/Button'
 import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
+import { motion } from 'framer-motion'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
+}
+
+const parentVariants = {
+	initial: { opacity: 1 },
+	animate: {
+		opacity: 1,
+
+		transition: {
+			// when: 'beforeChildren',
+			staggerChildren: 0.2,
+			duration: 0.4,
+		},
+	},
+}
+
+const childrenVariants = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1 },
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
@@ -47,24 +66,29 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 							</ProductCard>
 						)}
 					</div>
-					<div className={styles.thumbnails}>
+
+					<motion.div className={styles.thumbnails} variants={parentVariants} initial='initial' animate='animate'>
 						{currentProduct?.thumbnails.map((thumbnail, i) => {
+							//classnames definition
 							const thumbnailStyles = classnames(styles.thumbnailCard, {
 								[styles.selectedThumbnail]: thumbnailIndex === i,
 							})
+
 							return (
-								<div
+								<motion.div
 									key={i}
 									// className={`${styles.thumbnailCard} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}
 									className={thumbnailStyles}
-									onClick={() => handleClick(i)}>
+									onClick={() => handleClick(i)}
+									variants={childrenVariants}>
 									{/* <div className={`${styles.overlay} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}></div> */}
 									<div className={`${styles.overlay} ${thumbnailStyles}`}></div>
+
 									<Image src={`/products/${thumbnail}`} width={50} height={50} alt='bild' className={styles.thumbnailImg} />
-								</div>
+								</motion.div>
 							)
 						})}
-					</div>
+					</motion.div>
 				</div>
 
 				{products.map((product, i) => {
