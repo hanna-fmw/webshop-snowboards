@@ -22,7 +22,6 @@ const parentVariants = {
 		opacity: 1,
 
 		transition: {
-			// when: 'beforeChildren',
 			staggerChildren: 0.2,
 			duration: 0.4,
 		},
@@ -113,7 +112,10 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 										<div className={styles.btnContainer}>
 											<Button variant={'large-light'} onClick={() => {}}>
-												{product.length}
+												{product.lengthOptions?.map((option, i) => {
+													let lastOptionIndex = product.lengthOptions.length - 1
+													return <span key={i}>{i !== lastOptionIndex ? <span>{option}/</span> : <span>{option}</span>}</span>
+												})}
 											</Button>
 											<Button variant={'large-dark'} onClick={() => {}}>
 												ADD TO CART

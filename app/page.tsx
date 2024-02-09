@@ -8,13 +8,15 @@ import Figure from './components/atoms/figure/Figure'
 import TextBlock from './components/atoms/textBlock/TextBlock'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
-const motionProps = {
+const variants = {
 	initial: { opacity: 0, y: 100 },
 	animate: (i: number) => ({ opacity: 1, y: 0, transition: { delay: 0.2 * i } }),
 }
 
 export default function Home() {
+	const router = useRouter()
 	return (
 		<main className={styles.main}>
 			<HeroSection />
@@ -27,10 +29,10 @@ export default function Home() {
 					{products.map((product, i) => {
 						const featured = product.featured === true
 						return (
-							<motion.div key={i} variants={motionProps} initial='initial' whileInView='animate' viewport={{ once: true }} custom={i}>
+							<motion.div key={i} variants={variants} initial='initial' whileInView='animate' viewport={{ once: true }} custom={i}>
 								{featured ? (
 									<ProductCard>
-										<Figure image={`/products/${product.image}`} />
+										<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
 										<TextBlock
 											model={product.model}
 											designer={product.designer}

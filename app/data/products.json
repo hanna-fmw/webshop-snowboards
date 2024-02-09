@@ -106,6 +106,7 @@
 		"length": "154/158/161 CM",
 		"profile": "FLAT CAMBER PROFILE",
 		"price": "8299,00",
+		"lengthOptions": ["154", "158", "161"],
 		"descriptionHeading": "TUR FALC [SIGNATURE BJÖRN LINDGREN]:",
 		"descriptionText": "A quick, freestyle board with high maneuverability that’s trustable at fast speeds, made to handle everything from tricky natural terrains to big mountains, banked slaloms to park and icy groomed runs.",
 		"districtHeading": "DISTRICT:",
