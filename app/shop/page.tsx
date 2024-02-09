@@ -16,7 +16,7 @@ const parentVariants = {
 	animate: {
 		opacity: 1,
 
-		transition: {			
+		transition: {
 			staggerChildren: 0.2,
 			duration: 0.5,
 		},

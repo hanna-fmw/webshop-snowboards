@@ -44,7 +44,9 @@
 			"bubo150/thumbnails/BUBO_WS_150-4_08-750x938.png",
 			"bubo150/thumbnails/BUBO_WS_154-0_07-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": true
 	},
 
 	{
@@ -90,7 +92,9 @@
 			"bubo154/thumbnails/BUBO_WS_154-4_07-750x938.png",
 			"bubo154/thumbnails/BUBO_WS_154-4_08-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": true
 	},
 	{
 		"id": 3,
@@ -134,7 +138,9 @@
 			"falc/thumbnails/FALC-06-750x938.png",
 			"falc/thumbnails/FALC-08-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": true
 	},
 	{
 		"id": 4,
@@ -180,7 +186,9 @@
 			"korp/thumbnails/KORP-07-750x938.png",
 			"korp/thumbnails/KORP-08-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": true
 	},
 	{
 		"id": 5,
@@ -225,7 +233,9 @@
 			"bubo/thumbnails/BUBO-07-750x938.png",
 			"bubo/thumbnails/BUBO-08-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": false
 	},
 
 	{
@@ -271,7 +281,9 @@
 			"pluv/thumbnails/PLUV-07-750x938.png",
 			"pluv/thumbnails/PLUV-08-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": false
 	},
 	{
 		"id": 7,
@@ -315,7 +327,9 @@
 			"buteo/thumbnails/BUTEO-07-750x938.png",
 			"buteo/thumbnails/BUTEO-08-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": false
 	},
 	{
 		"id": 8,
@@ -362,7 +376,9 @@
 			"labb/thumbnails/LABB-07-750x938.png",
 			"labb/thumbnails/LABB-08-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": false
 	},
 	{
 		"id": 9,
@@ -409,7 +425,9 @@
 			"tica/thumbnails/TICA-07-750x938.png",
 			"tica/thumbnails/TICA-08-750x938.png"
 		],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": false
 	},
 	{
 		"id": 10,
@@ -449,6 +467,8 @@
 		"technicalSpecification": "",
 		"chart": "",
 		"thumbnails": [],
-		"relatedProductsHeading": "RELATED PRODUCTS:"
+		"relatedProductsHeading": "RELATED PRODUCTS:",
+		"relatedProducts": [],
+		"featured": false
 	}
 ]

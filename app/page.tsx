@@ -7,6 +7,24 @@ import ProductGrid from './components/atoms/productGrid/ProductGrid'
 import Figure from './components/atoms/figure/Figure'
 import TextBlock from './components/atoms/textBlock/TextBlock'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+
+const parentVariants = {
+	initial: { opacity: 1 },
+	animate: {
+		opacity: 1,
+
+		transition: {
+			staggerChildren: 0.2,
+			duration: 0.5,
+		},
+	},
+}
+
+const childrenVariants = {
+	initial: { opacity: 0 },
+	animate: { opacity: 1 },
+}
 
 export default function Home() {
 	return (
@@ -17,7 +35,7 @@ export default function Home() {
 					<div>TUR SNOWBOARD PRODUCTS:</div>
 					<Link href='/shop'>&gt; SHOW ALL</Link>
 				</div>
-				<div className={styles.productCardContainer}>
+				<motion.div className={styles.productCardContainer} variants={parentVariants} initial="initial" animate="animate">
 					{/* <ProductGrid> */}
 					{/* {products.map((product, i) => {
 						return (
@@ -84,7 +102,7 @@ export default function Home() {
 							price={products[3].price}
 						/>
 					</ProductCard>
-				</div>
+				</motion.div>
 
 				{/* </ProductGrid> */}
 			</section>
