@@ -9,25 +9,27 @@ import { useState } from 'react'
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
 import Button from '@/app/components/atoms/button/Button'
 import { useRouter } from 'next/navigation'
+import classnames from 'classnames'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
+	console.log(params)
+
 	const model = params.productModel
 
 	const [isFullSize, setIsFullSize] = useState<any>(false)
-	const [selectedThumbnailIndex, setSelectedThumbnailIndex] = useState(-1)
+	const [thumbnailIndex, setThumbnailIndex] = useState(0)
 
 	const router = useRouter()
 
 	const handleClick = (i: number) => {
-		setSelectedThumbnailIndex(i)
+		setThumbnailIndex(i)
 		setIsFullSize(true)
 	}
 
-	// const currentProduct = products.find((product) => decodeURIComponent(model) === product.model)
 	const currentProduct = products.find((product) => model === product.model)
 
 	return (
@@ -37,20 +39,27 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 					<div>
 						{isFullSize ? (
 							<ProductCard>
-								<Figure image={`/products/${currentProduct?.thumbnails[selectedThumbnailIndex]}`} />
+								<Figure image={`/products/${currentProduct?.thumbnails[thumbnailIndex]}`} />
 							</ProductCard>
 						) : (
 							<ProductCard>
-								{/* <Figure image={`/products/${currentProduct?.image}`} /> */}
 								<Image src={`/products/${currentProduct?.image}`} width={350} height={450} alt='Product Image' className={styles.productImg} />
 							</ProductCard>
 						)}
 					</div>
 					<div className={styles.thumbnails}>
 						{currentProduct?.thumbnails.map((thumbnail, i) => {
+							const thumbnailStyles = classnames(styles.thumbnailCard, {
+								[styles.selectedThumbnail]: thumbnailIndex === i,
+							})
 							return (
-								<div key={i} className={styles.thumbnailCard} onClick={() => handleClick(i)}>
-									<div className={styles.overlay}></div>
+								<div
+									key={i}
+									// className={`${styles.thumbnailCard} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}
+									className={thumbnailStyles}
+									onClick={() => handleClick(i)}>
+									{/* <div className={`${styles.overlay} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}></div> */}
+									<div className={`${styles.overlay} ${thumbnailStyles}`}></div>
 									<Image src={`/products/${thumbnail}`} width={50} height={50} alt='bild' className={styles.thumbnailImg} />
 								</div>
 							)
@@ -59,8 +68,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 				</div>
 
 				{products.map((product, i) => {
-					// const decodedURL = decodeURIComponent(model)
-
 					return (
 						<div key={i}>
 							{model === product.model ? (

@@ -47,6 +47,10 @@
 	opacity: 0;
 }
 
+.selectedThumbnail .overlay {
+	opacity: 0;
+}
+
 .infoContainer {
 	display: flex;
 	flex-direction: column;
