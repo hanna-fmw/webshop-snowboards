@@ -38,6 +38,7 @@
 .li {
 	all: unset;
 	padding: 0.5rem;
+	cursor: pointer;
 }
 
 .li:nth-child(1) {

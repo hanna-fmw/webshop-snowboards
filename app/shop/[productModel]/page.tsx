@@ -11,6 +11,7 @@ import Button from '@/app/components/atoms/button/Button'
 import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { motion } from 'framer-motion'
+import { useCart } from '@/app/context/cartContext'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
@@ -34,6 +35,7 @@ const childrenVariants = {
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
+	const { addItemToCart } = useCart()
 	console.log(params)
 
 	const model = params.productModel
@@ -97,7 +99,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 								<>
 									<div className={styles.infoContainer}>
 										{/* <ProductCard> */}
-										<TextBlock
+										{/* <TextBlock
 											name={product.name}
 											designer={product.designer}
 											boardType={product.boardType}
@@ -107,17 +109,21 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											lengthForModel={product.lengthForModel}
 											price={product.price}
 											currency='SEK'
-										/>
+										/> */}
+										<TextBlock {...product} />
 										{/* </ProductCard> */}
 
 										<div className={styles.btnContainer}>
-											<Button variant={'large-light'} onClick={() => {}}>
-												{product.lengthOptions?.map((option, i) => {
-													let lastOptionIndex = product.lengthOptions.length - 1
-													return <span key={i}>{i !== lastOptionIndex ? <span>{option}/</span> : <span>{option}</span>}</span>
-												})}
-											</Button>
-											<Button variant={'large-dark'} onClick={() => {}}>
+											{product.lengthOptions ? (
+												<Button variant={'large-light'} onClick={() => {}}>
+													{product.lengthOptions?.map((option, i) => {
+														let lastOptionIndex = product.lengthOptions.length - 1
+														return <span key={i}>{i !== lastOptionIndex ? <span>{option}/</span> : <span>{option}</span>}</span>
+													})}
+												</Button>
+											) : null}
+											{/* Here we pass in the entire product object (into the context) */}
+											<Button variant={'large-dark'} onClick={() => addItemToCart(product)}>
 												ADD TO CART
 											</Button>
 										</div>
@@ -126,7 +132,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											<h2 style={{ color: '#00b140', marginBottom: '1rem' }}>SHIPPING WORLD WIDE! NEED SUPPORT?</h2>
 											<div>{product.descriptionHeading}</div>
 											<div>{product.descriptionText}</div>
-
 											<h2>{product.districtHeading}</h2>
 											<div>{product.district}</div>
 

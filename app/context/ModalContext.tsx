@@ -3,31 +3,31 @@
 import { createContext, useContext, useState } from 'react'
 
 type ModalContextProps = {
-	isOpen: boolean
+	isModalOpen: boolean
 	openModal: () => void
 	closeModal: () => void
 }
 
-type ModalProvider = {
+type ModalProviderProps = {
 	children: React.ReactNode
 }
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined)
 
-export const ModalProvider = ({ children }: ModalProvider) => {
-	const [isOpen, setIsOpen] = useState(false)
+export const ModalProvider = ({ children }: ModalProviderProps) => {
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const openModal = () => {
-		document.body.classList.add('modalOpen')
-		setIsOpen(true)
+		// document.body.classList.add('modalOpen')
+		setIsModalOpen(true)
 	}
 
 	const closeModal = () => {
-		document.body.classList.remove('modalOpen')
-		setIsOpen(false)
+		// document.body.classList.remove('modalOpen')
+		setIsModalOpen(false)
 	}
 
-	return <ModalContext.Provider value={{ isOpen, openModal, closeModal }}>{children}</ModalContext.Provider>
+	return <ModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>{children}</ModalContext.Provider>
 }
 
 export const useModal = () => {

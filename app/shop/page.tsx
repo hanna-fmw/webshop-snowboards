@@ -111,7 +111,7 @@ const Shop = () => {
 										detail={product.detail}
 										profile={product.profile}
 										price={product.price}
-										currency='SEK'
+										// currency='SEK'
 									/>
 								</ProductCard>
 							</motion.div>

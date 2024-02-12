@@ -2,13 +2,15 @@
 import React from 'react'
 import styles from './navbar.module.css'
 import Image from 'next/image'
-import NavLink from '../../atoms/navLink/NavLink'
+// import NavLink from '../../atoms/navLink/NavLink'
 import hamburgerMenu from '../../../../public/icons/hamburger_menu_mobile.png'
 import logotype from '../../../../public/logo/logo.svg'
 import cart from '../../../../public/icons/cart.png'
 import CurrencyDropdown from '../../atoms/currencyDropdown/CurrencyDropdown'
-import { useModal } from '@/app/context/ModalContext'
+import { useModal } from '@/app/context/modalContext'
+import { useCart } from '@/app/context/cartContext'
 import Modal from '../modal/Modal'
+import Cart from '../cart/Cart'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
@@ -16,24 +18,31 @@ type NavbarProps = {
 	children?: React.ReactNode
 }
 
-type ContextProps = {
-	isOpen: boolean
+type ModalContextProps = {
+	isModalOpen: boolean
+	openModal: () => void
+}
+
+type CartContextProps = {
+	isModalOpen: boolean
 	openModal: () => void
 }
 
 const Navbar = ({ children }: NavbarProps) => {
-	const { isOpen, openModal }: ContextProps = useModal()
+	const { isModalOpen, openModal }: ModalContextProps = useModal()
+	const { isCartOpen, openCart }: CartContextProps = useCart()
+
 	const pathName = usePathname()
-	// const [isOpen, setIsOpen] = useState(false)
+	// const [isModalOpen, setIsModalOpen] = useState(false)
 
 	// const openModal = () => {
 	// 	document.body.classList.add('modalOpen');
-	// 	setIsOpen(true)
+	// 	setIsModalOpen(true)
 	// }
 
 	// const closeModal = () => {
 	// 	document.body.classList.remove('modalOpen');
-	// 	setIsOpen(false)
+	// 	setIsModalOpen(false)
 	// }
 
 	return (
@@ -73,15 +82,16 @@ const Navbar = ({ children }: NavbarProps) => {
 
 				<li className={styles.li}>
 					<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
-					{isOpen && <Modal />}
+					{isModalOpen && <Modal />}
 				</li>
 
 				<li className={`${styles.li} ${styles.currencyDropdown}`}>
 					<CurrencyDropdown />
 				</li>
 				<li className={styles.li}>
-					<Image src={cart} width={15} height={17} alt='Cart icon' />
+					<Image src={cart} width={15} height={17} alt='Cart icon' onClick={openCart} />
 					<small className={styles.cartItemCount}>[7]</small>
+					{isCartOpen && <Cart />}
 				</li>
 			</ul>
 		</nav>

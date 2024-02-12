@@ -1,7 +1,7 @@
 import React from 'react'
 // import PriceBlock from '../priceBlock/PriceBlock'
 import styles from './textBlock.module.css'
-import formatPrice from '@/app/utilities/formatPrice'
+import formatCurrency from '@/app/utilities/currencyFormatter'
 
 type TextBlockProps = {
 	children?: React.ReactNode
@@ -11,7 +11,7 @@ type TextBlockProps = {
 	length?: string
 	profile?: string
 	price?: any
-	currency?: 'SEK' | 'EUR'
+	// currency?: 'SEK' | 'EUR'
 	formattedPrice?: string
 	designer?: string
 	boardType?: string
@@ -28,10 +28,9 @@ const TextBlock = ({
 	boardType,
 	profile,
 	price = 10000,
-	currency = 'SEK',
+	// currency = 'SEK',
 	children,
 }: TextBlockProps) => {
-	// const formattedPrice = formatPrice(price)
 	return (
 		<div className={styles.textBlock}>
 			<div>
@@ -45,7 +44,8 @@ const TextBlock = ({
 			</div>
 
 			<div className={styles.price}>
-				<span>{price}</span> <span>{currency}</span>
+				<span>{formatCurrency(price)}</span>
+				{/* <span>{currency}</span> */}
 			</div>
 		</div>
 	)

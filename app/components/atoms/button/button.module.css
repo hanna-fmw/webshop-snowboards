@@ -1,3 +1,7 @@
+.btn {
+	cursor: pointer;
+}
+
 .btn.default {
 	display: flex;
 	justify-content: space-between;
