@@ -3,12 +3,10 @@ import React from 'react'
 import styles from './cart.module.css'
 import { IoCloseOutline } from 'react-icons/io5'
 import { useCart } from '@/app/context/cartContext'
-import products from '../../../data/products.json'
-import TextBlock from '../../atoms/textBlock/TextBlock'
-import Figure from '../../atoms/figure/Figure'
-import ProductCard from '../productCard/ProductCard'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import formatCurrency from '@/app/utilities/currencyFormatter'
+import Button from '../../atoms/button/Button'
 
 type CartProps = {
 	children?: React.ReactNode
@@ -45,53 +43,94 @@ type CartItem = {
 
 const Cart = ({ children }: CartProps) => {
 	// const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems }: CartContextProps = useCart()
-	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems }: any = useCart()
+	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart }: any = useCart()
 	// const quantity = getItemQuantity(product)
 
 	const router = useRouter()
 
 	return (
-		<div className={styles.cartSidePanel} style={{ padding: '1rem' }}>
-			<IoCloseOutline size={25} onClick={closeCart} className={styles.closeBtn} />
-			<div>YOUR CART ({cartItems.length} ITEM)</div>
-			<section style={{ display: 'flex', flexDirection: 'column', width: '80vw' }}>
-				{cartItems.map((item: CartItem, i: number) => {
-					console.log('These are the cartItems', cartItems)
+		<main className={styles.cartSidePanel}>
+			<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
+			<div style={{ marginTop: '0.5rem' }}>YOUR CART ({cartItems.length} ITEM)</div>
 
-					return (
-						<div key={i}>
-							<div style={{ backgroundColor: 'lightGrey' }}>
-								<div style={{ height: '20vh' }}>
-									<Image
-										src={`/products/${item.product.image}`}
-										width={200}
-										height={200}
-										alt='bild'
-										onClick={() => router.push(`/shop/${item.product.model}`)}
-									/>
-									{/* <Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} /> */}
+			{cartItems.map((item: CartItem, i: number) => {
+				console.log('These are the cartItems', cartItems)
+
+				return (
+					<section key={i} className={styles.productContainer}>
+						<div className={styles.productInfo}>
+							<div className={styles.imgContainer}>
+								<Image
+									src={`/products/${item.product.image}`}
+									width={65}
+									height={80}
+									alt='Product Image'
+									onClick={() => router.push(`/shop/${item.product.model}`)}
+								/>
+								{/* <Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} /> */}
+							</div>
+							<div className={styles.texBlockHorizontal}>
+								<div>{item.product.name}</div>
+								<div className={styles.price}>{formatCurrency(item.product.price)}</div>
+								<div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product.length}</div>
+								<div className={styles.btnContainer}>
+									<div className={styles.itemCountContainer}>
+										<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+											-
+										</button>
+										<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
+										<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+											+
+										</button>
+									</div>
+
+									<div onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
+										REMOVE ITEM
+									</div>
 								</div>
-								<TextBlock name={item.product.name} price={item.product.price} length={item.product.length} />
-								<div>Subtotal: {item.product.price * item.quantity}</div>
-
-								{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
-								{/* <ProductCard {...item}/> */}
 							</div>
-
-							<div style={{ display: 'flex', flexDirection: 'row', gap: '.5rem', alignItems: 'center' }}>
-								<button onClick={() => decreaseCartQuantity(item.product)}>-</button>
-								<span style={{ margin: '0 .5rem' }}>{item.quantity}</span>
-								<button onClick={() => increaseCartQuantity(item.product)}>+</button>
-							</div>
-
-							<button onClick={() => {}}>Remove item</button>
 						</div>
-					)
-				})}
+						<div>
+							<span>x{item.quantity} =</span> <span className={styles.totalItemsPrice}>{formatCurrency(item.product.price * item.quantity)}</span>
+						</div>
 
-				<div>Total Items: {cartItems.length}</div>
-			</section>
-		</div>
+						{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
+						{/* <ProductCard {...item}/> */}
+					</section>
+				)
+			})}
+
+			<footer className={styles.footer}>
+				<div className={styles.subtotalContainer}>
+					<div>SUBTOTAL</div>
+					<div className={styles.price}>
+						{formatCurrency(
+							cartItems.reduce((total: number, item: any) => {
+								const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
+								console.log(currItem)
+								return total + (currItem?.product.price || 0) * currItem.quantity
+							}, 0)
+						)}
+					</div>
+				</div>
+				<div>SHIPPING, TAXES, AND DISCOUNTS CALCULATED AT CHECKOUT.</div>
+				<div className={styles.btnCheckoutContainer}>
+					<Button variant='default' onClick={() => {}}>
+						VIEW MY CART
+					</Button>
+					<Button variant='default-dark' onClick={() => {}}>
+						GO TO CHECKOUT
+					</Button>
+				</div>
+				<div className={styles.creditCardIcons}>
+					<Image src={'/creditcardIcons/visa.svg'} width={25} height={25} alt='Visa icon' />
+					<Image src={'/creditcardIcons/amex.svg'} width={25} height={25} alt='Amex icon' />
+					<Image src={'/creditcardIcons/mastercard.svg'} width={25} height={25} alt='Mastercard icon' />
+				</div>
+			</footer>
+
+			{/* <div>Total Items: {cartItems.length}</div> */}
+		</main>
 	)
 }
 

@@ -24,6 +24,7 @@ type CartContextProps = {
 	addItemToCart: (product: Product) => void
 
 	cartItems: CartItem[]
+	showIsAddedToCart: boolean
 }
 
 type Product = {
@@ -54,6 +55,7 @@ const CartContext = createContext({} as CartContextProps)
 
 export const CartProvider = ({ children }: CartProviderProps) => {
 	const [isCartOpen, setIsCartOpen] = useState(false)
+	const [showIsAddedToCart, setShowIsAddedToCart] = useState(false)
 
 	const openCart = () => {
 		setIsCartOpen(true)
@@ -143,6 +145,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	}
 
 	const addItemToCart = (product: Product) => {
+		setShowIsAddedToCart(true)
 		//First we need to call the setCartItems and get our current items, which will be whatever
 		//our current list of items is, and what we want to do is to modify (increase) this list: so,
 		//if (the if statement) we can find an item inside our cart items list (inside our cart), then
@@ -201,6 +204,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				removeFromCart,
 				cartItems,
 				addItemToCart,
+				showIsAddedToCart,
 			}}>
 			{children}
 		</CartContext.Provider>

@@ -35,12 +35,12 @@ const childrenVariants = {
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
-	const { addItemToCart } = useCart()
+	const { addItemToCart, showIsAddedToCart } = useCart()
 	console.log(params)
 
 	const model = params.productModel
 
-	const [isFullSize, setIsFullSize] = useState<any>(false)
+	const [isFullSize, setIsFullSize] = useState<boolean>(false)
 	const [thumbnailIndex, setThumbnailIndex] = useState(0)
 
 	const router = useRouter()
@@ -54,6 +54,14 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 	return (
 		<main className={styles.main}>
+			{showIsAddedToCart ? (
+				<div className={styles.greenBox}>
+					<div style={{ marginBottom: '1rem' }}>X HAS BEEN ADDED TO YOUR CART.</div>
+					<Button onClick={() => router.push('/cart')} variant='large-dark'>
+						VIEW CART
+					</Button>
+				</div>
+			) : null}
 			<section className={styles.container}>
 				<div className={styles.productImgs}>
 					<div>
@@ -115,7 +123,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 										<div className={styles.btnContainer}>
 											{product.lengthOptions ? (
-												<Button variant={'large-light'} onClick={() => {}}>
+												<Button variant='large-light' onClick={() => {}}>
 													{product.lengthOptions?.map((option, i) => {
 														let lastOptionIndex = product.lengthOptions.length - 1
 														return <span key={i}>{i !== lastOptionIndex ? <span>{option}/</span> : <span>{option}</span>}</span>
@@ -123,7 +131,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												</Button>
 											) : null}
 											{/* Here we pass in the entire product object (into the context) */}
-											<Button variant={'large-dark'} onClick={() => addItemToCart(product)}>
+											<Button variant='large-dark' onClick={() => addItemToCart(product)}>
 												ADD TO CART
 											</Button>
 										</div>

@@ -10,7 +10,18 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 1rem;
+	width: 90vw;
+}
+
+.greenBox {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	margin-top: 5rem;
+	padding: 1rem;
+	background-color: #50b050;
 	width: 90vw;
 }
 
