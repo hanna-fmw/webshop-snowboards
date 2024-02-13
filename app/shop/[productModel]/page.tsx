@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { motion } from 'framer-motion'
 import { useCart } from '@/app/context/cartContext'
+import Cart from '@/app/components/molecules/cart/Cart'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
@@ -35,7 +36,7 @@ const childrenVariants = {
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
-	const { addItemToCart, showIsAddedToCart } = useCart()
+	const { addItemToCart, showIsAddedToCart, openCart } = useCart()
 	console.log(params)
 
 	const model = params.productModel
@@ -56,8 +57,8 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 		<main className={styles.main}>
 			{showIsAddedToCart ? (
 				<div className={styles.greenBox}>
-					<div style={{ marginBottom: '1rem' }}>X HAS BEEN ADDED TO YOUR CART.</div>
-					<Button onClick={() => router.push('/cart')} variant='large-dark'>
+					<div style={{ marginBottom: '1rem' }}>&ldquo;{currentProduct?.name}&rdquo; HAS BEEN ADDED TO YOUR CART.</div>
+					<Button onClick={openCart} variant='large-dark'>
 						VIEW CART
 					</Button>
 				</div>

@@ -23,6 +23,9 @@ type CartContextProps = {
 	removeFromCart: (product: Product) => void
 	addItemToCart: (product: Product) => void
 
+	checkCartEmpty: () => void
+	isCartEmpty: boolean
+
 	cartItems: CartItem[]
 	showIsAddedToCart: boolean
 }
@@ -71,6 +74,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	//functions to increment, decrement etc. those values):
 	// const [cartItems, setCartItems] = useState<CartItem[]>([])
 	const [cartItems, setCartItems] = useState<CartItem[]>([])
+	const [isCartEmpty, setIsCartEmpty] = useState<boolean>(true)
+
+	const checkCartEmpty = () => cartItems.length !== 0 && setIsCartEmpty(true)
 
 	const getItemQuantity = (product: Product) => {
 		//We want to take our current cart items and then find the item with
@@ -142,6 +148,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				})
 			}
 		})
+		
 	}
 
 	const addItemToCart = (product: Product) => {
@@ -190,6 +197,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		setCartItems((currItems) => {
 			return currItems.filter((item) => item.product.id !== product.id)
 		})
+		checkCartEmpty()
 	}
 
 	return (
@@ -205,6 +213,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				cartItems,
 				addItemToCart,
 				showIsAddedToCart,
+				checkCartEmpty,
+				isCartEmpty,
 			}}>
 			{children}
 		</CartContext.Provider>
