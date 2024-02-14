@@ -41,7 +41,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			{/* <body className={robotoMono.className}> */}
 			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`} style={{ position: 'relative' }}>
 				<ModalProvider>
-					<CartProvider>{children}</CartProvider>
+					<CartProvider>
+						<Navbar />
+						{children}
+						<Footer />
+					</CartProvider>
 				</ModalProvider>
 			</body>
 		</html>
