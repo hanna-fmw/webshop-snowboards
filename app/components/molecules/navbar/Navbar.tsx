@@ -10,7 +10,7 @@ import CurrencyDropdown from '../../atoms/currencyDropdown/CurrencyDropdown'
 import { useModal } from '@/app/context/modalContext'
 import { useCart } from '@/app/context/cartContext'
 import Modal from '../modal/Modal'
-import Cart from '../cart/Cart'
+import Cart from '../../organisms/cart/Cart'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 

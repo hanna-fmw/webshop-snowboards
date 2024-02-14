@@ -3,11 +3,18 @@ import styles from './shop.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
-import ProductGrid from '../components/atoms/productGrid/ProductGrid'
-import ProductCard from '../components/molecules/productCard/ProductCard'
-import TextBlock from '../components/atoms/textBlock/TextBlock'
-import Figure from '../components/atoms/figure/Figure'
-import products from '../data/products.json'
+// import ProductGrid from '../components/atoms/productGrid/ProductGrid'
+import ProductGrid from '@/app/components/atoms/productGrid/ProductGrid'
+// import ProductCard from '../components/molecules/productCard/ProductCard'
+import ProductCard from '@/app/components/molecules/productCard/ProductCard'
+
+// import TextBlock from '../components/atoms/textBlock/TextBlock'
+import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
+// import Figure from '../components/atoms/figure/Figure'
+import Figure from "@/app/components/atoms/figure/Figure"
+
+// import products from '../data/products.json'
+import products from '@/app/data/products.json'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 

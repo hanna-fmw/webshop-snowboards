@@ -2,7 +2,9 @@
 import Figure from '@/app/components/atoms/figure/Figure'
 import ProductCard from '@/app/components/molecules/productCard/ProductCard'
 import React from 'react'
-import products from '../../data/products.json'
+// import products from '../../data/products.json'
+import products from '@/app/data/products.json'
+
 import styles from './productDetailpage.module.css'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -12,7 +14,7 @@ import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { motion } from 'framer-motion'
 import { useCart } from '@/app/context/cartContext'
-import Cart from '@/app/components/molecules/cart/Cart'
+import Cart from '@/app/components/organisms/cart/Cart'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
@@ -36,7 +38,7 @@ const childrenVariants = {
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
-	const { addItemToCart, showIsAddedToCart, openCart } = useCart()
+	const { addItemToCart, showIsAddedToCart, closeCart } = useCart()
 	console.log(params)
 
 	const model = params.productModel
@@ -51,6 +53,11 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 		setIsFullSize(true)
 	}
 
+	const goToCart = () => {
+		router.push('/cart')
+		closeCart()
+	}
+
 	const currentProduct = products.find((product) => model === product.model)
 
 	return (
@@ -58,7 +65,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 			{showIsAddedToCart ? (
 				<div className={styles.greenBox}>
 					<div style={{ marginBottom: '1rem' }}>&ldquo;{currentProduct?.name}&rdquo; HAS BEEN ADDED TO YOUR CART.</div>
-					<Button onClick={openCart} variant='large-dark'>
+					<Button onClick={goToCart} variant='large-dark'>
 						VIEW CART
 					</Button>
 				</div>

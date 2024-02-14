@@ -53,6 +53,11 @@ const Cart = ({ children }: CartProps) => {
 		closeCart()
 	}
 
+	const goToCart = () => {
+		router.push('/cart')
+		closeCart()
+	}
+
 	return (
 		<main className={styles.cartSidePanel}>
 			<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
@@ -121,7 +126,7 @@ const Cart = ({ children }: CartProps) => {
 						</div>
 						<div>SHIPPING, TAXES, AND DISCOUNTS CALCULATED AT CHECKOUT.</div>
 						<div className={styles.btnCheckoutContainer}>
-							<Button variant='default' onClick={() => {}}>
+							<Button variant='default' onClick={goToCart}>
 								VIEW MY CART
 							</Button>
 							<Button variant='default-dark' onClick={() => {}}>
