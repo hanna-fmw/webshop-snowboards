@@ -5,7 +5,7 @@ import downArrow from '../../../../public/icons/down_arrow.png'
 
 export type ButtonProps = {
 	children?: React.ReactNode
-	variant?: 'default' | 'default-dark' | 'large-dark' | 'large-green' | 'large-light' | 'btn-hero'
+	variant?: 'default' | 'default-dark' | 'large-dark' | 'large-dark-no-hover' | 'large-green' | 'large-light' | 'btn-hero'
 	label?: string
 	icon?: boolean
 	onClick: () => void

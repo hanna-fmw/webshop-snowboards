@@ -62,60 +62,69 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 	return (
 		<main className={styles.main}>
-			{showIsAddedToCart ? (
-				<div className={styles.greenBox}>
-					<div style={{ marginBottom: '1rem' }}>&ldquo;{currentProduct?.name}&rdquo; HAS BEEN ADDED TO YOUR CART.</div>
-					<Button onClick={goToCart} variant='large-dark'>
-						VIEW CART
-					</Button>
-				</div>
-			) : null}
-			<section className={styles.container}>
-				<div className={styles.productImgs}>
-					<div>
-						{isFullSize ? (
-							<ProductCard>
-								<Figure image={`/products/${currentProduct?.thumbnails[thumbnailIndex]}`} />
-							</ProductCard>
-						) : (
-							<ProductCard>
-								<Image src={`/products/${currentProduct?.image}`} width={350} height={450} alt='Product Image' className={styles.productImg} />
-							</ProductCard>
-						)}
+			<section className={styles.section}>
+				{showIsAddedToCart ? (
+					<div className={styles.greenBox}>
+						<div style={{ marginBottom: '1rem' }}>&ldquo;{currentProduct?.name}&rdquo; HAS BEEN ADDED TO YOUR CART.</div>
+						<div className={styles.btnSmallScreen}>
+							<Button onClick={goToCart} variant='large-dark-no-hover'>
+								VIEW CART
+							</Button>
+						</div>
+						<div className={styles.btnLargeScreen}>
+							<Button onClick={goToCart} variant='default-dark'>
+								VIEW&nbsp;CART
+							</Button>
+						</div>
+					</div>
+				) : null}
+
+				<section className={styles.container}>
+					<div className={styles.productImgs}>
+						<div>
+							{isFullSize ? (
+								<ProductCard>
+									<Figure image={`/products/${currentProduct?.thumbnails[thumbnailIndex]}`} />
+								</ProductCard>
+							) : (
+								<ProductCard>
+									<Image src={`/products/${currentProduct?.image}`} width={350} height={450} alt='Product Image' className={styles.productImg} />
+								</ProductCard>
+							)}
+						</div>
+
+						<motion.div className={styles.thumbnails} variants={parentVariants} initial='initial' animate='animate'>
+							{currentProduct?.thumbnails.map((thumbnail, i) => {
+								//classnames definition
+								const thumbnailStyles = classnames(styles.thumbnailCard, {
+									[styles.selectedThumbnail]: thumbnailIndex === i,
+								})
+
+								return (
+									<motion.div
+										key={i}
+										// className={`${styles.thumbnailCard} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}
+										className={thumbnailStyles}
+										onClick={() => handleClick(i)}
+										variants={childrenVariants}>
+										{/* <div className={`${styles.overlay} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}></div> */}
+										<div className={`${styles.overlay} ${thumbnailStyles}`}></div>
+
+										<Image src={`/products/${thumbnail}`} width={50} height={50} alt='bild' className={styles.thumbnailImg} />
+									</motion.div>
+								)
+							})}
+						</motion.div>
 					</div>
 
-					<motion.div className={styles.thumbnails} variants={parentVariants} initial='initial' animate='animate'>
-						{currentProduct?.thumbnails.map((thumbnail, i) => {
-							//classnames definition
-							const thumbnailStyles = classnames(styles.thumbnailCard, {
-								[styles.selectedThumbnail]: thumbnailIndex === i,
-							})
-
-							return (
-								<motion.div
-									key={i}
-									// className={`${styles.thumbnailCard} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}
-									className={thumbnailStyles}
-									onClick={() => handleClick(i)}
-									variants={childrenVariants}>
-									{/* <div className={`${styles.overlay} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}></div> */}
-									<div className={`${styles.overlay} ${thumbnailStyles}`}></div>
-
-									<Image src={`/products/${thumbnail}`} width={50} height={50} alt='bild' className={styles.thumbnailImg} />
-								</motion.div>
-							)
-						})}
-					</motion.div>
-				</div>
-
-				{products.map((product, i) => {
-					return (
-						<div key={i}>
-							{model === product.model ? (
-								<>
-									<div className={styles.infoContainer}>
-										{/* <ProductCard> */}
-										{/* <TextBlock
+					{products.map((product, i) => {
+						return (
+							<div key={i}>
+								{model === product.model ? (
+									<>
+										<div className={styles.infoContainer}>
+											{/* <ProductCard> */}
+											{/* <TextBlock
 											name={product.name}
 											designer={product.designer}
 											boardType={product.boardType}
@@ -126,70 +135,70 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											price={product.price}
 											currency='SEK'
 										/> */}
-										<TextBlock {...product} />
-										{/* </ProductCard> */}
+											<TextBlock {...product} />
+											{/* </ProductCard> */}
 
-										<div className={styles.btnContainer}>
-											{product.lengthOptions ? (
-												<Button variant='large-light' onClick={() => {}}>
-													{product.lengthOptions?.map((option, i) => {
-														let lastOptionIndex = product.lengthOptions.length - 1
-														return <span key={i}>{i !== lastOptionIndex ? <span>{option}/</span> : <span>{option}</span>}</span>
-													})}
+											<div className={styles.btnContainer}>
+												{product.lengthOptions ? (
+													<Button variant='large-light' onClick={() => {}}>
+														{product.lengthOptions?.map((option, i) => {
+															let lastOptionIndex = product.lengthOptions.length - 1
+															return <span key={i}>{i !== lastOptionIndex ? <span>{option}/</span> : <span>{option}</span>}</span>
+														})}
+													</Button>
+												) : null}
+												{/* Here we pass in the entire product object (into the context) */}
+												<Button variant='large-dark' onClick={() => addItemToCart(product)}>
+													ADD TO CART
 												</Button>
-											) : null}
-											{/* Here we pass in the entire product object (into the context) */}
-											<Button variant='large-dark' onClick={() => addItemToCart(product)}>
-												ADD TO CART
-											</Button>
-										</div>
-
-										<div className={styles.productInfoBlock}>
-											<h2 style={{ color: '#00b140', marginBottom: '1rem' }}>SHIPPING WORLD WIDE! NEED SUPPORT?</h2>
-											<div>{product.descriptionHeading}</div>
-											<div>{product.descriptionText}</div>
-											<h2>{product.districtHeading}</h2>
-											<div>{product.district}</div>
-
-											{product.propertiesHeading ? (
-												<div>
-													<h2>{product.propertiesHeading}</h2>
-													<ul className={styles.ul}>
-														<li className={styles.li}>{product.properties.length}</li>
-														{product.properties?.features.map((property, i) => (
-															<li className={styles.li} key={i}>
-																{property}
-															</li>
-														))}
-													</ul>
-												</div>
-											) : null}
-
-											{product.sizeTable ? (
-												<ul>
-													{product.sizeTable.map((size, i) => {
-														return <li key={i}>{size}</li>
-													})}
-												</ul>
-											) : null}
-
-											<h2>{product.narrativeHeading}</h2>
-											<div>{product.narrative}</div>
-											{product.preCutSkins ? (
-												<Button variant={'default'} onClick={() => router.push('/shop/skins')}>
-													ADD PRE-CUT SKINS
-												</Button>
-											) : null}
-											<div className={styles.additionalInfo}>
-												{product.additionalInfo.map((infoLine, i) => (
-													<ul key={i} className={styles.ul}>
-														<li className={styles.li}>{infoLine}</li>
-													</ul>
-												))}
 											</div>
-										</div>
 
-										{/* {product.technicalSpecificationHeading ? (
+											<div className={styles.productInfoBlock}>
+												<h2 style={{ color: '#00b140', marginBottom: '1rem' }}>SHIPPING WORLD WIDE! NEED SUPPORT?</h2>
+												<div>{product.descriptionHeading}</div>
+												<div>{product.descriptionText}</div>
+												<h2>{product.districtHeading}</h2>
+												<div>{product.district}</div>
+
+												{product.propertiesHeading ? (
+													<div>
+														<h2>{product.propertiesHeading}</h2>
+														<ul className={styles.ul}>
+															<li className={styles.li}>{product.properties.length}</li>
+															{product.properties?.features.map((property, i) => (
+																<li className={styles.li} key={i}>
+																	{property}
+																</li>
+															))}
+														</ul>
+													</div>
+												) : null}
+
+												{product.sizeTable ? (
+													<ul>
+														{product.sizeTable.map((size, i) => {
+															return <li key={i}>{size}</li>
+														})}
+													</ul>
+												) : null}
+
+												<h2>{product.narrativeHeading}</h2>
+												<div>{product.narrative}</div>
+												{product.preCutSkins ? (
+													<Button variant={'default'} onClick={() => router.push('/shop/skins')}>
+														ADD PRE-CUT SKINS
+													</Button>
+												) : null}
+												<div className={styles.additionalInfo}>
+													{product.additionalInfo.map((infoLine, i) => (
+														<ul key={i} className={styles.ul}>
+															<li className={styles.li}>{infoLine}</li>
+														</ul>
+													))}
+												</div>
+											</div>
+
+											{/* {product.technicalSpecificationHeading ? (
 										<div className={styles.techInfoContainer}>
 											<h2>{product.technicalSpecificationHeading}</h2>
 											<div className={styles.chartsContainer}>
@@ -204,48 +213,49 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											</div>
 										</div>
 									) : null} */}
-									</div>
-									{/* <div>
+										</div>
+										{/* <div>
 									<h2>{product.relatedProductsHeading}</h2>
 								</div> */}
-								</>
+									</>
+								) : null}
+							</div>
+						)
+					})}
+				</section>
+
+				{products.map((product, i) => {
+					// const decodedURL = decodeURIComponent(model)
+
+					return (
+						<>
+							{model === product.model ? (
+								<div key={i}>
+									{product.technicalSpecificationHeading ? (
+										<div className={styles.techInfoContainer}>
+											<h2 style={{ alignSelf: 'flex-start' }}>{product.technicalSpecificationHeading}</h2>
+											<div style={{ alignSelf: 'flex-start' }} className={styles.chartsContainer}>
+												<Image
+													src={`/products/${product.technicalSpecification}`}
+													width={350}
+													height={150}
+													alt='Technical Specifications'
+													className={styles.chart}
+												/>
+												<Image src={`/products/${product.chart}`} width={350} height={150} alt='Technical Specifications' className={styles.chart} />
+											</div>
+										</div>
+									) : null}
+
+									<div>
+										<h2>{product.relatedProductsHeading}</h2>
+									</div>
+								</div>
 							) : null}
-						</div>
+						</>
 					)
 				})}
 			</section>
-
-			{products.map((product, i) => {
-				// const decodedURL = decodeURIComponent(model)
-
-				return (
-					<>
-						{model === product.model ? (
-							<div key={i}>
-								{product.technicalSpecificationHeading ? (
-									<div className={styles.techInfoContainer}>
-										<h2 style={{ alignSelf: 'flex-start' }}>{product.technicalSpecificationHeading}</h2>
-										<div style={{ alignSelf: 'flex-start' }} className={styles.chartsContainer}>
-											<Image
-												src={`/products/${product.technicalSpecification}`}
-												width={350}
-												height={150}
-												alt='Technical Specifications'
-												className={styles.chart}
-											/>
-											<Image src={`/products/${product.chart}`} width={350} height={150} alt='Technical Specifications' className={styles.chart} />
-										</div>
-									</div>
-								) : null}
-
-								<div>
-									<h2>{product.relatedProductsHeading}</h2>
-								</div>
-							</div>
-						) : null}
-					</>
-				)
-			})}
 		</main>
 	)
 }

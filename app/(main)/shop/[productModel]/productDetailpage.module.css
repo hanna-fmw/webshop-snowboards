@@ -2,8 +2,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-left: 2rem;
-	padding-right: 2rem;
+}
+
+.section {
+	width: 90vw;
 }
 
 .container {
@@ -25,11 +27,21 @@
 	width: 90vw;
 }
 
+.btnSmallScreen {
+	width: 100%;
+}
+
+.btnLargeScreen {
+	display: none;
+}
+
 .productImg {
 	width: 100%;
 	height: auto;
 	cursor: pointer;
 }
+
+/* THUMBNAILS */
 
 .thumbnails {
 	display: flex;
@@ -100,19 +112,36 @@
 
 @media (min-width: 750px) {
 	.main {
-		width: 100vw;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
-	.container {
+
+	.greenBox {
 		flex-direction: row;
 		justify-content: space-between;
-		align-items: flex-start;
-		width: 90%;
+		width: 100%;
+	}
+	.btnLargeScreen {
+		display: block;
+	}
+
+	.btnSmallScreen {
+		display: none;
 	}
 
 	.productImgs {
 		display: flex;
 		flex-direction: column;
 		width: 45vw;
+	}
+
+	.container {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 1rem;
+		width: 100%;
 	}
 
 	.thumbnailImg {
@@ -142,6 +171,7 @@
 		gap: 2rem;
 		flex-direction: row;
 		justify-content: space-between;
+		width: 90vw;
 	}
 
 	.chart {
@@ -189,6 +219,12 @@
 		flex-direction: column;
 		width: 100vw;
 	}
+
+	.chartsContainer {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+	}
 }
 
 @media (min-width: 1800px) {
@@ -196,7 +232,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		width: 60vw;
+		width: 100vw;
+	}
+
+	.section {
+		width: 60%;
 	}
 
 	.infoContainer {
