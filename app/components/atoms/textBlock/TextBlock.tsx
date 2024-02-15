@@ -34,13 +34,13 @@ const TextBlock = ({
 	return (
 		<div className={styles.textBlock}>
 			<div>
-				<p>{name}</p>
-				<p>{designer}</p>
-				<p>{boardType}</p>
-				<p>{detail}</p>
-				<p>{length}</p>
-				<p>{lengthForModel}</p>
-				<p>{profile}</p>
+				<div>{name}</div>
+				<div>{designer}</div>
+				<div>{boardType}</div>
+				<div>{detail}</div>
+				<div>{length}</div>
+				<div>{lengthForModel}</div>
+				<div>{profile}</div>
 			</div>
 
 			<div className={styles.price}>

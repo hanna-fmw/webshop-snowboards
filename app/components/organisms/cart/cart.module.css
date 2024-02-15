@@ -1,5 +1,4 @@
 .cartSidePanel {
-	width: 100%;
 	min-height: 100%;
 	background-color: var(--color-white);
 	position: absolute;
@@ -13,7 +12,7 @@
 .closeBtn {
 	position: absolute;
 	top: 1rem;
-	right: 3rem;
+	right: 1rem;
 	color: darkgrey;
 	cursor: pointer;
 }
@@ -61,7 +60,6 @@
 	background-color: inherit;
 	color: var(--color-darkgrey);
 	margin-top: 0.5rem;
-	
 }
 
 .plusMinusBtn {

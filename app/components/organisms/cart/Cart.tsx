@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import formatCurrency from '@/app/utilities/currencyFormatter'
 import Button from '../../atoms/button/Button'
+import { motion } from 'framer-motion'
 
 type CartProps = {
 	children?: React.ReactNode
@@ -43,7 +44,8 @@ type CartItem = {
 
 const Cart = ({ children }: CartProps) => {
 	// const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems }: CartContextProps = useCart()
-	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, isCartEmpty }: any = useCart()
+	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, isCartEmpty, isCartOpen }: any =
+		useCart()
 	// const quantity = getItemQuantity(product)
 
 	const router = useRouter()
@@ -58,8 +60,23 @@ const Cart = ({ children }: CartProps) => {
 		closeCart()
 	}
 
+	const sidePanelVariants = {
+		hidden: { x: '100%', opacity: 0 },
+		visible: {
+			x: 0,
+			opacity: 1,
+			transition: { duration: 0.3, ease: 'easeInOut' },
+		},
+		exit: { x: '100%', opacity: 0 },
+	}
+
 	return (
-		<main className={styles.cartSidePanel}>
+		<motion.main
+			className={styles.cartSidePanel}
+			variants={sidePanelVariants}
+			initial='hidden'
+			animate={isCartOpen ? 'visible' : 'hidden'}
+			exit='exit'>
 			<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
 
 			{cartItems.length !== 0 ? (
@@ -152,7 +169,7 @@ const Cart = ({ children }: CartProps) => {
 					</div>
 				</div>
 			)}
-		</main>
+		</motion.main>
 	)
 }
 
