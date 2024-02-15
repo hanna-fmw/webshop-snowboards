@@ -1,0 +1,104 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+}
+
+.product {
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid var(--color-dark);
+	padding-block: 1rem;
+}
+
+.price {
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid var(--color-dark);
+	padding-block: 1rem;
+}
+
+.quantity {
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px solid var(--color-dark);
+	padding-block: 1rem;
+}
+
+.quantity .amount {
+	border: 1px solid var(--color-dark);
+	padding: 1rem;
+}
+
+.subtotal {
+	padding-block: 1rem;
+}
+
+.priceColor {
+	color: var(--color-TUR-green);
+}
+
+.btnContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.couponBtns {
+	display: flex;
+	align-items: baseline;
+}
+
+.updateBtn {
+	background-color: var(--color-white);
+	color: #c8c8c8;
+	border: 1px solid #c8c8c8;
+	width: 100%;
+	padding: 0.8rem 7.4rem;
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+	transition: all 0.2s ease;
+	cursor: pointer;
+}
+
+.updateBtn:hover {
+	color: #999999;
+	font-weight: bold;
+	border: 1px solid #999999;
+}
+
+.subtotal {
+	display: flex;
+	justify-content: space-between;
+	padding-block: 1rem;
+}
+
+.shippingContainer {
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--color-dark);
+	padding-block: 1rem;
+}
+
+.shipping {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+}
+
+.calculateShipping {
+	margin-right: 0.4rem;
+}
+
+.calculateShipping:hover {
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+	cursor: pointer;
+}
+
+.total {
+	display: flex;
+	justify-content: space-between;
+	padding-block: 1rem;
+	border-top: 1px solid var(--color-dark);
+	margin-bottom: 2rem;
+}
