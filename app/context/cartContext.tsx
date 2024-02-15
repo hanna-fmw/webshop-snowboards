@@ -85,7 +85,11 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		//value of 0. So with the question mark syntax (optional chaining syntax below) we are
 		//saying: if this (allt innan ?) evaluates to something, then get the quantity on it, or
 		//return zero if we have nothing:
-		return cartItems.find((item) => item.product.id === product.id)?.quantity || 0
+		// return cartItems.find((item) => item.product.id === product.id)?.quantity || 0
+		return cartItems.find((item) => {
+			console.log('this is item.quantity', item.quantity)
+			return item.product.id === product.id ? item.quantity : 0
+		})
 	}
 
 	const increaseCartQuantity = (product: Product) => {
@@ -148,7 +152,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				})
 			}
 		})
-		
 	}
 
 	const addItemToCart = (product: Product) => {
