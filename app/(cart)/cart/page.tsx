@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import formatCurrency from '@/app/utilities/currencyFormatter'
 import { RiArrowDownSFill } from 'react-icons/ri'
 import { RiArrowUpSFill } from 'react-icons/ri'
+import Figure from '@/app/components/atoms/figure/Figure'
 
 type CartProps = {
 	children?: React.ReactNode
@@ -41,46 +42,111 @@ const CartPage = () => {
 		<>
 			{cartItems.length !== 0 ? (
 				<main className={styles.container}>
-					<div>
+					<section className={styles.onlySmallScreen}>
 						<h2 style={{ paddingBlock: '1rem' }}>CART</h2>
 						{cartItems.map((item: CartItem, i: number) => {
 							return (
-								<div key={i} style={{ marginBottom: '5rem' }}>
-									<div className={styles.product}>
-										<div>Product:</div>
-										<div>{item.product.name}</div>
-									</div>
-									<div className={styles.price}>
-										<div>Price:</div>
-										<div className={styles.priceColor}>{formatCurrency(item.product.price)}</div>
-									</div>
-									<div className={styles.quantity}>
-										<div>Quantity:</div>
-										{/* <div className={styles.amount}>{item.quantity}</div> */}
-										<div className={styles.itemCountContainer}>
-											<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-											<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
-												<div>
-													<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-														<RiArrowUpSFill />
-													</button>
-												</div>
-												<div>
-													<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-														<RiArrowDownSFill />
-													</button>
+								<>
+									<div key={i} style={{ marginBottom: '5rem' }}>
+										<div className={styles.product}>
+											<div>Product:</div>
+											<div className={styles.productName}>{item.product.name}</div>
+										</div>
+
+										<div className={styles.price}>
+											<div>Price:</div>
+											<div className={styles.priceColor}>{formatCurrency(item.product.price)}</div>
+										</div>
+
+										<div className={styles.quantity}>
+											<div>Quantity:</div>
+											{/* <div className={styles.amount}>{item.quantity}</div> */}
+											<div className={styles.itemCountContainer}>
+												<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
+												<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
+													<div>
+														<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+															<RiArrowUpSFill />
+														</button>
+													</div>
+													<div>
+														<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+															<RiArrowDownSFill />
+														</button>
+													</div>
 												</div>
 											</div>
 										</div>
+
+										<div className={styles.subtotal}>
+											<div className={styles.priceColor}>{formatCurrency(item.quantity * item.product.price)}</div>
+										</div>
 									</div>
-									<div className={styles.subtotal}>
-										<div>Subtotal:</div>
-										<div className={styles.priceColor}>{formatCurrency(item.quantity * item.product.price)}</div>
-									</div>
-								</div>
+								</>
 							)
 						})}
-					</div>
+					</section>
+
+					<section className={styles.onlyLargeScreen}>
+						<h2 style={{ paddingBlock: '1rem' }}>CART</h2>
+						<div className={styles.productTable}>
+							<div className={styles.tableHeader}>
+								<h2 className={styles.tableCellRemove}>Remove</h2>
+								<h2 className={styles.tableCellImage}>Image</h2>
+								<h2 className={styles.tableCellProduct}>PRODUCT</h2>
+								<h2 className={styles.tableCellPrice}>PRICE</h2>
+								<h2 className={styles.tableCellQuantity}>QUANTITY</h2>
+								<h2 className={styles.tableCellSubtotal}>SUBTOTAL</h2>
+							</div>
+							<div className={styles.productCard}>
+								{cartItems.map((item: CartItem, i: number) => {
+									return (
+										<>
+											<div key={i} className={styles.productRow}>
+												<button onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
+													x
+												</button>
+												<div className={styles.productImg}>
+													<Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
+												</div>
+
+												<div className={styles.productName}>
+													<div>{item.product.name}</div>
+												</div>
+
+												<div className={styles.productPrice}>
+													<div className={styles.priceColor}>{formatCurrency(item.product.price)}</div>
+												</div>
+
+												<div className={styles.productQuantity}>
+													{/* <div className={styles.amount}>{item.quantity}</div> */}
+													<div className={styles.itemCountContainer}>
+														<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
+														<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
+															<div>
+																<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+																	<RiArrowUpSFill />
+																</button>
+															</div>
+															<div>
+																<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+																	<RiArrowDownSFill />
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div className={styles.productSubtotal}>
+													<div className={styles.priceColor}>{formatCurrency(item.quantity * item.product.price)}</div>
+												</div>
+											</div>
+										</>
+									)
+								})}
+							</div>
+						</div>
+					</section>
 
 					<div className={styles.btnContainer}>
 						<div className={styles.couponBtns}>

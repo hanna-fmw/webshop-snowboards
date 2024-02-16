@@ -1,4 +1,5 @@
 .cartSidePanel {
+	width: 100%;
 	min-height: 100%;
 	background-color: var(--color-white);
 	position: absolute;
@@ -6,7 +7,6 @@
 	left: 0;
 	z-index: 50;
 	padding: 1rem;
-	width: 90vw;
 }
 
 .closeBtn {
