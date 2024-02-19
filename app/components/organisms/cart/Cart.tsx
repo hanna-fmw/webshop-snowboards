@@ -88,6 +88,7 @@ const Cart = ({ children }: CartProps) => {
 
 					{cartItems.map((item: CartItem, i: number) => {
 						console.log('These are the cartItems', cartItems)
+						console.log('This is item', item)
 						const backToProductDetail = () => {
 							router.push(`/shop/${item.product.model}`)
 							closeCart()
@@ -97,13 +98,13 @@ const Cart = ({ children }: CartProps) => {
 							<section key={i} className={styles.productContainer}>
 								<div className={styles.productInfo}>
 									<div className={styles.imgContainer}>
-										<Image src={`/products/${item.product.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
+										<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
 										{/* <Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} /> */}
 									</div>
 									<div className={styles.texBlockHorizontal}>
-										<div>{item.product.name}</div>
-										<div className={styles.price}>{formatCurrency(item.product.price)}</div>
-										<div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product.length}</div>
+										<div>{item.product?.name}</div>
+										<div className={styles.price}>{formatCurrency(item.product?.price)}</div>
+										<div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div>
 										<div className={styles.btnContainer}>
 											<div className={styles.itemCountContainer}>
 												<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
@@ -122,7 +123,8 @@ const Cart = ({ children }: CartProps) => {
 									</div>
 								</div>
 								<div>
-									<span>x{item.quantity} =</span> <span className={styles.totalItemsPrice}>{formatCurrency(item.product.price * item.quantity)}</span>
+									<span>x{item.quantity} =</span>{' '}
+									<span className={styles.totalItemsPrice}>{formatCurrency(item.product?.price * item.quantity)}</span>
 								</div>
 
 								{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
@@ -137,9 +139,9 @@ const Cart = ({ children }: CartProps) => {
 							<div className={styles.price}>
 								{formatCurrency(
 									cartItems.reduce((total: number, item: any) => {
-										const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
+										const currItem = cartItems.find((i: any) => i.product?.id === item.product?.id)
 										console.log(currItem)
-										return total + (currItem?.product.price || 0) * currItem.quantity
+										return total + (currItem?.product?.price || 0) * currItem.quantity
 									}, 0)
 								)}
 							</div>

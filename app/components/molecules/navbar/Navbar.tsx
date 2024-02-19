@@ -30,7 +30,7 @@ type CartContextProps = {
 
 const Navbar = ({ children }: NavbarProps) => {
 	const { isModalOpen, openModal }: ModalContextProps = useModal()
-	const { isCartOpen, openCart, cartItems }: CartContextProps = useCart()
+	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = useCart()
 
 	const pathName = usePathname()
 	console.log(pathName)
@@ -93,7 +93,7 @@ const Navbar = ({ children }: NavbarProps) => {
 						<li className={styles.li}>
 							<Image src={cart} width={15} height={17} alt='Cart icon' onClick={openCart} />
 							{/* {cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartItems.length}&#93;</small>} */}
-							{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartItems.length}&#93;</small>}
+							{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
 							{isCartOpen && <Cart />}
 						</li>
 					</>

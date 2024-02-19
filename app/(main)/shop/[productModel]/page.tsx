@@ -38,7 +38,7 @@ const childrenVariants = {
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
-	const { addItemToCart, showIsAddedToCart, closeCart, increaseCartQuantity } = useCart()
+	const { showIsAddedToCart, closeCart, increaseCartQuantity, getItemQuantity } = useCart()
 	console.log(params)
 
 	const model = params.productModel
@@ -57,6 +57,8 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 		router.push('/cart')
 		closeCart()
 	}
+
+	
 
 	const currentProduct = products.find((product) => model === product.model)
 
@@ -120,6 +122,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 					{products.map((product, i) => {
 						console.log('product är:', product)
 						
+
 						return (
 							<div key={i}>
 								{model === product.model ? (

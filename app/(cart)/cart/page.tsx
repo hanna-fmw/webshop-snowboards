@@ -51,12 +51,12 @@ const CartPage = () => {
 									<div key={i} style={{ marginBottom: '5rem' }}>
 										<div className={styles.product}>
 											<div>Product:</div>
-											<div className={styles.productName}>{item.product.name}</div>
+											<div className={styles.productName}>{item.product?.name}</div>
 										</div>
 
 										<div className={styles.price}>
 											<div>Price:</div>
-											<div className={styles.priceColor}>{formatCurrency(item.product.price)}</div>
+											<div className={styles.priceColor}>{formatCurrency(item.product?.price)}</div>
 										</div>
 
 										<div className={styles.quantity}>
@@ -111,15 +111,15 @@ const CartPage = () => {
 													<span className={styles.removeBtn}>x</span>
 												</button>
 												<div className={styles.productImg}>
-													<Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
+													<Figure image={`/products/${item.product?.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
 												</div>
 
 												<div className={styles.productName}>
-													<div>{item.product.name}</div>
+													<div>{item.product?.name}</div>
 												</div>
 
 												<div className={styles.productPrice}>
-													<div className={styles.priceColor}>{formatCurrency(item.product.price)}</div>
+													<div className={styles.priceColor}>{formatCurrency(item.product?.price)}</div>
 												</div>
 
 												<div className={styles.productQuantity}>
@@ -129,12 +129,12 @@ const CartPage = () => {
 															<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
 															<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
 																<div>
-																	<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+																	<button onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown}>
 																		<RiArrowUpSFill />
 																	</button>
 																</div>
 																<div>
-																	<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+																	<button onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown}>
 																		<RiArrowDownSFill />
 																	</button>
 																</div>
@@ -144,7 +144,7 @@ const CartPage = () => {
 												</div>
 
 												<div className={styles.productSubtotal}>
-													<div className={styles.priceColor}>{formatCurrency(item.quantity * item.product.price)}</div>
+													<div className={styles.priceColor}>{formatCurrency(item.quantity * item.product?.price)}</div>
 												</div>
 											</div>
 										</>
