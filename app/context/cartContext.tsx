@@ -1,9 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState } from 'react'
-
-//OBS! Det nedan: i funktionerna så har jag varit tvungen lägga till product där
-//det bara var id i tutorialen.
+import { useLocalStorage } from '@/app/hooks/useLocalStorage'
 
 //Vilka funktioner behöver vi (förutom öppna/stäng cart):
 //1) see how many of an item are in our cart (tar in id:t för den item vi vill ha och returnerar ett tal (antalet))
@@ -73,7 +71,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	//for our cart items (and after that we just have to create the
 	//functions to increment, decrement etc. those values):
 	// const [cartItems, setCartItems] = useState<CartItem[]>([])
-	const [cartItems, setCartItems] = useState<CartItem[]>([])
+	// const [cartItems, setCartItems] = useState<CartItem[]>([])
+	const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', [])
+
 	const [isCartEmpty, setIsCartEmpty] = useState<boolean>(true)
 
 	const checkCartEmpty = () => cartItems.length !== 0 && setIsCartEmpty(true)
@@ -93,6 +93,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	}
 
 	const increaseCartQuantity = (product: Product) => {
+		
 		//First we need to call the setCartItems and get our current items, which will be whatever
 		//our current list of items is, and what we want to do is to modify (increase) this list: so,
 		//if (the if statement) we can find an item inside our cart items list (inside our cart), then
@@ -114,6 +115,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		//So this is the full code block for all this:
 
 		setCartItems((currItems) => {
+			console.log('cartItems length är:', cartItems.length)
 			//1) The item is not already in the cart > add new item to array
 			if (currItems.find((item) => item.product.id === product.id) == null) {
 				return [...currItems, { product, quantity: 1 }]
@@ -123,7 +125,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 					if (item.product.id === product.id) {
 						return { ...item, quantity: item.quantity + 1 }
 					}
-					//If item.id === id here above is false, then this is an item that should not be updated, so we just return this item without any changes
+					//If item.id === id ovan is false, then this is an item that should not be updated, so we just return this item without any changes
 					else {
 						return item
 					}
@@ -154,46 +156,48 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		})
 	}
 
-	const addItemToCart = (product: Product) => {
-		setShowIsAddedToCart(true)
-		//First we need to call the setCartItems and get our current items, which will be whatever
-		//our current list of items is, and what we want to do is to modify (increase) this list: so,
-		//if (the if statement) we can find an item inside our cart items list (inside our cart), then
-		//this means we do have an item, so what we want to check is if we don´t (null)
-		//have an item. Because if our item doesn´t already exist in the cart, we need to add it
-		//to our cart; so what we do is we return all of our current items and we can
-		//add in a new item which has an id and a quantity of one [...currItems, {id, quantity: 1}]. So
-		//now we have said that if the conditional evaluates to null, then we want to add a new item
-		//with the quantity of 1 (i.e. if the item doesn´t already exist in the cart, we add it with the
-		//quantity of 1). Otherwise (else), i.e. if the item already exists in the cart, all we need
-		//to do is increment the count of that item by one. So in this return (in the else statement) we
-		//are just going to map over all our current items, and for each one of our items, if our
-		//item.id is equal to our id, then that one (that item), we need to change, so we can return
-		//(the second return inside the else statement) that item, spread it out, but we´re goind to
-		//take the quantity and add one to it ({...item, quantity: item.quantity + 1}). So what
-		//we´re saying here is: if we found our item, take the current item and keep everything the
-		//same (...item), but increment the quantity (, quantity: item.quantity + 1). Otherwise we
-		//are just going to return the item as is without any changes at all (return item).
-		//So this is the full code block for all this:
+	// const addItemToCart = (product: Product) => {
+	// 	setShowIsAddedToCart(true)
 
-		setCartItems((currItems) => {
-			//1) The item is not already in the cart > add new item to array
-			if (currItems.find((item) => item.product.id === product.id) == null) {
-				return [...currItems, { product, quantity: 1 }]
-			} else {
-				//So, if this code block runs it´s bc the item is already in the cart, and so we just update the existing item
-				return currItems.map((item) => {
-					if (item.product.id === product.id) {
-						return { ...item, quantity: item.quantity + 1 }
-					}
-					//If item.id === id here above is false, then this is an item that should not be updated, so we just return this item without any changes
-					else {
-						return item
-					}
-				})
-			}
-		})
-	}
+	// 	//First we need to call the setCartItems and get our current items, which will be whatever
+	// 	//our current list of items is, and what we want to do is to modify (increase) this list: so,
+	// 	//if (the if statement) we can find an item inside our cart items list (inside our cart), then
+	// 	//this means we do have an item, so what we want to check is if we don´t (null)
+	// 	//have an item. Because if our item doesn´t already exist in the cart, we need to add it
+	// 	//to our cart; so what we do is we return all of our current items and we can
+	// 	//add in a new item which has an id and a quantity of one [...currItems, {id, quantity: 1}]. So
+	// 	//now we have said that if the conditional evaluates to null, then we want to add a new item
+	// 	//with the quantity of 1 (i.e. if the item doesn´t already exist in the cart, we add it with the
+	// 	//quantity of 1). Otherwise (else), i.e. if the item already exists in the cart, all we need
+	// 	//to do is increment the count of that item by one. So in this return (in the else statement) we
+	// 	//are just going to map over all our current items, and for each one of our items, if our
+	// 	//item.id is equal to our id, then that one (that item), we need to change, so we can return
+	// 	//(the second return inside the else statement) that item, spread it out, but we´re goind to
+	// 	//take the quantity and add one to it ({...item, quantity: item.quantity + 1}). So what
+	// 	//we´re saying here is: if we found our item, take the current item and keep everything the
+	// 	//same (...item), but increment the quantity (, quantity: item.quantity + 1). Otherwise we
+	// 	//are just going to return the item as is without any changes at all (return item).
+	// 	//So this is the full code block for all this:
+
+	// 	setCartItems((currItems) => {
+	// 		console.log('cartItems length är:', cartItems.length)
+	// 		//1) The item is not already in the cart > add new item to array
+	// 		if (currItems.find((item) => item.product.id === product.id) == null) {
+	// 			return [...currItems, { product, quantity: 1 }]
+	// 		} else {
+	// 			//So, if this code block runs it´s bc the item is already in the cart, and so we just update the existing item
+	// 			return currItems.map((item) => {
+	// 				if (item.product.id === product.id) {
+	// 					return { ...item, quantity: item.quantity + 1 }
+	// 				}
+	// 				//If item.id === id here above is false, then this is an item that should not be updated, so we just return this item without any changes
+	// 				else {
+	// 					return item
+	// 				}
+	// 			})
+	// 		}
+	// 	})
+	// }
 
 	const removeFromCart = (product: Product) => {
 		//Here we just get our currItems and filter out the one where the id is not equal to our current item id
@@ -214,7 +218,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				decreaseCartQuantity,
 				removeFromCart,
 				cartItems,
-				addItemToCart,
+				// addItemToCart,
 				showIsAddedToCart,
 				checkCartEmpty,
 				isCartEmpty,

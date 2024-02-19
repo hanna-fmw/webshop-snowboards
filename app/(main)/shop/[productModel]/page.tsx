@@ -38,7 +38,7 @@ const childrenVariants = {
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
-	const { addItemToCart, showIsAddedToCart, closeCart } = useCart()
+	const { addItemToCart, showIsAddedToCart, closeCart, increaseCartQuantity } = useCart()
 	console.log(params)
 
 	const model = params.productModel
@@ -118,6 +118,8 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 					</div>
 
 					{products.map((product, i) => {
+						console.log('product är:', product)
+						
 						return (
 							<div key={i}>
 								{model === product.model ? (
@@ -148,7 +150,8 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 													</Button>
 												) : null}
 												{/* Here we pass in the entire product object (into the context) */}
-												<Button variant='large-dark' onClick={() => addItemToCart(product)}>
+												{/* <Button variant='large-dark' onClick={() => addItemToCart(product)}> */}
+												<Button variant='large-dark' onClick={() => increaseCartQuantity(product)}>
 													ADD TO CART
 												</Button>
 											</div>

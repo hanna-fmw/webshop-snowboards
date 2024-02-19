@@ -25,21 +25,19 @@
 	padding-block: 1rem;
 }
 
-/* .quantity .amount {
-	border: 1px solid var(--color-dark);
-	padding: 1rem;
-} */
-
 .itemCountContainer {
 	display: flex;
 	flex-direction: row;
 	gap: 0.5rem;
 	align-items: center;
 	border: 1px solid var(--color-dark);
-	padding: 0.5rem 1rem;
+
+	/* padding: 0.5rem 1rem; */
 }
 
 .arrowBtn {
+	display: flex;
+	flex-direction: column;
 	border: none;
 	background-color: inherit;
 	color: var(--color-darkgrey);
@@ -51,7 +49,7 @@
 	opacity: 1;
 }
 
-.plusMinusBtn {
+.arrowUpDown {
 	border: none;
 	background-color: #f1f1f1;
 	color: var(--color-darkgrey);
@@ -146,7 +144,7 @@
 
 	.productTable {
 		display: flex;
-		flex-direction: column; /* Customize column widths */
+		flex-direction: column;
 	}
 
 	.tableHeader {
@@ -203,23 +201,31 @@
 		grid-row: 2;
 	}
 
-	.removeBtn {
+	.removeBtnContainer {
 		display: block;
-		color: #c8c8c8;
+
 		border: none;
-		cursor: pointer;
 		background-color: inherit;
 		grid-column: 1;
 		grid-row: 1;
 	}
 
+	.removeBtn {
+		border: 1px solid #c8c8c8;
+		padding: 0.1rem 0.3rem;
+		color: #c8c8c8;
+		cursor: pointer;
+	}
+
 	.removeBtn:hover {
 		color: var(--color-dark);
+		border: 1px solid var(--color-dark);
 	}
 
 	.productImg {
 		grid-column: 2;
 		grid-row: 1;
+		width: 50%;
 	}
 
 	.productName {
@@ -235,10 +241,19 @@
 	.productQuantity {
 		grid-column: 5;
 		grid-row: 1;
+		/* border: 1px solid var(--color-dark); */
+	}
+
+	.itemCountContainer {
+		border: none;
 	}
 
 	.productSubtotal {
 		grid-column: 6;
 		grid-row: 1;
+	}
+
+	.btnContainer {
+		width: 30%;
 	}
 }

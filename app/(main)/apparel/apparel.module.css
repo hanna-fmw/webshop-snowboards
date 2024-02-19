@@ -1,0 +1,20 @@
+.apparelContainer {
+	/* position: relative; */
+	overflow: hidden;
+	margin-bottom: 1.5rem;
+	z-index: -1;
+	position: relative;
+}
+
+.apparelImage {
+	object-fit: cover;
+	object-position: top;
+	width: 100%;
+	height: auto;
+	min-height: 100vh;
+	filter: blur(1px) brightness(95%) contrast(1.2);
+}
+
+.apparel {
+	margin: 1rem 1rem;
+}

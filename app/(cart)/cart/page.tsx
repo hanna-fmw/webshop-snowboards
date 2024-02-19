@@ -45,6 +45,7 @@ const CartPage = () => {
 					<section className={styles.onlySmallScreen}>
 						<h2 style={{ paddingBlock: '1rem' }}>CART</h2>
 						{cartItems.map((item: CartItem, i: number) => {
+							console.log('this is item', item)
 							return (
 								<>
 									<div key={i} style={{ marginBottom: '5rem' }}>
@@ -62,15 +63,15 @@ const CartPage = () => {
 											<div>Quantity:</div>
 											{/* <div className={styles.amount}>{item.quantity}</div> */}
 											<div className={styles.itemCountContainer}>
-												<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-												<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
+												<div>
+													<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
+												</div>
+												<div className={styles.arrowBtn}>
+													<button onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown}>
+														<RiArrowUpSFill />
+													</button>
 													<div>
-														<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-															<RiArrowUpSFill />
-														</button>
-													</div>
-													<div>
-														<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+														<button onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown}>
 															<RiArrowDownSFill />
 														</button>
 													</div>
@@ -100,11 +101,14 @@ const CartPage = () => {
 							</div>
 							<div className={styles.productCard}>
 								{cartItems.map((item: CartItem, i: number) => {
+									console.log('detta är cartItems', cartItems)
+									console.log('detta är item', item)
+
 									return (
 										<>
 											<div key={i} className={styles.productRow}>
-												<button onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
-													x
+												<button onClick={() => removeFromCart(item.product)} className={styles.removeBtnContainer}>
+													<span className={styles.removeBtn}>x</span>
 												</button>
 												<div className={styles.productImg}>
 													<Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
@@ -121,17 +125,19 @@ const CartPage = () => {
 												<div className={styles.productQuantity}>
 													{/* <div className={styles.amount}>{item.quantity}</div> */}
 													<div className={styles.itemCountContainer}>
-														<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-														<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
-															<div>
-																<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-																	<RiArrowUpSFill />
-																</button>
-															</div>
-															<div>
-																<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-																	<RiArrowDownSFill />
-																</button>
+														<div style={{ border: '1px solid black', display: 'flex', flexDirection: 'row' }}>
+															<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
+															<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
+																<div>
+																	<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+																		<RiArrowUpSFill />
+																	</button>
+																</div>
+																<div>
+																	<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+																		<RiArrowDownSFill />
+																	</button>
+																</div>
 															</div>
 														</div>
 													</div>
@@ -150,16 +156,20 @@ const CartPage = () => {
 
 					<div className={styles.btnContainer}>
 						<div className={styles.couponBtns}>
-							<Button variant='default' onClick={() => {}}>
-								Coupon code
-							</Button>
-							<Button variant='default-dark' onClick={() => {}}>
-								APPLY COUPON
-							</Button>
+							<div style={{ marginRight: '1rem' }}>
+								<Button variant='default' onClick={() => {}}>
+									Coupon code
+								</Button>
+							</div>
+							<div>
+								<Button variant='default-dark' onClick={() => {}}>
+									APPLY COUPON
+								</Button>
+							</div>
 						</div>
-						<button className={styles.updateBtn} onClick={() => {}}>
+						{/* <button className={styles.updateBtn} onClick={() => {}}>
 							<span>UDATE CART</span>
-						</button>
+						</button> */}
 					</div>
 
 					<h2 style={{ paddingBlock: '1.5rem' }}>CART TOTALS</h2>

@@ -19,19 +19,19 @@
 	.addressBlock {
 		grid-column: 1;
 		grid-row: 1;
-		padding-left: 5vw;
+		/* padding-left: 5vw; */
 	}
 
 	.customerSupportBlock {
 		grid-column: 1;
 		grid-row: 2;
-		padding-left: 5vw;
+		/* padding-left: 5vw; */
 	}
 
 	.socialMediaBlock {
 		grid-column: 1;
 		grid-row: 3;
-		padding-left: 5vw;
+		/* padding-left: 5vw; */
 	}
 
 	.linkBlock {
@@ -52,7 +52,7 @@
 	.copyrightInfo {
 		grid-column: 1;
 		grid-row: 4;
-		padding-left: 5vw;
+		/* padding-left: 5vw; */
 	}
 }
 

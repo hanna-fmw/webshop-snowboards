@@ -141,7 +141,7 @@
 		justify-content: space-between;
 		align-items: flex-start;
 		gap: 1rem;
-		width: 100%;
+		/* width: 100%; */
 	}
 
 	.thumbnailImg {
@@ -192,14 +192,14 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: flex-start;
-		gap: 0.5rem;
-		width: 100%;
+		gap: 1rem;
+		/* width: 90vw; */
 	}
 
 	.productImgs {
 		display: flex;
 		flex-direction: column;
-		width: 45vw;
+		/* width: 45vw; */
 	}
 
 	.thumbnailImg {
@@ -211,7 +211,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		width: 45vw;
+		/* width: 45vw; */
 	}
 
 	.techInfoContainer {

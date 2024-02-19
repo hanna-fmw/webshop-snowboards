@@ -16,7 +16,7 @@ const About = () => {
 
 	return (
 		<>
-			<div className={aboutContainer}>
+			<div className={styles.aboutContainer}>
 				{/* <picture>
 				<source media='(max-width:768px)' srcSet={mobile} />
 				<source media='(min-width: 769px)' srcSet={desktop} />

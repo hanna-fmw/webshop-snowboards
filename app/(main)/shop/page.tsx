@@ -11,7 +11,7 @@ import ProductCard from '@/app/components/molecules/productCard/ProductCard'
 // import TextBlock from '../components/atoms/textBlock/TextBlock'
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
 // import Figure from '../components/atoms/figure/Figure'
-import Figure from "@/app/components/atoms/figure/Figure"
+import Figure from '@/app/components/atoms/figure/Figure'
 
 // import products from '../data/products.json'
 import products from '@/app/data/products.json'
@@ -70,7 +70,7 @@ const Shop = () => {
 							</Link>
 						</li>
 						<li>
-							<Link href='#' className={styles.link}>
+							<Link href='/apparel' className={styles.link}>
 								[b].APPAREL
 							</Link>
 						</li>

@@ -62,20 +62,23 @@ const Cart = ({ children }: CartProps) => {
 
 	const sidePanelVariants = {
 		hidden: { x: '100%', opacity: 0 },
+
 		visible: {
-			x: 0,
+			x: '0',
 			opacity: 1,
 			transition: { duration: 0.3, ease: 'easeInOut' },
 		},
-		exit: { x: '100%', opacity: 0 },
+		exit: { x: '100%', opacity: 0, transition: { duration: 0.3, ease: 'ease' } },
 	}
 
 	return (
 		<motion.main
 			className={styles.cartSidePanel}
 			variants={sidePanelVariants}
+			// initial='hidden'
 			initial='hidden'
-			animate={isCartOpen ? 'visible' : 'hidden'}
+			// animate={isCartOpen ? 'visible' : 'hidden'}
+			animate={isCartOpen ? 'visible' : 'exit'}
 			exit='exit'>
 			<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
 
@@ -142,7 +145,7 @@ const Cart = ({ children }: CartProps) => {
 							</div>
 						</div>
 						<div>SHIPPING, TAXES, AND DISCOUNTS CALCULATED AT CHECKOUT.</div>
-						<div className={styles.btnCheckoutContainer}>
+						<div className={styles.btnCheckoutContainer} style={{ maxWidth: '100%' }}>
 							<Button variant='default' onClick={goToCart}>
 								VIEW MY CART
 							</Button>
