@@ -38,7 +38,9 @@ const childrenVariants = {
 }
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
-	const { showIsAddedToCart, closeCart, increaseCartQuantity, getItemQuantity } = useCart()
+	// const [showIsAddedToCart, setShowIsAddedToCart] = useState<boolean>(false)
+
+	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart } = useCart()
 	console.log(params)
 
 	const model = params.productModel
@@ -56,16 +58,19 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	const goToCart = () => {
 		router.push('/cart')
 		closeCart()
+		setIsAddedToCart(false)
 	}
 
-	
-
 	const currentProduct = products.find((product) => model === product.model)
+
+	// const showAddedToCartMessage = () => {
+	// 	setShowIsAddedToCart(true)
+	// }
 
 	return (
 		<main className={styles.main}>
 			<section className={styles.section}>
-				{showIsAddedToCart ? (
+				{isAddedToCart ? (
 					<div className={styles.greenBox}>
 						<div style={{ marginBottom: '1rem' }}>&ldquo;{currentProduct?.name}&rdquo; HAS BEEN ADDED TO YOUR CART.</div>
 						<div className={styles.btnSmallScreen}>
@@ -121,7 +126,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 					{products.map((product, i) => {
 						console.log('product är:', product)
-						
 
 						return (
 							<div key={i}>
@@ -154,7 +158,13 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												) : null}
 												{/* Here we pass in the entire product object (into the context) */}
 												{/* <Button variant='large-dark' onClick={() => addItemToCart(product)}> */}
-												<Button variant='large-dark' onClick={() => increaseCartQuantity(product)}>
+												{/* <Button variant='large-dark' onClick={() => increaseCartQuantity(product)}> */}
+												<Button
+													variant='large-dark'
+													onClick={() => {
+														increaseCartQuantity(product)
+														setIsAddedToCart(true)
+													}}>
 													ADD TO CART
 												</Button>
 											</div>

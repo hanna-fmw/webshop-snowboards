@@ -3,8 +3,19 @@
 import { createContext, useContext, useState } from 'react'
 import { useLocalStorage } from '@/app/hooks/useLocalStorage'
 
+//OBS! Det nedan: i funktionerna så har jag varit tvungen lägga till product där
+//det bara var id i tutorialen.
+
+//Vilka funktioner behöver vi (förutom öppna/stäng cart):
+//1) see how many of an item are in our cart (tar in id:t för den item vi vill ha och returnerar ett tal (antalet))
+//2) increase (tar precis som 1) in id:t för den item vi vill ha men returnerar ingenting (void))
+//3) decrease (tar precis som 1) och 2) in id:t för den item vi vill ha men returnerar ingenting (void))
+//4) remove (also takes in an id and returns nothing (void)
+//OBS! Vi behöver ingen addItem eftersom det är precis samma sak som att köra vår increase-funktion
+
 type CartContextProps = {
 	isCartOpen: boolean
+	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>
 	openCart: () => void
 	closeCart: () => void
 
@@ -12,13 +23,14 @@ type CartContextProps = {
 	increaseCartQuantity: (product: Product) => void
 	decreaseCartQuantity: (product: Product) => void
 	removeFromCart: (product: Product) => void
-	// addItemToCart: (product: Product) => void
 
 	checkCartEmpty: () => void
 	isCartEmpty: boolean
 
+	isAddedToCart: boolean
+	setIsAddedToCart: React.Dispatch<React.SetStateAction<boolean>>
+
 	cartItems: CartItem[]
-	showIsAddedToCart: boolean
 
 	cartQuantity: number
 }
@@ -34,6 +46,12 @@ type CartProviderProps = {
 	children: React.ReactNode
 }
 
+//Our cart only has/needs information about the id and the quantity of the item. Having the
+//id, we can look up all the other info such as the name, the price, the lenght and so on. And
+//if we have the quantity we can calculate the total price, by using the price multiplied by the quantity.
+//If we add in eg. name: string as well, this is duplicated information and if we later change the
+//name, it will not line up with the cart item, but if we use id and later change the name it will
+//get correctly corresponded into our cart items
 type CartItem = {
 	product: Product
 	// id: number
@@ -45,19 +63,28 @@ const CartContext = createContext({} as CartContextProps)
 
 export const CartProvider = ({ children }: CartProviderProps) => {
 	const [isCartOpen, setIsCartOpen] = useState(false)
-	const [showIsAddedToCart, setShowIsAddedToCart] = useState(false)
+
+	const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
+
+	const displayAddedToCartMessage = () => {
+		setIsAddedToCart(true)
+	}
 
 	const openCart = () => setIsCartOpen(true)
 	const closeCart = () => setIsCartOpen(false)
 
+	//We need a place to store our item information, we do this in an useState (cartItems state) (which
+	//we will later move to a custom hook for local state storage). So this is our storage place
+	//for our cart items (and after that we just have to create the
+	//functions to increment, decrement etc. those values):
+	// const [cartItems, setCartItems] = useState<CartItem[]>([])
+	// const [cartItems, setCartItems] = useState<CartItem[]>([])
 	const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', [])
 
 	const [isCartEmpty, setIsCartEmpty] = useState<boolean>(true)
 
 	const checkCartEmpty = () => cartItems.length !== 0 && setIsCartEmpty(true)
 
-	//TROR HÄR JAG BEHÖVER KÖRA IN SOM ARGUMENT FRÅN CARTITEM-TYPEN I STÄLLET!!!
-	// const getItemQuantity = (product: Product) => {
 	// 	//We want to take our current cart items and then find the item with
 	// 	//the current id (ie find the item where the current id is equal to our id). And if we
 	// 	//have that value (?) we want to return our quantity, otherwise we want to return a default
@@ -70,14 +97,21 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	// 		return item.product.id === product.id ? item.quantity : 0
 	// 	})
 	// }
-
-	const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
-
 	const getItemQuantity = (product: Product) => {
 		return cartItems.find((item) => item.product?.id === product.id)?.quantity || 0
 	}
 
+	//Tror aldrig jag använde getItemQuantity ovan. Istället använde jag följande för att uppdatera
+	//den lilla ikonen intill varukorgen. Det räcker inte i detta probjekt att bara jobba med
+	//cartItems.length eftersom den inte (givet den kod vi har) inte ökar med en item när en användare
+	//lägger till (via Add to Cart eller med plus/minus) en item (en produkt) som hen redan har lagt till
+	//i varukorgen. Men då funkar i stället följande cartQuantity-funktion:
+	const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
+
 	const increaseCartQuantity = (product: Product) => {
+		//Som jag nämnt tidigare tror jag, så trycker jag in (skickar in) hela product-objektet
+		//som argument (t.ex. när användaren klickar på Add to Cart-knappen så använder jag increaseCartQuantity(product), där
+		//product är från en map, dvs. products.map((product) => ...))
 		//First we need to call the setCartItems and get our current items, which will be whatever
 		//our current list of items is, and what we want to do is to modify (increase) this list: so,
 		//if (the if statement) we can find an item inside our cart items list (inside our cart), then
@@ -131,7 +165,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 					if (item.product?.id === product?.id) {
 						return { ...item, quantity: item.quantity - 1 }
 					}
-					//If item.id === id here above is false, then this is an item that should not be updated, so we just return this item without any changes
+					//If item.id === id here above is false, then this is an item that should not be updated,
+					//so we just return this item without any changes
 					else {
 						return item
 					}
@@ -152,6 +187,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		<CartContext.Provider
 			value={{
 				isCartOpen,
+				setIsCartOpen,
 				openCart,
 				closeCart,
 				getItemQuantity,
@@ -159,11 +195,11 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				decreaseCartQuantity,
 				removeFromCart,
 				cartItems,
-				// addItemToCart,
-				showIsAddedToCart,
 				checkCartEmpty,
 				isCartEmpty,
 				cartQuantity,
+				isAddedToCart,
+				setIsAddedToCart,
 			}}>
 			{children}
 		</CartContext.Provider>

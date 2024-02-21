@@ -8,6 +8,7 @@ import Image from 'next/image'
 import formatCurrency from '@/app/utilities/currencyFormatter'
 import Button from '../../atoms/button/Button'
 import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 
 type CartProps = {
 	children?: React.ReactNode
@@ -44,11 +45,40 @@ type CartItem = {
 
 const Cart = ({ children }: CartProps) => {
 	// const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems }: CartContextProps = useCart()
-	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, isCartEmpty, isCartOpen }: any =
-		useCart()
+	const {
+		closeCart,
+		getItemQuantity,
+		increaseCartQuantity,
+		decreaseCartQuantity,
+		cartItems,
+		removeFromCart,
+		isCartEmpty,
+		isCartOpen,
+		setIsCartOpen,
+	}: any = useCart()
 	// const quantity = getItemQuantity(product)
 
+	//To close side panel on click outside
+	const ref = useRef<HTMLDivElement>(null)
+
 	const router = useRouter()
+
+	useEffect(() => {
+		const checkIfClickedOutside = (e) => {
+			// If the menu is open and the clicked target is not within the menu,
+			// then close the menu
+			if (isCartOpen && ref.current && !ref.current.contains(e.target)) {
+				setIsCartOpen(false)
+			}
+		}
+
+		document.addEventListener('mousedown', checkIfClickedOutside)
+
+		return () => {
+			// Cleanup the event listener
+			document.removeEventListener('mousedown', checkIfClickedOutside)
+		}
+	}, [isCartOpen])
 
 	const startShopping = () => {
 		router.push('/shop')
@@ -73,6 +103,7 @@ const Cart = ({ children }: CartProps) => {
 
 	return (
 		<motion.main
+			ref={ref}
 			className={styles.cartSidePanel}
 			variants={sidePanelVariants}
 			// initial='hidden'
