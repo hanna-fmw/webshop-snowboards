@@ -1,7 +1,7 @@
 [
 	{
 		"id": 1,
-		"productCategory": "shapes",
+		"productCategory": ["shapes", "crafting"],
 		"image": "bubo150/BUBO150.png",
 		"model": "work-shop-x-tur-bubo-150-4",
 		"name": "WORK SHOP X TUR BUBO 150.4",
@@ -32,9 +32,7 @@
 		"preCutSkins": false,
 		"technicalSpecificationHeading": "TECHNICAL SPECIFICATION:",
 		"additionalInfo": ["Approved by Scandinavia", "Shaped with a purpose"],
-
 		"technicalSpecification": "bubo150/techCharts/bubo01.svg",
-
 		"chart": "bubo150/techCharts/bubo02.svg",
 		"thumbnails": [
 			"bubo150/thumbnails/BUBO_WS_150-4_01-750x938.png",
@@ -54,7 +52,7 @@
 	{
 		"id": 2,
 		"image": "bubo154/BUBO154.png",
-		"productCategory": "shapes",
+		"productCategory": ["shapes", "crafting"],
 		"model": "work-shop-x-tur-bubo-154-4",
 		"name": "WORK SHOP X TUR BUBO 154.4",
 		"designer": "",
@@ -102,7 +100,7 @@
 	},
 	{
 		"id": 3,
-		"productCategory": "shapes",
+		"productCategory": ["shapes"],
 		"image": "falc/FALC.png",
 		"model": "falc",
 		"name": "TUR FALC",
@@ -150,7 +148,7 @@
 	},
 	{
 		"id": 4,
-		"productCategory": "shapes",
+		"productCategory": ["shapes"],
 		"image": "korp/KORP.png",
 		"model": "korp",
 		"name": "TUR KORP",
@@ -200,7 +198,7 @@
 	},
 	{
 		"id": 5,
-		"productCategory": "shapes",
+		"productCategory": ["shapes"],
 		"image": "bubo/BUBO.png",
 		"model": "bubo",
 		"name": "TUR BUBO",
@@ -250,7 +248,7 @@
 
 	{
 		"id": 6,
-		"productCategory": "shapes",
+		"productCategory": ["shapes"],
 		"image": "pluv/PLUV.png",
 		"model": "pluv",
 		"name": "TUR PLUV",
@@ -299,7 +297,7 @@
 	},
 	{
 		"id": 7,
-		"productCategory": "shapes",
+		"productCategory": ["shapes"],
 		"image": "buteo/BUTEO.png",
 		"model": "buteo",
 		"name": "TUR BUTEO",
@@ -347,7 +345,7 @@
 	},
 	{
 		"id": 8,
-		"productCategory": "shapes",
+		"productCategory": ["shapes"],
 		"image": "labb/LABB.png",
 		"model": "labb",
 		"name": "TUR LABB",
@@ -398,7 +396,7 @@
 	},
 	{
 		"id": 9,
-		"productCategory": "shapes",
+		"productCategory": ["shapes"],
 		"image": "tica/TICA.png",
 		"model": "tica",
 		"name": "TUR TICA",
@@ -449,7 +447,7 @@
 	},
 	{
 		"id": 10,
-		"productCategory": "shapes",
+		"productCategory": ["shapes"],
 		"image": "kohla_skins/KOHLA_SKINS.png",
 		"model": "skins",
 		"name": "KOHLA SKINS",

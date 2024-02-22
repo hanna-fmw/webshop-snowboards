@@ -1,0 +1,98 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 100vw;
+}
+
+.shopHeader {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-top: 5rem;
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+/* Link block */
+.links {
+	display: flex;
+	justify-content: flex-start;
+	gap: 1rem;
+	padding: 0;
+}
+
+.link {
+	text-decoration: none;
+}
+
+.link:hover {
+	text-decoration: underline;
+	text-underline-offset: 5px;
+	color: var(--color-active-link);
+}
+
+/* Dropdown */
+.dropdownContainer {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 1.5rem;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(--color-white);
+	padding: 0.4rem 0.5rem;
+	font-size: 0.8125rem;
+	cursor: pointer;
+	outline: none;
+	border: 1px solid var(--color-dark);
+	width: 100%;
+}
+
+.dropdown {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 70;
+	width: 100%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
+	background-color: var(--color-white);
+}
+
+.menuItem {
+	border: 1px solid var(--color-dark);
+	border-top: none;
+	padding: 0.4rem 0.5rem;
+	color: #333;
+	cursor: pointer;
+	font-size: 0.8125rem;
+	background-color: var(--color-white);
+	transition: background-color 0.3s ease;
+}
+
+@media (min-width: 768px) {
+	.container {
+		width: 95vw;
+	}
+
+	.shopHeader {
+		flex-direction: row;
+		justify-content: space-between;
+		max-width: 100%;
+	}
+
+	.productCardSection {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+	}
+}
+
+@media (min-width: 1800px) {
+	.container {
+		width: 60vw;
+	}
+}
