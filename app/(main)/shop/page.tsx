@@ -3,6 +3,7 @@ import styles from './shop.module.css'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
+import { RiArrowUpSLine } from 'react-icons/ri'
 import ProductGrid from '@/app/components/atoms/productGrid/ProductGrid'
 import ProductCard from '@/app/components/molecules/productCard/ProductCard'
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
@@ -10,6 +11,8 @@ import Figure from '@/app/components/atoms/figure/Figure'
 import products from '@/app/data/products.json'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+//Downshift
+import { useSelect } from 'downshift'
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -28,24 +31,27 @@ const childrenVariants = {
 	animate: { opacity: 1 },
 }
 
+const items = ['Default Sorting', 'Sort by popularity', 'Sort by latest', 'Sort by price: low to high', 'Sort by price: high to low']
+
 const Shop = () => {
-	const [value, setValue] = useState('Default sorting')
-	const [isOpen, setIsOpen] = useState(false)
+	// const [value, setValue] = useState('Default sorting')
+	// const [isOpen, setIsOpen] = useState(false)
+	const { isOpen, selectedItem, getToggleButtonProps, getLabelProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
 
 	const router = useRouter()
 
-	const handleMouseEnter = () => {
-		setIsOpen(true)
-	}
+	// const handleMouseEnter = () => {
+	// 	setIsOpen(true)
+	// }
 
-	const handleMouseLeave = () => {
-		setIsOpen(false)
-	}
+	// const handleMouseLeave = () => {
+	// 	setIsOpen(false)
+	// }
 
-	const handleItemClick = (newValue: string) => {
-		setValue(newValue)
-		setIsOpen(false)
-	}
+	// const handleItemClick = (newValue: string) => {
+	// 	setValue(newValue)
+	// 	setIsOpen(false)
+	// }
 
 	return (
 		<main className={styles.main}>
@@ -73,7 +79,45 @@ const Shop = () => {
 							</Link>
 						</li>
 					</ul>
-					<div className={styles.dropdownContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+					<div className={styles.dropdownContainer}>
+						<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
+							{selectedItem ?? 'Default Sorting'}
+							{isOpen ? (
+								<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
+							) : (
+								<RiArrowDownSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
+							)}
+						</button>
+						<div className={styles.dropdown}>
+							<ul
+								{...getMenuProps()}
+								// className={styles.menuItems}
+								style={{
+									listStyle: 'none',
+									width: '100%',
+									padding: '0',
+									margin: '0',
+								}}>
+								{isOpen &&
+									items.map((item, index) => (
+										<li
+											className={styles.menuItem}
+											style={{
+												backgroundColor: highlightedIndex === index ? '#232323' : null,
+												color: highlightedIndex === index ? '#fff' : null,
+											}}
+											key={`${item}${index}`}
+											{...getItemProps({
+												item,
+												index,
+											})}>
+											{item}
+										</li>
+									))}
+							</ul>
+						</div>
+					</div>
+					{/* <div className={styles.dropdownContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 						<button className={`${styles.button} currDropdown`}>
 							<div style={{ marginRight: '5px' }}>{value}</div>
 							<div>
@@ -96,7 +140,7 @@ const Shop = () => {
 								</div>
 							</div>
 						)}
-					</div>
+					</div> */}
 				</div>
 				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
 					{products.map((product, i) => {
