@@ -1,6 +1,8 @@
+/* Dropdown */
 .dropdownContainer {
 	position: relative;
 	display: inline-block;
+	margin-bottom: 1.5rem;
 }
 
 .button {
@@ -8,12 +10,12 @@
 	align-items: center;
 	justify-content: space-between;
 	background-color: var(--color-white);
-	width: 100%;
-	padding: 0.2rem 0.4rem;
+	padding: 0.4rem 0.5rem;
 	font-size: 0.8125rem;
 	cursor: pointer;
 	outline: none;
 	border: 1px solid var(--color-dark);
+	width: 100%;
 }
 
 .dropdown {
@@ -21,13 +23,13 @@
 	top: 100%;
 	left: 0;
 	z-index: 70;
-	width: 98%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
+	width: 100%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
 	background-color: var(--color-white);
-	border: 1px solid var(--color-dark);
-	border-top: none;
 }
 
 .menuItem {
+	border: 1px solid var(--color-dark);
+	border-top: none;
 	padding: 0.4rem 0.5rem;
 	color: #333;
 	cursor: pointer;

@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 //Downshift
 import { useSelect } from 'downshift'
+import CurrencyDropdown from '@/app/components/atoms/currencyDropdown/CurrencyDropdown'
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -36,7 +37,7 @@ const items = ['Default Sorting', 'Sort by popularity', 'Sort by latest', 'Sort 
 const Shop = () => {
 	// const [value, setValue] = useState('Default sorting')
 	// const [isOpen, setIsOpen] = useState(false)
-	const { isOpen, selectedItem, getToggleButtonProps, getLabelProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
+	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
 
 	const router = useRouter()
 
@@ -52,6 +53,24 @@ const Shop = () => {
 	// 	setValue(newValue)
 	// 	setIsOpen(false)
 	// }
+
+	const [sortOptions, setSortOptions] = useState('Default Sorting')
+
+	const sortProducts = (sortOption: string) => {
+		switch (sortOption) {
+			case 'Sort by price: low to high':
+				//Funktion för att sortera baserat på pris
+				setSortOptions('You are sorting by price: low to high')
+
+				break
+
+			case 'Sort by price: high to low':
+				setSortOptions('You are sorting by price: low to high')
+
+			default:
+				setSortOptions('Default Sorting')
+		}
+	}
 
 	return (
 		<main className={styles.main}>
@@ -111,10 +130,11 @@ const Shop = () => {
 												item,
 												index,
 											})}>
-											{item}
+											<span onClick={() => sortProducts(item)}>{item}</span>
 										</li>
 									))}
 							</ul>
+							<div>{sortOptions}</div>
 						</div>
 					</div>
 					{/* <div className={styles.dropdownContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -155,7 +175,6 @@ const Shop = () => {
 										detail={product.detail}
 										profile={product.profile}
 										price={product.price}
-										// currency='SEK'
 									/>
 								</ProductCard>
 							</motion.div>
