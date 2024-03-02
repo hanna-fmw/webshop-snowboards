@@ -32,44 +32,50 @@ const childrenVariants = {
 	animate: { opacity: 1 },
 }
 
-const items = ['Default Sorting', 'Sort by popularity', 'Sort by latest', 'Sort by price: low to high', 'Sort by price: high to low']
+//popularity etc. to be implemented when available as option
+// const items = ['Default sorting', 'Sort by popularity', 'Sort by latest', 'Sort by price: low to high', 'Sort by price: high to low']
+const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
 
 const Shop = () => {
-	// const [value, setValue] = useState('Default sorting')
-	// const [isOpen, setIsOpen] = useState(false)
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
 
 	const router = useRouter()
 
-	// const handleMouseEnter = () => {
-	// 	setIsOpen(true)
-	// }
-
-	// const handleMouseLeave = () => {
-	// 	setIsOpen(false)
-	// }
-
-	// const handleItemClick = (newValue: string) => {
-	// 	setValue(newValue)
-	// 	setIsOpen(false)
-	// }
-
-	const [sortOptions, setSortOptions] = useState('Default Sorting')
-
-	const sortProducts = (sortOption: string) => {
-		switch (sortOption) {
-			case 'Sort by price: low to high':
-				//Funktion för att sortera baserat på pris
-				setSortOptions('You are sorting by price: low to high')
-
+	const [sortView, setSortView] = useState('Default sorting')
+	//DROPDOWN MENU/LIST OPTIONS (samma som ovan fast med switch)
+	//Function called when user clicks on an option on the dropdown menu. Sets
+	//the state (sort view) to the corresponding clicked sorting option
+	const selectOption = (option) => {
+		switch (option) {
+			case 'Default sorting':
+				setSortView('Default sorting')
 				break
-
+			case 'Sort by price: low to high':
+				setSortView('Sort by price: low to high')
+				break
 			case 'Sort by price: high to low':
-				setSortOptions('You are sorting by price: low to high')
-
+				setSortView('Sort by price: high to low')
+				break
 			default:
-				setSortOptions('Default Sorting')
+				setSortView('Default sorting')
 		}
+	}
+
+	const sortProducts = (arr) => {
+		return arr.sort((a, b) => {
+			switch (sortView) {
+				case 'Default sorting':
+					return a.name.localeCompare(b.name)
+				// case 'popularity':
+				// 	return b.stars - a.stars
+				case 'Sort by price: low to high':
+					return a.price - b.price
+				case 'Sort by price: high to low':
+					return b.price - a.price
+				default:
+					return 0
+			}
+		})
 	}
 
 	return (
@@ -100,7 +106,7 @@ const Shop = () => {
 					</ul>
 					<div className={styles.dropdownContainer}>
 						<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
-							{selectedItem ?? 'Default Sorting'}
+							{selectedItem ?? 'Default sorting'}
 							{isOpen ? (
 								<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
 							) : (
@@ -117,6 +123,7 @@ const Shop = () => {
 									padding: '0',
 									margin: '0',
 								}}>
+								{/* Map over dropdown options */}
 								{isOpen &&
 									items.map((item, index) => (
 										<li
@@ -130,11 +137,11 @@ const Shop = () => {
 												item,
 												index,
 											})}>
-											<span onClick={() => sortProducts(item)}>{item}</span>
+											{/* Call selectOption function and pass in item, which is the string/name of the option*/}
+											<span onClick={() => selectOption(item)}>{item}</span>
 										</li>
 									))}
 							</ul>
-							<div>{sortOptions}</div>
 						</div>
 					</div>
 					{/* <div className={styles.dropdownContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -163,7 +170,11 @@ const Shop = () => {
 					</div> */}
 				</div>
 				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
-					{products.map((product, i) => {
+					{/* Here we need to sort the products array based on the selected sorting view option, ie based
+					//on the current sort state (sortState-setSortState), which is set when the user clicks on an
+					option on the dropdown menu. So sortProducts(products) will apply the logic in the sortProducts function, which
+					takes in an array, in this case products */}
+					{sortProducts(products).map((product, i) => {
 						return (
 							<motion.div key={i} variants={childrenVariants}>
 								<ProductCard>

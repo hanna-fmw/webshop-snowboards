@@ -18,6 +18,7 @@ import Cart from '@/app/components/organisms/cart/Cart'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
+	
 }
 
 const parentVariants = {
@@ -39,6 +40,7 @@ const childrenVariants = {
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	// const [showIsAddedToCart, setShowIsAddedToCart] = useState<boolean>(false)
+	
 
 	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart } = useCart()
 	console.log(params)
