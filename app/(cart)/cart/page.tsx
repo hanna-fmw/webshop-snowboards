@@ -9,6 +9,7 @@ import formatCurrency from '@/app/utilities/currencyFormatter'
 import { RiArrowDownSFill } from 'react-icons/ri'
 import { RiArrowUpSFill } from 'react-icons/ri'
 import Figure from '@/app/components/atoms/figure/Figure'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
 
 type CartProps = {
 	children?: React.ReactNode
@@ -31,6 +32,8 @@ type CartItem = {
 
 const CartPage = () => {
 	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, isCartEmpty }: any = useCart()
+
+	const { currency, conversionRateEur } = useCurrencyConversion()
 
 	const router = useRouter()
 	const startShopping = () => {
@@ -56,7 +59,10 @@ const CartPage = () => {
 
 										<div className={styles.price}>
 											<div>Price:</div>
-											<div className={styles.priceColor}>{formatCurrency(item.product?.price)}</div>
+											{/* <div className={styles.priceColor}>{formatCurrency(item.product?.price, currency)}</div> */}
+											<div className={styles.priceColor}>
+												{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
+											</div>
 										</div>
 
 										<div className={styles.quantity}>
@@ -80,7 +86,13 @@ const CartPage = () => {
 										</div>
 
 										<div className={styles.subtotal}>
-											<div className={styles.priceColor}>{formatCurrency(item.quantity * item.product.price)}</div>
+											{/* <div className={styles.priceColor}>{formatCurrency(item.quantity * item.product.price, currency)}</div> */}
+											<div className={styles.priceColor}>
+												{formatCurrency(
+													currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!),
+													currency
+												)}
+											</div>
 										</div>
 									</div>
 								</>
@@ -119,7 +131,10 @@ const CartPage = () => {
 												</div>
 
 												<div className={styles.productPrice}>
-													<div className={styles.priceColor}>{formatCurrency(item.product?.price)}</div>
+													{/* <div className={styles.priceColor}>{formatCurrency(item.product?.price, currency)}</div> */}
+													<div className={styles.priceColor}>
+														{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
+													</div>
 												</div>
 
 												<div className={styles.productQuantity}>
@@ -144,7 +159,13 @@ const CartPage = () => {
 												</div>
 
 												<div className={styles.productSubtotal}>
-													<div className={styles.priceColor}>{formatCurrency(item.quantity * item.product?.price)}</div>
+													{/* <div className={styles.priceColor}>{formatCurrency(item.quantity * item.product?.price, currency)}</div> */}
+													<div className={styles.priceColor}>
+														{formatCurrency(
+															currency === 'SEK' ? item.quantity * item.product?.price : item.quantity * (item.product?.price * conversionRateEur!),
+															currency
+														)}
+													</div>
 												</div>
 											</div>
 										</>
@@ -181,8 +202,11 @@ const CartPage = () => {
 								cartItems.reduce((total: number, item: any) => {
 									const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
 									console.log(currItem)
-									return total + (currItem?.product.price || 0) * currItem.quantity
-								}, 0)
+									return (
+										total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
+									)
+								}, 0),
+								currency
 							)}
 						</div>
 					</div>
@@ -204,8 +228,11 @@ const CartPage = () => {
 								cartItems.reduce((total: number, item: any) => {
 									const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
 									console.log(currItem)
-									return total + (currItem?.product.price || 0) * currItem.quantity
-								}, 0)
+									return (
+										total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
+									)
+								}, 0),
+								currency
 							)}{' '}
 							+ CALCULATED SHIPPING COST
 						</div>

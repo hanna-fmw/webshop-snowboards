@@ -15,7 +15,7 @@ function CurrencyDropdown() {
 		onSelectedItemChange: () => getCurrency(),
 	})
 
-	const { getCurrency, priceInEuro } = useCurrencyConversion()
+	const { getCurrency, priceInEuro, conversionRateEur, setCurrency, currency } = useCurrencyConversion()
 
 	return (
 		<div className={styles.dropdownContainer}>
@@ -57,7 +57,10 @@ function CurrencyDropdown() {
 				</ul>
 			</div>
 
-			<div>{selectedItem === 'EUR' ? <div>{priceInEuro}</div> : 'Do nothing'}</div>
+			{/* <div>{selectedItem === 'EUR' ? <div>{priceInEuro}</div> : 'Do nothing'}</div> */}
+			{/* <div>{selectedItem === 'EUR' ? <div>{conversionRateEur}</div> : 'Do nothing'}</div> */}
+			<div>{selectedItem === 'EUR' ? setCurrency('EUR') : setCurrency('SEK')}</div>
+			{/* <div>Current currency is: {currency}</div> */}
 		</div>
 	)
 }

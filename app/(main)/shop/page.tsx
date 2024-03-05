@@ -11,6 +11,9 @@ import Figure from '@/app/components/atoms/figure/Figure'
 import products from '@/app/data/products.json'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
+import formatCurrency from '@/app/utilities/currencyFormatter'
+
 //Downshift
 import { useSelect } from 'downshift'
 import CurrencyDropdown from '@/app/components/atoms/currencyDropdown/CurrencyDropdown'
@@ -38,6 +41,13 @@ const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: 
 
 const Shop = () => {
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
+
+	//Vi definierar currency i currencyContext.tsx och togglar den
+	//till EUR eller SEK i CurrencyDropdown.tsx. Och här nedan kan vi sedan
+	//göra en ternary som kollar vilket som är det aktuella statet för currency, och
+	//om det är EUR så använder vi conversionRateEur (dvs. exchange rate från API:t som vi
+	//fetchar i currencyContext) för att multiplicera priset med denna valutakurs
+	const { conversionRateEur, currency } = useCurrencyConversion()
 
 	const router = useRouter()
 
@@ -179,14 +189,21 @@ const Shop = () => {
 							<motion.div key={i} variants={childrenVariants}>
 								<ProductCard>
 									<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-									<TextBlock
-										name={product.name}
-										designer={product.designer}
-										length={product.length}
-										detail={product.detail}
-										profile={product.profile}
-										price={product.price}
-									/>
+									<div style={{ display: 'flex' }}>
+										<TextBlock
+											name={product.name}
+											designer={product.designer}
+											length={product.length}
+											detail={product.detail}
+											profile={product.profile}
+											// price={product.price}
+											// Adding the ! in conversionRateEur asserts to TypeScript that conversionRateEur is not null or undefined.
+											// price={currency === 'SEK' ? product.price : product.price * conversionRateEur!}
+										/>
+										<div className={styles.price}>
+											<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
+										</div>
+									</div>
 								</ProductCard>
 							</motion.div>
 						)

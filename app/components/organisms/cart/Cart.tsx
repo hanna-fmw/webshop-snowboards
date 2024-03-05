@@ -9,6 +9,7 @@ import formatCurrency from '@/app/utilities/currencyFormatter'
 import Button from '../../atoms/button/Button'
 import { motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
 
 type CartProps = {
 	children?: React.ReactNode
@@ -57,6 +58,8 @@ const Cart = ({ children }: CartProps) => {
 		setIsCartOpen,
 	}: any = useCart()
 	// const quantity = getItemQuantity(product)
+
+	const { currency, conversionRateEur } = useCurrencyConversion()
 
 	//To close side panel on click outside
 	const ref = useRef<HTMLDivElement>(null)
@@ -134,7 +137,9 @@ const Cart = ({ children }: CartProps) => {
 									</div>
 									<div className={styles.texBlockHorizontal}>
 										<div>{item.product?.name}</div>
-										<div className={styles.price}>{formatCurrency(item.product?.price)}</div>
+										<div className={styles.price}>
+											{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
+										</div>
 										<div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div>
 										<div className={styles.btnContainer}>
 											<div className={styles.itemCountContainer}>
@@ -155,7 +160,13 @@ const Cart = ({ children }: CartProps) => {
 								</div>
 								<div>
 									<span>x{item.quantity} =</span>{' '}
-									<span className={styles.totalItemsPrice}>{formatCurrency(item.product?.price * item.quantity)}</span>
+									{/* <span className={styles.totalItemsPrice}>{formatCurrency(item.product?.price * item.quantity, currency)}</span> */}
+									<span className={styles.totalItemsPrice}>
+										{formatCurrency(
+											currency === 'SEK' ? item.product?.price * item.quantity : item.product?.price * conversionRateEur! * item.quantity,
+											currency
+										)}
+									</span>
 								</div>
 
 								{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
@@ -172,8 +183,11 @@ const Cart = ({ children }: CartProps) => {
 									cartItems.reduce((total: number, item: any) => {
 										const currItem = cartItems.find((i: any) => i.product?.id === item.product?.id)
 										console.log(currItem)
-										return total + (currItem?.product?.price || 0) * currItem.quantity
-									}, 0)
+										return (
+											total + (currency === 'SEK' ? currItem?.product?.price : currItem?.product?.price * conversionRateEur! || 0) * currItem.quantity
+										)
+									}, 0),
+									currency
 								)}
 							</div>
 						</div>

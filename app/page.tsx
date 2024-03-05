@@ -9,6 +9,8 @@ import TextBlock from './components/atoms/textBlock/TextBlock'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
+import formatCurrency from './utilities/currencyFormatter'
+import { useCurrencyConversion } from './context/currencyContext'
 
 const variants = {
 	initial: { opacity: 0, y: 100 },
@@ -16,6 +18,7 @@ const variants = {
 }
 
 export default function Home() {
+	const { currency, conversionRateEur } = useCurrencyConversion()
 	const router = useRouter()
 	return (
 		<main className={styles.main}>
@@ -33,15 +36,20 @@ export default function Home() {
 								{featured ? (
 									<ProductCard>
 										<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-										<TextBlock
-											model={product.model}
-											designer={product.designer}
-											length={product.length}
-											detail={product.detail}
-											profile={product.profile}
-											price={product.price}
-											// currency='SEK'
-										/>
+										<div style={{ display: 'flex' }}>
+											<TextBlock
+												model={product.model}
+												designer={product.designer}
+												length={product.length}
+												detail={product.detail}
+												profile={product.profile}
+												// price={product.price}
+												// currency='SEK'
+											/>
+											<div className={styles.price}>
+												<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
+											</div>
+										</div>
 									</ProductCard>
 								) : null}
 							</motion.div>

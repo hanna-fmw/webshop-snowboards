@@ -10,6 +10,8 @@ import Figure from '@/app/components/atoms/figure/Figure'
 import products from '@/app/data/products.json'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import formatCurrency from '@/app/utilities/currencyFormatter'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -31,6 +33,8 @@ const childrenVariants = {
 const Crafting = () => {
 	const [value, setValue] = useState('Default sorting')
 	const [isOpen, setIsOpen] = useState(false)
+
+	const { currency, conversionRateEur } = useCurrencyConversion()
 
 	const router = useRouter()
 
@@ -111,15 +115,18 @@ const Crafting = () => {
 									<motion.div key={i} variants={childrenVariants}>
 										<ProductCard>
 											<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-											<TextBlock
-												name={product.name}
-												designer={product.designer}
-												length={product.length}
-												detail={product.detail}
-												profile={product.profile}
-												price={product.price}
-												// currency='SEK'
-											/>
+											<div style={{ display: 'flex' }}>
+												<TextBlock
+													name={product.name}
+													designer={product.designer}
+													length={product.length}
+													detail={product.detail}
+													profile={product.profile}
+												/>
+												<div className={styles.price}>
+													<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
+												</div>
+											</div>
 										</ProductCard>
 									</motion.div>
 								) : null}

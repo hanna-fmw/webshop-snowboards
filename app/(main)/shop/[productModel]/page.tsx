@@ -15,10 +15,11 @@ import classnames from 'classnames'
 import { motion } from 'framer-motion'
 import { useCart } from '@/app/context/cartContext'
 import Cart from '@/app/components/organisms/cart/Cart'
+import formatCurrency from '@/app/utilities/currencyFormatter'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
-	
 }
 
 const parentVariants = {
@@ -40,7 +41,6 @@ const childrenVariants = {
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	// const [showIsAddedToCart, setShowIsAddedToCart] = useState<boolean>(false)
-	
 
 	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart } = useCart()
 	console.log(params)
@@ -51,6 +51,8 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	const [thumbnailIndex, setThumbnailIndex] = useState(0)
 
 	const router = useRouter()
+
+	const { currency, conversionRateEur } = useCurrencyConversion()
 
 	const handleClick = (i: number) => {
 		setThumbnailIndex(i)
@@ -135,18 +137,22 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 									<>
 										<div className={styles.infoContainer}>
 											{/* <ProductCard> */}
-											{/* <TextBlock
-											name={product.name}
-											designer={product.designer}
-											boardType={product.boardType}
-											length={product.length}
-											detail={product.detail}
-											profile={product.profile}
-											lengthForModel={product.lengthForModel}
-											price={product.price}
-											currency='SEK'
-										/> */}
-											<TextBlock {...product} />
+											<div style={{ display: 'flex' }}>
+												<TextBlock
+													name={product.name}
+													designer={product.designer}
+													boardType={product.boardType}
+													length={product.length}
+													detail={product.detail}
+													profile={product.profile}
+													lengthForModel={product.lengthForModel}
+												/>
+												{/* <TextBlock {...product} /> */}
+												<div className={styles.price}>
+													<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
+												</div>
+											</div>
+
 											{/* </ProductCard> */}
 
 											<div className={styles.btnContainer}>

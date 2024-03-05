@@ -2,6 +2,7 @@ import React from 'react'
 // import PriceBlock from '../priceBlock/PriceBlock'
 import styles from './textBlock.module.css'
 import formatCurrency from '@/app/utilities/currencyFormatter'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
 
 type TextBlockProps = {
 	children?: React.ReactNode
@@ -27,10 +28,11 @@ const TextBlock = ({
 	designer,
 	boardType,
 	profile,
-	price = 10000,
+	// price = 10000,
 	// currency = 'SEK',
 	children,
 }: TextBlockProps) => {
+	const { currency, conversionRateEur } = useCurrencyConversion()
 	return (
 		<div className={styles.textBlock}>
 			<div>
@@ -43,12 +45,21 @@ const TextBlock = ({
 				<div>{profile}</div>
 			</div>
 
-			<div className={styles.price}>
-				<span>{formatCurrency(price)}</span>
-				{/* <span>{currency}</span> */}
-			</div>
+			{/* <div className={styles.price}>
+				<span>{formatCurrency(currency === 'SEK' ? price : price * conversionRateEur!, currency)}</span>
+			</div> */}
 		</div>
 	)
 }
 
 export default TextBlock
+
+// const Price = () => {
+// 	const { currency, conversionRateEur, price } = useCurrencyConversion()
+
+// 	return (
+// 	<div className={styles.price}>
+// 				<span>{formatCurrency(currency === 'SEK' ? price : price * conversionRateEur!, currency)}</span>
+// 			</div>
+// 	)
+// }
