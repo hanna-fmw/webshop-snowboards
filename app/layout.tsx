@@ -9,6 +9,7 @@ import Footer from './components/organisms/footer/Footer'
 import styles from './components/organisms/footer/footer.module.css'
 import { ModalProvider } from './context/modalContext'
 import { CartProvider } from './context/cartContext'
+import { CurrencyProvider } from './context/currencyContext'
 
 const gtAmericaMonoLight = localFont({
 	// src: '../fonts/FaroVariableWeb.woff2',
@@ -40,13 +41,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</Head> */}
 			{/* <body className={robotoMono.className}> */}
 			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`} style={{ position: 'relative' }}>
-				<ModalProvider>
-					<CartProvider>
-						<Navbar />
-						{children}
-						<Footer />
-					</CartProvider>
-				</ModalProvider>
+				<CurrencyProvider>
+					<ModalProvider>
+						<CartProvider>
+							<Navbar />
+							{children}
+							<Footer />
+						</CartProvider>
+					</ModalProvider>
+				</CurrencyProvider>
 			</body>
 		</html>
 	)

@@ -4,54 +4,20 @@ import { RiArrowDownSLine } from 'react-icons/ri'
 import { RiArrowUpSLine } from 'react-icons/ri'
 import styles from './currencyDropdown.module.css'
 import { useSelect } from 'downshift'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
 
 const items = ['SEK', 'EUR']
 
 function CurrencyDropdown() {
-	// const [value, setValue] = useState('SEK')
-	// const [isOpen, setIsOpen] = useState(false)
+	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({
+		items: items,
+		// onSelectedItemChange: ({ selectedItem }) => handleClick(selectedItem),
+		onSelectedItemChange: () => getCurrency(),
+	})
 
-	// const handleMouseEnter = () => {
-	// 	setIsOpen(true)
-	// }
-
-	// const handleMouseLeave = () => {
-	// 	setIsOpen(false)
-	// }
-
-	// const handleItemClick = (newValue: string) => {
-	// 	setValue(newValue)
-	// 	setIsOpen(false)
-	// }
-
-	// const { isOpen, selectedItem, getToggleButtonProps, getLabelProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
-	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
+	const { getCurrency, priceInEuro } = useCurrencyConversion()
 
 	return (
-		// <div className={styles.dropdownContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-		// 	<button className={`${styles.button} currDropdown`}>
-		// 		<div style={{ marginRight: '5px' }}>{value}</div>
-		// 		<div>
-		// 			<RiArrowDownSLine size={18} style={{ color: '#212121', transform: 'translateY(10%)' }} />
-		// 		</div>
-		// 	</button>
-		// 	{isOpen && (
-		// 		<div className={styles.dropdown}>
-		// 			<div className={styles.menuItems}>
-		// 				{value === 'SEK' && (
-		// 					<div className={`${styles.menuItem} ${styles.activeItem}`} onClick={() => handleItemClick('EUR')}>
-		// 						EUR
-		// 					</div>
-		// 				)}
-		// 				{value === 'EUR' && (
-		// 					<div className={`${styles.menuItem} ${styles.activeItem}`} onClick={() => handleItemClick('SEK')}>
-		// 						SEK
-		// 					</div>
-		// 				)}
-		// 			</div>
-		// 		</div>
-		// 	)}
-		// </div>
 		<div className={styles.dropdownContainer}>
 			<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
 				{selectedItem ?? 'SEK'}
@@ -64,7 +30,6 @@ function CurrencyDropdown() {
 			<div className={styles.dropdown}>
 				<ul
 					{...getMenuProps()}
-					// className={styles.menuItems}
 					style={{
 						listStyle: 'none',
 						width: '100%',
@@ -72,23 +37,27 @@ function CurrencyDropdown() {
 						margin: '0',
 					}}>
 					{isOpen &&
-						items.map((item, index) => (
-							<li
-								className={styles.menuItem}
-								style={{
-									backgroundColor: highlightedIndex === index ? '#232323' : null,
-									color: highlightedIndex === index ? '#fff' : null,
-								}}
-								key={`${item}${index}`}
-								{...getItemProps({
-									item,
-									index,
-								})}>
-								{item}
-							</li>
-						))}
+						items.map((item, index) => {
+							return (
+								<li
+									className={styles.menuItem}
+									style={{
+										backgroundColor: highlightedIndex === index ? '#232323' : null,
+										color: highlightedIndex === index ? '#fff' : null,
+									}}
+									key={`${item}${index}`}
+									{...getItemProps({
+										item,
+										index,
+									})}>
+									<span>{item}</span>
+								</li>
+							)
+						})}
 				</ul>
 			</div>
+
+			<div>{selectedItem === 'EUR' ? <div>{priceInEuro}</div> : 'Do nothing'}</div>
 		</div>
 	)
 }
