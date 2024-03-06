@@ -109,3 +109,11 @@
 		max-width: 30vw;
 	}
 }
+
+@media (min-width: 1440px) {
+	.cartSidePanel {
+		width: 30%;
+		top: 0;
+		right: 0;
+	}
+}

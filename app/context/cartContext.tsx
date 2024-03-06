@@ -24,6 +24,9 @@ type CartContextProps = {
 	decreaseCartQuantity: (product: Product) => void
 	removeFromCart: (product: Product) => void
 
+	selectLength: (selectedOption: string) => void
+	selectedLength: null | string
+
 	checkCartEmpty: () => void
 	isCartEmpty: boolean
 
@@ -65,6 +68,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	const [isCartOpen, setIsCartOpen] = useState(false)
 
 	const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
+
+	const [selectedLength, setSelectedLength] = useState<null | string>(null)
+
+	const selectLength = (selectedOption: string) => {
+		setSelectedLength(selectedOption)
+	}
 
 	const displayAddedToCartMessage = () => {
 		setIsAddedToCart(true)
@@ -200,6 +209,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				cartQuantity,
 				isAddedToCart,
 				setIsAddedToCart,
+				selectLength,
+				selectedLength,
 			}}>
 			{children}
 		</CartContext.Provider>

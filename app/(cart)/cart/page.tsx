@@ -31,7 +31,8 @@ type CartItem = {
 }
 
 const CartPage = () => {
-	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, isCartEmpty }: any = useCart()
+	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, selectedLength, isCartEmpty }: any =
+		useCart()
 
 	const { currency, conversionRateEur } = useCurrencyConversion()
 
@@ -54,7 +55,9 @@ const CartPage = () => {
 									<div key={i} style={{ marginBottom: '5rem' }}>
 										<div className={styles.product}>
 											<div>Product:</div>
-											<div className={styles.productName}>{item.product?.name}</div>
+											<div className={styles.productName}>
+												{item.product?.name} - {selectedLength}
+											</div>
 										</div>
 
 										<div className={styles.price}>
@@ -127,7 +130,9 @@ const CartPage = () => {
 												</div>
 
 												<div className={styles.productName}>
-													<div>{item.product?.name}</div>
+													<div>
+														{item.product?.name} - {selectedLength}
+													</div>
 												</div>
 
 												<div className={styles.productPrice}>

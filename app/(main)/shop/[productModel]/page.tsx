@@ -4,7 +4,6 @@ import ProductCard from '@/app/components/molecules/productCard/ProductCard'
 import React from 'react'
 // import products from '../../data/products.json'
 import products from '@/app/data/products.json'
-
 import styles from './productDetailpage.module.css'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -42,7 +41,7 @@ const childrenVariants = {
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	// const [showIsAddedToCart, setShowIsAddedToCart] = useState<boolean>(false)
 
-	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart } = useCart()
+	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart, selectLength, selectedLength } = useCart()
 	console.log(params)
 
 	const model = params.productModel
@@ -156,22 +155,42 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											{/* </ProductCard> */}
 
 											<div className={styles.btnContainer}>
-												{product.lengthOptions ? (
+												{/* {product.lengthOptions ? (
 													<Button variant='large-light' onClick={() => {}}>
 														{product.lengthOptions?.map((option, i) => {
 															let lastOptionIndex = product.lengthOptions.length - 1
 															return <span key={i}>{i !== lastOptionIndex ? <span>{option}/</span> : <span>{option}</span>}</span>
 														})}
 													</Button>
+												) : null} */}
+
+												{product.lengthOptions ? (
+													<div className={styles.largeLight}>
+														{product.lengthOptions?.map((option, i) => {
+															const lengthStyles = classnames(styles.btnLengthOptions, {
+																[styles.selectedLength]: option === selectedLength,
+															})
+															return (
+																<div key={i} className={lengthStyles} onClick={() => selectLength(option)}>
+																	{option}
+																</div>
+															)
+														})}
+													</div>
 												) : null}
+
 												{/* Here we pass in the entire product object (into the context) */}
 												{/* <Button variant='large-dark' onClick={() => addItemToCart(product)}> */}
 												{/* <Button variant='large-dark' onClick={() => increaseCartQuantity(product)}> */}
 												<Button
 													variant='large-dark'
 													onClick={() => {
-														increaseCartQuantity(product)
-														setIsAddedToCart(true)
+														if (selectedLength !== null) {
+															increaseCartQuantity(product)
+															setIsAddedToCart(true)
+														} else {
+															alert('Please pick a length option')
+														}
 													}}>
 													ADD TO CART
 												</Button>

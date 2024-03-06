@@ -56,6 +56,7 @@ const Cart = ({ children }: CartProps) => {
 		isCartEmpty,
 		isCartOpen,
 		setIsCartOpen,
+		selectedLength,
 	}: any = useCart()
 	// const quantity = getItemQuantity(product)
 
@@ -140,7 +141,8 @@ const Cart = ({ children }: CartProps) => {
 										<div className={styles.price}>
 											{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
 										</div>
-										<div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div>
+										{/* <div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div> */}
+										<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
 										<div className={styles.btnContainer}>
 											<div className={styles.itemCountContainer}>
 												<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
