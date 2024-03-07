@@ -120,11 +120,12 @@ h2 {
 	margin-bottom: var(--spacing-small);
 	margin-top: var(--spacing-large);
 	font-weight: 400;
+	margin-top: 0;
 }
 
 p {
 	margin-bottom: var(--spacing-medium);
-	line-height: 0.2;
+	/* line-height: 0.2; */
 	font-size: 0.8rem;
 	color: #232323;
 }

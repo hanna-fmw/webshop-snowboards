@@ -242,7 +242,7 @@ const CartPage = () => {
 							+ CALCULATED SHIPPING COST
 						</div>
 					</div>
-					<Button variant='large-dark' onClick={() => {}}>
+					<Button variant='large-dark' onClick={() => router.push('/checkout')}>
 						PROCEED TO CHECKOUT
 					</Button>
 				</main>

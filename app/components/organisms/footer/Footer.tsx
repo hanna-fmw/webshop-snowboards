@@ -28,7 +28,7 @@ const Footer = ({
 	const pathName = usePathname()
 	return (
 		<>
-			{pathName !== '/cart' ? (
+			{pathName !== '/cart' && pathName !== '/checkout' ? (
 				<footer className={styles.footer}>
 					{children}
 

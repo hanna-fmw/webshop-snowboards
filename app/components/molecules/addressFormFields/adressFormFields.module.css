@@ -1,0 +1,10 @@
+.inputField {
+	margin-bottom: 1rem;
+	padding-block: 1rem;
+	width: 100%;
+}
+
+.inputField::placeholder {
+	font-family: var(--font-primary);
+	padding-left: 1rem;
+}

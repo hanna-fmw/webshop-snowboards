@@ -94,6 +94,11 @@ const Cart = ({ children }: CartProps) => {
 		closeCart()
 	}
 
+	const goToCheckout = () => {
+		router.push('/checkout')
+		closeCart()
+	}
+
 	const sidePanelVariants = {
 		hidden: { x: '100%', opacity: 0 },
 
@@ -198,7 +203,7 @@ const Cart = ({ children }: CartProps) => {
 							<Button variant='default' onClick={goToCart}>
 								VIEW MY CART
 							</Button>
-							<Button variant='default-dark' onClick={() => {}}>
+							<Button variant='default-dark' onClick={goToCheckout}>
 								GO TO CHECKOUT
 							</Button>
 						</div>
