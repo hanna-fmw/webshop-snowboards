@@ -35,18 +35,6 @@ const Navbar = ({ children }: NavbarProps) => {
 	const pathName = usePathname()
 	console.log(pathName)
 
-	// const [isModalOpen, setIsModalOpen] = useState(false)
-
-	// const openModal = () => {
-	// 	document.body.classList.add('modalOpen');
-	// 	setIsModalOpen(true)
-	// }
-
-	// const closeModal = () => {
-	// 	document.body.classList.remove('modalOpen');
-	// 	setIsModalOpen(false)
-	// }
-
 	return (
 		<nav className={styles.nav}>
 			<ul className={styles.ul}>
@@ -87,12 +75,12 @@ const Navbar = ({ children }: NavbarProps) => {
 				{/* {children} */}
 				{pathName !== '/cart' ? (
 					<>
-						<li className={`${styles.li} ${styles.currencyDropdown}`}>
+						<li className={`${styles.li}`}>
 							<CurrencyDropdown />
 						</li>
-						<li className={styles.li}>
-							<Image src={cart} width={15} height={17} alt='Cart icon' onClick={openCart} />
-							{/* {cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartItems.length}&#93;</small>} */}
+
+						<li style={{ display: 'flex' }} className={`${styles.li} ${styles.cartIconContainer}`} onClick={openCart}>
+							<Image src={cart} width={15} height={17} alt='Cart icon' />
 							{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
 							{isCartOpen && <Cart />}
 						</li>

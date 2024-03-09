@@ -1,8 +1,6 @@
-/* Dropdown */
 .dropdownContainer {
 	position: relative;
 	display: inline-block;
-	/* margin-bottom: 1.5rem; */
 }
 
 .button {
@@ -11,7 +9,7 @@
 	justify-content: space-between;
 	background-color: var(--color-white);
 	padding: 0.4rem 0.5rem;
-	font-size: 0.8125rem;
+	/* font-size: 0.8125rem; */
 	cursor: pointer;
 	outline: none;
 	border: 1px solid var(--color-dark);
@@ -23,7 +21,7 @@
 	top: 100%;
 	left: 0;
 	z-index: 70;
-	width: 100%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
+	width: 100%;
 	background-color: var(--color-white);
 }
 
@@ -37,12 +35,3 @@
 	background-color: var(--color-white);
 	transition: background-color 0.3s ease;
 }
-
-/* .menuItem:hover,
-.menuItem:focus {
-	background-color: #f0f0f0;
-} */
-/* 
-.activeItem {
-	background-color: #d9dadb;
-} */

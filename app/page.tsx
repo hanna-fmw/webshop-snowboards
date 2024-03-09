@@ -21,7 +21,7 @@ export default function Home() {
 	const { currency, conversionRateEur } = useCurrencyConversion()
 	const router = useRouter()
 	return (
-		<main className={styles.main}>
+		<main>
 			<HeroSection />
 			<section className={styles.container}>
 				<div className={styles.containerHeader}>

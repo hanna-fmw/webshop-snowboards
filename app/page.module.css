@@ -22,14 +22,14 @@
 @media (min-width: 768px) {
 	.container {
 		display: flex;
-		width: 100vw;
-		margin-left: 1rem;
-		margin-right: 1rem;
+		/* width: 100vw; */
+		/* margin-left: 1rem;
+		margin-right: 1rem; */
 	}
 
-	.containerHeader {
+	/* .containerHeader {
 		width: 90%;
-	}
+	} */
 
 	.productCardContainer {
 		display: flex;

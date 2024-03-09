@@ -22,9 +22,9 @@ function CurrencyDropdown() {
 			<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
 				{selectedItem ?? 'SEK'}
 				{isOpen ? (
-					<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
+					<RiArrowUpSLine size={18} style={{ color: '#212121', transform: 'translateY(10%)' }} />
 				) : (
-					<RiArrowDownSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
+					<RiArrowDownSLine size={18} style={{ color: '#212121', transform: 'translateY(10%)' }} />
 				)}
 			</button>
 			<div className={styles.dropdown}>

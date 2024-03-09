@@ -61,11 +61,17 @@ const Checkout = () => {
 				{isOpenCouponCodeField ? (
 					<div className={styles.couponToggleField}>
 						<p>If you have a coupon code, please apply it below.</p>
-						<input className={styles.inputField} placeholder='Coupon code' />
-						{/* Validate coupon code and calculate and update new subtotal */}
-						<Button variant='large-dark' onClick={() => router.push('/')}>
-							APPLY COUPON
-						</Button>
+						<div className={styles.btnContainer}>
+							<div>
+								<input className={styles.inputField} placeholder='Coupon code' />
+							</div>
+							{/* Validate coupon code and calculate and update new subtotal */}
+							<div>
+								<button className={styles.couponBtn} onClick={() => router.push('/')}>
+									APPLY COUPON
+								</button>
+							</div>
+						</div>
 					</div>
 				) : null}
 			</div>
@@ -120,82 +126,7 @@ const Checkout = () => {
 					})}
 				</section>
 
-				<section className={styles.onlyLargeScreen}>
-					<h2 style={{ paddingBlock: '1rem' }}>CART</h2>
-					<div className={styles.productTable}>
-						<div className={styles.tableHeader}>
-							<h2 className={styles.tableCellRemove}>Remove</h2>
-							<h2 className={styles.tableCellImage}>Image</h2>
-							<h2 className={styles.tableCellProduct}>PRODUCT</h2>
-							<h2 className={styles.tableCellPrice}>PRICE</h2>
-							<h2 className={styles.tableCellQuantity}>QUANTITY</h2>
-							<h2 className={styles.tableCellSubtotal}>SUBTOTAL</h2>
-						</div>
-						<div className={styles.productCard}>
-							{cartItems.map((item: CartItem, i: number) => {
-								console.log('detta är cartItems', cartItems)
-								console.log('detta är item', item)
-
-								return (
-									<>
-										<div key={i} className={styles.productRow}>
-											<button onClick={() => removeFromCart(item.product)} className={styles.removeBtnContainer}>
-												<span className={styles.removeBtn}>x</span>
-											</button>
-											<div className={styles.productImg}>
-												<Figure image={`/products/${item.product?.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
-											</div>
-
-											<div className={styles.productName}>
-												<div>
-													{item.product?.name} - {selectedLength}
-												</div>
-											</div>
-
-											<div className={styles.productPrice}>
-												{/* <div className={styles.priceColor}>{formatCurrency(item.product?.price, currency)}</div> */}
-												<div className={styles.priceColor}>
-													{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
-												</div>
-											</div>
-
-											<div className={styles.productQuantity}>
-												{/* <div className={styles.amount}>{item.quantity}</div> */}
-												<div className={styles.itemCountContainer}>
-													<div style={{ border: '1px solid black', display: 'flex', flexDirection: 'row' }}>
-														<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-														<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
-															<div>
-																<button onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown}>
-																	<RiArrowUpSFill />
-																</button>
-															</div>
-															<div>
-																<button onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown}>
-																	<RiArrowDownSFill />
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-
-											<div className={styles.productSubtotal}>
-												{/* <div className={styles.priceColor}>{formatCurrency(item.quantity * item.product?.price, currency)}</div> */}
-												<div className={styles.priceColor}>
-													{formatCurrency(
-														currency === 'SEK' ? item.quantity * item.product?.price : item.quantity * (item.product?.price * conversionRateEur!),
-														currency
-													)}
-												</div>
-											</div>
-										</div>
-									</>
-								)
-							})}
-						</div>
-					</div>
-				</section>
+				{/* <section className={styles.onlyLargeScreen}></section> */}
 
 				{/* <h2 style={{ paddingBlock: '1.5rem' }}>CART TOTALS</h2> */}
 				<div className={styles.subtotal}>

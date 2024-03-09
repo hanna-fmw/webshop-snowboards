@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel='stylesheet' href='https://use.typekit.net/wce3qpd.css' />
 			</Head> */}
 			{/* <body className={robotoMono.className}> */}
-			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`} style={{ position: 'relative' }}>
+			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`}>
 				<CurrencyProvider>
 					<ModalProvider>
 						<CartProvider>

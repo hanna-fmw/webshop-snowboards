@@ -15,20 +15,6 @@ type CartProps = {
 	children?: React.ReactNode
 }
 
-// type CartContextProps = {
-// 	isCartOpen: boolean
-// 	openCart: () => void
-// 	closeCart: () => void
-
-// 	getItemQuantity: (product: Product) => number
-// 	increaseCartQuantity: (product: Product) => void
-// 	decreaseCartQuantity: (product: Product) => void
-// 	removeFromCart: (product: Product) => void
-// 	addItemToCart: (product: Product) => void
-
-// 	cartItems: CartItem[]
-// }
-
 type Product = {
 	id: number
 	name: string

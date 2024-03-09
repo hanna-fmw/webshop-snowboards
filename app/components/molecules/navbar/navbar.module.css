@@ -1,26 +1,15 @@
-.logo {
-	height: 2rem;
-	width: auto;
-}
-
 .nav {
 	font-family: var(--font-primary);
 	background-color: var(--color-white);
 	color: var(--color-dark);
-	display: grid;
-	/* grid-template-columns: 1fr minmax(auto, 58vw) 1fr; */
-	grid-template-columns: 1fr minmax(auto, 100vw) 1fr;
-	height: 3fr;
+	padding: 1.5rem 1rem;
 }
 
 .ul {
-	all: unset;
-	grid-column: 2 / 3;
 	display: flex;
-	gap: 1rem;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
-	padding: 0.5rem;
+	gap: 0.5rem;
 }
 
 .active,
@@ -31,39 +20,32 @@
 	color: var(--color-darkgrey);
 }
 
-.cartItemCount {
-	color: var(--color-TUR-green);
-}
-
 .li {
-	all: unset;
-	padding: 0.5rem;
 	cursor: pointer;
-}
-
-.li:nth-child(1) {
-	margin-right: auto;
 }
 
 li.link {
 	display: none;
 }
 
-.nav {
-	padding: 0;
-}
-
 .hamburgerMenu {
 	cursor: pointer;
 }
 
-@media (min-width: 767px) {
-	.nav {
-		padding: 0;
-	}
+.cartItemCount {
+	color: var(--color-TUR-green);
+}
+
+.cartIconContainer {
+	display: flex;
+	align-items: center;
+}
+
+@media (min-width: 768px) {
 	li.link {
 		display: block;
 	}
+
 	.hamburgerMenu {
 		display: none;
 	}
