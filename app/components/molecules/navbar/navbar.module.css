@@ -12,6 +12,12 @@
 	gap: 0.5rem;
 }
 
+.navbarRight {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
 .active,
 .li.link:hover {
 	text-decoration: underline;

@@ -5,6 +5,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import Link from 'next/link'
 import { useModal } from '@/app/context/modalContext'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 
 type ModalProps = {
 	children?: React.ReactNode
@@ -52,22 +53,37 @@ const links = [
 ]
 
 const Modal = ({ link, children }: ModalProps) => {
-	const { closeModal }: ModalContextProps = useModal()
+	const { closeModal, isModalOpen }: ModalContextProps = useModal()
+
+	useEffect(() => {
+		// Add the style to body and html elements when the modal is opened
+		// document.body.style.overflowY = 'hidden'
+		// document.documentElement.style.overflowY = 'hidden'
+		//Or:
+		document.body.style.overflowY = isModalOpen ? 'hidden' : 'auto'
+
+		return () => {
+			// Remove the style when the modal is closed
+			document.body.style.overflowY = 'auto'
+			document.documentElement.style.overflowY = 'auto'
+		}
+	}, [closeModal, isModalOpen])
 
 	return (
-		<div className={styles.modalOverlay}>
-			<IoCloseOutline size={25} onClick={closeModal} className={styles.closeBtn} />
-			<motion.div className={styles.links} variants={parentVariants} initial='initial' animate='animate'>
-				{links.map((link, i) => {
-					return (
-						<motion.div key={i} variants={childrenVariants}>
-							<Link href={link.href} onClick={closeModal} className={styles.link}>
-								{link.label}
-							</Link>
-						</motion.div>
-					)
-				})}
-				{/* <motion.div key='1' variants={childrenVariants}>
+		<section>
+			<div className={styles.modalOverlay}>
+				<IoCloseOutline size={25} onClick={closeModal} className={styles.closeBtn} />
+				<motion.div className={styles.links} variants={parentVariants} initial='initial' animate='animate'>
+					{links.map((link, i) => {
+						return (
+							<motion.div key={i} variants={childrenVariants}>
+								<Link href={link.href} onClick={closeModal} className={styles.link}>
+									{link.label}
+								</Link>
+							</motion.div>
+						)
+					})}
+					{/* <motion.div key='1' variants={childrenVariants}>
 					<Link href='/' onClick={closeModal} className={styles.link}>
 						[a].HOME{' '}
 					</Link>
@@ -87,8 +103,9 @@ const Modal = ({ link, children }: ModalProps) => {
 						[d].SUPPORT
 					</Link>
 				</motion.div> */}
-			</motion.div>
-		</div>
+				</motion.div>
+			</div>
+		</section>
 	)
 }
 

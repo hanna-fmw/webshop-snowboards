@@ -1,12 +1,16 @@
 .cartSidePanel {
 	width: 80%;
-	min-height: 100%;
+	height: 100vh;
 	background-color: var(--color-white);
 	position: absolute;
 	top: 0;
 	right: 0;
 	z-index: 50;
 	padding: 1rem;
+}
+
+.yourCartHeading {
+	margin-top: 0.5rem;
 }
 
 .closeBtn {
@@ -26,10 +30,6 @@
 .productInfo {
 	display: flex;
 	gap: 1.5rem;
-}
-
-.imgContainer {
-	/* width: 4rem; */
 }
 
 .img {
@@ -113,6 +113,7 @@
 @media (min-width: 1440px) {
 	.cartSidePanel {
 		width: 30%;
+		height: 100vh;
 		top: 0;
 		right: 0;
 	}

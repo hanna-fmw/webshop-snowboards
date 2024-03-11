@@ -2,7 +2,6 @@
 import React from 'react'
 import styles from './navbar.module.css'
 import Image from 'next/image'
-// import NavLink from '../../atoms/navLink/NavLink'
 import hamburgerMenu from '../../../../public/icons/hamburger_menu_mobile.png'
 import logotype from '../../../../public/logo/logo.svg'
 import cart from '../../../../public/icons/cart.png'
@@ -67,14 +66,18 @@ const Navbar = ({ children }: NavbarProps) => {
 						[d]. SUPPORT
 					</Link>
 				</li>
-				<li className={styles.li}>
+				{/* <li className={styles.li}>
 					<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
 					{isModalOpen && <Modal />}
-				</li>
+				</li> */}
 
 				{/* {children} */}
 				{pathName !== '/cart' ? (
-					<>
+					<ul className={styles.navbarRight}>
+						<li className={styles.li}>
+							<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
+							{isModalOpen && <Modal />}
+						</li>
 						<li className={`${styles.li}`}>
 							<CurrencyDropdown />
 						</li>
@@ -84,7 +87,7 @@ const Navbar = ({ children }: NavbarProps) => {
 							{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
 							{isCartOpen && <Cart />}
 						</li>
-					</>
+					</ul>
 				) : (
 					<>{isCartOpen && <Cart />}</>
 				)}

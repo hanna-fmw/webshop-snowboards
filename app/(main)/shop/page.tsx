@@ -90,7 +90,7 @@ const Shop = () => {
 
 	return (
 		<main className={styles.main}>
-			<section className={styles.container}>
+			<section className={styles.shopContainer}>
 				<div className={styles.shopHeader}>
 					<ul className={styles.links}>
 						<li>
@@ -154,58 +154,32 @@ const Shop = () => {
 							</ul>
 						</div>
 					</div>
-					{/* <div className={styles.dropdownContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-						<button className={`${styles.button} currDropdown`}>
-							<div style={{ marginRight: '5px' }}>{value}</div>
-							<div>
-								<RiArrowDownSLine size={18} style={{ color: '#212121', transform: 'translateY(10%)' }} />
-							</div>
-						</button>
-						{isOpen && (
-							<div className={styles.dropdown}>
-								<div className={styles.menuItems}>
-									{value === 'Default sorting' && (
-										<div className={`${styles.menuItem} ${styles.activeItem}`} onClick={() => handleItemClick('Sort by popularity')}>
-											Sort by popularity
-										</div>
-									)}
-									{value === 'Sort by popularity' && (
-										<div className={`${styles.menuItem} ${styles.activeItem}`} onClick={() => handleItemClick('Default sorting')}>
-											Default sorting
-										</div>
-									)}
-								</div>
-							</div>
-						)}
-					</div> */}
 				</div>
-				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
+				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
 					{/* Here we need to sort the products array based on the selected sorting view option, ie based
 					//on the current sort state (sortState-setSortState), which is set when the user clicks on an
 					option on the dropdown menu. So sortProducts(products) will apply the logic in the sortProducts function, which
 					takes in an array, in this case products */}
 					{sortProducts(products).map((product, i) => {
 						return (
-							<motion.div key={i} variants={childrenVariants}>
-								<ProductCard>
-									<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-									<div style={{ display: 'flex' }}>
-										<TextBlock
-											name={product.name}
-											designer={product.designer}
-											length={product.length}
-											detail={product.detail}
-											profile={product.profile}
-											// price={product.price}
-											// Adding the ! in conversionRateEur asserts to TypeScript that conversionRateEur is not null or undefined.
-											// price={currency === 'SEK' ? product.price : product.price * conversionRateEur!}
-										/>
-										<div className={styles.price}>
-											<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
-										</div>
+							<motion.section key={i} variants={childrenVariants} className={styles.productCard}>
+								<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
+								<div style={{ display: 'flex' }}>
+									<TextBlock
+										name={product.name}
+										designer={product.designer}
+										length={product.length}
+										detail={product.detail}
+										profile={product.profile}
+										// price={product.price}
+										// Adding the ! in conversionRateEur asserts to TypeScript that conversionRateEur is not null or undefined.
+										// price={currency === 'SEK' ? product.price : product.price * conversionRateEur!}
+									/>
+									<div className={styles.price}>
+										<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
 									</div>
-								</ProductCard>
-							</motion.div>
+								</div>
+							</motion.section>
 						)
 					})}
 				</motion.section>

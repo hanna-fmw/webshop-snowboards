@@ -3,7 +3,7 @@ import products from './data/products.json'
 import HeroSection from './components/molecules/heroSection/HeroSection'
 import ProductCard from './components/molecules/productCard/ProductCard'
 import styles from './page.module.css'
-import ProductGrid from './components/atoms/productGrid/ProductGrid'
+// import ProductGrid from './components/atoms/productGrid/ProductGrid'
 import Figure from './components/atoms/figure/Figure'
 import TextBlock from './components/atoms/textBlock/TextBlock'
 import Link from 'next/link'
@@ -28,7 +28,7 @@ export default function Home() {
 					<div>TUR SNOWBOARD PRODUCTS:</div>
 					<Link href='/shop'>&gt; SHOW ALL</Link>
 				</div>
-				<ProductGrid>
+				<section className={styles.productGrid}>
 					{products.map((product, i) => {
 						const featured = product.featured === true
 						return (
@@ -55,7 +55,7 @@ export default function Home() {
 							</motion.div>
 						)
 					})}
-				</ProductGrid>
+				</section>
 			</section>
 		</main>
 	)

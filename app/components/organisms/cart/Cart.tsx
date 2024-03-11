@@ -65,10 +65,23 @@ const Cart = ({ children }: CartProps) => {
 		document.addEventListener('mousedown', checkIfClickedOutside)
 
 		return () => {
-			// Cleanup the event listener
 			document.removeEventListener('mousedown', checkIfClickedOutside)
 		}
 	}, [isCartOpen])
+
+	useEffect(() => {
+		// Add the style to body and html elements when the modal is opened
+		// document.body.style.overflowY = 'hidden'
+		// document.documentElement.style.overflowY = 'hidden'
+		//Or:
+		document.body.style.overflowY = isCartOpen ? 'hidden' : 'auto'
+
+		return () => {
+			// Remove the style when the modal is closed
+			document.body.style.overflowY = 'auto'
+			document.documentElement.style.overflowY = 'auto'
+		}
+	}, [closeCart, isCartOpen])
 
 	const startShopping = () => {
 		router.push('/shop')
@@ -101,20 +114,19 @@ const Cart = ({ children }: CartProps) => {
 			ref={ref}
 			className={styles.cartSidePanel}
 			variants={sidePanelVariants}
-			// initial='hidden'
 			initial='hidden'
 			// animate={isCartOpen ? 'visible' : 'hidden'}
-			animate={isCartOpen ? 'visible' : 'exit'}
-			exit='exit'>
+			exit='exit'
+			animate={isCartOpen ? 'visible' : 'exit'}>
 			<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
 
 			{cartItems.length !== 0 ? (
 				<section>
-					<div style={{ marginTop: '0.5rem' }}>YOUR CART ({cartItems.length} ITEM)</div>
+					<div>YOUR CART ({cartItems.length} ITEM)</div>
 
 					{cartItems.map((item: CartItem, i: number) => {
-						console.log('These are the cartItems', cartItems)
-						console.log('This is item', item)
+						// console.log('These are the cartItems', cartItems)
+						// console.log('This is item', item)
 						const backToProductDetail = () => {
 							router.push(`/shop/${item.product.model}`)
 							closeCart()
