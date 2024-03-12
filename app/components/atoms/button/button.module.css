@@ -8,7 +8,8 @@
 	background-color: transparent;
 	color: var(--color-dark);
 	border: 1px solid var(--color-dark);
-	padding: 0.7rem 1.5rem;
+	/* padding: 0.8rem 1.5rem; */
+	padding: 0.8rem;
 	cursor: pointer;
 	margin-bottom: 0.5rem;
 	margin-top: 1rem;
@@ -25,23 +26,25 @@
 .btn.default-dark {
 	background-color: var(--color-darkgrey);
 	color: var(--color-white);
-	padding: 0.8rem 1.5rem;
+	/* padding: 0.8rem 1.5rem; */
+	padding: 0.8rem;
 	cursor: pointer;
+	margin-top: 1rem;
 	margin-bottom: 0.5rem;
 	width: 100%;
 	border: none;
 }
 
-.default-dark:hover {
+/* .default-dark:hover {
 	border: 1px solid var(--color-dark);
-}
+} */
 
 .btn.large-dark {
 	background-color: var(--color-darkgrey);
 	color: var(--color-white);
 	width: 100%;
-	padding: 0.8rem 7.4rem;
-	border: none;
+	padding: 0.8rem;
+	border: 1px solid var(--color-dark);
 	transition: background-color 0.3s, border 0.3s, color 0.3s;
 	margin-bottom: 0.5rem;
 }
@@ -49,7 +52,6 @@
 .btn.large-dark:hover {
 	background-color: var(--color-white);
 	color: var(--color-black);
-	border: 1px solid var(--color-dark);
 	font-weight: 500;
 }
 
@@ -57,8 +59,7 @@
 	background-color: var(--color-darkgrey);
 	color: var(--color-white);
 	width: 100%;
-	padding: 0.8rem 7.4rem;
-	border: none;
+	padding: 0.8rem;
 	transition: background-color 0.3s, border 0.3s, color 0.3s;
 	margin-bottom: 0.5rem;
 }
@@ -67,7 +68,8 @@
 	background-color: #00b140;
 	color: var(--color-white);
 	width: 100%;
-	padding: 0.8rem 7.4rem;
+	/* padding: 0.8rem 5.4rem; */
+	padding: 0.8rem;
 	border: none;
 	margin-bottom: 0.5rem;
 }
@@ -76,7 +78,7 @@
 	background-color: var(--color-white);
 	color: var(--color-text-black);
 	width: 100%;
-	padding: 0.8rem 7.4rem;
+	padding: 0.8rem;
 	border: 1px solid var(--color-dark);
 	font-weight: 500;
 	margin-bottom: 0.5rem;
@@ -90,11 +92,18 @@
 
 .btn.btn-hero {
 	background-color: var(--color-black);
-	/* position: absolute;
-	left: 2.5rem;
-	bottom: 2.5rem; */
 	color: var(--color-white);
 	padding: 0.8rem 2rem;
+	padding: 0.8rem;
 	border: 1px solid var(--color-white);
 	z-index: 10;
 }
+
+/* @media (min-width: 768px) {
+	.btn.large-dark,
+	.btn.large-dark-no-hover,
+	.btn.large-green,
+	.btn.large-light {
+		max-width: 60%;
+	}
+} */

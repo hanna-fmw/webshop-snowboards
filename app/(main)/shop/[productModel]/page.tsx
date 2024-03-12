@@ -130,7 +130,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 							{model === product.model ? (
 								<div className={styles.infoSection}>
 									<div className={styles.infoContainer}>
-										{/* <ProductCard> */}
 										<div style={{ display: 'flex' }}>
 											<TextBlock
 												name={product.name}
@@ -147,18 +146,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											</div>
 										</div>
 
-										{/* </ProductCard> */}
-
 										<div className={styles.btnContainer}>
-											{/* {product.lengthOptions ? (
-													<Button variant='large-light' onClick={() => {}}>
-														{product.lengthOptions?.map((option, i) => {
-															let lastOptionIndex = product.lengthOptions.length - 1
-															return <span key={i}>{i !== lastOptionIndex ? <span>{option}/</span> : <span>{option}</span>}</span>
-														})}
-													</Button>
-												) : null} */}
-
 											{product.lengthOptions ? (
 												<div className={styles.largeLight}>
 													{product.lengthOptions?.map((option, i) => {
@@ -192,15 +180,17 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 										</div>
 
 										<div className={styles.productInfoBlock}>
-											<h2 style={{ color: '#00b140', marginBottom: '1rem' }}>SHIPPING WORLD WIDE! NEED SUPPORT?</h2>
-											<div>{product.descriptionHeading}</div>
+											<h2 className={styles.h2} style={{ color: '#00b140', marginBottom: '1rem' }}>
+												SHIPPING WORLD WIDE! NEED SUPPORT?
+											</h2>
+											<h2 className={styles.h2}>{product.descriptionHeading}</h2>
 											<div>{product.descriptionText}</div>
-											<h2>{product.districtHeading}</h2>
+											<h2 className={styles.h2}>{product.districtHeading}</h2>
 											<div>{product.district}</div>
 
 											{product.propertiesHeading ? (
 												<div>
-													<h2>{product.propertiesHeading}</h2>
+													<h2 className={styles.h2}>{product.propertiesHeading}</h2>
 													<ul className={styles.ul}>
 														<li className={styles.li}>{product.properties.length}</li>
 														{product.properties?.features.map((property, i) => (
@@ -220,7 +210,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												</ul>
 											) : null}
 
-											<h2>{product.narrativeHeading}</h2>
+											<h2 className={styles.h2}>{product.narrativeHeading}</h2>
 											<div>{product.narrative}</div>
 											{product.preCutSkins ? (
 												<Button variant={'default'} onClick={() => router.push('/shop/skins')}>
@@ -271,7 +261,9 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 							<div key={i}>
 								{product.technicalSpecificationHeading ? (
 									<div className={styles.techInfoContainer}>
-										<h2 style={{ alignSelf: 'flex-start' }}>{product.technicalSpecificationHeading}</h2>
+										<h2 className={styles.h2} style={{ alignSelf: 'flex-start' }}>
+											{product.technicalSpecificationHeading}
+										</h2>
 										<div style={{ alignSelf: 'flex-start' }} className={styles.chartsContainer}>
 											<Image
 												src={`/products/${product.technicalSpecification}`}
@@ -286,7 +278,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 								) : null}
 
 								<div>
-									<h2>{product.relatedProductsHeading}</h2>
+									<h2 className={styles.h2}>{product.relatedProductsHeading}</h2>
 								</div>
 							</div>
 						) : null}

@@ -5,9 +5,10 @@
 	align-items: center;
 }
 
-/* .section {
-	width: 90vw;
-} */
+.h2 {
+	margin-top: 1rem;
+	margin-bottom: 0.5rem;
+}
 
 .container {
 	display: flex;
@@ -17,17 +18,17 @@
 	width: 90vw;
 }
 
-.productImg {
-	width: 100%;
-	height: auto;
-	cursor: pointer;
-}
-
 .productImgs {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+}
+
+.productImg {
+	width: 100%;
+	height: auto;
+	cursor: pointer;
 }
 
 /* Thumbnails */
@@ -108,6 +109,7 @@
 
 .btnLengthOptions {
 	border: none;
+	border-right: 1px solid black;
 	flex: 1;
 	background-color: var(--color-white);
 	padding-block: 0.8rem;
@@ -116,6 +118,10 @@
 .btnLengthOptions:hover {
 	background-color: var(--color-dark);
 	color: var(--color-white);
+}
+
+.btnLengthOptions:last-child {
+	border: none;
 }
 
 .selectedLength {
@@ -163,10 +169,6 @@
 	content: '> ';
 }
 
-/* .additionalInfo {
-	margin-top: 1rem;
-} */
-
 .price {
 	color: var(--color-TUR-green);
 }
@@ -181,7 +183,6 @@
 	.greenBox {
 		flex-direction: row;
 		justify-content: space-between;
-		width: 100%;
 	}
 
 	.btnLargeScreen {
@@ -195,7 +196,6 @@
 	.productImgs {
 		display: flex;
 		flex-direction: column;
-		width: 45vw;
 	}
 
 	.container {
@@ -222,6 +222,11 @@
 		width: 40vw;
 	}
 
+	.infoSection {
+		flex: 1;
+		width: 100%;
+	}
+
 	.techInfoContainer {
 		display: flex;
 		flex-direction: column;
@@ -242,6 +247,16 @@
 
 	.btnContainer {
 		width: 100%;
+	}
+
+	.techInfoContainer {
+		display: flex;
+		flex-direction: column;
+		width: 90vw;
+	}
+
+	.chart {
+		width: 40vw;
 	}
 }
 
@@ -276,11 +291,12 @@
 		/* width: 45vw; */
 	}
 
-	.techInfoContainer {
+	/* .techInfoContainer {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 		width: 100vw;
-	}
+	} */
 
 	.chartsContainer {
 		display: flex;
@@ -289,7 +305,7 @@
 	}
 }
 
-@media (min-width: 1800px) {
+/* @media (min-width: 1800px) {
 	.main {
 		display: flex;
 		flex-direction: column;
@@ -297,12 +313,9 @@
 		width: 100vw;
 	}
 
-	.section {
-		width: 60%;
-	}
-
-	.infoContainer {
-		width: 30vw;
+	.productImg {
+		max-width: 45vw;
+		height: auto;
 	}
 
 	.techInfoContainer {
@@ -314,4 +327,4 @@
 	.chart {
 		width: 30vw;
 	}
-}
+} */
