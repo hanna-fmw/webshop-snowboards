@@ -121,67 +121,70 @@ const Cart = ({ children }: CartProps) => {
 			<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
 
 			{cartItems.length !== 0 ? (
-				<section>
-					<div>YOUR CART ({cartItems.length} ITEM)</div>
+				<section className={styles.cartContainer}>
+					<section>
+						<div>YOUR CART: {cartItems.length} ITEM(S)</div>
 
-					{cartItems.map((item: CartItem, i: number) => {
-						// console.log('These are the cartItems', cartItems)
-						// console.log('This is item', item)
-						const backToProductDetail = () => {
-							router.push(`/shop/${item.product.model}`)
-							closeCart()
-						}
+						{cartItems.map((item: CartItem, i: number) => {
+							// console.log('These are the cartItems', cartItems)
+							// console.log('This is item', item)
+							const backToProductDetail = () => {
+								router.push(`/shop/${item.product.model}`)
+								closeCart()
+							}
 
-						return (
-							<section key={i} className={styles.productContainer}>
-								<div className={styles.productInfo}>
-									<div className={styles.imgContainer}>
-										<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
-										{/* <Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} /> */}
-									</div>
-									<div className={styles.texBlockHorizontal}>
-										<div>{item.product?.name}</div>
-										<div className={styles.price}>
-											{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
+							return (
+								<section key={i} className={styles.productContainer}>
+									<div className={styles.productInfo}>
+										<div className={styles.imgContainer}>
+											<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
+											{/* <Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} /> */}
 										</div>
-										{/* <div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div> */}
-										<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
-										<div className={styles.btnContainer}>
-											<div className={styles.itemCountContainer}>
-												<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-													-
-												</button>
-												<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-												<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-													+
-												</button>
+										<div className={styles.texBlockHorizontal}>
+											<div>{item.product?.name}</div>
+											<div className={styles.price}>
+												{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
 											</div>
+											{/* <div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div> */}
+											<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
+											<div className={styles.btnContainer}>
+												<div className={styles.itemCountContainer}>
+													<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+														-
+													</button>
+													<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
+													<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+														+
+													</button>
+												</div>
 
-											<div onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
-												REMOVE ITEM
+												<div onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
+													REMOVE ITEM
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div>
-									<span>x{item.quantity} =</span>{' '}
-									{/* <span className={styles.totalItemsPrice}>{formatCurrency(item.product?.price * item.quantity, currency)}</span> */}
-									<span className={styles.totalItemsPrice}>
-										{formatCurrency(
-											currency === 'SEK' ? item.product?.price * item.quantity : item.product?.price * conversionRateEur! * item.quantity,
-											currency
-										)}
-									</span>
-								</div>
+									<div>
+										<span>x{item.quantity} =</span>{' '}
+										{/* <span className={styles.totalItemsPrice}>{formatCurrency(item.product?.price * item.quantity, currency)}</span> */}
+										<span className={styles.totalItemsPrice}>
+											{formatCurrency(
+												currency === 'SEK' ? item.product?.price * item.quantity : item.product?.price * conversionRateEur! * item.quantity,
+												currency
+											)}
+										</span>
+									</div>
 
-								{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
-								{/* <ProductCard {...item}/> */}
-							</section>
-						)
-					})}
+									{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
+									{/* <ProductCard {...item}/> */}
+								</section>
+							)
+						})}
+					</section>
 
-					<footer className={styles.footer}>
-						<div className={styles.subtotalContainer}>
+					<footer className={styles.cartFooter}>
+						<div className={styles.divider}></div>
+						<div className={styles.subtotal}>
 							<div>SUBTOTAL</div>
 							<div className={styles.price}>
 								{formatCurrency(

@@ -1,14 +1,10 @@
 .container {
-	
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	line-height: 1.2;
 	padding-block: 2rem;
-}
-
-.formWrapper {
-	width: 90vw;
+	width: 100vw;
 }
 
 .formHeading {
@@ -17,6 +13,18 @@
 
 .formHeading:first-child {
 	margin-top: 2rem;
+}
+
+.couponFields {
+	width: 90%;
+}
+
+.billingFields {
+	width: 90%;
+}
+
+.paymentFields {
+	width: 90%;
 }
 
 .couponFieldContent {
@@ -36,12 +44,29 @@
 	cursor: pointer;
 }
 
+.couponCodeField,
+.notesField,
+.creditCardInput,
+.addressField {
+	padding-block: 1rem;
+	margin-bottom: 1.5rem;
+	width: 100%;
+}
+
+.couponCodeField,
+.notesField,
+.creditCardInput,
+.addressField::placeholder {
+	font-family: var(--font-primary);
+	padding-left: 1rem;
+}
+
 .couponBtn {
 	background-color: var(--color-dark);
 	color: var(--color-white);
 	display: flex;
 	justify-content: center;
-	padding: 0.7rem 1.5rem;
+	padding: 0.7rem;
 	cursor: pointer;
 	margin-bottom: 0.5rem;
 	transition: all 0.5s;
@@ -54,21 +79,6 @@
 	background-color: var(--color-white);
 }
 
-.billingFields {
-	width: 90vw;
-}
-
-.inputField {
-	padding-block: 1rem;
-	margin-bottom: 1.5rem;
-	width: 100%;
-}
-
-.inputField::placeholder {
-	font-family: var(--font-primary);
-	padding-left: 1rem;
-}
-
 .checkbox {
 	display: flex;
 	align-items: center;
@@ -77,37 +87,33 @@
 
 .checkbox input {
 	appearance: none; /* Remove default styles */
-	width: 1.2rem; /* Set width of the custom checkbox */
-	height: 1.2rem; /* Set height of the custom checkbox */
-	border: 1px solid var(--color-dark); /* Set border color and thickness */
-	border-radius: 50%; /* Make it round */
-	margin-right: 1rem; /* Adjust spacing between checkbox and label */
+	width: 1.2rem;
+	height: 1.2rem;
+	border: 1px solid var(--color-dark);
+	border-radius: 50%;
+	margin-right: 1rem;
 	cursor: pointer;
 }
 
-/* Style the custom checkbox when not checked */
+/* Selected checkbox */
 .checkbox input:checked::before {
 	content: '\2714'; /* Unicode checkmark character */
 	display: block;
 	width: 100%;
 	height: 100%;
-	font-size: 1rem; /* Adjust size of the checkmark */
-	color: #fff; /* Set color of the checkmark to white */
+	font-size: 0.8rem;
+	color: #fff;
 	text-align: center;
-	line-height: 20px; /* Center the checkmark vertically */
-	background-color: var(--color-dark); /* Set background color when checked */
-	border-radius: 50%; /* Make it round */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--color-dark);
+	border-radius: 50%;
 }
 
 .checkbox input:focus {
-	outline: none; /* Remove default focus outline */
+	outline: none;
 }
-
-/* .container {
-	display: flex;
-	flex-direction: column;
-	padding: 1rem;
-} */
 
 .orderHeadings {
 	display: flex;
@@ -120,52 +126,20 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	/* border-top: 1px solid var(--color-dark); */
 	padding-block: 1rem;
 }
 
 .price {
 	display: flex;
 	justify-content: space-between;
-	/* border-top: 1px solid var(--color-dark); */
 	padding-block: 1rem;
 }
 
 .quantity {
 	display: flex;
 	justify-content: space-between;
-	/* border-top: 1px solid var(--color-dark); */
 	padding-block: 1rem;
 }
-
-/* .itemCountContainer {
-	display: flex;
-	flex-direction: row;
-	gap: 0.5rem;
-	align-items: center;
-	border: 1px solid var(--color-dark);
-} */
-
-/* .arrowBtn {
-	display: flex;
-	flex-direction: column;
-	border: none;
-	background-color: inherit;
-	color: var(--color-darkgrey);
-	cursor: pointer;
-	opacity: 0;
-}
-
-.arrowBtn:hover {
-	opacity: 1;
-}
-
-.arrowUpDown {
-	border: none;
-	background-color: #f1f1f1;
-	color: var(--color-darkgrey);
-	cursor: pointer;
-} */
 
 .subtotal {
 	padding-block: 1rem;
@@ -174,11 +148,6 @@
 .priceColor {
 	color: var(--color-TUR-green);
 }
-
-/* .btnContainer {
-	display: flex;
-	flex-direction: column;
-} */
 
 /* .updateBtn {
 	background-color: var(--color-white);
@@ -239,7 +208,7 @@
 	display: none;
 }
 
-@media (min-width: 770px) {
+@media (min-width: 768px) {
 	.onlySmallScreen {
 		display: none;
 	}
@@ -250,17 +219,38 @@
 
 	.btnContainer {
 		display: flex;
+		gap: 1rem;
 	}
 
-	.couponBtn {
-		background-color: var(--color-dark);
-		color: var(--color-white);
-		display: flex;
-		justify-content: center;
-		/* padding: 0.7rem 1rem; */
-		cursor: pointer;
-		/* margin-bottom: 0.5rem; */
-		transition: all 0.5s;
+	.couponCodeField {
+		margin-bottom: 0;
+	}
+}
+
+@media (min-width: 1024px) {
+	.container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: 20%, auto;
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.couponFields {
+		grid-column: 1/3;
+		grid-row: 1;
+		width: 100%;
+	}
+
+	.billingFields {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	.paymentFields {
+		grid-column: 2;
+		grid-row: 2;
+		height: 100%;
 	}
 }
 

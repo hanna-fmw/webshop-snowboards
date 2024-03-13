@@ -35,64 +35,71 @@ const Navbar = ({ children }: NavbarProps) => {
 	console.log(pathName)
 
 	return (
-		<nav className={styles.nav}>
-			<ul className={styles.ul}>
-				<li className={styles.li}>
+		<main className={styles.navContainer}>
+			<nav className={styles.nav}>
+				<div className={styles.li}>
 					<Link href='/'>
 						<Image src={logotype} width={157} height={26} alt='TUR Logotype' className={styles.logo} />
 					</Link>
-				</li>
+				</div>
 
-				<li className={`${styles.li} ${styles.link}`}>
-					{' '}
-					<Link href='/' className={`${pathName === '/' ? styles.active : ''}`}>
-						[a]. HOME
-					</Link>
-				</li>
-				<li className={`${styles.li} ${styles.link}`}>
-					{' '}
-					<Link href='/shop' className={`${pathName === '/shop' ? styles.active : ''}`}>
-						[b]. SHOP
-					</Link>
-				</li>
-				<li className={`${styles.li} ${styles.link}`}>
-					<Link href='/about' className={`${pathName === '/about' ? styles.active : ''}`}>
-						[c]. ABOUT
-					</Link>
-				</li>
-				<li className={`${styles.li} ${styles.link}`}>
-					{' '}
-					<Link href='/support' className={`${pathName === '/support' ? styles.active : ''}`}>
-						[d]. SUPPORT
-					</Link>
-				</li>
-				{/* <li className={styles.li}>
-					<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
-					{isModalOpen && <Modal />}
-				</li> */}
-
-				{/* {children} */}
-				{pathName !== '/cart' ? (
-					<ul className={styles.navbarRight}>
-						<li className={styles.li}>
-							<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
-							{isModalOpen && <Modal />}
+				<div className={styles.navItems}>
+					<ul className={styles.navLinks}>
+						<li className={`${styles.li} ${styles.link}`}>
+							{' '}
+							<Link href='/' className={`${pathName === '/' ? styles.active : ''}`}>
+								[a]. HOME
+							</Link>
 						</li>
-						<li className={`${styles.li}`}>
-							<CurrencyDropdown />
+						<li className={`${styles.li} ${styles.link}`}>
+							{' '}
+							<Link href='/shop' className={`${pathName === '/shop' ? styles.active : ''}`}>
+								[b]. SHOP
+							</Link>
 						</li>
-
-						<li style={{ display: 'flex' }} className={`${styles.li} ${styles.cartIconContainer}`} onClick={openCart}>
-							<Image src={cart} width={15} height={17} alt='Cart icon' />
-							{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
-							{isCartOpen && <Cart />}
+						<li className={`${styles.li} ${styles.link}`}>
+							<Link href='/about' className={`${pathName === '/about' ? styles.active : ''}`}>
+								[c]. ABOUT
+							</Link>
+						</li>
+						<li className={`${styles.li} ${styles.link}`}>
+							{' '}
+							<Link href='/support' className={`${pathName === '/support' ? styles.active : ''}`}>
+								[d]. SUPPORT
+							</Link>
 						</li>
 					</ul>
-				) : (
-					<>{isCartOpen && <Cart />}</>
-				)}
-			</ul>
-		</nav>
+
+					{pathName !== '/cart' && pathName !== '/checkout' ? (
+						<ul className={styles.navIcons}>
+							<li className={styles.li}>
+								<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
+								{isModalOpen && <Modal />}
+							</li>
+
+							<li className={`${styles.li}`}>
+								<CurrencyDropdown />
+							</li>
+							<li style={{ display: 'flex' }} className={`${styles.li} ${styles.cartIconContainer}`} onClick={openCart}>
+								<Image src={cart} width={15} height={17} alt='Cart icon' />
+								{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
+								{isCartOpen && <Cart />}
+							</li>
+						</ul>
+					) : (
+						<>
+							<ul className={styles.navIcons}>
+								<li className={styles.li}>
+									<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
+									{isModalOpen && <Modal />}
+								</li>
+							</ul>
+							{isCartOpen && <Cart />}
+						</>
+					)}
+				</div>
+			</nav>
+		</main>
 	)
 }
 

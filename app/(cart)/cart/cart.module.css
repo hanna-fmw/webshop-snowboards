@@ -1,3 +1,10 @@
+.mainRightLayout {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -275,9 +282,7 @@
 
 @media (min-width: 1440px) {
 	.mainRightLayout {
-		width: 100vw;
-		display: flex;
-		justify-content: center;
+		align-items: center;
 	}
 
 	.container {

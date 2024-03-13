@@ -50,7 +50,7 @@ const Checkout = () => {
 
 	return (
 		<form className={styles.container}>
-			<div className={styles.formWrapper}>
+			<div className={styles.couponFields}>
 				<h2 className={styles.formHeading}>CHECKOUT</h2>
 				<div className={styles.couponFieldContent}>
 					<h2>HAVE A COUPON?</h2>
@@ -62,22 +62,41 @@ const Checkout = () => {
 					<div className={styles.couponToggleField}>
 						<p>If you have a coupon code, please apply it below.</p>
 						<div className={styles.btnContainer}>
-							<div>
-								<input className={styles.inputField} placeholder='Coupon code' />
-							</div>
+							<input className={styles.couponCodeField} placeholder='Coupon code' />
+
 							{/* Validate coupon code and calculate and update new subtotal */}
-							<div>
-								<button className={styles.couponBtn} onClick={() => router.push('/')}>
-									APPLY COUPON
-								</button>
-							</div>
+
+							<Button variant='default-dark' onClick={() => router.push('/')}>
+								APPLY COUPON
+							</Button>
 						</div>
 					</div>
 				) : null}
 			</div>
 			<div className={styles.billingFields}>
 				<h2 className={styles.formHeading}>BILLING DETAILS</h2>
-				<AddressFormFields />
+				<div className={styles.nameFields}>
+					<h2>First name *</h2>
+					<input className={styles.addressField} />
+					<h2>Last name *</h2>
+					<input className={styles.addressField} />
+				</div>
+				<h2>Company name (optional)</h2>
+				<input className={styles.addressField} />
+				<h2>Country /Region *</h2>
+				{/* DROPDOWN */}
+				<input className={styles.addressField} />
+				<h2>Street address *</h2>
+				<input className={styles.addressField} placeholder='House number and street name' />
+				<input className={styles.addressField} placeholder='Apartment, suite, unit, etc. (optional)' />
+				<h2>Postcode / ZIP *</h2>
+				<input className={styles.addressField} />
+				<h2>Town / City *</h2>
+				<input className={styles.addressField} />
+				<h2>Phone *</h2>
+				<input className={styles.addressField} />
+				<h2>Email address *</h2>
+				<input className={styles.addressField} />
 
 				<label className={styles.checkbox}>
 					<input type='checkbox' checked={isChecked} onChange={() => setIsChecked((prev) => !prev)} />
@@ -89,10 +108,12 @@ const Checkout = () => {
 					</div>
 				) : null}
 
-				<h2>Order notes (optional)</h2>
-				<textarea className={styles.inputField} placeholder='Notes about your order, e.g. special notes for delivery.' />
+				<div className={styles.textarea}>
+					<h2>Order notes (optional)</h2>
+					<textarea className={styles.notesField} placeholder='Notes about your order, e.g. special notes for delivery.' />
+				</div>
 			</div>
-			<div className={styles.formWrapper}>
+			<div className={styles.paymentFields}>
 				<h2 className={styles.formHeading}>YOUR ORDER</h2>
 
 				<section className={styles.onlySmallScreen}>
@@ -172,11 +193,11 @@ const Checkout = () => {
 				<p>Pay with your credit card.</p>
 
 				<h2>Card Number *</h2>
-				<input className={styles.inputField} placeholder='1234 1234 1234 1234' />
+				<input className={styles.creditCardInput} placeholder='1234 1234 1234 1234' />
 				<h2>Expiry Date *</h2>
-				<input className={styles.inputField} placeholder='MM / YY' />
+				<input className={styles.creditCardInput} placeholder='MM &#47; YY' />
 				<h2>Card Code (CVC) *</h2>
-				<input className={styles.inputField} placeholder='CVC' />
+				<input className={styles.creditCardInput} placeholder='CVC' />
 				<p style={{ marginTop: '5rem' }}>
 					Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in
 					our privacy policy.

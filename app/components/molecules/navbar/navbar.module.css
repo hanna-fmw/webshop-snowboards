@@ -2,17 +2,25 @@
 	font-family: var(--font-primary);
 	background-color: var(--color-white);
 	color: var(--color-dark);
-	padding: 1.5rem 1rem;
+	padding-block: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	max-width: 90vw;
 }
 
-.ul {
+.navItems {
+	display: flex;
+}
+
+.navLinks {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 0.5rem;
 }
 
-.navbarRight {
+.navIcons {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
