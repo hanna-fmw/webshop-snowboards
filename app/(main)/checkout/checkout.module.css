@@ -15,6 +15,10 @@
 	margin-top: 2rem;
 }
 
+.h2form {
+	margin-top: 1.5rem;
+}
+
 .couponFields {
 	width: 90%;
 }
@@ -46,16 +50,23 @@
 
 .couponCodeField,
 .notesField,
-.creditCardInput,
+.creditCardField,
 .addressField {
 	padding-block: 1rem;
-	margin-bottom: 1.5rem;
 	width: 100%;
+	outline: none;
+	padding-left: 1rem;
+	font-size:inherit;
+	
+}
+
+.streetAddressField {
+	margin-bottom: 1.5rem;
 }
 
 .couponCodeField,
 .notesField,
-.creditCardInput,
+.creditCardField,
 .addressField::placeholder {
 	font-family: var(--font-primary);
 	padding-left: 1rem;
@@ -82,7 +93,7 @@
 .checkbox {
 	display: flex;
 	align-items: center;
-	margin-bottom: 2rem;
+	margin-block: 2rem;
 }
 
 .checkbox input {
@@ -206,6 +217,26 @@
 
 .onlyLargeScreen {
 	display: none;
+}
+
+.submitOrderBtn {
+	background-color: var(--color-darkgrey);
+	color: var(--color-white);
+	width: 100%;
+	padding: 0.8rem;
+	border: 1px solid var(--color-dark);
+	transition: background-color 0.3s, border 0.3s, color 0.3s;
+}
+
+.submitOrderBtn:hover {
+	background-color: var(--color-white);
+	color: var(--color-black);
+	font-weight: 500;
+}
+
+.errorMessage {
+	color: red;
+	margin-top: 0.5rem;
 }
 
 @media (min-width: 768px) {

@@ -12,6 +12,9 @@ import { RiArrowDownSFill } from 'react-icons/ri'
 import { RiArrowUpSFill } from 'react-icons/ri'
 import Figure from '@/app/components/atoms/figure/Figure'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
+import { useForm } from 'react-hook-form'
+import { z, ZodType } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 type CartProps = {
 	children?: React.ReactNode
@@ -47,8 +50,48 @@ const Checkout = () => {
 		closeCart()
 	}
 
+	const orderFormSchema = z.object({
+		firstName: z.string().min(1, { message: 'Please enter first name' }),
+		lastName: z.string().min(1, { message: 'Please enter last name' }),
+		companyName: z.string().optional(),
+		country: z.string().min(1, { message: 'Please enter country' }),
+		street1: z.string().min(1, { message: 'Please enter street' }),
+		street2: z.string().optional(),
+		postcode: z.string().min(1, { message: 'Please enter postal code' }),
+		city: z.string().min(1, { message: 'Please enter city' }),
+		phone: z.string().min(1, { message: 'Please enter phone number' }).optional(),
+		email: z.string().min(1, { message: 'Please enter email' }),
+		cardNumber: z.string().min(3, { message: 'Please enter card number' }),
+		expiryDate: z.string().datetime().min(1, { message: 'Please enter expiry date' }),
+		cardCode: z.string().min(1, { message: 'Please enter CVC number' }),
+	})
+
+	//Vi skapar TypeScript type baserat på (infer) vårt Zod-schema (dvs. orderFormSchema).
+	//Då behöver vi inte skriva separat t.ex. type FormData = {firstName: string} för vår TypeScript.
+	//Ett alternativ, då vi uttryckligen måste skriva ut vår type (istället för att använda infer) är
+	//att importera (också från Zod) och använda ZodType, så här:
+	//const schema: ZodType<FormData> = z.object({ ... och sedan typa vårt FormData som vi gör
+	//som vanligt med TypeScript
+	type OrderFormType = z.infer<typeof orderFormSchema>
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+		reset,
+	} = useForm<OrderFormType>({
+		resolver: zodResolver(orderFormSchema),
+	})
+
+	//För data lägger vi till ett TypeScript-typ, t.ex. data: OrderForm som vi definierat som type OrderForm = osv.
+	const submitData = async (data: OrderFormType) => {
+		//Här skickar vi till servern: Se sist i denna fil där vi skapar en route för en POST-request som skickar detta formulär
+		//mock:
+		await new Promise((resolve) => setTimeout(resolve, 1000))
+	}
+
 	return (
-		<form className={styles.container}>
+		<form onSubmit={handleSubmit(submitData)} className={styles.container}>
 			<div className={styles.couponFields}>
 				<h2 className={styles.formHeading}>CHECKOUT</h2>
 				<div className={styles.couponFieldContent}>
@@ -75,27 +118,51 @@ const Checkout = () => {
 			<div className={styles.billingFields}>
 				<h2 className={styles.formHeading}>BILLING DETAILS</h2>
 				<div className={styles.nameFields}>
-					<h2>First name *</h2>
-					<input className={styles.addressField} />
-					<h2>Last name *</h2>
-					<input className={styles.addressField} />
+					<h2 className={styles.h2form}>First name *</h2>
+					<input type='text' className={styles.addressField} {...register('firstName')} />
+					{errors.firstName && <p className={styles.errorMessage}>{errors.firstName.message}</p>}
+
+					<h2 className={styles.h2form}>Last name *</h2>
+					<input type='text' className={styles.addressField} {...register('lastName')} />
+					{errors.lastName && <p className={styles.errorMessage}>{errors.lastName.message}</p>}
 				</div>
-				<h2>Company name (optional)</h2>
-				<input className={styles.addressField} />
-				<h2>Country /Region *</h2>
+
+				<h2 className={styles.h2form}>Company name (optional)</h2>
+				<input type='text' className={styles.addressField} {...register('companyName')} />
+				{errors.companyName && <p className={styles.errorMessage}>{errors.companyName.message}</p>}
+
+				<h2 className={styles.h2form}>Country /Region *</h2>
 				{/* DROPDOWN */}
-				<input className={styles.addressField} />
-				<h2>Street address *</h2>
-				<input className={styles.addressField} placeholder='House number and street name' />
-				<input className={styles.addressField} placeholder='Apartment, suite, unit, etc. (optional)' />
-				<h2>Postcode / ZIP *</h2>
-				<input className={styles.addressField} />
-				<h2>Town / City *</h2>
-				<input className={styles.addressField} />
-				<h2>Phone *</h2>
-				<input className={styles.addressField} />
-				<h2>Email address *</h2>
-				<input className={styles.addressField} />
+				<input type='text' className={styles.addressField} {...register('country')} />
+				{errors.country && <p className={styles.errorMessage}>{errors.country.message}</p>}
+
+				<h2 className={styles.h2form}>Street address *</h2>
+				<input
+					type='text'
+					className={`${styles.addressField} ${styles.streetAddressField}`}
+					placeholder='House number and street name'
+					{...register('street1')}
+				/>
+				{errors.street1 && <p className={styles.errorMessage}>{errors.street1.message}</p>}
+
+				<input type='text' className={styles.addressField} placeholder='Apartment, suite, unit, etc. (optional)' {...register('street2')} />
+				{errors.street2 && <p className={styles.errorMessage}>{errors.street2.message}</p>}
+
+				<h2 className={styles.h2form}>Postcode / ZIP *</h2>
+				<input type='number' className={styles.addressField} {...register('postcode')} />
+				{errors.postcode && <p className={styles.errorMessage}>{errors.postcode.message}</p>}
+
+				<h2 className={styles.h2form}>Town / City *</h2>
+				<input type='text' className={styles.addressField} {...register('city')} />
+				{errors.city && <p className={styles.errorMessage}>{errors.city.message}</p>}
+
+				<h2 className={styles.h2form}>Phone *</h2>
+				<input type='number' className={styles.addressField} {...register('phone')} />
+				{errors.phone && <p className={styles.errorMessage}>{errors.phone.message}</p>}
+
+				<h2 className={styles.h2form}>Email address *</h2>
+				<input type='email' className={styles.addressField} {...register('email')} />
+				{errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
 
 				<label className={styles.checkbox}>
 					<input type='checkbox' checked={isChecked} onChange={() => setIsChecked((prev) => !prev)} />
@@ -108,8 +175,8 @@ const Checkout = () => {
 				) : null}
 
 				<div className={styles.textarea}>
-					<h2>Order notes (optional)</h2>
-					<textarea className={styles.notesField} placeholder='Notes about your order, e.g. special notes for delivery.' />
+					<h2 className={styles.h2form}>Order notes (optional)</h2>
+					<textarea maxLength='50' className={styles.notesField} placeholder='Notes about your order, e.g. special notes for delivery.' />
 				</div>
 			</div>
 			<div className={styles.paymentFields}>
@@ -121,7 +188,7 @@ const Checkout = () => {
 						<h2>SUBTOTAL</h2>
 					</div>
 					{cartItems.map((item: CartItem, i: number) => {
-						console.log('this is item', item)
+						// console.log('this is item', item)
 						return (
 							<>
 								<div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid black' }}>
@@ -191,19 +258,28 @@ const Checkout = () => {
 				<h2 className={styles.formHeading}>CREDIT CARD</h2>
 				<p>Pay with your credit card.</p>
 
-				<h2>Card Number *</h2>
-				<input className={styles.creditCardInput} placeholder='1234 1234 1234 1234' />
-				<h2>Expiry Date *</h2>
-				<input className={styles.creditCardInput} placeholder='MM &#47; YY' />
-				<h2>Card Code (CVC) *</h2>
-				<input className={styles.creditCardInput} placeholder='CVC' />
+				<h2 className={styles.h2form}>Card Number *</h2>
+				<input type='number' className={styles.creditCardField} placeholder='1234 1234 1234 1234' {...register('cardNumber')} />
+				{errors.cardNumber && <p className={styles.errorMessage}>{errors.cardNumber.message}</p>}
+
+				<h2 className={styles.h2form}>Expiry Date *</h2>
+				<input type='date' className={styles.creditCardField} placeholder='MM &#47; YY' {...register('expiryDate')} />
+				{errors.expiryDate && <p className={styles.errorMessage}>{errors.expiryDate.message}</p>}
+
+				<h2 className={styles.h2form}>Card Code (CVC) *</h2>
+				<input type='number' className={styles.creditCardField} placeholder='CVC' {...register('cardCode')} />
+				{errors.cardCode && <p className={styles.errorMessage}>{errors.cardCode.message}</p>}
+
 				<p style={{ marginTop: '5rem' }}>
 					Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in
 					our privacy policy.
 				</p>
-				<Button variant='large-dark' onClick={() => router.push('/')}>
+				{/* <Button variant='large-dark' onClick={() => router.push('/')}> */}
+				<button type='submit' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={() => {}}>
 					PLACE ORDER
-				</Button>
+				</button>
+
+				{/* </Button> */}
 			</div>
 		</form>
 	)
