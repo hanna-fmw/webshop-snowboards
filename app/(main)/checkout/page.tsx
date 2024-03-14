@@ -3,7 +3,6 @@ import React from 'react'
 import styles from './checkout.module.css'
 import { useState } from 'react'
 import AddressFormFields from '@/app/components/molecules/addressFormFields/AddressFormFields'
-
 import Button from '@/app/components/atoms/button/Button'
 import { ImTruck } from 'react-icons/im'
 import { useCart } from '@/app/context/cartContext'

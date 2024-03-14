@@ -84,6 +84,9 @@
 
 .cartFooter {
 	padding-top: 4rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
 }
 
 .divider {
@@ -112,7 +115,7 @@
 
 @media (min-width: 768px) {
 	.cartSidePanel {
-		max-width: 50%;
+		max-width: 30%;
 	}
 }
 
