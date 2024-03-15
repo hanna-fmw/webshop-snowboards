@@ -43,6 +43,7 @@ const Cart = ({ children }: CartProps) => {
 		isCartOpen,
 		setIsCartOpen,
 		selectedLength,
+		setIsAddedToCart,
 	}: any = useCart()
 	// const quantity = getItemQuantity(product)
 
@@ -86,6 +87,7 @@ const Cart = ({ children }: CartProps) => {
 	const startShopping = () => {
 		router.push('/shop')
 		closeCart()
+		setIsAddedToCart(false)
 	}
 
 	const goToCart = () => {

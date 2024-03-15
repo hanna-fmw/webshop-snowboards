@@ -41,7 +41,17 @@ const childrenVariants = {
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	// const [showIsAddedToCart, setShowIsAddedToCart] = useState<boolean>(false)
 
-	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart, selectLength, selectedLength } = useCart()
+	const {
+		closeCart,
+		increaseCartQuantity,
+		setIsAddedToCart,
+		isAddedToCart,
+		selectLength,
+		selectedLength,
+		setIsCartEmpty,
+		checkCartEmpty,
+		addedToCart,
+	} = useCart()
 	console.log(params)
 
 	const model = params.productModel
@@ -123,7 +133,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 				</section>
 
 				{products.map((product, i) => {
-					console.log('product är:', product)
+					// console.log('product är:', product)
 
 					return (
 						<div key={i}>
@@ -170,7 +180,8 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												onClick={() => {
 													if (selectedLength !== null) {
 														increaseCartQuantity(product)
-														setIsAddedToCart(true)
+														addedToCart()
+														checkCartEmpty()
 													} else {
 														alert('Please pick a length option')
 													}

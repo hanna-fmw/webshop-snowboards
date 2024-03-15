@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState } from 'react'
 import { useLocalStorage } from '@/app/hooks/useLocalStorage'
+import { useEffect } from 'react'
 
 //OBS! Det nedan: i funktionerna så har jag varit tvungen lägga till product där
 //det bara var id i tutorialen.
@@ -24,12 +25,15 @@ type CartContextProps = {
 	decreaseCartQuantity: (product: Product) => void
 	removeFromCart: (product: Product) => void
 
+	setSelectedLength: (selectedOption: string | null) => void
 	selectLength: (selectedOption: string) => void
 	selectedLength: null | string
 
 	checkCartEmpty: () => void
 	isCartEmpty: boolean
+	setIsCartEmpty: React.Dispatch<React.SetStateAction<boolean>>
 
+	addedToCart: () => void
 	isAddedToCart: boolean
 	setIsAddedToCart: React.Dispatch<React.SetStateAction<boolean>>
 
@@ -75,9 +79,11 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		setSelectedLength(selectedOption)
 	}
 
-	const displayAddedToCartMessage = () => {
+	const addedToCart = () => {
 		setIsAddedToCart(true)
 	}
+
+	console.log('is added to cart', isAddedToCart)
 
 	const openCart = () => setIsCartOpen(true)
 	const closeCart = () => setIsCartOpen(false)
@@ -87,12 +93,25 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	//for our cart items (and after that we just have to create the
 	//functions to increment, decrement etc. those values):
 	// const [cartItems, setCartItems] = useState<CartItem[]>([])
-	// const [cartItems, setCartItems] = useState<CartItem[]>([])
 	const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', [])
+	console.log('cartItems', cartItems)
 
-	const [isCartEmpty, setIsCartEmpty] = useState<boolean>(true)
+	//Get initial value for isCartEmpty, i.e. cartItems.length true/false, from localStorage
+	// const [isCartEmpty, setIsCartEmpty] = useState<boolean>(cartItems.length !== 0 ? false : true)
+	const [isCartEmpty, setIsCartEmpty] = useLocalStorage<boolean>('isCartEmpty', cartItems.length === 0)
+	useEffect(() => {
+		setIsCartEmpty(cartItems.length === 0)
+	}, [cartItems])
+	console.log('isCartEmpty', isCartEmpty)
 
-	const checkCartEmpty = () => cartItems.length !== 0 && setIsCartEmpty(true)
+	// const checkCartEmpty = () => cartItems.length !== 0 && setIsCartEmpty(true)
+	const checkCartEmpty = () => {
+		cartItems.length !== 0 ? setIsCartEmpty(false) : setIsCartEmpty(true)
+	}
+
+	// const checkCartEmpty = () => {
+	// 	setIsCartEmpty(cartItems.length === 0)
+	// }
 
 	// 	//We want to take our current cart items and then find the item with
 	// 	//the current id (ie find the item where the current id is equal to our id). And if we
@@ -142,7 +161,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		//So this is the full code block for all this:
 		console.log(product)
 		setCartItems((currItems) => {
-			console.log(currItems)
+			console.log('current items', currItems)
 			//1) The item is not already in the cart > add new item to array
 			if (currItems.find((item) => item.product?.id === product?.id) == null) {
 				return [...currItems, { product, quantity: 1 }]
@@ -182,6 +201,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				})
 			}
 		})
+		checkCartEmpty()
 	}
 
 	const removeFromCart = (product: Product) => {
@@ -209,8 +229,11 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				cartQuantity,
 				isAddedToCart,
 				setIsAddedToCart,
+				addedToCart,
 				selectLength,
 				selectedLength,
+				setSelectedLength,
+				setIsCartEmpty,
 			}}>
 			{children}
 		</CartContext.Provider>
