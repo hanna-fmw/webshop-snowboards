@@ -1,8 +1,6 @@
 .apparelContainer {
-	/* position: relative; */
 	overflow: hidden;
 	margin-bottom: 1.5rem;
-	z-index: -1;
 	position: relative;
 }
 

@@ -83,9 +83,11 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		setIsAddedToCart(true)
 	}
 
-	console.log('is added to cart', isAddedToCart)
+	const openCart = () => {
+		setIsCartOpen(true)
+		setIsAddedToCart(false)
+	}
 
-	const openCart = () => setIsCartOpen(true)
 	const closeCart = () => setIsCartOpen(false)
 
 	//We need a place to store our item information, we do this in an useState (cartItems state) (which
@@ -102,7 +104,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	useEffect(() => {
 		setIsCartEmpty(cartItems.length === 0)
 	}, [cartItems])
-	console.log('isCartEmpty', isCartEmpty)
 
 	// const checkCartEmpty = () => cartItems.length !== 0 && setIsCartEmpty(true)
 	const checkCartEmpty = () => {

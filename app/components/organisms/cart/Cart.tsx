@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import formatCurrency from '@/app/utilities/currencyFormatter'
 import Button from '../../atoms/button/Button'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
 
@@ -112,124 +112,128 @@ const Cart = ({ children }: CartProps) => {
 	}
 
 	return (
-		<motion.main
-			ref={ref}
-			className={styles.cartSidePanel}
-			variants={sidePanelVariants}
-			initial='hidden'
-			// animate={isCartOpen ? 'visible' : 'hidden'}
-			exit='exit'
-			animate={isCartOpen ? 'visible' : 'exit'}>
-			<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
+		<AnimatePresence>
+			<motion.main
+				key='sidePanel'
+				ref={ref}
+				className={styles.cartSidePanel}
+				variants={sidePanelVariants}
+				initial='hidden'
+				// animate={isCartOpen ? 'visible' : 'hidden'}
+				exit='exit'
+				animate={isCartOpen ? 'visible' : 'exit'}>
+				<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
 
-			{cartItems.length !== 0 ? (
-				<section className={styles.cartContainer}>
-					<section>
-						<div>YOUR CART: {cartItems.length} ITEM(S)</div>
+				{cartItems.length !== 0 ? (
+					<section className={styles.cartContainer}>
+						<section>
+							<div>YOUR CART: {cartItems.length} ITEM(S)</div>
 
-						{cartItems.map((item: CartItem, i: number) => {
-							// console.log('These are the cartItems', cartItems)
-							// console.log('This is item', item)
-							const backToProductDetail = () => {
-								router.push(`/shop/${item.product.model}`)
-								closeCart()
-							}
+							{cartItems.map((item: CartItem, i: number) => {
+								// console.log('These are the cartItems', cartItems)
+								// console.log('This is item', item)
+								const backToProductDetail = () => {
+									router.push(`/shop/${item.product.model}`)
+									closeCart()
+								}
 
-							return (
-								<section key={i} className={styles.productContainer}>
-									<div className={styles.productInfo}>
-										<div className={styles.imgContainer}>
-											<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
-											{/* <Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} /> */}
-										</div>
-										<div className={styles.texBlockHorizontal}>
-											<div>{item.product?.name}</div>
-											<div className={styles.price}>
-												{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
+								return (
+									<section key={i} className={styles.productContainer}>
+										<div className={styles.productInfo}>
+											<div className={styles.imgContainer}>
+												<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
+												{/* <Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} /> */}
 											</div>
-											{/* <div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div> */}
-											<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
-											<div className={styles.btnContainer}>
-												<div className={styles.itemCountContainer}>
-													<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-														-
-													</button>
-													<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-													<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
-														+
-													</button>
+											<div className={styles.texBlockHorizontal}>
+												<div>{item.product?.name}</div>
+												<div className={styles.price}>
+													{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
 												</div>
+												{/* <div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div> */}
+												<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
+												<div className={styles.btnContainer}>
+													<div className={styles.itemCountContainer}>
+														<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+															-
+														</button>
+														<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
+														<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+															+
+														</button>
+													</div>
 
-												<div onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
-													REMOVE ITEM
+													<div onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
+														REMOVE ITEM
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div>
-										<span>x{item.quantity} =</span>{' '}
-										{/* <span className={styles.totalItemsPrice}>{formatCurrency(item.product?.price * item.quantity, currency)}</span> */}
-										<span className={styles.totalItemsPrice}>
-											{formatCurrency(
-												currency === 'SEK' ? item.product?.price * item.quantity : item.product?.price * conversionRateEur! * item.quantity,
-												currency
-											)}
-										</span>
-									</div>
+										<div>
+											<span>x{item.quantity} =</span>{' '}
+											{/* <span className={styles.totalItemsPrice}>{formatCurrency(item.product?.price * item.quantity, currency)}</span> */}
+											<span className={styles.totalItemsPrice}>
+												{formatCurrency(
+													currency === 'SEK' ? item.product?.price * item.quantity : item.product?.price * conversionRateEur! * item.quantity,
+													currency
+												)}
+											</span>
+										</div>
 
-									{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
-									{/* <ProductCard {...item}/> */}
-								</section>
-							)
-						})}
-					</section>
+										{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
+										{/* <ProductCard {...item}/> */}
+									</section>
+								)
+							})}
+						</section>
 
-					<footer className={styles.cartFooter}>
-						<div className={styles.divider}></div>
-						<div className={styles.subtotal}>
-							<div>SUBTOTAL</div>
-							<div className={styles.price}>
-								{formatCurrency(
-									cartItems.reduce((total: number, item: any) => {
-										const currItem = cartItems.find((i: any) => i.product?.id === item.product?.id)
-										console.log(currItem)
-										return (
-											total + (currency === 'SEK' ? currItem?.product?.price : currItem?.product?.price * conversionRateEur! || 0) * currItem.quantity
-										)
-									}, 0),
-									currency
-								)}
+						<footer className={styles.cartFooter}>
+							<div className={styles.divider}></div>
+							<div className={styles.subtotal}>
+								<div>SUBTOTAL</div>
+								<div className={styles.price}>
+									{formatCurrency(
+										cartItems.reduce((total: number, item: any) => {
+											const currItem = cartItems.find((i: any) => i.product?.id === item.product?.id)
+											console.log(currItem)
+											return (
+												total +
+												(currency === 'SEK' ? currItem?.product?.price : currItem?.product?.price * conversionRateEur! || 0) * currItem.quantity
+											)
+										}, 0),
+										currency
+									)}
+								</div>
 							</div>
-						</div>
-						<div>SHIPPING, TAXES, AND DISCOUNTS CALCULATED AT CHECKOUT.</div>
-						<div className={styles.btnCheckoutContainer} style={{ maxWidth: '100%' }}>
-							<Button variant='default' onClick={goToCart}>
-								VIEW MY CART
-							</Button>
-							<Button variant='default-dark' onClick={goToCheckout}>
-								GO TO CHECKOUT
-							</Button>
-						</div>
-						<div className={styles.creditCardIcons}>
-							<Image src={'/creditcardIcons/visa.svg'} width={25} height={25} alt='Visa icon' />
-							<Image src={'/creditcardIcons/amex.svg'} width={25} height={25} alt='Amex icon' />
-							<Image src={'/creditcardIcons/mastercard.svg'} width={25} height={25} alt='Mastercard icon' />
-						</div>
-					</footer>
+							<div>SHIPPING, TAXES, AND DISCOUNTS CALCULATED AT CHECKOUT.</div>
+							<div className={styles.btnCheckoutContainer} style={{ maxWidth: '100%' }}>
+								<Button variant='default' onClick={goToCart}>
+									VIEW MY CART
+								</Button>
+								<Button variant='default-dark' onClick={goToCheckout}>
+									GO TO CHECKOUT
+								</Button>
+							</div>
+							<div className={styles.creditCardIcons}>
+								<Image src={'/creditcardIcons/visa.svg'} width={25} height={25} alt='Visa icon' />
+								<Image src={'/creditcardIcons/amex.svg'} width={25} height={25} alt='Amex icon' />
+								<Image src={'/creditcardIcons/mastercard.svg'} width={25} height={25} alt='Mastercard icon' />
+							</div>
+						</footer>
 
-					{/* <div>Total Items: {cartItems.length}</div> */}
-				</section>
-			) : (
-				<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-					<span style={{ marginBottom: '1rem' }}>YOUR CART IS CURRENTLY EMPTY!</span>
-					<div style={{ width: '50%' }}>
-						<Button variant='default-dark' onClick={startShopping}>
-							START SHOPPING
-						</Button>
+						{/* <div>Total Items: {cartItems.length}</div> */}
+					</section>
+				) : (
+					<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+						<span style={{ marginBottom: '1rem' }}>YOUR CART IS CURRENTLY EMPTY!</span>
+						<div style={{ width: '50%' }}>
+							<Button variant='default-dark' onClick={startShopping}>
+								START SHOPPING
+							</Button>
+						</div>
 					</div>
-				</div>
-			)}
-		</motion.main>
+				)}
+			</motion.main>
+		</AnimatePresence>
 	)
 }
 
