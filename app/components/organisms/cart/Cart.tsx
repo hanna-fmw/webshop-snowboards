@@ -86,18 +86,18 @@ const Cart = ({ children }: CartProps) => {
 
 	const startShopping = () => {
 		router.push('/shop')
-		closeCart()
+		isCartOpen && closeCart()
 		setIsAddedToCart(false)
 	}
 
 	const goToCart = () => {
 		router.push('/cart')
-		closeCart()
+		isCartOpen && closeCart()
 	}
 
 	const goToCheckout = () => {
 		router.push('/checkout')
-		closeCart()
+		isCartOpen && closeCart()
 	}
 
 	const sidePanelVariants = {
@@ -134,7 +134,7 @@ const Cart = ({ children }: CartProps) => {
 								// console.log('This is item', item)
 								const backToProductDetail = () => {
 									router.push(`/shop/${item.product.model}`)
-									closeCart()
+									isCartOpen && closeCart()
 								}
 
 								return (

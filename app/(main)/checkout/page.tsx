@@ -45,10 +45,10 @@ const Checkout = () => {
 	const { currency, conversionRateEur } = useCurrencyConversion()
 
 	const router = useRouter()
-	const startShopping = () => {
-		router.push('/shop')
-		closeCart()
-	}
+	// const startShopping = () => {
+	// 	router.push('/shop')
+	// 	closeCart()
+	// }
 
 	const orderFormSchema = z.object({
 		firstName: z.string().min(1, { message: 'Please enter first name' }),

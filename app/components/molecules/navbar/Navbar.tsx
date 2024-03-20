@@ -32,7 +32,7 @@ const Navbar = ({ children }: NavbarProps) => {
 	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = useCart()
 
 	const pathName = usePathname()
-	console.log(pathName)
+	// console.log(pathName)
 
 	return (
 		<main className={styles.navContainer}>
@@ -80,8 +80,8 @@ const Navbar = ({ children }: NavbarProps) => {
 							<li className={`${styles.li}`}>
 								<CurrencyDropdown />
 							</li>
-							<li style={{ display: 'flex' }} className={`${styles.li} ${styles.cartIconContainer}`} onClick={openCart}>
-								<Image src={cart} width={15} height={17} alt='Cart icon' />
+							<li style={{ display: 'flex' }} className={`${styles.li} ${styles.cartIconContainer}`}>
+								<Image src={cart} width={15} height={17} alt='Cart icon' onClick={openCart} />
 								{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
 								{isCartOpen && <Cart />}
 							</li>

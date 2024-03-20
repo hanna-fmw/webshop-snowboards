@@ -51,6 +51,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 		setIsCartEmpty,
 		checkCartEmpty,
 		addedToCart,
+		isCartOpen,
 	} = useCart()
 	console.log(params)
 
@@ -70,7 +71,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 	const goToCart = () => {
 		router.push('/cart')
-		closeCart()
+		isCartOpen && closeCart()
 		setIsAddedToCart(false)
 	}
 
@@ -178,7 +179,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											<Button
 												variant='large-dark'
 												onClick={() => {
-													if (selectedLength !== null) {
+													if (selectedLength !== null || product.lengthOptions === null) {
 														increaseCartQuantity(product)
 														addedToCart()
 														checkCartEmpty()

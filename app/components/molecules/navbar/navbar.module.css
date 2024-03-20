@@ -7,6 +7,7 @@
 	justify-content: space-between;
 	margin: 1.5rem auto;
 	max-width: 90vw;
+	z-index: -50;
 }
 
 .navItems {
@@ -38,7 +39,7 @@
 	cursor: pointer;
 }
 
-li.link {
+.li.link {
 	display: none;
 }
 
@@ -56,7 +57,7 @@ li.link {
 }
 
 @media (min-width: 768px) {
-	li.link {
+	.li.link {
 		display: block;
 	}
 

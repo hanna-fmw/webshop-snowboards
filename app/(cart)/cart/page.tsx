@@ -31,15 +31,14 @@ type CartItem = {
 }
 
 const CartPage = () => {
-	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, selectedLength, isCartEmpty }: any =
-		useCart()
+	const { closeCart, isCartOpen, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, selectedLength, isCartEmpty }: any = useCart()
 
 	const { currency, conversionRateEur } = useCurrencyConversion()
 
 	const router = useRouter()
 	const startShopping = () => {
 		router.push('/shop')
-		closeCart()
+		isCartOpen && closeCart()
 	}
 
 	return (
@@ -118,8 +117,8 @@ const CartPage = () => {
 								</div>
 								<div className={styles.productCard}>
 									{cartItems.map((item: CartItem, i: number) => {
-										console.log('detta är cartItems', cartItems)
-										console.log('detta är item', item)
+										// console.log('detta är cartItems', cartItems)
+										// console.log('detta är item', item)
 
 										return (
 											<>

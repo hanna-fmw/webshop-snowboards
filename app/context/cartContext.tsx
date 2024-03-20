@@ -70,7 +70,7 @@ const CartContext = createContext({} as CartContextProps)
 
 export const CartProvider = ({ children }: CartProviderProps) => {
 	const [isCartOpen, setIsCartOpen] = useState(false)
-
+	console.log('car öppen/ej', isCartOpen)
 	const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
 
 	const [selectedLength, setSelectedLength] = useState<null | string>(null)
@@ -88,7 +88,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		setIsAddedToCart(false)
 	}
 
-	const closeCart = () => setIsCartOpen(false)
+	const closeCart = () => {
+		setIsCartOpen(false)
+		console.log('adsöhgarodöhagoö', isCartOpen)
+	}
 
 	//We need a place to store our item information, we do this in an useState (cartItems state) (which
 	//we will later move to a custom hook for local state storage). So this is our storage place
