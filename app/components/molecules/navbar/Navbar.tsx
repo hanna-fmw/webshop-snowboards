@@ -12,24 +12,21 @@ import Modal from '../modal/Modal'
 import Cart from '../../organisms/cart/Cart'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { CartContextProps } from '@/app/context/cartContext'
 
 type NavbarProps = {
 	children?: React.ReactNode
 }
 
-type ModalContextProps = {
-	isModalOpen: boolean
-	openModal: () => void
-}
-
-type CartContextProps = {
-	isModalOpen: boolean
-	openModal: () => void
-}
-
 const Navbar = ({ children }: NavbarProps) => {
-	const { isModalOpen, openModal }: ModalContextProps = useModal()
-	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = useCart()
+	// const { isModalOpen, openModal }: ModalContextProps = useModal()
+	const modalContext = useModal()
+	const { isModalOpen, openModal } = modalContext || {}
+
+	// const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = useCart()
+	//För modalContext ovan behöver vi inte : ModalContextProps eftersom TS kan infer typen för både isModalOpen och openModal
+	const cartContext = useCart()!
+	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = cartContext || {}
 
 	const pathName = usePathname()
 	// console.log(pathName)

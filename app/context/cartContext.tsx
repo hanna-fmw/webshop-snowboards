@@ -14,7 +14,7 @@ import { useEffect } from 'react'
 //4) remove (also takes in an id and returns nothing (void)
 //OBS! Vi behöver ingen addItem eftersom det är precis samma sak som att köra vår increase-funktion
 
-type CartContextProps = {
+export type CartContextProps = {
 	isCartOpen: boolean
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>
 	openCart: () => void
@@ -65,12 +65,13 @@ type CartItem = {
 	quantity: number
 }
 
-// const CartContext = createContext<CartContextProps | undefined>(undefined)
-const CartContext = createContext({} as CartContextProps)
+const CartContext = createContext<CartContextProps | undefined>(undefined)
+
+// const CartContext = createContext({} as CartContextProps)
 
 export const CartProvider = ({ children }: CartProviderProps) => {
 	const [isCartOpen, setIsCartOpen] = useState(false)
-	console.log('car öppen/ej', isCartOpen)
+
 	const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
 
 	const [selectedLength, setSelectedLength] = useState<null | string>(null)
@@ -99,7 +100,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	//functions to increment, decrement etc. those values):
 	// const [cartItems, setCartItems] = useState<CartItem[]>([])
 	const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', [])
-	console.log('cartItems', cartItems)
+	// console.log('cartItems', cartItems)
 
 	//Get initial value for isCartEmpty, i.e. cartItems.length true/false, from localStorage
 	// const [isCartEmpty, setIsCartEmpty] = useState<boolean>(cartItems.length !== 0 ? false : true)
