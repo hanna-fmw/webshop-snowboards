@@ -458,7 +458,7 @@
 		"lengthForModel": ["LABB L52/L57/L62", "TICA T49/T55/T59/T64"],
 		"profile": "",
 		"price": "2199",
-		"lengthOptions": null,
+		"lengthOptions": ["L52", "L57", "L62", "T49", "T55", "T59", "T64"],
 		"descriptionHeading": "SKINS:",
 		"descriptionText": "We teamed up with Kohla to provide the best possible climbing skins for your splitboard. These skins are designed to perfectly fit to each our splitboards through high precision laser cutting, giving you the confidence and performance you need in any terrain.",
 		"districtHeading": "",
