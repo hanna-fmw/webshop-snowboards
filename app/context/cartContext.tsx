@@ -74,7 +74,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
 	const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
 
-	const [selectedLength, setSelectedLength] = useState<null | string>(null)
+	// const [selectedLength, setSelectedLength] = useState<null | string>(null)
+	const [selectedLength, setSelectedLength] = useLocalStorage<string>('chosenLength', '')
 
 	const selectLength = (selectedOption: string) => {
 		setSelectedLength(selectedOption)

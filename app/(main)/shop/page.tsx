@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
 import formatCurrency from '@/app/utilities/currencyFormatter'
+import { useEffect } from 'react'
 
 //Downshift
 import { useSelect } from 'downshift'
@@ -51,27 +52,28 @@ const Shop = () => {
 
 	const router = useRouter()
 
-	const [sortView, setSortView] = useState('Default sorting')
-	//DROPDOWN MENU/LIST OPTIONS (samma som ovan fast med switch)
-	//Function called when user clicks on an option on the dropdown menu. Sets
-	//the state (sort view) to the corresponding clicked sorting option
-	const selectOption = (option) => {
-		switch (option) {
-			case 'Default sorting':
-				setSortView('Default sorting')
-				break
-			case 'Sort by price: low to high':
-				setSortView('Sort by price: low to high')
-				break
-			case 'Sort by price: high to low':
-				setSortView('Sort by price: high to low')
-				break
-			default:
-				setSortView('Default sorting')
-		}
-	}
+	// const [sortView, setSortView] = useState('Default sorting')
+	// //DROPDOWN MENU/LIST OPTIONS (samma som ovan fast med switch)
+	// //Function called when user clicks on an option on the dropdown menu. Sets
+	// //the state (sort view) to the corresponding clicked sorting option
+	// const selectOption = (option) => {
+	// 	console.log(sortView)
+	// 	switch (option) {
+	// 		case 'Default sorting':
+	// 			setSortView('Default sorting')
+	// 			break
+	// 		case 'Sort by price: low to high':
+	// 			setSortView('Sort by price: low to high')
+	// 			break
+	// 		case 'Sort by price: high to low':
+	// 			setSortView('Sort by price: high to low')
+	// 			break
+	// 		default:
+	// 			break
+	// 	}
+	// }
 
-	const sortProducts = (arr) => {
+	const sortProducts = (arr, sortView) => {
 		return arr.sort((a, b) => {
 			switch (sortView) {
 				case 'Default sorting':
@@ -83,10 +85,17 @@ const Shop = () => {
 				case 'Sort by price: high to low':
 					return b.price - a.price
 				default:
-					return 0
+					break
 			}
 		})
 	}
+
+	//const sortedProducts
+
+	// Log sortView when it changes - to check if the sort view is updated correctly
+	// useEffect(() => {
+	// 	console.log('current sort view', sortView)
+	// }, [sortView])
 
 	return (
 		<main className={styles.main}>
@@ -94,7 +103,7 @@ const Shop = () => {
 				<div className={styles.shopHeader}>
 					<ul className={styles.links}>
 						<li>
-							<Link href='#' className={styles.link}>
+							<Link href='/shop' className={styles.link}>
 								[b].ALL
 							</Link>
 						</li>
@@ -148,7 +157,8 @@ const Shop = () => {
 												index,
 											})}>
 											{/* Call selectOption function and pass in item, which is the string/name of the option*/}
-											<span onClick={() => selectOption(item)}>{item}</span>
+											{/* <span onClick={() => selectOption(item)}>{item}</span> */}
+											<span>{item}</span>
 										</li>
 									))}
 							</ul>
@@ -160,7 +170,7 @@ const Shop = () => {
 					//on the current sort state (sortState-setSortState), which is set when the user clicks on an
 					option on the dropdown menu. So sortProducts(products) will apply the logic in the sortProducts function, which
 					takes in an array, in this case products */}
-					{sortProducts(products).map((product, i) => {
+					{sortProducts(products, selectedItem).map((product, i) => {
 						return (
 							<motion.section key={i} variants={childrenVariants} className={styles.productCard}>
 								<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />

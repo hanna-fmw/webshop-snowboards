@@ -49,7 +49,7 @@ const CartPage = () => {
 						<section className={styles.onlySmallScreen}>
 							<h2 style={{ paddingBlock: '1rem' }}>CART</h2>
 							{cartItems.map((item: CartItem, i: number) => {
-								console.log('this is item', item)
+								// console.log('this is item', item)
 								return (
 									<>
 										<div key={i} style={{ marginBottom: '5rem' }}>
@@ -203,7 +203,7 @@ const CartPage = () => {
 										{formatCurrency(
 											cartItems.reduce((total: number, item: any) => {
 												const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
-												console.log(currItem)
+												// console.log(currItem)
 												return (
 													total +
 													(currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
@@ -230,7 +230,7 @@ const CartPage = () => {
 										{formatCurrency(
 											cartItems.reduce((total: number, item: any) => {
 												const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
-												console.log(currItem)
+												// console.log(currItem)
 												return (
 													total +
 													(currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
@@ -238,7 +238,7 @@ const CartPage = () => {
 											}, 0),
 											currency
 										)}{' '}
-										+ CALCULATED SHIPPING COST
+										+ SHIPPING COST (includes xxx <span>{currency === 'SEK' ? 'SEK' : 'EUR'}</span> Tax)
 									</div>
 								</div>
 

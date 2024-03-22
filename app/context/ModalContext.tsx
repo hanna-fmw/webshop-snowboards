@@ -17,7 +17,6 @@ const ModalContext = createContext<ModalContextProps | undefined>(undefined)
 
 export const ModalProvider = ({ children }: ModalProviderProps) => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	console.log('modalen är öppen', isModalOpen)
 
 	const openModal = () => {
 		// document.body.classList.add('modalOpen')

@@ -252,7 +252,7 @@ const Checkout = () => {
 							}, 0),
 							currency
 						)}{' '}
-						+ CALCULATED SHIPPING COST (includes xxx KR Tax)
+						+ SHIPPING COST (includes xxx  Tax)
 					</div>
 				</div>
 				<h2 className={styles.formHeading}>CREDIT CARD</h2>
