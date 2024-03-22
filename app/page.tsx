@@ -48,7 +48,14 @@ export default function Home() {
 												// currency='SEK'
 											/>
 											<div className={styles.price}>
-												<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
+												{/* By adding (conversionRateEur || 0), you're providing a default value of 0 in case conversionRateEur is undefined. This ensures that the multiplication operation always has a valid operand. */}
+												{/* You can also explicitly cast product.price to a number to ensure TypeScript understands that it's safe to perform arithmetic operations on it. */}
+												<span>
+													{formatCurrency(
+														(currency === 'SEK' ? Number(product.price) : Number(product.price) || 0) * (conversionRateEur || 0),
+														currency
+													)}
+												</span>
 											</div>
 										</div>
 									</ProductCard>

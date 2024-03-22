@@ -34,6 +34,19 @@ const childrenVariants = {
 	animate: { opacity: 1 },
 }
 
+type Product = {
+	name: string
+	designer: string
+	boardType: string
+	length: string
+	detail: string
+	profile: string
+	price: number
+	productCategory: string[]
+	image: string
+	model: string
+}
+
 //popularity etc. to be implemented when available as option
 // const items = ['Default sorting', 'Sort by popularity', 'Sort by latest', 'Sort by price: low to high', 'Sort by price: high to low']
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
@@ -76,7 +89,7 @@ const Shop = () => {
 	// 	}
 	// }
 
-	const sortProducts = (arr, sortView) => {
+	const sortProducts = (arr: Product[], sortView: string) => {
 		return arr.sort((a, b) => {
 			switch (sortView) {
 				case 'Default sorting':
@@ -88,7 +101,9 @@ const Shop = () => {
 				case 'Sort by price: high to low':
 					return b.price - a.price
 				default:
-					break
+					//Fick TS-fel när jag bara hade return break. Förklaring: Provide a default return value in case
+					//sortView doesn't match any case - With this change, the function will always return a number
+					return 0
 			}
 		})
 	}
@@ -149,8 +164,8 @@ const Shop = () => {
 										<li
 											className={styles.menuItem}
 											style={{
-												backgroundColor: highlightedIndex === index ? '#232323' : null,
-												color: highlightedIndex === index ? '#fff' : null,
+												backgroundColor: highlightedIndex === index ? '#232323' : '',
+												color: highlightedIndex === index ? '#fff' : '',
 											}}
 											key={`${item}${index}`}
 											{...getItemProps({

@@ -39,8 +39,7 @@ const Checkout = () => {
 	const [isOpenCouponCodeField, setIsOpenCouponCodeField] = useState(false)
 	const [isChecked, setIsChecked] = useState(false)
 
-	const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, selectedLength, isCartEmpty }: any =
-		useCart()
+	const { cartItems, selectedLength }: any = useCart()
 
 	const { currency, conversionRateEur } = useCurrencyConversion()
 
@@ -176,7 +175,7 @@ const Checkout = () => {
 
 				<div className={styles.textarea}>
 					<h2 className={styles.h2form}>Order notes (optional)</h2>
-					<textarea maxLength='50' className={styles.notesField} placeholder='Notes about your order, e.g. special notes for delivery.' />
+					<textarea maxLength={50} className={styles.notesField} placeholder='Notes about your order, e.g. special notes for delivery.' />
 				</div>
 			</div>
 			<div className={styles.paymentFields}>
@@ -252,7 +251,7 @@ const Checkout = () => {
 							}, 0),
 							currency
 						)}{' '}
-						+ SHIPPING COST (includes xxx  Tax)
+						+ SHIPPING COST (includes xxx Tax)
 					</div>
 				</div>
 				<h2 className={styles.formHeading}>CREDIT CARD</h2>

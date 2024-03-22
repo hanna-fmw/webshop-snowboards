@@ -13,9 +13,9 @@ import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { motion } from 'framer-motion'
 import { useCart } from '@/app/context/cartContext'
-import Cart from '@/app/components/organisms/cart/Cart'
 import formatCurrency from '@/app/utilities/currencyFormatter'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
+import { CartContextProps } from '@/app/context/cartContext'
 
 type ProductDetailsProps = {
 	params: { productModel: string }
@@ -40,20 +40,11 @@ const childrenVariants = {
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	// const [showIsAddedToCart, setShowIsAddedToCart] = useState<boolean>(false)
+	const cartContext = useCart() as CartContextProps
 
-	const {
-		closeCart,
-		increaseCartQuantity,
-		setIsAddedToCart,
-		isAddedToCart,
-		selectLength,
-		selectedLength,
-		setIsCartEmpty,
-		checkCartEmpty,
-		addedToCart,
-		isCartOpen,
-	} = useCart()
-	console.log(params)
+	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart, selectLength, selectedLength, checkCartEmpty, addedToCart, isCartOpen } =
+		cartContext
+	//console.log(params)
 
 	const model = params.productModel
 
@@ -153,7 +144,14 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											/>
 											{/* <TextBlock {...product} /> */}
 											<div className={styles.price}>
-												<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
+												{/* By adding (conversionRateEur || 0), you're providing a default value of 0 in case conversionRateEur is undefined. This ensures that the multiplication operation always has a valid operand. */}
+												{/* You can also explicitly cast product.price to a number to ensure TypeScript understands that it's safe to perform arithmetic operations on it. */}
+												<span>
+													{formatCurrency(
+														(currency === 'SEK' ? Number(product.price) : Number(product.price) || 0) * (conversionRateEur || 0),
+														currency
+													)}
+												</span>
 											</div>
 										</div>
 

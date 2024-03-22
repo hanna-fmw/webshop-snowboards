@@ -4,7 +4,6 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { RiArrowUpSLine } from 'react-icons/ri'
-import ProductGrid from '@/app/components/atoms/productGrid/ProductGrid'
 import ProductCard from '@/app/components/molecules/productCard/ProductCard'
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
 import Figure from '@/app/components/atoms/figure/Figure'
@@ -35,6 +34,19 @@ const childrenVariants = {
 
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
 
+type Product = {
+	name: string
+	designer: string
+	boardType: string
+	length: string
+	detail: string
+	profile: string
+	price: number
+	productCategory: string[]
+	image: string
+	model: string
+}
+
 const Crafting = () => {
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
 
@@ -42,8 +54,8 @@ const Crafting = () => {
 
 	const router = useRouter()
 
-	const sortProducts = (arr, sortView) => {
-		return arr.sort((a, b) => {
+	const sortProducts = (arr: Product[], sortView: string) => {
+		return arr.sort((a: Product, b: Product) => {
 			switch (sortView) {
 				case 'Default sorting':
 					return a.name.localeCompare(b.name)
@@ -54,7 +66,9 @@ const Crafting = () => {
 				case 'Sort by price: high to low':
 					return b.price - a.price
 				default:
-					break
+					//Fick TS-fel när jag bara hade return break. Förklaring: Provide a default return value in case
+					//sortView doesn't match any case - With this change, the function will always return a number
+					return 0
 			}
 		})
 	}
@@ -114,8 +128,8 @@ const Crafting = () => {
 										<li
 											className={styles.menuItem}
 											style={{
-												backgroundColor: highlightedIndex === index ? '#232323' : null,
-												color: highlightedIndex === index ? '#fff' : null,
+												backgroundColor: highlightedIndex === index ? '#232323' : '',
+												color: highlightedIndex === index ? '#fff' : '',
 											}}
 											key={`${item}${index}`}
 											{...getItemProps({
@@ -135,6 +149,7 @@ const Crafting = () => {
 
 				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
 					{sortProducts(products, selectedItem).map((product, i) => {
+						console.log('these are products', products)
 						const isCategory = product?.productCategory.includes(category)
 
 						return (

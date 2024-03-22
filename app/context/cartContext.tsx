@@ -25,7 +25,8 @@ export type CartContextProps = {
 	decreaseCartQuantity: (product: Product) => void
 	removeFromCart: (product: Product) => void
 
-	setSelectedLength: (selectedOption: string | null) => void
+	setSelectedLength: React.Dispatch<React.SetStateAction<string>>
+
 	selectLength: (selectedOption: string) => void
 	selectedLength: null | string
 
@@ -106,6 +107,17 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	//Get initial value for isCartEmpty, i.e. cartItems.length true/false, from localStorage
 	// const [isCartEmpty, setIsCartEmpty] = useState<boolean>(cartItems.length !== 0 ? false : true)
 	const [isCartEmpty, setIsCartEmpty] = useLocalStorage<boolean>('isCartEmpty', cartItems.length === 0)
+
+	// useEffect(() => {
+	// 	if (cartItems.length === 0) {
+	// 		setIsCartEmpty(true)
+	// 	}
+	// 	else {
+	// 		setIsCartEmpty(false)
+	// 	}
+	// }, [cartItems])
+
+	//Här kortare variant av kodblocket ovan:
 	useEffect(() => {
 		setIsCartEmpty(cartItems.length === 0)
 	}, [cartItems])

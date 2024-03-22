@@ -117,8 +117,8 @@ const Shapes = () => {
 										<li
 											className={styles.menuItem}
 											style={{
-												backgroundColor: highlightedIndex === index ? '#232323' : null,
-												color: highlightedIndex === index ? '#fff' : null,
+												backgroundColor: highlightedIndex === index ? '#232323' : '',
+												color: highlightedIndex === index ? '#fff' : '',
 											}}
 											key={`${item}${index}`}
 											{...getItemProps({

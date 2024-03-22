@@ -13,7 +13,7 @@ type TextBlockProps = {
 	profile?: string
 	price?: number
 	// currency?: 'SEK' | 'EUR'
-	formattedPrice?: number
+	// formattedPrice?: number
 	designer?: string
 	boardType?: string
 	lengthForModel?: string[]

@@ -5,7 +5,7 @@ import { useLocalStorage } from '@/app/hooks/useLocalStorage'
 type CurrencyContextProps = {
 	priceInEuro: number | undefined
 	getCurrency: () => Promise<void>
-	conversionRateEur: number | undefined
+	conversionRateEur: number 
 	setCurrency: (currency: 'SEK' | 'EUR') => void
 	currency: 'SEK' | 'EUR'
 }

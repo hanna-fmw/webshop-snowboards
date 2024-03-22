@@ -15,7 +15,7 @@ function CurrencyDropdown() {
 		onSelectedItemChange: () => getCurrency(),
 	})
 
-	const { getCurrency, priceInEuro, conversionRateEur, setCurrency, currency } = useCurrencyConversion()
+	const { getCurrency, setCurrency } = useCurrencyConversion()
 
 	return (
 		<div className={styles.dropdownContainer}>
@@ -42,8 +42,8 @@ function CurrencyDropdown() {
 								<li
 									className={styles.menuItem}
 									style={{
-										backgroundColor: highlightedIndex === index ? '#232323' : null,
-										color: highlightedIndex === index ? '#fff' : null,
+										backgroundColor: highlightedIndex === index ? '#232323' : '',
+										color: highlightedIndex === index ? '#fff' : '',
 									}}
 									key={`${item}${index}`}
 									{...getItemProps({
