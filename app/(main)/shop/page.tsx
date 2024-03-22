@@ -13,11 +13,9 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
 import formatCurrency from '@/app/utilities/currencyFormatter'
-import { useEffect } from 'react'
 
 //Downshift
 import { useSelect } from 'downshift'
-import CurrencyDropdown from '@/app/components/atoms/currencyDropdown/CurrencyDropdown'
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -39,7 +37,12 @@ const childrenVariants = {
 //popularity etc. to be implemented when available as option
 // const items = ['Default sorting', 'Sort by popularity', 'Sort by latest', 'Sort by price: low to high', 'Sort by price: high to low']
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
-
+//Angående downshift - alla get-funktioner nedan som vi hämtar från useSelect (ie från downshift) ger oss alla
+//lägen och ARIA osv för respektive element, t.ex. för ToggleButton, för Menu, för Item osv., dvs. för
+//varje element som ingår i vår/en dropdown. Vi ska aldrig ens behöva lägga till en onClick eller liknadne,
+//allt är inbyggt. Själva selectedItem (det valda alternativet på vår dropdown) kan vi lägga till som parameter
+//i vår sortProducts-funktion som vi mappar över så här:
+//sortProducts(products, selectedItem).map((product, i) => { osv.
 const Shop = () => {
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
 
@@ -89,8 +92,6 @@ const Shop = () => {
 			}
 		})
 	}
-
-	//const sortedProducts
 
 	// Log sortView when it changes - to check if the sort view is updated correctly
 	// useEffect(() => {
@@ -156,6 +157,7 @@ const Shop = () => {
 												item,
 												index,
 											})}>
+											{/* Här hade jag först skrivit en onClick, men med downshift så behövs inte det, allt är inbyggt */}
 											{/* Call selectOption function and pass in item, which is the string/name of the option*/}
 											{/* <span onClick={() => selectOption(item)}>{item}</span> */}
 											<span>{item}</span>
@@ -178,6 +180,7 @@ const Shop = () => {
 									<TextBlock
 										name={product.name}
 										designer={product.designer}
+										boardType={product.boardType}
 										length={product.length}
 										detail={product.detail}
 										profile={product.profile}

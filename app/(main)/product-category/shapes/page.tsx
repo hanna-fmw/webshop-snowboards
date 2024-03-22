@@ -1,14 +1,11 @@
 'use client'
 import styles from './shapes.module.css'
 import Link from 'next/link'
-import React, { useState } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
-// import ProductGrid from '../components/atoms/productGrid/ProductGrid'
+import { RiArrowUpSLine } from 'react-icons/ri'
 import ProductGrid from '@/app/components/atoms/productGrid/ProductGrid'
-// import ProductCard from '../components/molecules/productCard/ProductCard'
 import ProductCard from '@/app/components/molecules/productCard/ProductCard'
 
-// import TextBlock from '../components/atoms/textBlock/TextBlock'
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
 // import Figure from '../components/atoms/figure/Figure'
 import Figure from '@/app/components/atoms/figure/Figure'
@@ -19,6 +16,8 @@ import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import formatCurrency from '@/app/utilities/currencyFormatter'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
+
+import { useSelect } from 'downshift'
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -37,35 +36,41 @@ const childrenVariants = {
 	animate: { opacity: 1 },
 }
 
+const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
+
 const Shapes = () => {
-	const [value, setValue] = useState('Default sorting')
-	const [isOpen, setIsOpen] = useState(false)
+	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
 
 	const { currency, conversionRateEur } = useCurrencyConversion()
 
 	const router = useRouter()
 
-	const handleMouseEnter = () => {
-		setIsOpen(true)
-	}
-
-	const handleMouseLeave = () => {
-		setIsOpen(false)
-	}
-
-	const handleItemClick = (newValue: string) => {
-		setValue(newValue)
-		setIsOpen(false)
+	const sortProducts = (arr, sortView) => {
+		return arr.sort((a, b) => {
+			switch (sortView) {
+				case 'Default sorting':
+					return a.name.localeCompare(b.name)
+				// case 'popularity':
+				// 	return b.stars - a.stars
+				case 'Sort by price: low to high':
+					return a.price - b.price
+				case 'Sort by price: high to low':
+					return b.price - a.price
+				default:
+					break
+			}
+		})
 	}
 
 	const category = 'shapes'
+
 	return (
 		<main className={styles.main}>
-			<section className={styles.container}>
-				<div className={styles.shopHeader}>
+			<section className={styles.shapesContainer}>
+				<div className={styles.shapesHeader}>
 					<ul className={styles.links}>
 						<li>
-							<Link href='#' className={styles.link}>
+							<Link href='/shop' className={styles.link}>
 								[b].ALL
 							</Link>
 						</li>
@@ -85,34 +90,54 @@ const Shapes = () => {
 							</Link>
 						</li>
 					</ul>
-					<div className={styles.dropdownContainer} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-						<button className={`${styles.button} currDropdown`}>
-							<div style={{ marginRight: '5px' }}>{value}</div>
-							<div>
-								<RiArrowDownSLine size={18} style={{ color: '#212121', transform: 'translateY(10%)' }} />
-							</div>
+
+					<div className={styles.dropdownContainer}>
+						<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
+							{selectedItem ?? 'Default sorting'}
+							{/* selectedMenuIsOpen is the renamed destructured isOpen property from useSelect (ie downshift) */}
+							{isOpen ? (
+								<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
+							) : (
+								<RiArrowDownSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
+							)}
 						</button>
-						{isOpen && (
-							<div className={styles.dropdown}>
-								<div className={styles.menuItems}>
-									{value === 'Default sorting' && (
-										<div className={`${styles.menuItem} ${styles.activeItem}`} onClick={() => handleItemClick('Sort by popularity')}>
-											Sort by popularity
-										</div>
-									)}
-									{value === 'Sort by popularity' && (
-										<div className={`${styles.menuItem} ${styles.activeItem}`} onClick={() => handleItemClick('Default sorting')}>
-											Default sorting
-										</div>
-									)}
-								</div>
-							</div>
-						)}
+						<div className={styles.dropdown}>
+							<ul
+								{...getMenuProps()}
+								// className={styles.menuItems}
+								style={{
+									listStyle: 'none',
+									width: '100%',
+									padding: '0',
+									margin: '0',
+								}}>
+								{/* Map over dropdown options */}
+								{isOpen &&
+									items.map((item, index) => (
+										<li
+											className={styles.menuItem}
+											style={{
+												backgroundColor: highlightedIndex === index ? '#232323' : null,
+												color: highlightedIndex === index ? '#fff' : null,
+											}}
+											key={`${item}${index}`}
+											{...getItemProps({
+												item,
+												index,
+											})}>
+											{/* Här hade jag först skrivit en onClick, men med downshift så behövs inte det, allt är inbyggt */}
+											{/* Call selectOption function and pass in item, which is the string/name of the option*/}
+											{/* <span onClick={() => selectOption(item)}>{item}</span> */}
+											<span>{item}</span>
+										</li>
+									))}
+							</ul>
+						</div>
 					</div>
 				</div>
 
 				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
-					{products.map((product, i) => {
+					{sortProducts(products, selectedItem).map((product, i) => {
 						const isCategory = product?.productCategory.includes(category.toLocaleLowerCase())
 
 						return (
@@ -125,6 +150,7 @@ const Shapes = () => {
 												<TextBlock
 													name={product.name}
 													designer={product.designer}
+													boardType={product.boardType}
 													length={product.length}
 													detail={product.detail}
 													profile={product.profile}

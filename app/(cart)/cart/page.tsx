@@ -41,6 +41,15 @@ const CartPage = () => {
 		isCartOpen && closeCart()
 	}
 
+	// Create an array to store product ids
+	const productIds = cartItems.map((item: any) => item.product.id)
+
+	// Total price
+	const totalPrice = productIds.reduce((total: number, productId: number) => {
+		const currItem = cartItems.find((item: any) => item.product.id === productId)
+		return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
+	}, 0)
+
 	return (
 		<>
 			{cartItems.length !== 0 ? (
@@ -199,19 +208,7 @@ const CartPage = () => {
 								<div className={styles.subtotal}>
 									{/* Borde vara 1) spara reduce-funktionen längre upp i variabel och multiplicera detta med cartItems.length */}
 									<div>Subtotal:</div>
-									<div className={styles.priceColor}>
-										{formatCurrency(
-											cartItems.reduce((total: number, item: any) => {
-												const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
-												// console.log(currItem)
-												return (
-													total +
-													(currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
-												)
-											}, 0),
-											currency
-										)}
-									</div>
+									<div className={styles.priceColor}>{formatCurrency(totalPrice, currency)}</div>
 								</div>
 								<div className={styles.shippingContainer}>
 									<div className={styles.shipping}>
@@ -227,18 +224,7 @@ const CartPage = () => {
 								<div className={styles.total}>
 									<div>Total:</div>
 									<div className={styles.priceColor}>
-										{formatCurrency(
-											cartItems.reduce((total: number, item: any) => {
-												const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
-												// console.log(currItem)
-												return (
-													total +
-													(currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
-												)
-											}, 0),
-											currency
-										)}{' '}
-										+ SHIPPING COST (includes xxx <span>{currency === 'SEK' ? 'SEK' : 'EUR'}</span> Tax)
+										{formatCurrency(totalPrice, currency)} + SHIPPING COST (includes {formatCurrency(totalPrice * 0.2, currency)} Tax)
 									</div>
 								</div>
 

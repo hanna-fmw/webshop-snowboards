@@ -40,6 +40,7 @@ export default function Home() {
 											<TextBlock
 												model={product.model}
 												designer={product.designer}
+												boardType={product.boardType}
 												length={product.length}
 												detail={product.detail}
 												profile={product.profile}

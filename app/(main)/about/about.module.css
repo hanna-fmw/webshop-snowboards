@@ -10,7 +10,7 @@
 	object-position: top;
 	width: 100%;
 	height: auto;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 	filter: blur(1px) brightness(95%) contrast(1.2);
 }
 
