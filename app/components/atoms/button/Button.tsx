@@ -15,7 +15,7 @@ const Button = ({ variant = 'default', label, icon, onClick, children }: ButtonP
 	return (
 		<button className={`${styles[variant]} ${styles.btn}`} style={{ gap: 10 }} onClick={onClick}>
 			{children}
-			{label}
+			{label}			
 			{icon && <Image src={downArrow} alt='Arrow icon' className={styles.arrowIcon} width={30} height={30} />}
 		</button>
 	)

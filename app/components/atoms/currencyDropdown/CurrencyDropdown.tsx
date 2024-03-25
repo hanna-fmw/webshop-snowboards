@@ -1,21 +1,22 @@
-'use client'
-import React, { useState } from 'react'
-import { RiArrowDownSLine } from 'react-icons/ri'
-import { RiArrowUpSLine } from 'react-icons/ri'
-import styles from './currencyDropdown.module.css'
-import { useSelect } from 'downshift'
-import { useCurrencyConversion } from '@/app/context/currencyContext'
+'use client';
+import React, { useState } from 'react';
+import { RiArrowDownSLine } from 'react-icons/ri';
+import { RiArrowUpSLine } from 'react-icons/ri';
+import styles from './currencyDropdown.module.css';
+import { useSelect } from 'downshift';
+//Denna funkar inte med Storybook: import { useCurrencyConversion } from '@/app/context/currencyContext'
+import { useCurrencyConversion } from '../../../../app/context/currencyContext';
 
-const items = ['SEK', 'EUR']
+const items = ['SEK', 'EUR'];
 
 function CurrencyDropdown() {
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({
 		items: items,
 		// onSelectedItemChange: ({ selectedItem }) => handleClick(selectedItem),
 		onSelectedItemChange: () => getCurrency(),
-	})
+	});
 
-	const { getCurrency, setCurrency } = useCurrencyConversion()
+	const { getCurrency, setCurrency } = useCurrencyConversion();
 
 	return (
 		<div className={styles.dropdownContainer}>
@@ -52,7 +53,7 @@ function CurrencyDropdown() {
 									})}>
 									<span>{item}</span>
 								</li>
-							)
+							);
 						})}
 				</ul>
 			</div>
@@ -62,7 +63,7 @@ function CurrencyDropdown() {
 			<div>{selectedItem === 'EUR' ? setCurrency('EUR') : setCurrency('SEK')}</div>
 			{/* <div>Current currency is: {currency}</div> */}
 		</div>
-	)
+	);
 }
 
-export default CurrencyDropdown
+export default CurrencyDropdown;

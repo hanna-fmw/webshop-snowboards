@@ -1,16 +1,17 @@
-'use client'
-import React from 'react'
-import styles from './modal.module.css'
-import { IoCloseOutline } from 'react-icons/io5'
-import Link from 'next/link'
-import { useModal } from '@/app/context/modalContext'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect } from 'react'
+'use client';
+import React from 'react';
+import styles from './modal.module.css';
+import { IoCloseOutline } from 'react-icons/io5';
+import Link from 'next/link';
+////Denna funkar inte med Storybook: Denna funkar inte pga Storybook: import { useModal } from '@/app/context/modalContext'
+import { useModal } from '../../../../app/context/modalContext';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 type ModalProps = {
-	children?: React.ReactNode
-	link?: string
-}
+	children?: React.ReactNode;
+	link?: string;
+};
 
 // type ModalContextProps = {
 // 	closeModal: () => void
@@ -33,7 +34,7 @@ const links = [
 		href: '/support',
 		label: '[d].SUPPORT',
 	},
-]
+];
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -45,16 +46,16 @@ const parentVariants = {
 			duration: 0.8,
 		},
 	},
-}
+};
 
 const childrenVariants = {
 	initial: { opacity: 0 },
 	animate: { opacity: 1 },
-}
+};
 
 const Modal = ({ link, children }: ModalProps) => {
-	const context = useModal()!
-	const { closeModal, isModalOpen, setIsModalOpen } = context || {}
+	const context = useModal()!;
+	const { closeModal, isModalOpen, setIsModalOpen } = context || {};
 	// const { closeModal, isModalOpen }: ModalContextProps = useModal()
 
 	useEffect(() => {
@@ -62,27 +63,27 @@ const Modal = ({ link, children }: ModalProps) => {
 		// document.body.style.overflowY = 'hidden'
 		// document.documentElement.style.overflowY = 'hidden'
 		//Or:
-		document.body.style.overflowY = isModalOpen ? 'hidden' : 'auto'
+		document.body.style.overflowY = isModalOpen ? 'hidden' : 'auto';
 
 		return () => {
 			// Remove the style when the modal is closed
-			document.body.style.overflowY = 'auto'
-			document.documentElement.style.overflowY = 'auto'
-		}
-	}, [closeModal, isModalOpen])
+			document.body.style.overflowY = 'auto';
+			document.documentElement.style.overflowY = 'auto';
+		};
+	}, [closeModal, isModalOpen]);
 
 	useEffect(() => {
 		// This code block will execute when the component mounts
 		// You can log a message here to indicate that the component has mounted
-		console.log('Modal component mounted')
+		console.log('Modal component mounted');
 
 		// Return a cleanup function
 		return () => {
 			// This code block will execute when the component unmounts
 			// You can log a message here to indicate that the component has unmounted
-			console.log('Modal component unmounted')
-		}
-	}, [])
+			console.log('Modal component unmounted');
+		};
+	}, []);
 
 	// const MODAL_WIDTH = 560
 
@@ -107,7 +108,7 @@ const Modal = ({ link, children }: ModalProps) => {
 											{link.label}
 										</Link>
 									</motion.div>
-								)
+								);
 							})}
 							<IoCloseOutline size={25} onClick={() => setIsModalOpen(false)} className={styles.closeBtn} />
 						</motion.div>
@@ -168,7 +169,7 @@ const Modal = ({ link, children }: ModalProps) => {
 				)} */}
 			</AnimatePresence>
 		</section>
-	)
-}
+	);
+};
 
-export default Modal
+export default Modal;

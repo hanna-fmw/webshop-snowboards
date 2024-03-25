@@ -1,34 +1,38 @@
-'use client'
-import React from 'react'
-import styles from './navbar.module.css'
-import Image from 'next/image'
-import hamburgerMenu from '../../../../public/icons/hamburger_menu_mobile.png'
-import logotype from '../../../../public/logo/logo.svg'
-import cart from '../../../../public/icons/cart.png'
-import CurrencyDropdown from '../../atoms/currencyDropdown/CurrencyDropdown'
-import { useModal } from '@/app/context/modalContext'
-import { useCart } from '@/app/context/cartContext'
-import Modal from '../modal/Modal'
-import Cart from '../../organisms/cart/Cart'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
-import { CartContextProps } from '@/app/context/cartContext'
+'use client';
+import React from 'react';
+import styles from './navbar.module.css';
+import Image from 'next/image';
+import hamburgerMenu from '../../../../public/icons/hamburger_menu_mobile.png';
+import logotype from '../../../../public/logo/logo.svg';
+import cart from '../../../../public/icons/cart.png';
+import CurrencyDropdown from '../../atoms/currencyDropdown/CurrencyDropdown';
+
+import Modal from '../modal/Modal';
+import Cart from '../../organisms/cart/Cart';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+//Denna funkar inte med Storybook: import { CartContextProps } from '@/app/context/cartContext'
+import { CartContextProps } from '../../../../app/context/cartContext';
+//Denna funkar inte med Storybook: import { useModal } from '@/app/context/modalContext';
+import { useModal } from '../../../../app/context/modalContext';
+//Denna funkar inte med Storybook: import { useCart } from '@/app/context/cartContext';
+import { useCart } from '../../../../app/context/cartContext';
 
 type NavbarProps = {
-	children?: React.ReactNode
-}
+	children?: React.ReactNode;
+};
 
 const Navbar = ({ children }: NavbarProps) => {
 	// const { isModalOpen, openModal }: ModalContextProps = useModal()
-	const modalContext = useModal()
-	const { isModalOpen, openModal } = modalContext || {}
+	const modalContext = useModal();
+	const { isModalOpen, openModal } = modalContext || {};
 
 	// const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = useCart()
 	//För modalContext ovan behöver vi inte : ModalContextProps eftersom TS kan infer typen för både isModalOpen och openModal
-	const cartContext = useCart()!
-	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = cartContext || {}
+	const cartContext = useCart()!;
+	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = cartContext || {};
 
-	const pathName = usePathname()
+	const pathName = usePathname();
 	// console.log(pathName)
 
 	return (
@@ -97,7 +101,7 @@ const Navbar = ({ children }: NavbarProps) => {
 				</div>
 			</nav>
 		</main>
-	)
-}
+	);
+};
 
-export default Navbar
+export default Navbar;

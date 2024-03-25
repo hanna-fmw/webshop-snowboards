@@ -1,104 +1,105 @@
-'use client'
-import React from 'react'
-import styles from './cart.module.css'
-import { IoCloseOutline } from 'react-icons/io5'
-import { useCart } from '@/app/context/cartContext'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import formatCurrency from '@/app/utilities/currencyFormatter'
-import Button from '../../atoms/button/Button'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect, useRef } from 'react'
-import { useCurrencyConversion } from '@/app/context/currencyContext'
+'use client';
+import React from 'react';
+import styles from './cart.module.css';
+import { IoCloseOutline } from 'react-icons/io5';
+//Denna funkar inte med Storybook: import { useCart } from '@/app/context/cartContext';
+import { useCart } from '../../../../app/context/cartContext';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+//Denna funkar inte med Storybook: import formatCurrency from '@/app/utilities/currencyFormatter';
+import formatCurrency from '../../../../app/utilities/currencyFormatter';
+import Button from '../../atoms/button/Button';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+//Denna funkar inte med Storybook: import { useCurrencyConversion } from '@/app/context/currencyContext'
+import { useCurrencyConversion } from '../../../../app/context/currencyContext';
 
 type CartProps = {
-	children?: React.ReactNode
-}
+	children?: React.ReactNode;
+};
 
 type Product = {
-	id: number
-	name: string
-	price: number
-	length: string
-	image: string
-	model: string
-}
+	id: number;
+	name: string;
+	price: number;
+	length: string;
+	image: string;
+	model: string;
+};
 
 type CartItem = {
-	product: Product
+	product: Product;
 	// id: number
-	quantity: number
-}
+	quantity: number;
+};
 
 const Cart = ({ children }: CartProps) => {
 	// const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems }: CartContextProps = useCart()
 	const {
 		closeCart,
-		getItemQuantity,
 		increaseCartQuantity,
 		decreaseCartQuantity,
 		cartItems,
 		removeFromCart,
-		isCartEmpty,
 		isCartOpen,
 		setIsCartOpen,
 		selectedLength,
 		setIsAddedToCart,
-	}: any = useCart()
+	}: any = useCart();
 	// const quantity = getItemQuantity(product)
 
-	const { currency, conversionRateEur } = useCurrencyConversion()
+	const { currency, conversionRateEur } = useCurrencyConversion();
 
 	//To close side panel on click outside
-	const ref = useRef<HTMLDivElement>(null)
+	const ref = useRef<HTMLDivElement>(null);
 
-	const router = useRouter()
+	const router = useRouter();
 
 	useEffect(() => {
 		const checkIfClickedOutside = (e) => {
 			// If the menu is open and the clicked target is not within the menu,
 			// then close the menu
 			if (isCartOpen && ref.current && !ref.current.contains(e.target)) {
-				setIsCartOpen(false)
+				setIsCartOpen(false);
 			}
-		}
+		};
 
-		document.addEventListener('mousedown', checkIfClickedOutside)
+		document.addEventListener('mousedown', checkIfClickedOutside);
 
 		return () => {
-			document.removeEventListener('mousedown', checkIfClickedOutside)
-		}
-	}, [isCartOpen])
+			document.removeEventListener('mousedown', checkIfClickedOutside);
+		};
+	}, [isCartOpen]);
 
 	useEffect(() => {
 		// Add the style to body and html elements when the modal is opened
 		// document.body.style.overflowY = 'hidden'
 		// document.documentElement.style.overflowY = 'hidden'
 		//Or:
-		document.body.style.overflowY = isCartOpen ? 'hidden' : 'auto'
+		document.body.style.overflowY = isCartOpen ? 'hidden' : 'auto';
 
 		return () => {
 			// Remove the style when the modal is closed
-			document.body.style.overflowY = 'auto'
-			document.documentElement.style.overflowY = 'auto'
-		}
-	}, [closeCart, isCartOpen])
+			document.body.style.overflowY = 'auto';
+			document.documentElement.style.overflowY = 'auto';
+		};
+	}, [closeCart, isCartOpen]);
 
 	const startShopping = () => {
-		router.push('/shop')
-		isCartOpen && closeCart()
-		setIsAddedToCart(false)
-	}
+		router.push('/shop');
+		isCartOpen && closeCart();
+		setIsAddedToCart(false);
+	};
 
 	const goToCart = () => {
-		router.push('/cart')
-		isCartOpen && closeCart()
-	}
+		router.push('/cart');
+		isCartOpen && closeCart();
+	};
 
 	const goToCheckout = () => {
-		router.push('/checkout')
-		isCartOpen && closeCart()
-	}
+		router.push('/checkout');
+		isCartOpen && closeCart();
+	};
 
 	const sidePanelVariants = {
 		hidden: { x: '100%', opacity: 0 },
@@ -109,7 +110,7 @@ const Cart = ({ children }: CartProps) => {
 			transition: { duration: 0.3, ease: 'easeInOut' },
 		},
 		exit: { x: '100%', opacity: 0, transition: { duration: 0.3, ease: 'ease' } },
-	}
+	};
 
 	return (
 		<AnimatePresence>
@@ -133,9 +134,9 @@ const Cart = ({ children }: CartProps) => {
 								// console.log('These are the cartItems', cartItems)
 								// console.log('This is item', item)
 								const backToProductDetail = () => {
-									router.push(`/shop/${item.product.model}`)
-									isCartOpen && closeCart()
-								}
+									router.push(`/shop/${item.product.model}`);
+									isCartOpen && closeCart();
+								};
 
 								return (
 									<section key={i} className={styles.productContainer}>
@@ -182,7 +183,7 @@ const Cart = ({ children }: CartProps) => {
 										{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
 										{/* <ProductCard {...item}/> */}
 									</section>
-								)
+								);
 							})}
 						</section>
 
@@ -193,12 +194,12 @@ const Cart = ({ children }: CartProps) => {
 								<div className={styles.price}>
 									{formatCurrency(
 										cartItems.reduce((total: number, item: any) => {
-											const currItem = cartItems.find((i: any) => i.product?.id === item.product?.id)
-											console.log(currItem)
+											const currItem = cartItems.find((i: any) => i.product?.id === item.product?.id);
+											console.log(currItem);
 											return (
 												total +
 												(currency === 'SEK' ? currItem?.product?.price : currItem?.product?.price * conversionRateEur! || 0) * currItem.quantity
-											)
+											);
 										}, 0),
 										currency
 									)}
@@ -234,7 +235,7 @@ const Cart = ({ children }: CartProps) => {
 				)}
 			</motion.main>
 		</AnimatePresence>
-	)
-}
+	);
+};
 
-export default Cart
+export default Cart;
