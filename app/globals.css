@@ -136,8 +136,10 @@ h2 {
 p {
 	margin-bottom: var(--spacing-medium);
 	/* line-height: 0.2; */
-	font-size: 0.8rem;
+	/* font-size: 0.8rem; */
 	color: #232323;
+	font-weight: 400;
+	font-style: normal;
 }
 
 a {

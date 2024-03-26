@@ -1,54 +1,50 @@
 .supportContainer {
-	line-height: 1.2;
-	padding-left: 2rem;
+	width: 90vw;
+	margin: 0 auto;
 }
 
-@media (max-width: 767px) {
-	.tcs {
-		margin-block: 3rem;
-	}
+.header {
+	margin-block: 3rem;
+}
 
-	.number {
-		margin-bottom: 1.5rem;
-	}
+.sectionLabel {
+	margin-bottom: 1.5rem;
+}
 
-	.heading {
-		margin-bottom: 1.2rem;
-	}
+.sectionHeading {
+	margin-bottom: 1.2rem;
+}
 
-	.text {
-		margin-bottom: 1.5rem;
-	}
+.address {
+	margin-bottom: 1.5rem;
 }
 
 @media (min-width: 768px) {
 	.supportContainer {
-		height: 100%;
-		width: 80vw;
 		display: grid;
+		/*3 första kolumnerna baserat på innehåll, sedan en fjärde som är 2fr*/
 		grid-template-columns: repeat(3, auto) 2fr;
-		column-gap: 6rem;
 		padding-top: 10rem;
+		column-gap: 2.5rem;
 	}
 
-	.tcs {
+	.header {
+		margin: 0;
 		grid-column: 1;
 		grid-row: 1;
 	}
 
-	.number {
-		padding: 0;
+	.sectionLabel {
 		grid-column: 2;
 		grid-row: 1;
 	}
 
-	.heading {
-		padding: 0;
+	.sectionHeading {
 		grid-column: 3;
 		grid-row: 1;
 	}
 
-	.text {
+	.address {
 		grid-column: 4;
 		grid-row: 1;
 	}
@@ -57,6 +53,5 @@
 @media (min-width: 1800px) {
 	.supportContainer {
 		width: 58vw;
-		margin: 0 auto;
 	}
 }

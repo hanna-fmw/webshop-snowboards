@@ -1,219 +1,89 @@
-.aboutContainer {
-	/* position: relative; */
-	overflow: hidden;
-	margin-bottom: 1.5rem;
+.heroContainer {
+	/* overflow: hidden;
+	margin-bottom: 1.5rem; */
 	position: relative;
+	margin-bottom: 2rem;
 }
 
-.aboutImage {
+.heroImage {
 	object-fit: cover;
 	object-position: top;
 	width: 100%;
-	height: auto;
-	/* min-height: 100vh; */
-	filter: blur(1px) brightness(95%) contrast(1.2);
+	max-height: 100vh;
 }
 
-.aboutContent {
+.heroOverlay {
 	color: var(--color-white);
 	position: absolute;
 	left: 1rem;
-	bottom: 10rem;
-	width: 40vw;
-	height: 5rem;
-	width: 40%;
-	z-index: 100;
+	bottom: 2rem;
+	width: 80%;
 }
 
-@media (max-width: 767px) {
-	.about {
-		margin: 0 1rem;
-	}
+/* Use percentage, 90vw caused incorrect
+alignment in 768px view  */
+.header,
+.brandDetails {
+	width: 90%;
+	margin: 0 auto;
+}
 
-	.ats {
-		margin-bottom: 2.5rem;
-	}
+.header {
+	margin-bottom: 2.5rem;
+}
 
-	.number1,
-	.number2,
-	.number3,
-	.number4,
-	.number5,
-	.number6 {
-		margin-bottom: 1.5rem;
-	}
+.articleLabel {
+	margin-bottom: 1.5rem;
+}
 
-	.heading1,
-	.heading2,
-	.heading3,
-	.heading4,
-	.heading5,
-	.heading6 {
-		margin-bottom: 1.2rem;
-	}
+.articleHeading {
+	margin-bottom: 1.2rem;
+}
 
-	.text1,
-	.text2,
-	.text3,
-	.text4,
-	.text5 {
-		margin-bottom: 4.5rem;
-	}
+.articleDescription {
+	margin-bottom: 4.5rem;
 }
 
 @media (min-width: 768px) {
-	.aboutContainer {
-		max-height: 100vh;
-	}
-
-	.aboutContent {
-		color: var(--color-white);
-		position: absolute;
+	.heroOverlay {
 		left: 2rem;
-		bottom: 4rem;
 		width: 40%;
-		z-index: 35;
 	}
 
-	.about {
-		padding: 2rem;
-		margin: 0 auto;
+	.containerGrid {
+		width: 90%;
 		display: grid;
-		grid-template-columns: 1fr auto auto 2fr;
+		grid-template-columns: repeat(1, auto), 3fr;
 		grid-template-rows: repeat(6, auto);
-		grid-auto-rows: auto;
-		column-gap: 2.5rem;
-		row-gap: 1.5rem;
+		margin: 0 auto;
 	}
 
-	.ats {
+	.header {
 		grid-column: 1;
 		grid-row: 1;
 	}
 
-	.number1,
-	.number2,
-	.number3,
-	.number4,
-	.number5,
-	.number6 {
-		padding: 0;
-		margin-right: 1.5rem;
-	}
-
-	.heading1,
-	.heading2,
-	.heading3,
-	.heading4,
-	.heading5,
-	.heading6 {
-		padding: 0;
-		margin-left: 1.5rem;
-	}
-
-	.number1 {
+	.brandDetails {
 		grid-column: 2;
 		grid-row: 1;
 	}
 
-	.heading1 {
-		grid-column: 3;
-		grid-row: 1;
+	.article {
+		display: flex;
+		justify-content: space-between;
 	}
 
-	.text1 {
-		grid-column: 4;
-		grid-row: 1;
-	}
-
-	.number2 {
-		grid-column: 2;
-		grid-row: 2;
-		padding: 0;
-	}
-
-	.heading2 {
-		grid-column: 3;
-		grid-row: 2;
-	}
-
-	.text2 {
-		grid-column: 4;
-		grid-row: 2;
-	}
-
-	.number3 {
-		grid-column: 2;
-		grid-row: 3;
-		padding: 0;
-	}
-
-	.heading3 {
-		grid-column: 3;
-		grid-row: 3;
-	}
-
-	.text3 {
-		grid-column: 4;
-		grid-row: 3;
-	}
-
-	.number4 {
-		grid-column: 2;
-		grid-row: 4;
-		padding: 0;
-	}
-
-	.heading4 {
-		grid-column: 3;
-		grid-row: 4;
-	}
-
-	.text4 {
-		grid-column: 4;
-		grid-row: 4;
-	}
-
-	.number5 {
-		grid-column: 2;
-		grid-row: 5;
-		padding: 0;
-	}
-
-	.heading5 {
-		grid-column: 3;
-		grid-row: 5;
-	}
-
-	.text5 {
-		grid-column: 4;
-		grid-row: 5;
-	}
-
-	.number6 {
-		grid-column: 2;
-		grid-row: 6;
-		padding: 0;
-	}
-
-	.heading6 {
-		grid-column: 3;
-		grid-row: 6;
-	}
-
-	.text6 {
-		grid-column: 4;
-		grid-row: 6;
+	.articleDescription {
+		max-width: 50%;
 	}
 }
 
 @media (min-width: 1800px) {
-	.aboutContent {
+	.heroOverlay {
 		left: 20%;
 		width: 30%;
 	}
-	.about {
+	.brandDetails {
 		width: 60vw;
-		margin: 0 auto;
 	}
 }
