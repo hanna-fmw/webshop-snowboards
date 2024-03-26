@@ -104,12 +104,6 @@
 	.productGrid {
 		grid-template-columns: repeat(3, 1fr);
 	}
-
-	.shopHeader {
-		flex-direction: row;
-		justify-content: space-between;
-		max-width: 100%;
-	}
 }
 
 @media (min-width: 1440px) {

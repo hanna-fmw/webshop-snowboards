@@ -1,10 +1,10 @@
-'use client'
-import React from 'react'
-import styles from './heroSection.module.css'
-import Image, { unstable_getImgProps as getImgProps } from 'next/image'
-import Button from '../../atoms/button/Button'
+'use client';
+import React from 'react';
+import styles from './heroSection.module.css';
+import Image, { unstable_getImgProps as getImgProps } from 'next/image';
+import Button from '../../atoms/button/Button';
 
-const { heroContainer, heroImage, heroText } = styles
+const { heroContainer, heroImage, heroText } = styles;
 
 const HeroSection = () => {
 	return (
@@ -31,7 +31,7 @@ const HeroSection = () => {
 				</div>
 			</div>
 		</>
-	)
-}
+	);
+};
 
-export default HeroSection
+export default HeroSection;

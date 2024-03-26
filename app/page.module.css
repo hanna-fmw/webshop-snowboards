@@ -33,6 +33,12 @@
 
 @media (min-width: 1024px) {
 	.productGrid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (min-width: 1440px) {
+	.productGrid {
 		grid-template-columns: repeat(4, 1fr);
 	}
 }
