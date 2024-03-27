@@ -1,79 +1,82 @@
-'use client'
-import styles from './crafting.module.css'
-import Link from 'next/link'
-import React, { useState } from 'react'
-import { RiArrowDownSLine } from 'react-icons/ri'
-import { RiArrowUpSLine } from 'react-icons/ri'
-import ProductCard from '@/app/components/molecules/productCard/ProductCard'
-import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
-import Figure from '@/app/components/atoms/figure/Figure'
-import products from '@/app/data/products.json'
-import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
-import formatCurrency from '@/app/utilities/currencyFormatter'
-import { useCurrencyConversion } from '@/app/context/currencyContext'
+'use client';
+import styles from './crafting.module.css';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { RiArrowDownSLine } from 'react-icons/ri';
+import { RiArrowUpSLine } from 'react-icons/ri';
+import ProductCard from '@/app/components/molecules/productCard/ProductCard';
+import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
+import Figure from '@/app/components/atoms/figure/Figure';
+import products from '@/app/data/products.json';
+import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
+import formatCurrency from '@/app/utilities/currencyFormatter';
+import { useCurrencyConversion } from '@/app/context/currencyContext';
 
-import { useSelect } from 'downshift'
+import { useSelect } from 'downshift';
 
 const parentVariants = {
 	initial: { opacity: 1 },
 	animate: {
-		opacity: 1,
-
 		transition: {
 			staggerChildren: 0.2,
-			duration: 0.5,
 		},
 	},
-}
+};
 
 const childrenVariants = {
 	initial: { opacity: 0 },
-	animate: { opacity: 1 },
-}
+	animate: {
+		opacity: 1,
+		transition: {
+			duration: 0.5,
+			ease: 'easeIn',
+		},
+	},
+};
 
-const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
+const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
 
 type Product = {
-	name: string
-	designer: string
-	boardType: string
-	length: string
-	detail: string
-	profile: string
-	price: number
-	productCategory: string[]
-	image: string
-	model: string
-}
+	name: string;
+	designer: string;
+	boardType: string;
+	length: string;
+	detail: string;
+	profile: string;
+	price: number;
+	productCategory: string[];
+	image: string;
+	model: string;
+};
 
 const Crafting = () => {
-	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
+	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
 
-	const { currency, conversionRateEur } = useCurrencyConversion()
+	const { currency, conversionRateEur } = useCurrencyConversion();
 
-	const router = useRouter()
+	const router = useRouter();
 
 	const sortProducts = (arr: Product[], sortView: string) => {
 		return arr.sort((a: Product, b: Product) => {
 			switch (sortView) {
 				case 'Default sorting':
-					return a.name.localeCompare(b.name)
+					return a.name.localeCompare(b.name);
 				// case 'popularity':
 				// 	return b.stars - a.stars
 				case 'Sort by price: low to high':
-					return a.price - b.price
+					return a.price - b.price;
 				case 'Sort by price: high to low':
-					return b.price - a.price
+					return b.price - a.price;
 				default:
 					//Fick TS-fel när jag bara hade return break. Förklaring: Provide a default return value in case
 					//sortView doesn't match any case - With this change, the function will always return a number
-					return 0
+					return 0;
 			}
-		})
-	}
+		});
+	};
 
-	const category = 'crafting'
+	const category = 'crafting';
 
 	return (
 		<main className={styles.main}>
@@ -149,8 +152,8 @@ const Crafting = () => {
 
 				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
 					{sortProducts(products, selectedItem).map((product, i) => {
-						console.log('these are products', products)
-						const isCategory = product?.productCategory.includes(category)
+						// console.log('these are products', products);
+						const isCategory = product?.productCategory.includes(category);
 
 						return (
 							<>
@@ -175,13 +178,13 @@ const Crafting = () => {
 									</motion.div>
 								) : null}
 							</>
-						)
+						);
 					})}
 				</motion.section>
 				<div>{products.filter((cat) => cat.productCategory.includes(category.toLowerCase())).length === 0 && <div>No items available</div>}</div>
 			</section>
 		</main>
-	)
-}
+	);
+};
 
-export default Crafting
+export default Crafting;

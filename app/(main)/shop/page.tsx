@@ -1,55 +1,58 @@
-'use client'
-import styles from './shop.module.css'
-import Link from 'next/link'
-import React, { useState } from 'react'
-import { RiArrowDownSLine } from 'react-icons/ri'
-import { RiArrowUpSLine } from 'react-icons/ri'
-import ProductGrid from '@/app/components/atoms/productGrid/ProductGrid'
-import ProductCard from '@/app/components/molecules/productCard/ProductCard'
-import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
-import Figure from '@/app/components/atoms/figure/Figure'
-import products from '@/app/data/products.json'
-import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
-import { useCurrencyConversion } from '@/app/context/currencyContext'
-import formatCurrency from '@/app/utilities/currencyFormatter'
+'use client';
+import styles from './shop.module.css';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { RiArrowDownSLine } from 'react-icons/ri';
+import { RiArrowUpSLine } from 'react-icons/ri';
+// import ProductGrid from '@/app/components/atoms/productGrid/ProductGrid';
+import ProductCard from '@/app/components/molecules/productCard/ProductCard';
+import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
+import Figure from '@/app/components/atoms/figure/Figure';
+import products from '@/app/data/products.json';
+import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { useCurrencyConversion } from '@/app/context/currencyContext';
+import formatCurrency from '@/app/utilities/currencyFormatter';
 
 //Downshift
-import { useSelect } from 'downshift'
+import { useSelect } from 'downshift';
 
 const parentVariants = {
 	initial: { opacity: 1 },
 	animate: {
-		opacity: 1,
-
 		transition: {
 			staggerChildren: 0.2,
-			duration: 0.5,
 		},
 	},
-}
+};
 
 const childrenVariants = {
 	initial: { opacity: 0 },
-	animate: { opacity: 1 },
-}
+	animate: {
+		opacity: 1,
+		transition: {
+			duration: 0.5,
+			ease: 'easeIn',
+		},
+	},
+};
 
 type Product = {
-	name: string
-	designer: string
-	boardType: string
-	length: string
-	detail: string
-	profile: string
-	price: number
-	productCategory: string[]
-	image: string
-	model: string
-}
+	name: string;
+	designer: string;
+	boardType: string;
+	length: string;
+	detail: string;
+	profile: string;
+	price: number;
+	productCategory: string[];
+	image: string;
+	model: string;
+};
 
 //popularity etc. to be implemented when available as option
 // const items = ['Default sorting', 'Sort by popularity', 'Sort by latest', 'Sort by price: low to high', 'Sort by price: high to low']
-const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
+const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
 //Angående downshift - alla get-funktioner nedan som vi hämtar från useSelect (ie från downshift) ger oss alla
 //lägen och ARIA osv för respektive element, t.ex. för ToggleButton, för Menu, för Item osv., dvs. för
 //varje element som ingår i vår/en dropdown. Vi ska aldrig ens behöva lägga till en onClick eller liknadne,
@@ -57,16 +60,16 @@ const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: 
 //i vår sortProducts-funktion som vi mappar över så här:
 //sortProducts(products, selectedItem).map((product, i) => { osv.
 const Shop = () => {
-	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
+	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
 
 	//Vi definierar currency i currencyContext.tsx och togglar den
 	//till EUR eller SEK i CurrencyDropdown.tsx. Och här nedan kan vi sedan
 	//göra en ternary som kollar vilket som är det aktuella statet för currency, och
 	//om det är EUR så använder vi conversionRateEur (dvs. exchange rate från API:t som vi
 	//fetchar i currencyContext) för att multiplicera priset med denna valutakurs
-	const { conversionRateEur, currency } = useCurrencyConversion()
+	const { conversionRateEur, currency } = useCurrencyConversion();
 
-	const router = useRouter()
+	const router = useRouter();
 
 	// const [sortView, setSortView] = useState('Default sorting')
 	// //DROPDOWN MENU/LIST OPTIONS (samma som ovan fast med switch)
@@ -93,20 +96,20 @@ const Shop = () => {
 		return arr.sort((a, b) => {
 			switch (sortView) {
 				case 'Default sorting':
-					return a.name.localeCompare(b.name)
+					return a.name.localeCompare(b.name);
 				// case 'popularity':
 				// 	return b.stars - a.stars
 				case 'Sort by price: low to high':
-					return a.price - b.price
+					return a.price - b.price;
 				case 'Sort by price: high to low':
-					return b.price - a.price
+					return b.price - a.price;
 				default:
 					//Fick TS-fel när jag bara hade return break. Förklaring: Provide a default return value in case
 					//sortView doesn't match any case - With this change, the function will always return a number
-					return 0
+					return 0;
 			}
-		})
-	}
+		});
+	};
 
 	// Log sortView when it changes - to check if the sort view is updated correctly
 	// useEffect(() => {
@@ -208,12 +211,12 @@ const Shop = () => {
 									</div>
 								</div>
 							</motion.section>
-						)
+						);
 					})}
 				</motion.section>
 			</section>
 		</main>
-	)
-}
+	);
+};
 
-export default Shop
+export default Shop;

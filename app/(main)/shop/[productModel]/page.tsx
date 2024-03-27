@@ -1,72 +1,75 @@
-'use client'
-import Figure from '@/app/components/atoms/figure/Figure'
-import ProductCard from '@/app/components/molecules/productCard/ProductCard'
-import React from 'react'
+'use client';
+import Figure from '@/app/components/atoms/figure/Figure';
+import ProductCard from '@/app/components/molecules/productCard/ProductCard';
+import React from 'react';
 // import products from '../../data/products.json'
-import products from '@/app/data/products.json'
-import styles from './productDetailpage.module.css'
-import Image from 'next/image'
-import { useState } from 'react'
-import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
-import Button from '@/app/components/atoms/button/Button'
-import { useRouter } from 'next/navigation'
-import classnames from 'classnames'
-import { motion } from 'framer-motion'
-import { useCart } from '@/app/context/cartContext'
-import formatCurrency from '@/app/utilities/currencyFormatter'
-import { useCurrencyConversion } from '@/app/context/currencyContext'
-import { CartContextProps } from '@/app/context/cartContext'
+import products from '@/app/data/products.json';
+import styles from './productDetailpage.module.css';
+import Image from 'next/image';
+import { useState } from 'react';
+import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
+import Button from '@/app/components/atoms/button/Button';
+import { useRouter } from 'next/navigation';
+import classnames from 'classnames';
+import { motion } from 'framer-motion';
+import { useCart } from '@/app/context/cartContext';
+import formatCurrency from '@/app/utilities/currencyFormatter';
+import { useCurrencyConversion } from '@/app/context/currencyContext';
+import { CartContextProps } from '@/app/context/cartContext';
 
 type ProductDetailsProps = {
-	params: { productModel: string }
-}
+	params: { productModel: string };
+};
 
 const parentVariants = {
 	initial: { opacity: 1 },
 	animate: {
-		opacity: 1,
-
 		transition: {
 			staggerChildren: 0.2,
-			duration: 0.4,
 		},
 	},
-}
+};
 
 const childrenVariants = {
 	initial: { opacity: 0 },
-	animate: { opacity: 1 },
-}
+	animate: {
+		opacity: 1,
+		transition: {
+			duration: 0.5,
+			ease: 'easeIn',
+		},
+	},
+};
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 	// const [showIsAddedToCart, setShowIsAddedToCart] = useState<boolean>(false)
-	const cartContext = useCart() as CartContextProps
+	const cartContext = useCart() as CartContextProps;
 
 	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart, selectLength, selectedLength, checkCartEmpty, addedToCart, isCartOpen } =
-		cartContext
+		cartContext;
 	//console.log(params)
 
-	const model = params.productModel
+	const model = params.productModel;
 
-	const [isFullSize, setIsFullSize] = useState<boolean>(false)
-	const [thumbnailIndex, setThumbnailIndex] = useState(0)
+	const [isFullSize, setIsFullSize] = useState<boolean>(false);
+	const [thumbnailIndex, setThumbnailIndex] = useState(0);
 
-	const router = useRouter()
+	const router = useRouter();
 
-	const { currency, conversionRateEur } = useCurrencyConversion()
+	const { currency, conversionRateEur } = useCurrencyConversion();
 
 	const handleClick = (i: number) => {
-		setThumbnailIndex(i)
-		setIsFullSize(true)
-	}
+		setThumbnailIndex(i);
+		setIsFullSize(true);
+	};
 
 	const goToCart = () => {
-		router.push('/cart')
-		isCartOpen && closeCart()
-		setIsAddedToCart(false)
-	}
+		router.push('/cart');
+		isCartOpen && closeCart();
+		setIsAddedToCart(false);
+	};
 
-	const currentProduct = products.find((product) => model === product.model)
+	const currentProduct = products.find((product) => model === product.model);
 
 	// const showAddedToCartMessage = () => {
 	// 	setShowIsAddedToCart(true)
@@ -105,7 +108,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 							//classnames definition
 							const thumbnailStyles = classnames(styles.thumbnailCard, {
 								[styles.selectedThumbnail]: thumbnailIndex === i,
-							})
+							});
 
 							return (
 								<motion.div
@@ -119,7 +122,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 									<Image src={`/products/${thumbnail}`} width={50} height={50} alt='bild' className={styles.thumbnailImg} />
 								</motion.div>
-							)
+							);
 						})}
 					</motion.div>
 				</section>
@@ -161,12 +164,12 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 													{product.lengthOptions?.map((option, i) => {
 														const lengthStyles = classnames(styles.btnLengthOptions, {
 															[styles.selectedLength]: option === selectedLength,
-														})
+														});
 														return (
 															<button key={i} className={lengthStyles} onClick={() => selectLength(option)}>
 																{option}
 															</button>
-														)
+														);
 													})}
 												</div>
 											) : null}
@@ -178,11 +181,11 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												variant='large-dark'
 												onClick={() => {
 													if (selectedLength !== null || product.lengthOptions === null) {
-														increaseCartQuantity(product)
-														addedToCart()
-														checkCartEmpty()
+														increaseCartQuantity(product);
+														addedToCart();
+														checkCartEmpty();
 													} else {
-														alert('Please pick a length option')
+														alert('Please pick a length option');
 													}
 												}}>
 												ADD TO CART
@@ -215,7 +218,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											{product.sizeTable ? (
 												<ul>
 													{product.sizeTable.map((size, i) => {
-														return <li key={i}>{size}</li>
+														return <li key={i}>{size}</li>;
 													})}
 												</ul>
 											) : null}
@@ -258,7 +261,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 								</div>
 							) : null}
 						</div>
-					)
+					);
 				})}
 			</section>
 
@@ -293,11 +296,11 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 							</div>
 						) : null}
 					</>
-				)
+				);
 			})}
 			{/* </section> */}
 		</main>
-	)
-}
+	);
+};
 
-export default ProductDetailPage
+export default ProductDetailPage;

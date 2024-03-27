@@ -44,6 +44,7 @@ const parentVariants = {
 		transition: {
 			staggerChildren: 0.4,
 			duration: 0.8,
+			ease: 'easeIn',
 		},
 	},
 };
