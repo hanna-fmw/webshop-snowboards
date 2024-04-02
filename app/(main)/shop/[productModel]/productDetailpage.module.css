@@ -1,28 +1,17 @@
-.main {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
 .h2 {
 	margin-top: 1rem;
 	margin-bottom: 0.5rem;
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 1rem;
-	width: 90vw;
+	width: 90%;
+	margin: 0 auto;
 }
 
 .productImgs {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 100%;
 }
 
 .productImg {
@@ -36,20 +25,27 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	gap: 0.3rem;
+	gap: 0.2rem;
 	cursor: pointer;
 	margin-block: 0.5rem;
 	width: 100%;
 }
 
 .thumbnailImg {
-	/* flex: 1; */
 	width: 100%;
 	height: auto;
 }
 
 .thumbnailCard {
 	position: relative;
+}
+
+.thumbnailCard:hover .overlay {
+	opacity: 0;
+}
+
+.selectedThumbnail .overlay {
+	opacity: 0;
 }
 
 .overlay {
@@ -62,12 +58,8 @@
 	left: 0;
 }
 
-.thumbnailCard:hover .overlay {
-	opacity: 0;
-}
-
-.selectedThumbnail .overlay {
-	opacity: 0;
+.textBlock {
+	display: flex;
 }
 
 .greenBox {
@@ -97,7 +89,7 @@
 }
 
 /*Length options*/
-.largeLight {
+.lengthBtns {
 	display: flex;
 	justify-content: space-around;
 	background-color: var(--color-white);
@@ -107,7 +99,7 @@
 	border: 1px solid black;
 }
 
-.btnLengthOptions {
+.lengthBtn {
 	border: none;
 	border-right: 1px solid black;
 	flex: 1;
@@ -115,43 +107,23 @@
 	padding-block: 0.8rem;
 }
 
-.btnLengthOptions:hover {
+.lengthBtn:hover {
 	background-color: var(--color-dark);
 	color: var(--color-white);
 }
 
-.btnLengthOptions:last-child {
+.lengthBtn:last-child {
 	border: none;
 }
 
-.selectedLength {
+.lengthSelected {
 	background-color: var(--color-dark);
 	color: var(--color-white);
 }
 
-.infoSection {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 1rem;
-	width: 90vw;
-}
-
-.infoContainer {
-	/* display: flex;
-	flex-direction: column; */
-	width: 100%;
-}
-
-.productInfoBlock {
-	justify-content: flex-start;
-}
-
-.techInfoContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 90vw;
+.techContainer {
+	margin: 0 auto;
+	width: 90%;
 }
 
 .chart {
@@ -174,12 +146,6 @@
 }
 
 @media (min-width: 750px) {
-	.main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-
 	.greenBox {
 		flex-direction: row;
 		justify-content: space-between;
@@ -193,138 +159,18 @@
 		display: none;
 	}
 
-	.productImgs {
-		display: flex;
-		flex-direction: column;
-	}
-
 	.container {
-		flex-direction: row;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 2rem;
+	}
+
+	.chartContainer {
+		display: flex;
 		justify-content: space-between;
-		align-items: flex-start;
-		gap: 1rem;
-		/* width: 100%; */
-	}
-
-	.thumbnailImg {
-		width: 100%;
-		height: auto;
-	}
-
-	.thumbnails {
-		width: 100%;
-	}
-
-	.infoContainer {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		width: 40vw;
-	}
-
-	.infoSection {
-		flex: 1;
-		width: 100%;
-	}
-
-	.techInfoContainer {
-		display: flex;
-		flex-direction: column;
-		width: 100vw;
-	}
-
-	.chartsContainer {
-		display: flex;
-		gap: 2rem;
-		flex-direction: row;
-		justify-content: space-between;
-		width: 90vw;
-	}
-
-	.chart {
-		width: 45vw;
-	}
-
-	.btnContainer {
-		width: 100%;
-	}
-
-	.techInfoContainer {
-		display: flex;
-		flex-direction: column;
-		width: 90vw;
 	}
 
 	.chart {
 		width: 40vw;
 	}
 }
-
-@media (min-width: 1500px) {
-	.main {
-		margin: 0 auto;
-	}
-
-	.container {
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: flex-start;
-		gap: 1rem;
-		/* width: 90vw; */
-	}
-
-	.productImgs {
-		display: flex;
-		flex-direction: column;
-		/* width: 45vw; */
-	}
-
-	.thumbnailImg {
-		width: 5rem;
-		height: 5rem;
-	}
-
-	.infoContainer {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		/* width: 45vw; */
-	}
-
-	/* .techInfoContainer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		width: 100vw;
-	} */
-
-	.chartsContainer {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-	}
-}
-
-/* @media (min-width: 1800px) {
-	.main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100vw;
-	}
-
-	.productImg {
-		max-width: 45vw;
-		height: auto;
-	}
-
-	.techInfoContainer {
-		display: flex;
-		flex-direction: column;
-		width: 60vw;
-	}
-
-	.chart {
-		width: 30vw;
-	}
-} */

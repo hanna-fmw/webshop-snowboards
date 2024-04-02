@@ -64,10 +64,10 @@
 :root {
 	--font-primary: 'code-saver', sans-serif;
 	--font-scondary: 'gtAmericaMonoLight', sans-serif;
-	--font-size-h1: 0.75rem; /*12px*/
-	--font-size-h2: 0.8rem;
-	--font-size-h3: 0.75rem;
-	--font-size-body: 0.81rem;
+	--font-size-h1: 1.1rem;
+	--font-size-h2: 1rem;
+	--font-size-h3: 0.8rem;
+	--font-size-body: 0.8rem;
 }
 
 /* Spacing */
@@ -133,13 +133,19 @@ h2 {
 	margin-top: 0;
 }
 
-p {
-	margin-bottom: var(--spacing-medium);
-	/* line-height: 0.2; */
-	/* font-size: 0.8rem; */
+h3 {
+	font-size: var(--font-size-h3);
 	color: #232323;
 	font-weight: 400;
 	font-style: normal;
+}
+
+p {
+	/* margin-bottom: var(--spacing-medium); */
+	color: #232323;
+	font-weight: 400;
+	font-style: normal;
+	font-size: var(--font-size-body);
 }
 
 a {

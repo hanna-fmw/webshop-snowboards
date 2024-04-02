@@ -6,7 +6,6 @@ import Link from 'next/link';
 const Apparel = () => {
 	return (
 		<section className={styles.container}>
-			{/* <div className={styles.header}> */}
 			<ul className={styles.links}>
 				<li>
 					<Link href='/shop' className={styles.link}>
@@ -29,7 +28,6 @@ const Apparel = () => {
 					</Link>
 				</li>
 			</ul>
-			{/* </div> */}
 
 			<div>
 				<section className={styles.heroContainer}>

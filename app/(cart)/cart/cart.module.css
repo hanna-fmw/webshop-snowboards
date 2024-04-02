@@ -1,4 +1,4 @@
-.mainRightLayout {
+.layout {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -72,13 +72,13 @@
 	cursor: pointer;
 }
 
-.subtotal {
-	padding-block: 1rem;
+.subtotalContainer {
+	padding-bottom: 2rem;
 	display: flex;
 	justify-content: space-between;
 }
 
-.priceColor {
+.amount {
 	color: var(--color-TUR-green);
 }
 
@@ -87,24 +87,6 @@
 	align-items: baseline;
 	justify-content: space-between;
 }
-
-/* .updateBtn {
-	background-color: var(--color-white);
-	color: #c8c8c8;
-	border: 1px solid #c8c8c8;
-	width: 100%;
-	padding: 0.8rem 7.4rem;
-	font-weight: 500;
-	margin-bottom: 0.5rem;
-	transition: all 0.2s ease;
-	cursor: pointer;
-} */
-
-/* .updateBtn:hover {
-	color: #999999;
-	font-weight: bold;
-	border: 1px solid #999999;
-} */
 
 .shippingContainer {
 	display: flex;
@@ -141,7 +123,7 @@
 	display: none;
 }
 
-@media (min-width: 770px) {
+@media (min-width: 768px) {
 	.onlySmallScreen {
 		display: none;
 	}
@@ -150,13 +132,13 @@
 		display: block;
 	}
 
-	.article {
+	.cartTotalLayout {
 		display: flex;
 		justify-content: right;
 		width: 100%;
 	}
 
-	.layoutRight {
+	.cartTotalContainer {
 		display: flex;
 		flex-direction: column;
 		align-items: right;
@@ -165,16 +147,16 @@
 
 	.couponBtns {
 		margin-top: 2rem;
-		width: 30vw;
+		max-width: 40%;
 		gap: 1rem;
 	}
 
-	.productTable {
+	.cartContainer {
 		display: flex;
 		flex-direction: column;
 	}
 
-	.tableHeader {
+	.sectionHeader {
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
 		font-weight: bold;
@@ -182,34 +164,34 @@
 		padding: 1rem;
 	}
 
-	.tableCellRemove {
+	.removeHeading {
 		grid-column: 1;
 		grid-row: 1;
 		opacity: 0;
 	}
 
-	.tableCellImage {
+	.imageHeading {
 		grid-column: 2;
 		grid-row: 1;
 		opacity: 0;
 	}
 
-	.tableCellProduct {
+	.productHeading {
 		grid-column: 3;
 		grid-row: 1;
 	}
 
-	.tableCellPrice {
+	.priceHeading {
 		grid-column: 4;
 		grid-row: 1;
 	}
 
-	.tableCellQuantity {
+	.quantityHeading {
 		grid-column: 5;
 		grid-row: 1;
 	}
 
-	.tableCellSubtotal {
+	.subtotalHeading {
 		grid-column: 6;
 		grid-row: 1;
 	}
@@ -267,7 +249,6 @@
 	.productQuantity {
 		grid-column: 5;
 		grid-row: 1;
-		/* border: 1px solid var(--color-dark); */
 	}
 
 	.itemCountContainer {
@@ -281,7 +262,7 @@
 }
 
 @media (min-width: 1440px) {
-	.mainRightLayout {
+	.layout {
 		align-items: center;
 	}
 

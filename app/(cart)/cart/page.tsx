@@ -1,85 +1,84 @@
-'use client'
-import React from 'react'
-import styles from './cart.module.css'
-import Button from '@/app/components/atoms/button/Button'
-import { ImTruck } from 'react-icons/im'
-import { useCart } from '@/app/context/cartContext'
-import { useRouter } from 'next/navigation'
-import formatCurrency from '@/app/utilities/currencyFormatter'
-import { RiArrowDownSFill } from 'react-icons/ri'
-import { RiArrowUpSFill } from 'react-icons/ri'
-import Figure from '@/app/components/atoms/figure/Figure'
-import { useCurrencyConversion } from '@/app/context/currencyContext'
+'use client';
+import React from 'react';
+import styles from './cart.module.css';
+import Button from '@/app/components/atoms/button/Button';
+import { ImTruck } from 'react-icons/im';
+import { useCart } from '@/app/context/cartContext';
+import { useRouter } from 'next/navigation';
+import formatCurrency from '@/app/utilities/currencyFormatter';
+import { RiArrowDownSFill } from 'react-icons/ri';
+import { RiArrowUpSFill } from 'react-icons/ri';
+import Figure from '@/app/components/atoms/figure/Figure';
+import { useCurrencyConversion } from '@/app/context/currencyContext';
 
 type CartProps = {
-	children?: React.ReactNode
-}
+	children?: React.ReactNode;
+};
 
 type Product = {
-	id: number
-	name: string
-	price: number
-	length: string
-	image: string
-	model: string
-}
+	id: number;
+	name: string;
+	price: number;
+	length: string;
+	image: string;
+	model: string;
+};
 
 type CartItem = {
-	product: Product
+	product: Product;
 	// id: number
-	quantity: number
-}
+	quantity: number;
+};
 
 const CartPage = () => {
-	const { closeCart, isCartOpen, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, selectedLength, isCartEmpty }: any = useCart()
+	const { closeCart, isCartOpen, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, selectedLength, isCartEmpty }: any =
+		useCart();
 
-	const { currency, conversionRateEur } = useCurrencyConversion()
+	const { currency, conversionRateEur } = useCurrencyConversion();
 
-	const router = useRouter()
+	const router = useRouter();
 	const startShopping = () => {
-		router.push('/shop')
-		isCartOpen && closeCart()
-	}
+		router.push('/shop');
+		isCartOpen && closeCart();
+	};
 
 	// Create an array to store product ids
-	const productIds = cartItems.map((item: any) => item.product.id)
+	const productIds = cartItems.map((item: any) => item.product.id);
 
 	// Total price
 	const totalPrice = productIds.reduce((total: number, productId: number) => {
-		const currItem = cartItems.find((item: any) => item.product.id === productId)
-		return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
-	}, 0)
+		const currItem = cartItems.find((item: any) => item.product.id === productId);
+		return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
+	}, 0);
 
 	return (
 		<>
 			{cartItems.length !== 0 ? (
-				<main className={styles.mainRightLayout}>
-					<main className={styles.container}>
+				<section className={styles.layout}>
+					<section className={styles.container}>
 						<section className={styles.onlySmallScreen}>
 							<h2 style={{ paddingBlock: '1rem' }}>CART</h2>
 							{cartItems.map((item: CartItem, i: number) => {
 								// console.log('this is item', item)
 								return (
 									<>
-										<div key={i} style={{ marginBottom: '5rem' }}>
+										<article key={i} style={{ marginBottom: '5rem' }}>
 											<div className={styles.product}>
-												<div>Product:</div>
-												<div className={styles.productName}>
+												<h3>Product:</h3>
+												<p className={styles.productName}>
 													{item.product?.name} - {selectedLength}
-												</div>
+												</p>
 											</div>
 
 											<div className={styles.price}>
-												<div>Price:</div>
-												{/* <div className={styles.priceColor}>{formatCurrency(item.product?.price, currency)}</div> */}
-												<div className={styles.priceColor}>
+												<h3>Price:</h3>
+												<p className={styles.amount}>
 													{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
-												</div>
+												</p>
 											</div>
 
 											<div className={styles.quantity}>
-												<div>Quantity:</div>
-												{/* <div className={styles.amount}>{item.quantity}</div> */}
+												<h3>Quantity:</h3>
 												<div className={styles.itemCountContainer}>
 													<div>
 														<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
@@ -96,136 +95,123 @@ const CartPage = () => {
 													</div>
 												</div>
 											</div>
-										</div>
-										<div>
-											<h2 style={{ marginBottom: 'none' }}>Subtotal:</h2>
-											<div className={styles.subtotal}>
-												<div className={styles.priceColor}>
-													{formatCurrency(
-														currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!),
-														currency
-													)}
-												</div>
-											</div>
-										</div>
+										</article>
+										<article className={styles.subtotalContainer}>
+											<h3 style={{ marginBottom: 'none' }}>Subtotal:</h3>
+
+											<p className={styles.amount}>
+												{formatCurrency(
+													currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!),
+													currency
+												)}
+											</p>
+										</article>
 									</>
-								)
+								);
 							})}
 						</section>
 
 						<section className={styles.onlyLargeScreen}>
 							<h2 style={{ paddingBlock: '1rem' }}>CART</h2>
-							<div className={styles.productTable}>
-								<div className={styles.tableHeader}>
-									<h2 className={styles.tableCellRemove}>Remove</h2>
-									<h2 className={styles.tableCellImage}>Image</h2>
-									<h2 className={styles.tableCellProduct}>PRODUCT</h2>
-									<h2 className={styles.tableCellPrice}>PRICE</h2>
-									<h2 className={styles.tableCellQuantity}>QUANTITY</h2>
-									<h2 className={styles.tableCellSubtotal}>SUBTOTAL</h2>
-								</div>
-								<div className={styles.productCard}>
+							<section className={styles.cartContainer}>
+								<aside className={styles.sectionHeader}>
+									<h3 className={styles.removeHeading}>Remove</h3>
+									<h3 className={styles.imageHeading}>Image</h3>
+									<h3 className={styles.productHeading}>PRODUCT</h3>
+									<h3 className={styles.priceHeading}>PRICE</h3>
+									<h3 className={styles.quantityHeading}>QUANTITY</h3>
+									<h3 className={styles.subtotalHeading}>SUBTOTAL</h3>
+								</aside>
+								<section className={styles.productCard}>
 									{cartItems.map((item: CartItem, i: number) => {
-										// console.log('detta är cartItems', cartItems)
-										// console.log('detta är item', item)
-
 										return (
-											<>
-												<div key={i} className={styles.productRow}>
-													<button onClick={() => removeFromCart(item.product)} className={styles.removeBtnContainer}>
-														<span className={styles.removeBtn}>x</span>
-													</button>
-													<div className={styles.productImg}>
-														<Figure image={`/products/${item.product?.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
-													</div>
+											<article key={i} className={styles.productRow}>
+												<button onClick={() => removeFromCart(item.product)} className={styles.removeBtnContainer}>
+													<span className={styles.removeBtn}>x</span>
+												</button>
+												<div className={styles.productImg}>
+													<Figure image={`/products/${item.product?.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
+												</div>
 
-													<div className={styles.productName}>
-														<div>
-															{item.product?.name} - {selectedLength}
-														</div>
-													</div>
+												<div className={styles.productName}>
+													<p>
+														{item.product?.name} - {selectedLength}
+													</p>
+												</div>
 
-													<div className={styles.productPrice}>
-														{/* <div className={styles.priceColor}>{formatCurrency(item.product?.price, currency)}</div> */}
-														<div className={styles.priceColor}>
-															{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
-														</div>
-													</div>
+												<div className={styles.productPrice}>
+													<p className={styles.amount}>
+														{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
+													</p>
+												</div>
 
-													<div className={styles.productQuantity}>
-														{/* <div className={styles.amount}>{item.quantity}</div> */}
-														<div className={styles.itemCountContainer}>
-															<div style={{ border: '1px solid black', display: 'flex', flexDirection: 'row' }}>
-																<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-																<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
-																	<div>
-																		<button onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown}>
-																			<RiArrowUpSFill />
-																		</button>
-																	</div>
-																	<div>
-																		<button onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown}>
-																			<RiArrowDownSFill />
-																		</button>
-																	</div>
+												<div className={styles.productQuantity}>
+													<div className={styles.itemCountContainer}>
+														<div style={{ border: '1px solid black', display: 'flex', flexDirection: 'row' }}>
+															<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
+															<div style={{ display: 'flex', flexDirection: 'column' }} className={styles.arrowBtn}>
+																<div>
+																	<button onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown}>
+																		<RiArrowUpSFill />
+																	</button>
+																</div>
+																<div>
+																	<button onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown}>
+																		<RiArrowDownSFill />
+																	</button>
 																</div>
 															</div>
 														</div>
 													</div>
-
-													<div className={styles.productSubtotal}>
-														{/* <div className={styles.priceColor}>{formatCurrency(item.quantity * item.product?.price, currency)}</div> */}
-
-														<div className={styles.priceColor}>
-															{formatCurrency(
-																currency === 'SEK' ? item.quantity * item.product?.price : item.quantity * (item.product?.price * conversionRateEur!),
-																currency
-															)}
-														</div>
-													</div>
 												</div>
-											</>
-										)
+
+												<div className={styles.productSubtotal}>
+													<p className={styles.amount}>
+														{formatCurrency(
+															currency === 'SEK' ? item.quantity * item.product?.price : item.quantity * (item.product?.price * conversionRateEur!),
+															currency
+														)}
+													</p>
+												</div>
+											</article>
+										);
 									})}
-								</div>
-							</div>
+								</section>
+							</section>
 						</section>
 
-						<div className={styles.couponBtns}>
-							<input onClick={() => {}} placeholder='Coupon Code' className={styles.couponInput} />
-
-							<Button variant='large-dark' onClick={() => {}}>
+						<section className={styles.couponBtns}>
+							<div>
+								<input onClick={() => {}} placeholder='Coupon Code' className={styles.couponInput} />
+							</div>
+							<Button variant='default-dark' onClick={() => {}}>
 								APPLY COUPON
 							</Button>
-
-							{/* <button className={styles.updateBtn} onClick={() => {}}>
-							<span>UDATE CART</span>
-						</button> */}
-						</div>
-						<section className={styles.article}>
-							<article className={styles.layoutRight}>
-								<h2 style={{ paddingBlock: '1.5rem' }}>CART TOTALS</h2>
-								<div className={styles.subtotal}>
+						</section>
+						<section className={styles.cartTotalLayout}>
+							<article className={styles.cartTotalContainer}>
+								<h3 style={{ paddingBlock: '1.5rem' }}>CART TOTALS</h3>
+								<h3 className={styles.subtotal}>
 									{/* Borde vara 1) spara reduce-funktionen längre upp i variabel och multiplicera detta med cartItems.length */}
 									<div>Subtotal:</div>
-									<div className={styles.priceColor}>{formatCurrency(totalPrice, currency)}</div>
-								</div>
+									<div className={styles.amount}>{formatCurrency(totalPrice, currency)}</div>
+								</h3>
 								<div className={styles.shippingContainer}>
 									<div className={styles.shipping}>
-										<div>Shipping:</div>
-										<div>Schenker</div>
+										<p>Shipping:</p>
+										<p>Schenker</p>
 									</div>
 
-									<div style={{ display: 'flex', justifyContent: 'flex-end' }}>Shipping options will be updated during checkout.</div>
-									<div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.4rem' }}>
+									<p style={{ display: 'flex', justifyContent: 'flex-end' }}>Shipping options will be updated during checkout.</p>
+									<p style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.4rem' }}>
 										<span className={styles.calculateShipping}>Calculate shipping</span> <ImTruck />
-									</div>
+									</p>
 								</div>
 								<div className={styles.total}>
-									<div>Total:</div>
-									<div className={styles.priceColor}>
+									<h3>Total:</h3>
+									<p className={styles.amount}>
 										{formatCurrency(totalPrice, currency)} + SHIPPING COST (includes {formatCurrency(totalPrice * 0.2, currency)} Tax)
-									</div>
+									</p>
 								</div>
 
 								<Button variant='large-dark' onClick={() => router.push('/checkout')}>
@@ -233,20 +219,20 @@ const CartPage = () => {
 								</Button>
 							</article>
 						</section>
-					</main>
-				</main>
+					</section>
+				</section>
 			) : (
-				<main style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+				<section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
 					<span style={{ marginBottom: '1rem' }}>YOUR CART IS CURRENTLY EMPTY!</span>
 					<div style={{ width: '50%' }}>
 						<Button variant='default-dark' onClick={startShopping}>
 							START SHOPPING
 						</Button>
 					</div>
-				</main>
+				</section>
 			)}
 		</>
-	)
-}
+	);
+};
 
-export default CartPage
+export default CartPage;

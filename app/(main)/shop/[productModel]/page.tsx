@@ -1,8 +1,6 @@
 'use client';
 import Figure from '@/app/components/atoms/figure/Figure';
-import ProductCard from '@/app/components/molecules/productCard/ProductCard';
 import React from 'react';
-// import products from '../../data/products.json'
 import products from '@/app/data/products.json';
 import styles from './productDetailpage.module.css';
 import Image from 'next/image';
@@ -25,7 +23,7 @@ const parentVariants = {
 	initial: { opacity: 1 },
 	animate: {
 		transition: {
-			staggerChildren: 0.2,
+			staggerChildren: 0.1,
 		},
 	},
 };
@@ -35,14 +33,12 @@ const childrenVariants = {
 	animate: {
 		opacity: 1,
 		transition: {
-			duration: 0.5,
-			ease: 'easeIn',
+			duration: 0.4,
 		},
 	},
 };
 
 const ProductDetailPage = ({ params }: ProductDetailsProps) => {
-	// const [showIsAddedToCart, setShowIsAddedToCart] = useState<boolean>(false)
 	const cartContext = useCart() as CartContextProps;
 
 	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart, selectLength, selectedLength, checkCartEmpty, addedToCart, isCartOpen } =
@@ -71,15 +67,10 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 	const currentProduct = products.find((product) => model === product.model);
 
-	// const showAddedToCartMessage = () => {
-	// 	setShowIsAddedToCart(true)
-	// }
-
 	return (
-		<main className={styles.main}>
-			{/* <section className={styles.section}> */}
+		<>
 			{isAddedToCart ? (
-				<div className={styles.greenBox}>
+				<aside className={styles.greenBox}>
 					<div style={{ marginBottom: '1rem' }}>&ldquo;{currentProduct?.name}&rdquo; HAS BEEN ADDED TO YOUR CART.</div>
 					<div className={styles.btnSmallScreen}>
 						<Button onClick={goToCart} variant='large-dark-no-hover'>
@@ -91,7 +82,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 							VIEW&nbsp;CART
 						</Button>
 					</div>
-				</div>
+				</aside>
 			) : null}
 
 			<section className={styles.container}>
@@ -131,153 +122,125 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 					// console.log('product är:', product)
 
 					return (
-						<div key={i}>
+						<>
 							{model === product.model ? (
-								<div className={styles.infoSection}>
-									<div className={styles.infoContainer}>
-										<div style={{ display: 'flex' }}>
-											<TextBlock
-												name={product.name}
-												designer={product.designer}
-												boardType={product.boardType}
-												length={product.length}
-												detail={product.detail}
-												profile={product.profile}
-												lengthForModel={product.lengthForModel}
-											/>
-											{/* <TextBlock {...product} /> */}
-											<div className={styles.price}>
-												{/* By adding (conversionRateEur || 0), you're providing a default value of 0 in case conversionRateEur is undefined. This ensures that the multiplication operation always has a valid operand. */}
-												{/* You can also explicitly cast product.price to a number to ensure TypeScript understands that it's safe to perform arithmetic operations on it. */}
-												<span>
-													{formatCurrency(
-														(currency === 'SEK' ? Number(product.price) : Number(product.price) || 0) * (conversionRateEur || 0),
-														currency
-													)}
-												</span>
+								<section className={styles.infoContainer} key={i}>
+									<article className={styles.textBlock}>
+										<TextBlock
+											name={product.name}
+											designer={product.designer}
+											boardType={product.boardType}
+											length={product.length}
+											detail={product.detail}
+											profile={product.profile}
+											lengthForModel={product.lengthForModel}
+										/>
+										{/* <TextBlock {...product} /> */}
+										<div className={styles.price}>
+											{/* By adding (conversionRateEur || 0), you're providing a default value of 0 in case conversionRateEur is undefined. This ensures that the multiplication operation always has a valid operand. */}
+											{/* You can also explicitly cast product.price to a number to ensure TypeScript understands that it's safe to perform arithmetic operations on it. */}
+											<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur, currency)}</span>
+										</div>
+									</article>
+
+									<article className={styles.btnContainer}>
+										{product.lengthOptions ? (
+											<div className={styles.lengthBtns}>
+												{product.lengthOptions?.map((option, i) => {
+													const lengthStyles = classnames(styles.lengthBtn, {
+														[styles.lengthSelected]: option === selectedLength,
+													});
+													return (
+														<button key={i} className={lengthStyles} onClick={() => selectLength(option)}>
+															{option}
+														</button>
+													);
+												})}
 											</div>
-										</div>
+										) : null}
 
-										<div className={styles.btnContainer}>
-											{product.lengthOptions ? (
-												<div className={styles.largeLight}>
-													{product.lengthOptions?.map((option, i) => {
-														const lengthStyles = classnames(styles.btnLengthOptions, {
-															[styles.selectedLength]: option === selectedLength,
-														});
-														return (
-															<button key={i} className={lengthStyles} onClick={() => selectLength(option)}>
-																{option}
-															</button>
-														);
-													})}
-												</div>
-											) : null}
+										{/* Here we pass in the entire product object (into the context) */}
+										{/* <Button variant='large-dark' onClick={() => addItemToCart(product)}> */}
+										{/* <Button variant='large-dark' onClick={() => increaseCartQuantity(product)}> */}
+										<Button
+											variant='large-dark'
+											onClick={() => {
+												if (selectedLength !== null || product.lengthOptions === null) {
+													increaseCartQuantity(product);
+													addedToCart();
+													checkCartEmpty();
+												} else {
+													alert('Please pick a length option');
+												}
+											}}>
+											ADD TO CART
+										</Button>
+									</article>
 
-											{/* Here we pass in the entire product object (into the context) */}
-											{/* <Button variant='large-dark' onClick={() => addItemToCart(product)}> */}
-											{/* <Button variant='large-dark' onClick={() => increaseCartQuantity(product)}> */}
-											<Button
-												variant='large-dark'
-												onClick={() => {
-													if (selectedLength !== null || product.lengthOptions === null) {
-														increaseCartQuantity(product);
-														addedToCart();
-														checkCartEmpty();
-													} else {
-														alert('Please pick a length option');
-													}
-												}}>
-												ADD TO CART
-											</Button>
-										</div>
+									<article className={styles.productInfoBlock}>
+										<h2 className={styles.h2} style={{ color: '#00b140', marginBottom: '1rem' }}>
+											SHIPPING WORLD WIDE! NEED SUPPORT?
+										</h2>
+										<h2 className={styles.h2}>{product.descriptionHeading}</h2>
+										<div>{product.descriptionText}</div>
+										<h2 className={styles.h2}>{product.districtHeading}</h2>
+										<div>{product.district}</div>
 
-										<div className={styles.productInfoBlock}>
-											<h2 className={styles.h2} style={{ color: '#00b140', marginBottom: '1rem' }}>
-												SHIPPING WORLD WIDE! NEED SUPPORT?
-											</h2>
-											<h2 className={styles.h2}>{product.descriptionHeading}</h2>
-											<div>{product.descriptionText}</div>
-											<h2 className={styles.h2}>{product.districtHeading}</h2>
-											<div>{product.district}</div>
-
-											{product.propertiesHeading ? (
-												<div>
-													<h2 className={styles.h2}>{product.propertiesHeading}</h2>
-													<ul className={styles.ul}>
-														<li className={styles.li}>{product.properties.length}</li>
-														{product.properties?.features.map((property, i) => (
-															<li className={styles.li} key={i}>
-																{property}
-															</li>
-														))}
-													</ul>
-												</div>
-											) : null}
-
-											{product.sizeTable ? (
-												<ul>
-													{product.sizeTable.map((size, i) => {
-														return <li key={i}>{size}</li>;
-													})}
+										{product.propertiesHeading ? (
+											<div>
+												<h2 className={styles.h2}>{product.propertiesHeading}</h2>
+												<ul className={styles.ul}>
+													<li className={styles.li}>{product.properties.length}</li>
+													{product.properties?.features.map((property, i) => (
+														<li className={styles.li} key={i}>
+															{property}
+														</li>
+													))}
 												</ul>
-											) : null}
-
-											<h2 className={styles.h2}>{product.narrativeHeading}</h2>
-											<div>{product.narrative}</div>
-											{product.preCutSkins ? (
-												<Button variant={'default'} onClick={() => router.push('/shop/skins')}>
-													ADD PRE-CUT SKINS
-												</Button>
-											) : null}
-											<div className={styles.additionalInfo}>
-												{product.additionalInfo.map((infoLine, i) => (
-													<ul key={i} className={styles.ul}>
-														<li className={styles.li}>{infoLine}</li>
-													</ul>
-												))}
 											</div>
-										</div>
+										) : null}
 
-										{/* {product.technicalSpecificationHeading ? (
-										<div className={styles.techInfoContainer}>
-											<h2>{product.technicalSpecificationHeading}</h2>
-											<div className={styles.chartsContainer}>
-												<Image
-													src={`/products/${product.technicalSpecification}`}
-													width={350}
-													height={150}
-													alt='Technical Specifications'
-													className={styles.chart}
-												/>
-												<Image src={`/products/${product.chart}`} width={350} height={150} alt='Technical Specifications' className={styles.chart} />
-											</div>
+										{product.sizeTable ? (
+											<ul>
+												{product.sizeTable.map((size, i) => {
+													return <li key={i}>{size}</li>;
+												})}
+											</ul>
+										) : null}
+
+										<h2 className={styles.h2}>{product.narrativeHeading}</h2>
+										<div>{product.narrative}</div>
+										{product.preCutSkins ? (
+											<Button variant={'default'} onClick={() => router.push('/shop/skins')}>
+												ADD PRE-CUT SKINS
+											</Button>
+										) : null}
+										<div className={styles.additionalInfo}>
+											{product.additionalInfo.map((infoLine, i) => (
+												<ul key={i} className={styles.ul}>
+													<li className={styles.li}>{infoLine}</li>
+												</ul>
+											))}
 										</div>
-									) : null} */}
-									</div>
-									{/* <div>
-									<h2>{product.relatedProductsHeading}</h2>
-								</div> */}
-								</div>
+									</article>
+								</section>
 							) : null}
-						</div>
+						</>
 					);
 				})}
 			</section>
 
 			{products.map((product, i) => {
-				// const decodedURL = decodeURIComponent(model)
-
 				return (
 					<>
 						{model === product.model ? (
-							<div key={i}>
+							<section key={i}>
 								{product.technicalSpecificationHeading ? (
-									<div className={styles.techInfoContainer}>
+									<article className={styles.techContainer}>
 										<h2 className={styles.h2} style={{ alignSelf: 'flex-start' }}>
 											{product.technicalSpecificationHeading}
 										</h2>
-										<div style={{ alignSelf: 'flex-start' }} className={styles.chartsContainer}>
+										<div style={{ alignSelf: 'flex-start' }} className={styles.chartContainer}>
 											<Image
 												src={`/products/${product.technicalSpecification}`}
 												width={350}
@@ -287,19 +250,14 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											/>
 											<Image src={`/products/${product.chart}`} width={350} height={150} alt='Technical Specifications' className={styles.chart} />
 										</div>
-									</div>
+									</article>
 								) : null}
-
-								<div>
-									<h2 className={styles.h2}>{product.relatedProductsHeading}</h2>
-								</div>
-							</div>
+							</section>
 						) : null}
 					</>
 				);
 			})}
-			{/* </section> */}
-		</main>
+		</>
 	);
 };
 

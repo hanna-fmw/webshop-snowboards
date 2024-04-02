@@ -3,19 +3,13 @@ import products from './data/products.json';
 import HeroSection from './components/molecules/heroSection/HeroSection';
 import ProductCard from './components/molecules/productCard/ProductCard';
 import styles from './page.module.css';
-// import ProductGrid from './components/atoms/productGrid/ProductGrid'
-import Figure from './components/atoms/figure/Figure';
 import TextBlock from './components/atoms/textBlock/TextBlock';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import formatCurrency from './utilities/currencyFormatter';
 import { useCurrencyConversion } from './context/currencyContext';
-
-const variants = {
-	initial: { opacity: 0, y: 100 },
-	animate: (i: number) => ({ opacity: 1, y: 0, transition: { delay: 0.1 * i, duration: 0.4 } }),
-};
+import Figure from './components/atoms/figure/Figure';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -36,9 +30,6 @@ const childrenVariants = {
 		},
 	},
 };
-
-//<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
-//<motion.section key={i} variants={childrenVariants} className={styles.productCard}>
 
 export default function Home() {
 	const { currency, conversionRateEur } = useCurrencyConversion();
@@ -68,8 +59,6 @@ export default function Home() {
 												length={product.length}
 												detail={product.detail}
 												profile={product.profile}
-												// price={product.price}
-												// currency='SEK'
 											/>
 											<div className={styles.price}>
 												{/* By adding (conversionRateEur || 0), you're providing a default value of 0 in case conversionRateEur is undefined. This ensures that the multiplication operation always has a valid operand. */}

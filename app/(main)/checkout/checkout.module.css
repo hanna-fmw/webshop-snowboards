@@ -140,11 +140,11 @@
 	padding-block: 1rem;
 }
 
-.price {
+/* .price {
 	display: flex;
 	justify-content: space-between;
 	padding-block: 1rem;
-}
+} */
 
 .quantity {
 	display: flex;
@@ -156,7 +156,7 @@
 	padding-block: 1rem;
 }
 
-.priceColor {
+.price {
 	color: var(--color-TUR-green);
 }
 

@@ -4,8 +4,6 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
-// import ProductGrid from '@/app/components/atoms/productGrid/ProductGrid';
-import ProductCard from '@/app/components/molecules/productCard/ProductCard';
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
 import Figure from '@/app/components/atoms/figure/Figure';
 import products from '@/app/data/products.json';
@@ -143,7 +141,7 @@ const Shop = () => {
 						</li>
 					</ul>
 					<div className={styles.dropdownContainer}>
-						<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
+						<button className={`${styles.button}`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
 							{isOpen ? (
 								<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />

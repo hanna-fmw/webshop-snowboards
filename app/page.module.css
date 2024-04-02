@@ -44,10 +44,7 @@
 }
 
 @media (min-width: 1880px) {
-	.productGrid {
-		width: 60vw;
-	}
-
+	.productGrid,
 	.containerHeader {
 		width: 60vw;
 	}
