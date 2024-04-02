@@ -124,7 +124,14 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
 	// const checkCartEmpty = () => cartItems.length !== 0 && setIsCartEmpty(true)
 	const checkCartEmpty = () => {
-		cartItems.length !== 0 ? setIsCartEmpty(false) : setIsCartEmpty(true);
+		if (cartItems.length !== 0) {
+			setIsCartEmpty(false);
+		} else {
+			setIsCartEmpty(true);
+			localStorage.removeItem('selectedBoardLength');
+		}
+
+		// cartItems.length !== 0 ? setIsCartEmpty(false) : setIsCartEmpty(true);
 	};
 
 	// const checkCartEmpty = () => {

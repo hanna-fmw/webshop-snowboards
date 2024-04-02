@@ -165,7 +165,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 										<Button
 											variant='large-dark'
 											onClick={() => {
-												if (selectedLength !== null || product.lengthOptions === null) {
+												if (selectedLength || product.lengthOptions === null) {
 													increaseCartQuantity(product);
 													addedToCart();
 													checkCartEmpty();
