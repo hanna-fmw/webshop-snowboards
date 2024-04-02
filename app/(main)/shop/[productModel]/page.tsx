@@ -74,7 +74,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 					<div style={{ marginBottom: '1rem' }}>&ldquo;{currentProduct?.name}&rdquo; HAS BEEN ADDED TO YOUR CART.</div>
 					<div className={styles.btnSmallScreen}>
 						<Button onClick={goToCart} variant='large-dark-no-hover'>
-							VIEW CART
+							VIEW&nbsp;CART
 						</Button>
 					</div>
 					<div className={styles.btnLargeScreen}>

@@ -94,7 +94,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
 	const closeCart = () => {
 		setIsCartOpen(false);
-		console.log('adsöhgarodöhagoö', isCartOpen);
 	};
 
 	//We need a place to store our item information, we do this in an useState (cartItems state) (which
@@ -224,10 +223,16 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	};
 
 	const removeFromCart = (product: Product) => {
+		// Remove selectedBoardLength from localStorage
+		localStorage.removeItem('selectedBoardLength');
+
+		// Remove the item from cartItems
 		//Here we just get our currItems and filter out the one where the id is not equal to our current item id
 		setCartItems((currItems) => {
 			return currItems.filter((item) => item.product.id !== product.id);
 		});
+
+		//Update isCartEmpty
 		checkCartEmpty();
 	};
 
