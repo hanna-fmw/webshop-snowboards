@@ -17,6 +17,7 @@ import formatCurrency from '@/app/utilities/currencyFormatter';
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 import ProductCard from '@/app/components/molecules/productCard/ProductCard';
+import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -198,22 +199,18 @@ const Shop = () => {
 							<motion.section key={i} variants={childrenVariants} className={styles.productCard}>
 								<ProductCard>
 									<ProductImg image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-									<div style={{ display: 'flex' }}>
+									<article className={styles.productInfo}>
 										<TextBlock
-											name={product.name}
+											model={product.model}
 											designer={product.designer}
 											boardType={product.boardType}
 											length={product.length}
 											detail={product.detail}
 											profile={product.profile}
-											// price={product.price}
-											// Adding the ! in conversionRateEur asserts to TypeScript that conversionRateEur is not null or undefined.
-											// price={currency === 'SEK' ? product.price : product.price * conversionRateEur!}
 										/>
-										<div className={styles.price}>
-											<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
-										</div>
-									</div>
+
+										<PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} />
+									</article>
 								</ProductCard>
 							</motion.section>
 						);

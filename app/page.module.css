@@ -20,9 +20,13 @@
 	grid-template-columns: repeat(1, 1fr);
 }
 
-.price {
-	color: var(--color-TUR-green);
+.productInfo {
+	display: flex;
 }
+
+/* .productPrice {
+	color: var(--color-TUR-green);
+} */
 
 @media (min-width: 558px) {
 	.productGrid {

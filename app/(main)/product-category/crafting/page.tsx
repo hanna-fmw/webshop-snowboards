@@ -15,6 +15,7 @@ import { useCurrencyConversion } from '@/app/context/currencyContext';
 
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
+import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -163,19 +164,18 @@ const Crafting = () => {
 									<motion.div key={i} variants={childrenVariants}>
 										<ProductCard>
 											<ProductImg image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-											<div style={{ display: 'flex' }}>
+											<article className={styles.productInfo}>
 												<TextBlock
-													name={product.name}
+													model={product.model}
 													designer={product.designer}
 													boardType={product.boardType}
 													length={product.length}
 													detail={product.detail}
 													profile={product.profile}
 												/>
-												<div className={styles.price}>
-													<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
-												</div>
-											</div>
+
+												<PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} />
+											</article>
 										</ProductCard>
 									</motion.div>
 								) : null}
