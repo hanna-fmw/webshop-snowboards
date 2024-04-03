@@ -35,7 +35,7 @@ export default function Home() {
 	const { currency, conversionRateEur } = useCurrencyConversion();
 	const router = useRouter();
 	return (
-		<main>
+		<>
 			<HeroSection />
 			<section className={styles.container}>
 				<div className={styles.containerHeader}>
@@ -46,7 +46,6 @@ export default function Home() {
 					{products.map((product, i) => {
 						const featured = product.featured === true;
 						return (
-							// <motion.div key={i} variants={variants} initial='initial' whileInView='animate' viewport={{ once: true }} custom={i}>
 							<motion.div key={i} variants={childrenVariants}>
 								{featured ? (
 									<ProductCard>
@@ -73,6 +72,6 @@ export default function Home() {
 					})}
 				</motion.section>
 			</section>
-		</main>
+		</>
 	);
 }
