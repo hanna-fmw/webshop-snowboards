@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
-import Figure from '@/app/components/atoms/figure/Figure';
+import ProductImg from '@/app/components/atoms/productImg/ProductImg';
 import products from '@/app/data/products.json';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -119,7 +119,6 @@ const Shop = () => {
 		<main className={styles.main}>
 			<section className={styles.shopContainer}>
 				<div className={styles.shopHeader}>
-					
 					<div className={styles.dropdownContainer}>
 						<button className={`${styles.dropdownBtn}`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
@@ -163,7 +162,6 @@ const Shop = () => {
 						</div>
 					</div>
 				</div>
-				
 			</section>
 		</main>
 	);

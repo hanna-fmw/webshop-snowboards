@@ -7,8 +7,8 @@ import { RiArrowUpSLine } from 'react-icons/ri';
 import ProductCard from '@/app/components/molecules/productCard/ProductCard';
 
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
-// import Figure from '../components/atoms/figure/Figure'
-import Figure from '@/app/components/atoms/figure/Figure';
+
+import ProductImg from '@/app/components/atoms/productImg/ProductImg';
 
 // import products from '../data/products.json'
 import products from '@/app/data/products.json';
@@ -150,7 +150,7 @@ const Shapes = () => {
 								{isCategory ? (
 									<motion.div key={i} variants={childrenVariants}>
 										<ProductCard>
-											<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
+											<ProductImg image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
 											<div style={{ display: 'flex' }}>
 												<TextBlock
 													name={product.name}

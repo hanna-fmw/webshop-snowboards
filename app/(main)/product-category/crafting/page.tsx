@@ -6,7 +6,7 @@ import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
 import ProductCard from '@/app/components/molecules/productCard/ProductCard';
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
-import Figure from '@/app/components/atoms/figure/Figure';
+import ProductImg from '@/app/components/atoms/productImg/ProductImg';
 import products from '@/app/data/products.json';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -162,7 +162,7 @@ const Crafting = () => {
 								{isCategory ? (
 									<motion.div key={i} variants={childrenVariants}>
 										<ProductCard>
-											<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
+											<ProductImg image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
 											<div style={{ display: 'flex' }}>
 												<TextBlock
 													name={product.name}

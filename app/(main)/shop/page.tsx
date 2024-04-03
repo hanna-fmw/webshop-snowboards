@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
-import Figure from '@/app/components/atoms/figure/Figure';
+import ProductImg from '@/app/components/atoms/productImg/ProductImg';
 import products from '@/app/data/products.json';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -16,6 +16,7 @@ import formatCurrency from '@/app/utilities/currencyFormatter';
 //Downshift
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
+import ProductCard from '@/app/components/molecules/productCard/ProductCard';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -195,23 +196,25 @@ const Shop = () => {
 					{sortProducts(products, selectedItem).map((product, i) => {
 						return (
 							<motion.section key={i} variants={childrenVariants} className={styles.productCard}>
-								<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-								<div style={{ display: 'flex' }}>
-									<TextBlock
-										name={product.name}
-										designer={product.designer}
-										boardType={product.boardType}
-										length={product.length}
-										detail={product.detail}
-										profile={product.profile}
-										// price={product.price}
-										// Adding the ! in conversionRateEur asserts to TypeScript that conversionRateEur is not null or undefined.
-										// price={currency === 'SEK' ? product.price : product.price * conversionRateEur!}
-									/>
-									<div className={styles.price}>
-										<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
+								<ProductCard>
+									<ProductImg image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
+									<div style={{ display: 'flex' }}>
+										<TextBlock
+											name={product.name}
+											designer={product.designer}
+											boardType={product.boardType}
+											length={product.length}
+											detail={product.detail}
+											profile={product.profile}
+											// price={product.price}
+											// Adding the ! in conversionRateEur asserts to TypeScript that conversionRateEur is not null or undefined.
+											// price={currency === 'SEK' ? product.price : product.price * conversionRateEur!}
+										/>
+										<div className={styles.price}>
+											<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
+										</div>
 									</div>
-								</div>
+								</ProductCard>
 							</motion.section>
 						);
 					})}

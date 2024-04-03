@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import formatCurrency from '@/app/utilities/currencyFormatter';
 import { RiArrowDownSFill } from 'react-icons/ri';
 import { RiArrowUpSFill } from 'react-icons/ri';
-import Figure from '@/app/components/atoms/figure/Figure';
+import ProductImg from '@/app/components/atoms/productImg/ProductImg';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
 
 type CartProps = {
@@ -130,7 +130,7 @@ const CartPage = () => {
 													<span className={styles.removeBtn}>x</span>
 												</button>
 												<div className={styles.productImg}>
-													<Figure image={`/products/${item.product?.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
+													<ProductImg image={`/products/${item.product?.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} />
 												</div>
 
 												<div className={styles.productName}>

@@ -1,5 +1,5 @@
 'use client';
-import Figure from '@/app/components/atoms/figure/Figure';
+import ProductImg from '@/app/components/atoms/productImg/ProductImg';
 import React from 'react';
 import products from '@/app/data/products.json';
 import styles from './productDetailpage.module.css';
@@ -88,7 +88,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 			<section className={styles.container}>
 				<section className={styles.productImgs}>
 					{isFullSize ? (
-						<Figure image={`/products/${currentProduct?.thumbnails[thumbnailIndex]}`} />
+						<ProductImg image={`/products/${currentProduct?.thumbnails[thumbnailIndex]}`} />
 					) : (
 						<Image src={`/products/${currentProduct?.image}`} width={350} height={450} alt='Product Image' className={styles.productImg} />
 					)}

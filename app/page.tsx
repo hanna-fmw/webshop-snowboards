@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import formatCurrency from './utilities/currencyFormatter';
 import { useCurrencyConversion } from './context/currencyContext';
-import Figure from './components/atoms/figure/Figure';
+import ProductImg from './components/atoms/productImg/ProductImg';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -50,7 +50,7 @@ export default function Home() {
 							<motion.div key={i} variants={childrenVariants}>
 								{featured ? (
 									<ProductCard>
-										<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
+										<ProductImg image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
 										<div style={{ display: 'flex' }}>
 											<TextBlock
 												model={product.model}

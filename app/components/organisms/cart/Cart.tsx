@@ -143,7 +143,6 @@ const Cart = ({ children }: CartProps) => {
 										<div className={styles.productInfo}>
 											<div className={styles.imgContainer}>
 												<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
-												{/* <Figure image={`/products/${item.product.image}`} onClick={() => router.push(`/shop/${item.product.model}`)} /> */}
 											</div>
 											<div className={styles.texBlockHorizontal}>
 												<div>{item.product?.name}</div>
@@ -180,7 +179,7 @@ const Cart = ({ children }: CartProps) => {
 											</span>
 										</div>
 
-										{/* När jag har fixat ProductCard - lagt in figure och textblock i det, så kan jag bara skriva så här: */}
+										{/* När jag har fixat ProductCard - lagt in productImg och textblock i det, så kan jag bara skriva så här: */}
 										{/* <ProductCard {...item}/> */}
 									</section>
 								);
