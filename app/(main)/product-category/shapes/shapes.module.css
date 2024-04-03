@@ -20,7 +20,7 @@
 }
 
 /* Link block */
-.links {
+/* .links {
 	display: flex;
 	justify-content: flex-start;
 	gap: 1rem;
@@ -35,7 +35,7 @@
 	text-decoration: underline;
 	text-underline-offset: 5px;
 	color: var(--color-active-link);
-}
+} */
 
 /* Dropdown */
 .dropdownContainer {
@@ -89,15 +89,19 @@
 	}
 }
 
+@media (min-width: 768px) {
+	.shapesHeader {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
 @media (min-width: 1024px) {
 	.productCardSection {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-	}
-
-	.shapesHeader {
-		flex-direction: row;
-		justify-content: space-between;
 	}
 }
 

@@ -2,11 +2,15 @@ import React from 'react';
 import styles from './apparel.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 
 const Apparel = () => {
 	return (
 		<section className={styles.container}>
-			<ul className={styles.links}>
+			<div className={styles.linkContainer}>
+				<FilterLinks />
+			</div>
+			{/* <ul className={styles.links}>
 				<li>
 					<Link href='/shop' className={styles.link}>
 						[b].ALL
@@ -27,7 +31,7 @@ const Apparel = () => {
 						[b].CRAFTING
 					</Link>
 				</li>
-			</ul>
+			</ul> */}
 
 			<div>
 				<section className={styles.heroContainer}>

@@ -1,0 +1,16 @@
+.links {
+	display: flex;
+	justify-content: flex-start;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.link {
+	text-decoration: none;
+}
+
+.link:hover {
+	text-decoration: underline;
+	text-underline-offset: 5px;
+	color: var(--color-active-link);
+}

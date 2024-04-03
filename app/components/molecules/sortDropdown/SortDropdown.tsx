@@ -1,5 +1,5 @@
 'use client';
-import styles from './shop.module.css';
+import styles from './sortDropdown.module.css';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
@@ -15,7 +15,6 @@ import formatCurrency from '@/app/utilities/currencyFormatter';
 
 //Downshift
 import { useSelect } from 'downshift';
-import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -120,30 +119,7 @@ const Shop = () => {
 		<main className={styles.main}>
 			<section className={styles.shopContainer}>
 				<div className={styles.shopHeader}>
-					<FilterLinks />
-
-					{/* <ul className={styles.links}>
-						<li>
-							<Link href='/shop' className={styles.link}>
-								[b].ALL
-							</Link>
-						</li>
-						<li>
-							<Link href='/product-category/shapes' className={styles.link}>
-								[b].SHAPES
-							</Link>
-						</li>
-						<li>
-							<Link href='/apparel' className={styles.link}>
-								[b].APPAREL
-							</Link>
-						</li>
-						<li>
-							<Link href='/product-category/crafting' className={styles.link}>
-								[b].CRAFTING
-							</Link>
-						</li>
-					</ul> */}
+					
 					<div className={styles.dropdownContainer}>
 						<button className={`${styles.dropdownBtn}`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
@@ -187,35 +163,7 @@ const Shop = () => {
 						</div>
 					</div>
 				</div>
-				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
-					{/* Here we need to sort the products array based on the selected sorting view option, ie based
-					//on the current sort state (sortState-setSortState), which is set when the user clicks on an
-					option on the dropdown menu. So sortProducts(products) will apply the logic in the sortProducts function, which
-					takes in an array, in this case products */}
-					{sortProducts(products, selectedItem).map((product, i) => {
-						return (
-							<motion.section key={i} variants={childrenVariants} className={styles.productCard}>
-								<Figure image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
-								<div style={{ display: 'flex' }}>
-									<TextBlock
-										name={product.name}
-										designer={product.designer}
-										boardType={product.boardType}
-										length={product.length}
-										detail={product.detail}
-										profile={product.profile}
-										// price={product.price}
-										// Adding the ! in conversionRateEur asserts to TypeScript that conversionRateEur is not null or undefined.
-										// price={currency === 'SEK' ? product.price : product.price * conversionRateEur!}
-									/>
-									<div className={styles.price}>
-										<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur!, currency)}</span>
-									</div>
-								</div>
-							</motion.section>
-						);
-					})}
-				</motion.section>
+				
 			</section>
 		</main>
 	);

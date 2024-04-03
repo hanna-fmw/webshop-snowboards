@@ -18,6 +18,7 @@ import formatCurrency from '@/app/utilities/currencyFormatter';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
 
 import { useSelect } from 'downshift';
+import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -71,7 +72,8 @@ const Shapes = () => {
 		<main className={styles.main}>
 			<section className={styles.shapesContainer}>
 				<div className={styles.shapesHeader}>
-					<ul className={styles.links}>
+					<FilterLinks />
+					{/* <ul className={styles.links}>
 						<li>
 							<Link href='/shop' className={styles.link}>
 								[b].ALL
@@ -92,7 +94,7 @@ const Shapes = () => {
 								[b].CRAFTING
 							</Link>
 						</li>
-					</ul>
+					</ul> */}
 
 					<div className={styles.dropdownContainer}>
 						<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
