@@ -141,7 +141,7 @@ const Shop = () => {
 						</li>
 					</ul>
 					<div className={styles.dropdownContainer}>
-						<button className={`${styles.button}`} {...getToggleButtonProps()}>
+						<button className={`${styles.dropdownBtn}`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
 							{isOpen ? (
 								<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />

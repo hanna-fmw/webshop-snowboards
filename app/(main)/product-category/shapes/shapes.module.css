@@ -98,7 +98,6 @@
 	.shapesHeader {
 		flex-direction: row;
 		justify-content: space-between;
-		/* max-width: 100%; */
 	}
 }
 
