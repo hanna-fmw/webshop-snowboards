@@ -10,6 +10,8 @@ import styles from './components/organisms/footer/footer.module.css'
 import { ModalProvider } from './context/modalContext'
 import { CartProvider } from './context/cartContext'
 import { CurrencyProvider } from './context/currencyContext'
+import { SortDropdownProvider } from './context/downShiftContext'
+import { items } from './utilities/sortOptions'
 
 const gtAmericaMonoLight = localFont({
 	// src: '../fonts/FaroVariableWeb.woff2',
@@ -34,6 +36,7 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+	
 	return (
 		<html lang='en'>
 			{/* <Head>
@@ -41,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</Head> */}
 			{/* <body className={robotoMono.className}> */}
 			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`}>
+				<SortDropdownProvider items={items}>
 				<CurrencyProvider>
 					<ModalProvider>
 						<CartProvider>
@@ -50,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						</CartProvider>
 					</ModalProvider>
 				</CurrencyProvider>
+				</SortDropdownProvider>
 			</body>
 		</html>
 	)

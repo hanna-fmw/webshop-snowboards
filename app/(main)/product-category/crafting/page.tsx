@@ -12,10 +12,10 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import formatCurrency from '@/app/utilities/currencyFormatter';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
-
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
+// import SortDropdown from '@/app/components/molecules/sortDropdown/SortDropdown';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -37,8 +37,6 @@ const childrenVariants = {
 	},
 };
 
-const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
-
 type Product = {
 	name: string;
 	designer: string;
@@ -52,7 +50,10 @@ type Product = {
 	model: string;
 };
 
+const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
+
 const Crafting = () => {
+	// const { selectedItem } = useSelect({ items: items });
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
 
 	const { currency, conversionRateEur } = useCurrencyConversion();
@@ -85,33 +86,10 @@ const Crafting = () => {
 			<section className={styles.craftingContainer}>
 				<div className={styles.craftingHeader}>
 					<FilterLinks />
-					{/* <ul className={styles.links}>
-						<li>
-							<Link href='/shop' className={styles.link}>
-								[b].ALL
-							</Link>
-						</li>
-						<li>
-							<Link href='/product-category/shapes' className={styles.link}>
-								[b].SHAPES
-							</Link>
-						</li>
-						<li>
-							<Link href='/apparel' className={styles.link}>
-								[b].APPAREL
-							</Link>
-						</li>
-						<li>
-							<Link href='/product-category/crafting' className={styles.link}>
-								[b].CRAFTING
-							</Link>
-						</li>
-					</ul> */}
 
 					<div className={styles.dropdownContainer}>
-						<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
+						<button className={`${styles.dropdownBtn}`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
-							{/* selectedMenuIsOpen is the renamed destructured isOpen property from useSelect (ie downshift) */}
 							{isOpen ? (
 								<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
 							) : (
@@ -153,7 +131,7 @@ const Crafting = () => {
 					</div>
 				</div>
 
-				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
+				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
 					{sortProducts(products, selectedItem).map((product, i) => {
 						// console.log('these are products', products);
 						const isCategory = product?.productCategory.includes(category);

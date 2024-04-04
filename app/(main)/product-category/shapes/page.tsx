@@ -1,16 +1,10 @@
 'use client';
 import styles from './shapes.module.css';
-import Link from 'next/link';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
-// import ProductGrid from '@/app/components/atoms/productGrid/ProductGrid';
 import ProductCard from '@/app/components/molecules/productCard/ProductCard';
-
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
-
 import ProductImg from '@/app/components/atoms/productImg/ProductImg';
-
-// import products from '../data/products.json'
 import products from '@/app/data/products.json';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -74,29 +68,6 @@ const Shapes = () => {
 			<section className={styles.shapesContainer}>
 				<div className={styles.shapesHeader}>
 					<FilterLinks />
-					{/* <ul className={styles.links}>
-						<li>
-							<Link href='/shop' className={styles.link}>
-								[b].ALL
-							</Link>
-						</li>
-						<li>
-							<Link href='/product-category/shapes' className={styles.link}>
-								[b].SHAPES
-							</Link>
-						</li>
-						<li>
-							<Link href='/apparel' className={styles.link}>
-								[b].APPAREL
-							</Link>
-						</li>
-						<li>
-							<Link href='/product-category/crafting' className={styles.link}>
-								[b].CRAFTING
-							</Link>
-						</li>
-					</ul> */}
-
 					<div className={styles.dropdownContainer}>
 						<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
@@ -110,7 +81,6 @@ const Shapes = () => {
 						<div className={styles.dropdown}>
 							<ul
 								{...getMenuProps()}
-								// className={styles.menuItems}
 								style={{
 									listStyle: 'none',
 									width: '100%',
@@ -142,7 +112,7 @@ const Shapes = () => {
 					</div>
 				</div>
 
-				<motion.section className={styles.productCardSection} variants={parentVariants} initial='initial' animate='animate'>
+				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
 					{sortProducts(products, selectedItem).map((product, i) => {
 						const isCategory = product?.productCategory.includes(category.toLocaleLowerCase());
 

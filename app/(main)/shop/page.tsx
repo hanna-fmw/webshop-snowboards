@@ -11,13 +11,15 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
 import formatCurrency from '@/app/utilities/currencyFormatter';
-// import SortDropdown from '@/app/components/molecules/sortDropdown/SortDropdown';
 
 //Downshift
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 import ProductCard from '@/app/components/molecules/productCard/ProductCard';
 import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
+
+//import { useSortDropdownContext } from '@/app/context/downShiftContext';
+// import SortDropdown from '@/app/components/molecules/sortDropdown/SortDropdown';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -63,6 +65,9 @@ const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: 
 //sortProducts(products, selectedItem).map((product, i) => { osv.
 const Shop = () => {
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
+	//Meningen ovan motsvarar detta i doc:en: In the examples below, we use the useSelect hook and destructure the
+	//getter props and state variables it returns (dvs. vi destructure alla props som useSelect returns/som vi
+	//kan få/extrahera ur useSelect )
 
 	//Vi definierar currency i currencyContext.tsx och togglar den
 	//till EUR eller SEK i CurrencyDropdown.tsx. Och här nedan kan vi sedan
@@ -72,27 +77,6 @@ const Shop = () => {
 	const { conversionRateEur, currency } = useCurrencyConversion();
 
 	const router = useRouter();
-
-	// const [sortView, setSortView] = useState('Default sorting')
-	// //DROPDOWN MENU/LIST OPTIONS (samma som ovan fast med switch)
-	// //Function called when user clicks on an option on the dropdown menu. Sets
-	// //the state (sort view) to the corresponding clicked sorting option
-	// const selectOption = (option) => {
-	// 	console.log(sortView)
-	// 	switch (option) {
-	// 		case 'Default sorting':
-	// 			setSortView('Default sorting')
-	// 			break
-	// 		case 'Sort by price: low to high':
-	// 			setSortView('Sort by price: low to high')
-	// 			break
-	// 		case 'Sort by price: high to low':
-	// 			setSortView('Sort by price: high to low')
-	// 			break
-	// 		default:
-	// 			break
-	// 	}
-	// }
 
 	const sortProducts = (arr: Product[], sortView: string) => {
 		return arr.sort((a, b) => {
@@ -124,28 +108,8 @@ const Shop = () => {
 				<div className={styles.shopHeader}>
 					<FilterLinks />
 
-					{/* <ul className={styles.links}>
-						<li>
-							<Link href='/shop' className={styles.link}>
-								[b].ALL
-							</Link>
-						</li>
-						<li>
-							<Link href='/product-category/shapes' className={styles.link}>
-								[b].SHAPES
-							</Link>
-						</li>
-						<li>
-							<Link href='/apparel' className={styles.link}>
-								[b].APPAREL
-							</Link>
-						</li>
-						<li>
-							<Link href='/product-category/crafting' className={styles.link}>
-								[b].CRAFTING
-							</Link>
-						</li>
-					</ul> */}
+					{/* <SortDropdown items={items} /> */}
+
 					<div className={styles.dropdownContainer}>
 						<button className={`${styles.dropdownBtn}`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
