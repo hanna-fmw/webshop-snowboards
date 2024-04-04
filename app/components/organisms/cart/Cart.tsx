@@ -141,17 +141,16 @@ const Cart = ({ children }: CartProps) => {
 								return (
 									<section key={i} className={styles.productContainer}>
 										<div className={styles.productInfo}>
-											<div className={styles.imgContainer}>
-												<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
-											</div>
-											<div className={styles.texBlockHorizontal}>
+											<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
+											{/* <section className={styles.texBlockHorizontal}> */}
+											<section>
 												<div>{item.product?.name}</div>
-												<div className={styles.price}>
+												<span className={styles.price}>
 													{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
-												</div>
+												</span>
 												{/* <div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div> */}
 												<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
-												<div className={styles.btnContainer}>
+												<article className={styles.btnContainer}>
 													<div className={styles.itemCountContainer}>
 														<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
 															-
@@ -165,8 +164,8 @@ const Cart = ({ children }: CartProps) => {
 													<div onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
 														REMOVE ITEM
 													</div>
-												</div>
-											</div>
+												</article>
+											</section>
 										</div>
 										<div>
 											<span>x{item.quantity} =</span>{' '}
@@ -188,8 +187,8 @@ const Cart = ({ children }: CartProps) => {
 
 						<footer className={styles.cartFooter}>
 							<div className={styles.divider}></div>
-							<div className={styles.subtotal}>
-								<div>SUBTOTAL</div>
+							<article className={styles.subtotal}>
+								<h3>SUBTOTAL</h3>
 								<div className={styles.price}>
 									{formatCurrency(
 										cartItems.reduce((total: number, item: any) => {
@@ -203,34 +202,34 @@ const Cart = ({ children }: CartProps) => {
 										currency
 									)}
 								</div>
-							</div>
-							<div>SHIPPING, TAXES, AND DISCOUNTS CALCULATED AT CHECKOUT.</div>
-							<div className={styles.btnCheckoutContainer} style={{ maxWidth: '100%' }}>
+							</article>
+							<h3>SHIPPING, TAXES, AND DISCOUNTS CALCULATED AT CHECKOUT.</h3>
+							<article className={styles.btnCheckoutContainer}>
 								<Button variant='default' onClick={goToCart}>
 									VIEW MY CART
 								</Button>
 								<Button variant='default-dark' onClick={goToCheckout}>
 									GO TO CHECKOUT
 								</Button>
-							</div>
-							<div className={styles.creditCardIcons}>
+							</article>
+							<article className={styles.creditCardIcons}>
 								<Image src={'/creditcardIcons/visa.svg'} width={25} height={25} alt='Visa icon' />
 								<Image src={'/creditcardIcons/amex.svg'} width={25} height={25} alt='Amex icon' />
 								<Image src={'/creditcardIcons/mastercard.svg'} width={25} height={25} alt='Mastercard icon' />
-							</div>
+							</article>
 						</footer>
 
 						{/* <div>Total Items: {cartItems.length}</div> */}
 					</section>
 				) : (
-					<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+					<section className={styles.emptyCartContainer}>
 						<span style={{ marginBottom: '1rem' }}>YOUR CART IS CURRENTLY EMPTY!</span>
 						<div style={{ width: '50%' }}>
 							<Button variant='default-dark' onClick={startShopping}>
 								START SHOPPING
 							</Button>
 						</div>
-					</div>
+					</section>
 				)}
 			</motion.main>
 		</AnimatePresence>

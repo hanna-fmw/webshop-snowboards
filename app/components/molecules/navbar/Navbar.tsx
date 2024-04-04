@@ -28,7 +28,9 @@ const Navbar = ({ children }: NavbarProps) => {
 	const { isModalOpen, openModal } = modalContext || {};
 
 	// const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = useCart()
-	//För modalContext ovan behöver vi inte : ModalContextProps eftersom TS kan infer typen för både isModalOpen och openModal
+	//För modalContext ovan behöver vi inte : ModalContextProps eftersom TS kan infer typen för
+	//både isModalOpen och openModal (TS kan infer primitives)
+
 	const cartContext = useCart()!;
 	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = cartContext || {};
 
@@ -38,13 +40,13 @@ const Navbar = ({ children }: NavbarProps) => {
 	return (
 		<main className={styles.navContainer}>
 			<nav className={styles.nav}>
-				<div className={styles.li}>
+				<aside className={styles.li}>
 					<Link href='/'>
 						<Image src={logotype} width={157} height={26} alt='TUR Logotype' className={styles.logo} />
 					</Link>
-				</div>
+				</aside>
 
-				<div className={styles.navItems}>
+				<section className={styles.navItems}>
 					<ul className={styles.navLinks}>
 						<li className={`${styles.li} ${styles.link}`}>
 							{' '}
@@ -72,33 +74,35 @@ const Navbar = ({ children }: NavbarProps) => {
 					</ul>
 
 					{pathName !== '/cart' && pathName !== '/checkout' ? (
-						<ul className={styles.navIcons}>
-							<li className={styles.li}>
-								<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
+						<>
+							<ul className={styles.navIcons}>
+								<li className={styles.li}>
+									<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
+								</li>
 								{isModalOpen && <Modal />}
-							</li>
 
-							<li className={`${styles.li}`}>
-								<CurrencyDropdown />
-							</li>
-							<li style={{ display: 'flex' }} className={`${styles.li} ${styles.cartIconContainer}`}>
-								<Image src={cart} width={15} height={17} alt='Cart icon' onClick={openCart} />
-								{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
-								{isCartOpen && <Cart />}
-							</li>
-						</ul>
+								<li className={`${styles.li}`}>
+									<CurrencyDropdown />
+								</li>
+								<li className={`${styles.li} ${styles.cartIconContainer}`}>
+									<Image src={cart} width={15} height={17} alt='Cart icon' onClick={openCart} />
+									{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
+								</li>
+							</ul>
+							{isCartOpen && <Cart />}
+						</>
 					) : (
 						<>
 							<ul className={styles.navIcons}>
 								<li className={styles.li}>
 									<Image src={hamburgerMenu} width={22} height={20} className={styles.hamburgerMenu} alt='Hamburger Menu icon' onClick={openModal} />
-									{isModalOpen && <Modal />}
 								</li>
+								{isModalOpen && <Modal />}
 							</ul>
 							{isCartOpen && <Cart />}
 						</>
 					)}
-				</div>
+				</section>
 			</nav>
 		</main>
 	);
