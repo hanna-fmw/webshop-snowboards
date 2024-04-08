@@ -12,6 +12,8 @@ import { useCurrencyConversion } from '@/app/context/currencyContext';
 import { useForm } from 'react-hook-form';
 import { z, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type CartProps = {
 	children?: React.ReactNode;
@@ -58,7 +60,7 @@ const Checkout = () => {
 		phone: z.string().min(1, { message: 'Please enter phone number' }).optional(),
 		email: z.string().min(1, { message: 'Please enter email' }),
 		cardNumber: z.string().min(3, { message: 'Please enter card number' }),
-		expiryDate: z.string().datetime().min(1, { message: 'Please enter expiry date' }),
+		expiryDate: z.string().min(1, { message: 'Please enter expiry date' }),
 		cardCode: z.string().min(1, { message: 'Please enter CVC number' }),
 	});
 
@@ -81,10 +83,11 @@ const Checkout = () => {
 
 	//För data lägger vi till ett TypeScript-typ, t.ex. data: OrderForm som vi definierat som type OrderForm = osv.
 	const submitData = async (data: OrderFormType) => {
-		//Här skickar vi till servern: Se sist i denna fil där vi skapar en route för en POST-request som skickar detta formulär
-		//mock:
+		//Här skickar vi till servern: Se sist i denna fil där vi skapar en route för en POST-request som skickar detta formulär mock:
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 	};
+
+	const notify = () => toast('Your order has been placed!');
 
 	return (
 		<form onSubmit={handleSubmit(submitData)} className={styles.container}>
@@ -128,6 +131,7 @@ const Checkout = () => {
 				{errors.companyName && <p className={styles.errorMessage}>{errors.companyName.message}</p>}
 
 				<h2 className={styles.h2form}>Country /Region *</h2>
+
 				{/* DROPDOWN */}
 				<input type='text' className={styles.addressField} {...register('country')} />
 				{errors.country && <p className={styles.errorMessage}>{errors.country.message}</p>}
@@ -209,11 +213,7 @@ const Checkout = () => {
 					})}
 				</section>
 
-				{/* <section className={styles.onlyLargeScreen}></section> */}
-
-				{/* <h2 style={{ paddingBlock: '1.5rem' }}>CART TOTALS</h2> */}
 				<div className={styles.subtotal}>
-					{/* Borde vara 1) spara reduce-funktionen längre upp i variabel och multiplicera detta med cartItems.length */}
 					<h2>SUBTOTAL</h2>
 					<div className={styles.price}>
 						{formatCurrency(
@@ -254,7 +254,7 @@ const Checkout = () => {
 				<p>Pay with your credit card.</p>
 
 				<h2 className={styles.h2form}>Card Number *</h2>
-				<input type='number' className={styles.creditCardField} placeholder='1234 1234 1234 1234' {...register('cardNumber')} />
+				<input type='text' className={styles.creditCardField} placeholder='1234 1234 1234 1234' {...register('cardNumber')} />
 				{errors.cardNumber && <p className={styles.errorMessage}>{errors.cardNumber.message}</p>}
 
 				<h2 className={styles.h2form}>Expiry Date *</h2>
@@ -262,17 +262,30 @@ const Checkout = () => {
 				{errors.expiryDate && <p className={styles.errorMessage}>{errors.expiryDate.message}</p>}
 
 				<h2 className={styles.h2form}>Card Code (CVC) *</h2>
-				<input type='number' className={styles.creditCardField} placeholder='CVC' {...register('cardCode')} />
+				<input type='text' className={styles.creditCardField} placeholder='CVC' {...register('cardCode')} />
 				{errors.cardCode && <p className={styles.errorMessage}>{errors.cardCode.message}</p>}
 
-				<p style={{ marginTop: '5rem' }}>
+				<p style={{ marginTop: '5rem', marginBottom: '1.5rem' }}>
 					Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in
 					our privacy policy.
 				</p>
 
-				<button type='submit' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={() => {}}>
+				<button type='submit' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={notify}>
 					PLACE ORDER
 				</button>
+				<ToastContainer
+					position='bottom-right'
+					autoClose={5000}
+					hideProgressBar={true}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme='dark'
+					transition={Slide}
+				/>
 			</div>
 		</form>
 	);
