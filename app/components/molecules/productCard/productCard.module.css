@@ -1,12 +1,3 @@
-/* @media (max-width: 767px) {
-	.productCard {
-		width: 90vw;
-		margin-bottom: 1rem;
-	}
+.productCard {
+	margin-bottom: 1rem;
 }
-
-@media (min-width: 1800px) {
-	.productCard {
-		width: 100%;
-	}
-} */

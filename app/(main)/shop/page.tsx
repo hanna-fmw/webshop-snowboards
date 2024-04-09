@@ -54,7 +54,6 @@ type Product = {
 	model: string;
 };
 
-//popularity etc. to be implemented when available as option
 // const items = ['Default sorting', 'Sort by popularity', 'Sort by latest', 'Sort by price: low to high', 'Sort by price: high to low']
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
 //Angående downshift - alla get-funktioner nedan som vi hämtar från useSelect (ie från downshift) ger oss alla

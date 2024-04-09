@@ -132,7 +132,6 @@ const Checkout = () => {
 
 				<h2 className={styles.h2form}>Country /Region *</h2>
 
-				{/* DROPDOWN */}
 				<input type='text' className={styles.addressField} {...register('country')} />
 				{errors.country && <p className={styles.errorMessage}>{errors.country.message}</p>}
 
@@ -182,7 +181,7 @@ const Checkout = () => {
 			<div className={styles.paymentFields}>
 				<h2 className={styles.formHeading}>YOUR ORDER</h2>
 
-				<section className={styles.onlySmallScreen}>
+				<section className={styles.mobileOnly}>
 					<div className={styles.orderHeadings}>
 						<h2>PRODUCT</h2>
 						<h2>SUBTOTAL</h2>

@@ -139,12 +139,6 @@
 	padding-block: 1rem;
 }
 
-/* .price {
-	display: flex;
-	justify-content: space-between;
-	padding-block: 1rem;
-} */
-
 .quantity {
 	display: flex;
 	justify-content: space-between;
@@ -158,24 +152,6 @@
 .price {
 	color: var(--color-TUR-green);
 }
-
-/* .updateBtn {
-	background-color: var(--color-white);
-	color: #c8c8c8;
-	border: 1px solid #c8c8c8;
-	width: 100%;
-	padding: 0.8rem 7.4rem;
-	font-weight: 500;
-	margin-bottom: 0.5rem;
-	transition: all 0.2s ease;
-	cursor: pointer;
-}
-
-.updateBtn:hover {
-	color: #999999;
-	font-weight: bold;
-	border: 1px solid #999999;
-} */
 
 .subtotal {
 	display: flex;
@@ -214,10 +190,6 @@
 	margin-bottom: 2rem;
 }
 
-.onlyLargeScreen {
-	display: none;
-}
-
 .submitOrderBtn {
 	background-color: var(--color-darkgrey);
 	color: var(--color-white);
@@ -225,6 +197,7 @@
 	padding: 0.8rem;
 	border: 1px solid var(--color-dark);
 	transition: background-color 0.3s, border 0.3s, color 0.3s;
+	margin-bottom: 4rem;
 }
 
 .submitOrderBtn:hover {
@@ -239,12 +212,8 @@
 }
 
 @media (min-width: 768px) {
-	.onlySmallScreen {
+	.mobileOnly {
 		display: none;
-	}
-
-	.onlyLargeScreen {
-		display: block;
 	}
 
 	.btnContainer {

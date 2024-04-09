@@ -1,7 +1,5 @@
 'use client';
 import styles from './crafting.module.css';
-import Link from 'next/link';
-import React, { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
 import ProductCard from '@/app/components/molecules/productCard/ProductCard';
@@ -15,7 +13,6 @@ import { useCurrencyConversion } from '@/app/context/currencyContext';
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
-// import SortDropdown from '@/app/components/molecules/sortDropdown/SortDropdown';
 
 const parentVariants = {
 	initial: { opacity: 1 },

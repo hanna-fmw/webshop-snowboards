@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import formatCurrency from '@/app/utilities/currencyFormatter';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
-
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
@@ -49,8 +48,7 @@ const Shapes = () => {
 			switch (sortView) {
 				case 'Default sorting':
 					return a.name.localeCompare(b.name);
-				// case 'popularity':
-				// 	return b.stars - a.stars
+
 				case 'Sort by price: low to high':
 					return a.price - b.price;
 				case 'Sort by price: high to low':
