@@ -12,14 +12,10 @@ import { motion } from 'framer-motion';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
 import formatCurrency from '@/app/utilities/currencyFormatter';
 
-//Downshift
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
 import ProductCard from '@/app/components/molecules/productCard/ProductCard';
 import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
-
-//import { useSortDropdownContext } from '@/app/context/downShiftContext';
-// import SortDropdown from '@/app/components/molecules/sortDropdown/SortDropdown';
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -54,25 +50,11 @@ type Product = {
 	model: string;
 };
 
-// const items = ['Default sorting', 'Sort by popularity', 'Sort by latest', 'Sort by price: low to high', 'Sort by price: high to low']
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
-//Angående downshift - alla get-funktioner nedan som vi hämtar från useSelect (ie från downshift) ger oss alla
-//lägen och ARIA osv för respektive element, t.ex. för ToggleButton, för Menu, för Item osv., dvs. för
-//varje element som ingår i vår/en dropdown. Vi ska aldrig ens behöva lägga till en onClick eller liknadne,
-//allt är inbyggt. Själva selectedItem (det valda alternativet på vår dropdown) kan vi lägga till som parameter
-//i vår sortProducts-funktion som vi mappar över så här:
-//sortProducts(products, selectedItem).map((product, i) => { osv.
+
 const Shop = () => {
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
-	//Meningen ovan motsvarar detta i doc:en: In the examples below, we use the useSelect hook and destructure the
-	//getter props and state variables it returns (dvs. vi destructure alla props som useSelect returns/som vi
-	//kan få/extrahera ur useSelect )
 
-	//Vi definierar currency i currencyContext.tsx och togglar den
-	//till EUR eller SEK i CurrencyDropdown.tsx. Och här nedan kan vi sedan
-	//göra en ternary som kollar vilket som är det aktuella statet för currency, och
-	//om det är EUR så använder vi conversionRateEur (dvs. exchange rate från API:t som vi
-	//fetchar i currencyContext) för att multiplicera priset med denna valutakurs
 	const { conversionRateEur, currency } = useCurrencyConversion();
 
 	const router = useRouter();
@@ -82,32 +64,21 @@ const Shop = () => {
 			switch (sortView) {
 				case 'Default sorting':
 					return a.name.localeCompare(b.name);
-				// case 'popularity':
-				// 	return b.stars - a.stars
 				case 'Sort by price: low to high':
 					return a.price - b.price;
 				case 'Sort by price: high to low':
 					return b.price - a.price;
 				default:
-					//Fick TS-fel när jag bara hade return break. Förklaring: Provide a default return value in case
-					//sortView doesn't match any case - With this change, the function will always return a number
 					return 0;
 			}
 		});
 	};
-
-	// Log sortView when it changes - to check if the sort view is updated correctly
-	// useEffect(() => {
-	// 	console.log('current sort view', sortView)
-	// }, [sortView])
 
 	return (
 		<main className={styles.main}>
 			<section className={styles.shopContainer}>
 				<div className={styles.shopHeader}>
 					<FilterLinks />
-
-					{/* <SortDropdown items={items} /> */}
 
 					<div className={styles.dropdownContainer}>
 						<button className={`${styles.dropdownBtn}`} {...getToggleButtonProps()}>
@@ -121,7 +92,6 @@ const Shop = () => {
 						<div className={styles.dropdown}>
 							<ul
 								{...getMenuProps()}
-								// className={styles.menuItems}
 								style={{
 									listStyle: 'none',
 									width: '100%',
@@ -142,9 +112,6 @@ const Shop = () => {
 												item,
 												index,
 											})}>
-											{/* Här hade jag först skrivit en onClick, men med downshift så behövs inte det, allt är inbyggt */}
-											{/* Call selectOption function and pass in item, which is the string/name of the option*/}
-											{/* <span onClick={() => selectOption(item)}>{item}</span> */}
 											<span>{item}</span>
 										</li>
 									))}
@@ -153,10 +120,6 @@ const Shop = () => {
 					</div>
 				</div>
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
-					{/* Here we need to sort the products array based on the selected sorting view option, ie based
-					//on the current sort state (sortState-setSortState), which is set when the user clicks on an
-					option on the dropdown menu. So sortProducts(products) will apply the logic in the sortProducts function, which
-					takes in an array, in this case products */}
 					{sortProducts(products, selectedItem).map((product, i) => {
 						return (
 							<motion.section key={i} variants={childrenVariants} className={styles.productCard}>

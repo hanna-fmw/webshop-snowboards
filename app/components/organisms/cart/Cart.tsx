@@ -2,16 +2,13 @@
 import React from 'react';
 import styles from './cart.module.css';
 import { IoCloseOutline } from 'react-icons/io5';
-//Denna funkar inte med Storybook: import { useCart } from '@/app/context/cartContext';
 import { useCart } from '../../../../app/context/cartContext';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-//Denna funkar inte med Storybook: import formatCurrency from '@/app/utilities/currencyFormatter';
 import formatCurrency from '../../../../app/utilities/currencyFormatter';
 import Button from '../../atoms/button/Button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef } from 'react';
-//Denna funkar inte med Storybook: import { useCurrencyConversion } from '@/app/context/currencyContext'
 import { useCurrencyConversion } from '../../../../app/context/currencyContext';
 
 type CartProps = {
@@ -29,12 +26,10 @@ type Product = {
 
 type CartItem = {
 	product: Product;
-	// id: number
 	quantity: number;
 };
 
 const Cart = ({ children }: CartProps) => {
-	// const { closeCart, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, cartItems }: CartContextProps = useCart()
 	const {
 		closeCart,
 		increaseCartQuantity,
@@ -46,19 +41,15 @@ const Cart = ({ children }: CartProps) => {
 		selectedLength,
 		setIsAddedToCart,
 	}: any = useCart();
-	// const quantity = getItemQuantity(product)
 
 	const { currency, conversionRateEur } = useCurrencyConversion();
 
-	//To close side panel on click outside
 	const ref = useRef<HTMLDivElement>(null);
 
 	const router = useRouter();
 
 	useEffect(() => {
 		const checkIfClickedOutside = (e) => {
-			// If the menu is open and the clicked target is not within the menu,
-			// then close the menu
 			if (isCartOpen && ref.current && !ref.current.contains(e.target)) {
 				setIsCartOpen(false);
 			}
@@ -69,17 +60,13 @@ const Cart = ({ children }: CartProps) => {
 		return () => {
 			document.removeEventListener('mousedown', checkIfClickedOutside);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isCartOpen]);
 
 	useEffect(() => {
-		// Add the style to body and html elements when the modal is opened
-		// document.body.style.overflowY = 'hidden'
-		// document.documentElement.style.overflowY = 'hidden'
-		//Or:
 		document.body.style.overflowY = isCartOpen ? 'hidden' : 'auto';
 
 		return () => {
-			// Remove the style when the modal is closed
 			document.body.style.overflowY = 'auto';
 			document.documentElement.style.overflowY = 'auto';
 		};
@@ -120,7 +107,6 @@ const Cart = ({ children }: CartProps) => {
 				className={styles.cartSidePanel}
 				variants={sidePanelVariants}
 				initial='hidden'
-				// animate={isCartOpen ? 'visible' : 'hidden'}
 				exit='exit'
 				animate={isCartOpen ? 'visible' : 'exit'}>
 				<IoCloseOutline size={30} onClick={closeCart} className={styles.closeBtn} />
@@ -131,8 +117,6 @@ const Cart = ({ children }: CartProps) => {
 							<div>YOUR CART: {cartItems.length} ITEM(S)</div>
 
 							{cartItems.map((item: CartItem, i: number) => {
-								// console.log('These are the cartItems', cartItems)
-								// console.log('This is item', item)
 								const backToProductDetail = () => {
 									router.push(`/shop/${item.product.model}`);
 									isCartOpen && closeCart();

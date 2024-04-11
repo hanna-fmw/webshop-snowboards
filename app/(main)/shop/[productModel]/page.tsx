@@ -43,7 +43,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 
 	const { closeCart, increaseCartQuantity, setIsAddedToCart, isAddedToCart, selectLength, selectedLength, checkCartEmpty, addedToCart, isCartOpen } =
 		cartContext;
-	//console.log(params)
 
 	const model = params.productModel;
 
@@ -96,19 +95,12 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 					{/* Thumbnails */}
 					<motion.div className={styles.thumbnails} variants={parentVariants} initial='initial' animate='animate'>
 						{currentProduct?.thumbnails.map((thumbnail, i) => {
-							//classnames definition
 							const thumbnailStyles = classnames(styles.thumbnailCard, {
 								[styles.selectedThumbnail]: thumbnailIndex === i,
 							});
 
 							return (
-								<motion.div
-									key={i}
-									// className={`${styles.thumbnailCard} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}
-									className={thumbnailStyles}
-									onClick={() => handleClick(i)}
-									variants={childrenVariants}>
-									{/* <div className={`${styles.overlay} ${thumbnailIndex === i ? styles.selectedThumbnail : ''}`}></div> */}
+								<motion.div key={i} className={thumbnailStyles} onClick={() => handleClick(i)} variants={childrenVariants}>
 									<div className={`${styles.overlay} ${thumbnailStyles}`}></div>
 
 									<Image src={`/products/${thumbnail}`} width={50} height={50} alt='bild' className={styles.thumbnailImg} />
@@ -119,8 +111,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 				</section>
 
 				{products.map((product, i) => {
-					// console.log('product är:', product)
-
 					return (
 						<>
 							{model === product.model ? (
@@ -135,10 +125,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											profile={product.profile}
 											lengthForModel={product.lengthForModel}
 										/>
-										{/* <TextBlock {...product} /> */}
 										<div className={styles.price}>
-											{/* By adding (conversionRateEur || 0), you're providing a default value of 0 in case conversionRateEur is undefined. This ensures that the multiplication operation always has a valid operand. */}
-											{/* You can also explicitly cast product.price to a number to ensure TypeScript understands that it's safe to perform arithmetic operations on it. */}
 											<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur, currency)}</span>
 										</div>
 									</article>
@@ -159,9 +146,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											</div>
 										) : null}
 
-										{/* Here we pass in the entire product object (into the context) */}
-										{/* <Button variant='large-dark' onClick={() => addItemToCart(product)}> */}
-										{/* <Button variant='large-dark' onClick={() => increaseCartQuantity(product)}> */}
 										<Button
 											variant='large-dark'
 											onClick={() => {

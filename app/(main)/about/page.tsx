@@ -3,23 +3,12 @@ import React from 'react';
 import styles from './about.module.css';
 import Image, { unstable_getImgProps as getImgProps } from 'next/image';
 
-// const { aboutContainer, aboutImage, aboutText } = styles;
-
 const About = () => {
 	return (
 		<>
 			<section className={styles.heroContainer}>
-				{/* <picture>
-				<source media='(max-width:768px)' srcSet={mobile} />
-				<source media='(min-width: 769px)' srcSet={desktop} />
-				<img src={desktop} alt='Hero image' className={heroImage} />
-			</picture> */}
-
 				<Image src='/hero/hero_about.png' width={1440} height={937} className={styles.heroImage} alt='About page hero image' />
 
-				{/* <div style={{ height: '100vh' }}>
-					<Image src='/logo/sun_logo.png' width={800} height={1000} className={styles.sunLogo} alt='About page hero image' priority />
-				</div> */}
 				<p className={styles.heroOverlay}>
 					TUR SNOWBOARDS FROM SWEDEN. SHAPED WITH A PURPOSE. IMAGINED FROM A LIFETIME OF PROFESSIONALEXPERIENCE. DESIGNED TO COVER EVERY CORNER OF THE
 					MOUNTAIN. CONSTRUCTED WITH HIGH PERFORMANCE MATERIALS AND EXCEPTIONAL DETAILING. APPROVED BY THE HARSH CONDITIONS OF SCANDINAVIA. REFINED

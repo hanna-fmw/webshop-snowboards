@@ -30,7 +30,6 @@ type Product = {
 
 type CartItem = {
 	product: Product;
-	// id: number
 	quantity: number;
 };
 
@@ -43,10 +42,6 @@ const Checkout = () => {
 	const { currency, conversionRateEur } = useCurrencyConversion();
 
 	const router = useRouter();
-	// const startShopping = () => {
-	// 	router.push('/shop')
-	// 	closeCart()
-	// }
 
 	const orderFormSchema = z.object({
 		firstName: z.string().min(1, { message: 'Please enter first name' }),
@@ -64,12 +59,6 @@ const Checkout = () => {
 		cardCode: z.string().min(1, { message: 'Please enter CVC number' }),
 	});
 
-	//Vi skapar TypeScript type baserat på (infer) vårt Zod-schema (dvs. orderFormSchema).
-	//Då behöver vi inte skriva separat t.ex. type FormData = {firstName: string} för vår TypeScript.
-	//Ett alternativ, då vi uttryckligen måste skriva ut vår type (istället för att använda infer) är
-	//att importera (också från Zod) och använda ZodType, så här:
-	//const schema: ZodType<FormData> = z.object({ ... och sedan typa vårt FormData som vi gör
-	//som vanligt med TypeScript
 	type OrderFormType = z.infer<typeof orderFormSchema>;
 
 	const {
@@ -81,9 +70,7 @@ const Checkout = () => {
 		resolver: zodResolver(orderFormSchema),
 	});
 
-	//För data lägger vi till ett TypeScript-typ, t.ex. data: OrderForm som vi definierat som type OrderForm = osv.
 	const submitData = async (data: OrderFormType) => {
-		//Här skickar vi till servern: Se sist i denna fil där vi skapar en route för en POST-request som skickar detta formulär mock:
 		await new Promise((resolve) => setTimeout(resolve, 1000));
 	};
 
@@ -104,8 +91,6 @@ const Checkout = () => {
 						<p>If you have a coupon code, please apply it below.</p>
 						<div className={styles.btnContainer}>
 							<input className={styles.couponCodeField} placeholder='Coupon code' />
-
-							{/* Validate coupon code and calculate and update new subtotal */}
 
 							<Button variant='default-dark' onClick={() => router.push('/')}>
 								APPLY COUPON
@@ -187,7 +172,6 @@ const Checkout = () => {
 						<h2>SUBTOTAL</h2>
 					</div>
 					{cartItems.map((item: CartItem, i: number) => {
-						// console.log('this is item', item)
 						return (
 							<>
 								<div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid black' }}>
@@ -218,7 +202,6 @@ const Checkout = () => {
 						{formatCurrency(
 							cartItems.reduce((total: number, item: any) => {
 								const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
-								// console.log(currItem)
 								return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
 							}, 0),
 							currency

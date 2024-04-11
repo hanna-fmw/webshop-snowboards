@@ -4,7 +4,6 @@ import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
 import styles from './currencyDropdown.module.css';
 import { useSelect } from 'downshift';
-//Denna funkar inte med Storybook: import { useCurrencyConversion } from '@/app/context/currencyContext'
 import { useCurrencyConversion } from '../../../../app/context/currencyContext';
 
 const items = ['SEK', 'EUR'];
@@ -12,7 +11,6 @@ const items = ['SEK', 'EUR'];
 function CurrencyDropdown() {
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({
 		items: items,
-		// onSelectedItemChange: ({ selectedItem }) => handleClick(selectedItem),
 		onSelectedItemChange: () => getCurrency(),
 	});
 

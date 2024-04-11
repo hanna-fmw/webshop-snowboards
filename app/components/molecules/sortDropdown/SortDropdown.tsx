@@ -1,19 +1,15 @@
-"use client"
+'use client';
 import React from 'react';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { useSelect } from 'downshift';
 import styles from './sortDropdown.module.css';
 import { useSortDropdownContext } from '@/app/context/downShiftContext';
 
-
 type SortDropdownProps = {
 	items: string[];
 };
 
-
 const SortDropdown: React.FC<SortDropdownProps> = ({ items }) => {
-	//const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
-
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSortDropdownContext();
 
 	return (

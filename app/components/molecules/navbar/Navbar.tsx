@@ -11,11 +11,8 @@ import Modal from '../modal/Modal';
 import Cart from '../../organisms/cart/Cart';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-//Denna funkar inte med Storybook: import { CartContextProps } from '@/app/context/cartContext'
 import { CartContextProps } from '../../../../app/context/cartContext';
-//Denna funkar inte med Storybook: import { useModal } from '@/app/context/modalContext';
 import { useModal } from '../../../../app/context/modalContext';
-//Denna funkar inte med Storybook: import { useCart } from '@/app/context/cartContext';
 import { useCart } from '../../../../app/context/cartContext';
 
 type NavbarProps = {
@@ -23,19 +20,13 @@ type NavbarProps = {
 };
 
 const Navbar = ({ children }: NavbarProps) => {
-	// const { isModalOpen, openModal }: ModalContextProps = useModal()
 	const modalContext = useModal();
 	const { isModalOpen, openModal } = modalContext || {};
-
-	// const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = useCart()
-	//För modalContext ovan behöver vi inte : ModalContextProps eftersom TS kan infer typen för
-	//både isModalOpen och openModal (TS kan infer primitives)
 
 	const cartContext = useCart()!;
 	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = cartContext || {};
 
 	const pathName = usePathname();
-	// console.log(pathName)
 
 	return (
 		<main className={styles.navContainer}>

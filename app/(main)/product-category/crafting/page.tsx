@@ -50,7 +50,6 @@ type Product = {
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
 
 const Crafting = () => {
-	// const { selectedItem } = useSelect({ items: items });
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
 
 	const { currency, conversionRateEur } = useCurrencyConversion();
@@ -62,15 +61,11 @@ const Crafting = () => {
 			switch (sortView) {
 				case 'Default sorting':
 					return a.name.localeCompare(b.name);
-				// case 'popularity':
-				// 	return b.stars - a.stars
 				case 'Sort by price: low to high':
 					return a.price - b.price;
 				case 'Sort by price: high to low':
 					return b.price - a.price;
 				default:
-					//Fick TS-fel när jag bara hade return break. Förklaring: Provide a default return value in case
-					//sortView doesn't match any case - With this change, the function will always return a number
 					return 0;
 			}
 		});
@@ -96,14 +91,12 @@ const Crafting = () => {
 						<div className={styles.dropdown}>
 							<ul
 								{...getMenuProps()}
-								// className={styles.menuItems}
 								style={{
 									listStyle: 'none',
 									width: '100%',
 									padding: '0',
 									margin: '0',
 								}}>
-								{/* Map over dropdown options */}
 								{isOpen &&
 									items.map((item, index) => (
 										<li
@@ -117,9 +110,6 @@ const Crafting = () => {
 												item,
 												index,
 											})}>
-											{/* Här hade jag först skrivit en onClick, men med downshift så behövs inte det, allt är inbyggt */}
-											{/* Call selectOption function and pass in item, which is the string/name of the option*/}
-											{/* <span onClick={() => selectOption(item)}>{item}</span> */}
 											<span>{item}</span>
 										</li>
 									))}
@@ -130,7 +120,6 @@ const Crafting = () => {
 
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
 					{sortProducts(products, selectedItem).map((product, i) => {
-						// console.log('these are products', products);
 						const isCategory = product?.productCategory.includes(category);
 
 						return (

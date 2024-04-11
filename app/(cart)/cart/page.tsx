@@ -26,7 +26,6 @@ type Product = {
 
 type CartItem = {
 	product: Product;
-	// id: number
 	quantity: number;
 };
 
@@ -42,10 +41,8 @@ const CartPage = () => {
 		isCartOpen && closeCart();
 	};
 
-	// Create an array to store product ids
 	const productIds = cartItems.map((item: any) => item.product.id);
 
-	// Total price
 	const totalPrice = productIds.reduce((total: number, productId: number) => {
 		const currItem = cartItems.find((item: any) => item.product.id === productId);
 		return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
@@ -59,7 +56,6 @@ const CartPage = () => {
 						<h2 style={{ paddingBlock: '1rem' }}>CART</h2>
 						<div className={styles.productCard}>
 							{cartItems.map((item: CartItem, i: number) => {
-								// console.log('this is item', item)
 								return (
 									<>
 										<section key={i} style={{ marginBottom: '5rem' }}>
