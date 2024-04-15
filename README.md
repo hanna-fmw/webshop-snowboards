@@ -1,3 +1,5 @@
+Web shop built using Next.js. Includes features such as navigation, sorting, filtering, cart feature, animations, API calls, currency conversion, etc.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
