@@ -29,6 +29,7 @@ export const CurrencyProvider = ({ children }: CurrencyProviderProps) => {
 	};
 
 	return (
+		// @ts-ignore
 		<CurrencyContext.Provider value={{ getCurrency, priceInEuro, conversionRateEur, setCurrency, currency }}>{children}</CurrencyContext.Provider>
 	);
 };

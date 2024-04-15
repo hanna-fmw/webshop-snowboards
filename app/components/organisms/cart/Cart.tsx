@@ -49,7 +49,7 @@ const Cart = ({ children }: CartProps) => {
 	const router = useRouter();
 
 	useEffect(() => {
-		const checkIfClickedOutside = (e) => {
+		const checkIfClickedOutside = (e: any) => {
 			if (isCartOpen && ref.current && !ref.current.contains(e.target)) {
 				setIsCartOpen(false);
 			}

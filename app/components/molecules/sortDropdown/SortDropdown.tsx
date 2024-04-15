@@ -10,6 +10,7 @@ type SortDropdownProps = {
 };
 
 const SortDropdown: React.FC<SortDropdownProps> = ({ items }) => {
+	// @ts-ignore
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSortDropdownContext();
 
 	return (

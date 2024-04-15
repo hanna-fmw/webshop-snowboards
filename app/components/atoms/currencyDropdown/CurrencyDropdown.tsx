@@ -56,8 +56,9 @@ function CurrencyDropdown() {
 				</ul>
 			</div>
 
-			{/* <div>{selectedItem === 'EUR' ? <div>{priceInEuro}</div> : 'Do nothing'}</div> */}
-			{/* <div>{selectedItem === 'EUR' ? <div>{conversionRateEur}</div> : 'Do nothing'}</div> */}
+			{/* 
+// @ts-ignore */}
+
 			<div>{selectedItem === 'EUR' ? setCurrency('EUR') : setCurrency('SEK')}</div>
 			{/* <div>Current currency is: {currency}</div> */}
 		</div>
