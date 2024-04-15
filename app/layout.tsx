@@ -25,8 +25,8 @@ const gtAmericaMonoLightItalic = localFont({
 	variable: '--font-gtAmericaMonoLightItalic',
 });
 
-const inter = Inter({ subsets: ['latin'] });
-const robotoMono = Roboto_Mono({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
+// const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'TUR Snowboards',
@@ -37,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en'>
 			<body className={`${gtAmericaMonoLight.variable} ${gtAmericaMonoLightItalic.variable}`}>
+				{/*// @ts-ignore*/}
 				<SortDropdownProvider items={items}>
 					<CurrencyProvider>
 						<ModalProvider>

@@ -60,13 +60,8 @@ export default function Home() {
 												detail={product.detail}
 												profile={product.profile}
 											/>
-
+											{/*// @ts-ignore*/}
 											<PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} />
-											{/* <div className={styles.productPrice}> */}
-											{/* By adding (conversionRateEur || 0), you're providing a default value of 0 in case conversionRateEur is undefined. This ensures that the multiplication operation always has a valid operand. */}
-											{/* You can also explicitly cast product.price to a number to ensure TypeScript understands that it's safe to perform arithmetic operations on it. */}
-											{/* <span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur, currency)}</span> */}
-											{/* </div> */}
 										</article>
 									</ProductCard>
 								) : null}
