@@ -19,25 +19,6 @@
 	width: 100%;
 }
 
-/* Link block */
-/* .links {
-	display: flex;
-	justify-content: flex-start;
-	gap: 1rem;
-	padding: 0;
-	margin-bottom: 1rem;
-}
-
-.link {
-	text-decoration: none;
-}
-
-.link:hover {
-	text-decoration: underline;
-	text-underline-offset: 5px;
-	color: var(--color-active-link);
-} */
-
 /* Dropdown */
 .dropdownContainer {
 	position: relative;
@@ -63,7 +44,7 @@
 	top: 100%;
 	left: 0;
 	z-index: 70;
-	width: 100%; /*eftersom border tar 1px på vardera sida. Alternativt box-sizing: border-box + 100%*/
+	width: 100%;
 	background-color: var(--color-white);
 }
 
@@ -113,11 +94,6 @@
 		/* display: grid; */
 		grid-template-columns: repeat(3, 1fr);
 	}
-	/* 
-	.craftingHeader {
-		flex-direction: row;
-		justify-content: space-between;
-	} */
 }
 
 @media (min-width: 1440px) {

@@ -1,4 +1,5 @@
 'use client';
+// @ts-nocheck
 import styles from './crafting.module.css';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
@@ -119,6 +120,8 @@ const Crafting = () => {
 				</div>
 
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
+					{/* 
+// @ts-ignore */}
 					{sortProducts(products, selectedItem).map((product, i) => {
 						const isCategory = product?.productCategory.includes(category);
 

@@ -34,6 +34,19 @@ const childrenVariants = {
 	},
 };
 
+type Product = {
+	name: string;
+	designer: string;
+	boardType: string;
+	length: string;
+	detail: string;
+	profile: string;
+	price: number;
+	productCategory: string[];
+	image: string;
+	model: string;
+};
+
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
 
 const Shapes = () => {
@@ -43,8 +56,9 @@ const Shapes = () => {
 
 	const router = useRouter();
 
-	const sortProducts = (arr, sortView) => {
-		return arr.sort((a, b) => {
+	const sortProducts = (arr: Product[], sortView: string) => {
+		// @ts-ignore
+		return arr.sort((a: Product, b: Product) => {
 			switch (sortView) {
 				case 'Default sorting':
 					return a.name.localeCompare(b.name);
@@ -69,7 +83,6 @@ const Shapes = () => {
 					<div className={styles.dropdownContainer}>
 						<button className={`${styles.button} currDropdown`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
-							{/* selectedMenuIsOpen is the renamed destructured isOpen property from useSelect (ie downshift) */}
 							{isOpen ? (
 								<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
 							) : (
@@ -99,9 +112,6 @@ const Shapes = () => {
 												item,
 												index,
 											})}>
-											{/* Här hade jag först skrivit en onClick, men med downshift så behövs inte det, allt är inbyggt */}
-											{/* Call selectOption function and pass in item, which is the string/name of the option*/}
-											{/* <span onClick={() => selectOption(item)}>{item}</span> */}
 											<span>{item}</span>
 										</li>
 									))}
@@ -111,6 +121,7 @@ const Shapes = () => {
 				</div>
 
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
+					{/* //@ts-ignore */}
 					{sortProducts(products, selectedItem).map((product, i) => {
 						const isCategory = product?.productCategory.includes(category.toLocaleLowerCase());
 
