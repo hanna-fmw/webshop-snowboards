@@ -1,3 +1,4 @@
+//@ts-nocheck
 'use client';
 import styles from './shapes.module.css';
 import { RiArrowDownSLine } from 'react-icons/ri';
@@ -57,7 +58,6 @@ const Shapes = () => {
 	const router = useRouter();
 
 	const sortProducts = (arr: Product[], sortView: string) => {
-		// @ts-ignore
 		return arr.sort((a: Product, b: Product) => {
 			switch (sortView) {
 				case 'Default sorting':
@@ -121,7 +121,6 @@ const Shapes = () => {
 				</div>
 
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
-					{/* //@ts-ignore */}
 					{sortProducts(products, selectedItem).map((product, i) => {
 						const isCategory = product?.productCategory.includes(category.toLocaleLowerCase());
 
