@@ -126,6 +126,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											lengthForModel={product.lengthForModel}
 										/>
 										<div className={styles.price}>
+											{/*@ts-ignore*/}
 											<span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur, currency)}</span>
 										</div>
 									</article>
