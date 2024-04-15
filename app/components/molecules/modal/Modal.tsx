@@ -3,7 +3,8 @@ import React from 'react';
 import styles from './modal.module.css';
 import { IoCloseOutline } from 'react-icons/io5';
 import Link from 'next/link';
-import { useModal } from '../../../../app/context/modalContext';
+// import { useModal } from '../../../../app/context/modalContext';
+import { useModal } from '@/app/context/modalContext';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect } from 'react';
 
