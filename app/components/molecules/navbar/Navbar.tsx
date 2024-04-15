@@ -12,8 +12,7 @@ import Cart from '../../organisms/cart/Cart';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { CartContextProps } from '../../../../app/context/cartContext';
-// import { useModal } from '../../../../app/context/modalContext';
-import { useModal } from '@/app/context/modalContext';
+import { useModal } from '../../../../app/context/modalContext';
 import { useCart } from '../../../../app/context/cartContext';
 
 type NavbarProps = {
