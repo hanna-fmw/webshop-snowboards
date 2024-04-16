@@ -106,7 +106,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
 
 	const increaseCartQuantity = (product: Product) => {
-		console.log(product);
+		// console.log(product);
 		setCartItems((currItems) => {
 			if (currItems.find((item) => item.product?.id === product?.id) == null) {
 				return [...currItems, { product, quantity: 1 }];
