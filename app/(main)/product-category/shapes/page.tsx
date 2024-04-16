@@ -140,7 +140,8 @@ const Shapes = () => {
 													profile={product.profile}
 												/>
 
-												<PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} />
+												{/* <PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} /> */}
+												<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
 											</article>
 										</ProductCard>
 									</motion.div>

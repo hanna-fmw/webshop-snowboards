@@ -16,13 +16,16 @@ type CurrencyProviderProps = {
 
 const CurrencyContext = createContext({} as CurrencyContextProps);
 
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+
 export const CurrencyProvider = ({ children }: CurrencyProviderProps) => {
 	const [priceInEuro, setPriceInEuro] = useState<number | undefined>(undefined);
 	const [conversionRateEur, setConversionRateEur] = useState<number | undefined>(undefined);
 	const [currency, setCurrency] = useState<'SEK' | 'EUR'>('SEK');
 
 	const getCurrency = async () => {
-		const res = await fetch('https://v6.exchangerate-api.com/v6/2a4546bd78627d32686a922f/pair/SEK/EUR/200');
+		// const res = await fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/pair/SEK/EUR`);
+		const res = await fetch(`https://v6.exchangerate-api.com/v6/2a4546bd78627d32686a922f/pair/SEK/EUR`);
 		const data = await res.json();
 		console.log(data?.conversion_rate);
 		setConversionRateEur(data?.conversion_rate);

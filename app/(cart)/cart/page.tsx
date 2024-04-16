@@ -81,7 +81,8 @@ const CartPage = () => {
 												<article className={`${styles.price} ${styles.productPrice}`}>
 													<h3 className={styles.headingPrice}>Price:</h3>
 													<p className={styles.amount}>
-														{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
+														{/* {formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)} */}
+														{currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!}
 													</p>
 												</article>
 
@@ -106,10 +107,11 @@ const CartPage = () => {
 												<article className={`${styles.subtotalContainer} ${styles.productSubtotal}`}>
 													<h3 className={styles.headingSubtotal}>Subtotal:</h3>
 													<p className={styles.amount}>
-														{formatCurrency(
+														{/* {formatCurrency(
 															currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!),
 															currency
-														)}
+														)} */}
+														{currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)}
 													</p>
 												</article>
 											</div>
@@ -134,7 +136,8 @@ const CartPage = () => {
 							<h3 className={styles.subtotal}>
 								{/* Borde vara 1) spara reduce-funktionen längre upp i variabel och multiplicera detta med cartItems.length */}
 								<div>Subtotal:</div>
-								<div className={styles.amount}>{formatCurrency(totalPrice, currency)}</div>
+								{/* <div className={styles.amount}>{formatCurrency(totalPrice, currency)}</div> */}
+								<div className={styles.amount}>{`${currency} ${totalPrice}`}</div>
 							</h3>
 							<div className={styles.shippingContainer}>
 								<div className={styles.shipping}>
@@ -150,7 +153,8 @@ const CartPage = () => {
 							<div className={styles.total}>
 								<h3>Total:</h3>
 								<p className={styles.amount}>
-									{formatCurrency(totalPrice, currency)} + SHIPPING COST (includes {formatCurrency(totalPrice * 0.2, currency)} Tax)
+									{/* {formatCurrency(totalPrice, currency)} + SHIPPING COST (includes {formatCurrency(totalPrice * 0.2, currency)} Tax) */}
+									{`${currency} ${totalPrice}`} + SHIPPING COST (includes {`${currency} ${totalPrice * 0.2}`} Tax)
 								</p>
 							</div>
 

@@ -61,7 +61,9 @@ export default function Home() {
 												profile={product.profile}
 											/>
 											{/*// @ts-ignore*/}
-											<PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} />
+											{/* <PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} /> */}
+											{/*// @ts-ignore*/}
+											<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
 										</article>
 									</ProductCard>
 								) : null}

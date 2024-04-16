@@ -184,10 +184,11 @@ const Checkout = () => {
 
 									<div className={styles.subtotal}>
 										<div className={styles.price}>
-											{formatCurrency(
+											{/* {formatCurrency(
 												currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!),
 												currency
-											)}
+											)} */}
+											{currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)}
 										</div>
 									</div>
 								</div>
@@ -199,13 +200,17 @@ const Checkout = () => {
 				<div className={styles.subtotal}>
 					<h2>SUBTOTAL</h2>
 					<div className={styles.price}>
-						{formatCurrency(
+						{/* {formatCurrency(
 							cartItems.reduce((total: number, item: any) => {
 								const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
 								return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
 							}, 0),
 							currency
-						)}
+						)} */}
+						{cartItems.reduce((total: number, item: any) => {
+							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
+							return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
+						}, 0)}
 					</div>
 				</div>
 				<div className={styles.shippingContainer}>
@@ -221,7 +226,7 @@ const Checkout = () => {
 				</div>
 				<div className={styles.total}>
 					<div>TOTAL</div>
-					<div className={styles.price}>
+					{/* <div className={styles.price}>
 						{formatCurrency(
 							cartItems.reduce((total: number, item: any) => {
 								const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
@@ -229,6 +234,13 @@ const Checkout = () => {
 							}, 0),
 							currency
 						)}{' '}
+						+ SHIPPING COST (includes xxx Tax)
+					</div> */}
+					<div className={styles.price}>
+						{cartItems.reduce((total: number, item: any) => {
+							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
+							return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
+						}, 0)}{' '}
 						+ SHIPPING COST (includes xxx Tax)
 					</div>
 				</div>

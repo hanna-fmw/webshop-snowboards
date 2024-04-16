@@ -130,7 +130,8 @@ const Cart = ({ children }: CartProps) => {
 											<section>
 												<div>{item.product?.name}</div>
 												<span className={styles.price}>
-													{formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)}
+													{/* {formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)} */}
+													{currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!}
 												</span>
 												{/* <div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div> */}
 												<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
