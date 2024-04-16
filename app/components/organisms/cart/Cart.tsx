@@ -203,17 +203,13 @@ const Cart = ({ children }: CartProps) => {
 								<Image src={'/creditcardIcons/mastercard.svg'} width={25} height={25} alt='Mastercard icon' />
 							</article>
 						</footer>
-
-						{/* <div>Total Items: {cartItems.length}</div> */}
 					</section>
 				) : (
-					<section className={styles.emptyCartContainer}>
-						<span style={{ marginBottom: '1rem' }}>YOUR CART IS CURRENTLY EMPTY!</span>
-						<div style={{ width: '50%' }}>
-							<Button variant='default-dark' onClick={startShopping}>
-								START SHOPPING
-							</Button>
-						</div>
+					<section style={{ marginTop: '20vh' }}>
+						<div style={{ marginBottom: '2rem' }}>YOUR CART IS CURRENTLY EMPTY!</div>
+						<Button variant='default-dark' onClick={startShopping}>
+							START SHOPPING
+						</Button>
 					</section>
 				)}
 			</motion.main>

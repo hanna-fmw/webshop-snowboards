@@ -63,6 +63,7 @@
 	background-color: inherit;
 	color: var(--color-darkgrey);
 	margin-top: 0.5rem;
+	cursor: pointer;
 }
 
 .plusMinusBtn {
@@ -110,14 +111,6 @@
 	display: flex;
 	justify-content: center;
 	gap: 0.5rem;
-}
-
-.emptyCardContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
 }
 
 @media (min-width: 768px) {

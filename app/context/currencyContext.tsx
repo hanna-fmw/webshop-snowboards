@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { useLocalStorage } from '@/app/hooks/useLocalStorage';
 
 type CurrencyContextProps = {
@@ -27,8 +27,8 @@ export const CurrencyProvider = ({ children }: CurrencyProviderProps) => {
 		// const res = await fetch(`https://v6.exchangerate-api.com/v6/${API_KEY}/pair/SEK/EUR`);
 		const res = await fetch(`https://v6.exchangerate-api.com/v6/2a4546bd78627d32686a922f/pair/SEK/EUR`);
 		const data = await res.json();
-		console.log(data?.conversion_rate);
-		setConversionRateEur(data?.conversion_rate);
+		// console.log(data?.conversion_rate, typeof data?.conversion_rate);
+		setConversionRateEur((data?.conversion_rate).toFixed(2));
 	};
 
 	return (

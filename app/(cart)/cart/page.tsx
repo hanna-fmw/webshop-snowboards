@@ -5,7 +5,7 @@ import Button from '@/app/components/atoms/button/Button';
 import { ImTruck } from 'react-icons/im';
 import { useCart } from '@/app/context/cartContext';
 import { useRouter } from 'next/navigation';
-import formatCurrency from '@/app/utilities/currencyFormatter';
+// import formatCurrency from '@/app/utilities/currencyFormatter';
 import { RiArrowDownSFill } from 'react-icons/ri';
 import { RiArrowUpSFill } from 'react-icons/ri';
 import ProductImg from '@/app/components/atoms/productImg/ProductImg';
@@ -107,10 +107,6 @@ const CartPage = () => {
 												<article className={`${styles.subtotalContainer} ${styles.productSubtotal}`}>
 													<h3 className={styles.headingSubtotal}>Subtotal:</h3>
 													<p className={styles.amount}>
-														{/* {formatCurrency(
-															currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!),
-															currency
-														)} */}
 														{currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)}
 													</p>
 												</article>
@@ -134,9 +130,7 @@ const CartPage = () => {
 						<article className={styles.cartTotalContainer}>
 							<h3 style={{ paddingBlock: '1.5rem' }}>CART TOTALS</h3>
 							<h3 className={styles.subtotal}>
-								{/* Borde vara 1) spara reduce-funktionen längre upp i variabel och multiplicera detta med cartItems.length */}
 								<div>Subtotal:</div>
-								{/* <div className={styles.amount}>{formatCurrency(totalPrice, currency)}</div> */}
 								<div className={styles.amount}>{`${currency} ${totalPrice}`}</div>
 							</h3>
 							<div className={styles.shippingContainer}>
@@ -153,7 +147,6 @@ const CartPage = () => {
 							<div className={styles.total}>
 								<h3>Total:</h3>
 								<p className={styles.amount}>
-									{/* {formatCurrency(totalPrice, currency)} + SHIPPING COST (includes {formatCurrency(totalPrice * 0.2, currency)} Tax) */}
 									{`${currency} ${totalPrice}`} + SHIPPING COST (includes {`${currency} ${totalPrice * 0.2}`} Tax)
 								</p>
 							</div>
@@ -165,13 +158,11 @@ const CartPage = () => {
 					</section>
 				</section>
 			) : (
-				<section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-					<span style={{ marginBottom: '1rem' }}>YOUR CART IS CURRENTLY EMPTY!</span>
-					<div style={{ width: '50%' }}>
-						<Button variant='default-dark' onClick={startShopping}>
-							START SHOPPING
-						</Button>
-					</div>
+				<section style={{ marginTop: '20vh' }}>
+					<div style={{ marginBottom: '2rem' }}>YOUR CART IS CURRENTLY EMPTY!</div>
+					<Button variant='default-dark' onClick={startShopping}>
+						START SHOPPING
+					</Button>
 				</section>
 			)}
 		</>
