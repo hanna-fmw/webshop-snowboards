@@ -62,7 +62,7 @@ const CartPage = () => {
 											<div className={styles.productRow}>
 												<article>
 													<button onClick={() => removeFromCart(item.product)} className={styles.removeBtnContainer}>
-														<span className={styles.removeBtn}>x</span>
+														<span className={styles.removeBtn}>Remove</span>
 													</button>
 												</article>
 												<article>
@@ -90,18 +90,16 @@ const CartPage = () => {
 												<article className={`${styles.quantity} ${styles.productQuantity}`}>
 													<h3 className={styles.headingQty}>Quantity:</h3>
 													<div className={styles.itemCountContainer}>
-														<div>
-															<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-														</div>
+														<span className={styles.countNumber}>{item.quantity}</span>
 
 														<div className={styles.arrowBtnContainer}>
-															<button onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown}>
-																<RiArrowUpSFill />
-															</button>
+															{/* <button onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown}> */}
+															<RiArrowUpSFill onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown} />
+															{/* </button> */}
 
-															<button onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown}>
-																<RiArrowDownSFill />
-															</button>
+															{/* <button onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown}> */}
+															<RiArrowDownSFill onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown} />
+															{/* </button> */}
 														</div>
 													</div>
 												</article>
@@ -123,9 +121,8 @@ const CartPage = () => {
 					</section>
 
 					<section className={styles.couponBtns}>
-						<div>
-							<input onClick={() => {}} placeholder='Coupon Code' className={styles.couponInput} />
-						</div>
+						<input onClick={() => {}} placeholder='Coupon Code' className={styles.couponInput} />
+
 						<Button variant='default-dark' onClick={() => {}}>
 							APPLY COUPON
 						</Button>

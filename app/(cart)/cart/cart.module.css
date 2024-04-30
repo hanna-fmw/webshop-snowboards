@@ -60,7 +60,6 @@
 .arrowBtnContainer {
 	display: flex;
 	flex-direction: column;
-	border: none;
 	background-color: inherit;
 	color: var(--color-darkgrey);
 	cursor: pointer;
@@ -74,7 +73,6 @@
 }
 
 .subtotalContainer {
-	padding-bottom: 2rem;
 	display: flex;
 	justify-content: space-between;
 }
@@ -87,6 +85,7 @@
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
+	gap: 1rem;
 }
 
 .shippingContainer {
@@ -122,6 +121,11 @@
 }
 
 @media (min-width: 768px) {
+	.container {
+		width: 60vw;
+		margin: 0 auto;
+	}
+
 	.cartContainer {
 		display: flex;
 		flex-direction: column;
@@ -158,8 +162,7 @@
 	}
 
 	.removeBtn {
-		border: 1px solid var(--color-dark);
-		padding: 0.1rem 0.3rem;
+		justify-self: center;
 		color: var(--color-dark);
 		cursor: pointer;
 	}
@@ -173,7 +176,7 @@
 		display: block;
 		grid-column: 2;
 		grid-row: 1;
-		width: 50%;
+		width: 100%;
 	}
 
 	.product,
@@ -229,19 +232,6 @@
 	}
 
 	.couponBtns {
-		margin-top: 2rem;
-		max-width: 40%;
 		gap: 1rem;
-	}
-}
-
-@media (min-width: 1440px) {
-	/* .layout {
-		align-items: center;
-	} */
-
-	.container {
-		width: 80vw;
-		gap: 3rem;
 	}
 }
