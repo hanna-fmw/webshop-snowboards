@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { CartContextProps } from '../../../../app/context/cartContext';
 import { useModal } from '../../../../app/context/modalContext';
 import { useCart } from '../../../../app/context/cartContext';
+import { useEffect, useState } from 'react';
 
 type NavbarProps = {
 	children?: React.ReactNode;
@@ -27,6 +28,12 @@ const Navbar = ({ children }: NavbarProps) => {
 	const { isCartOpen, openCart, cartItems, cartQuantity }: CartContextProps = cartContext || {};
 
 	const pathName = usePathname();
+
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true); // Component is mounted on the client side
+	}, []);
 
 	return (
 		<main className={styles.navContainer}>
@@ -77,9 +84,11 @@ const Navbar = ({ children }: NavbarProps) => {
 								</li>
 								<li className={`${styles.li} ${styles.cartIconContainer}`}>
 									<Image src={cart} width={15} height={17} alt='Cart icon' onClick={openCart} />
-									{cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
+
+									{isMounted && cartItems.length !== 0 && <small className={styles.cartItemCount}>&#91;{cartQuantity}&#93;</small>}
 								</li>
 							</ul>
+
 							{isCartOpen && <Cart />}
 						</>
 					) : (

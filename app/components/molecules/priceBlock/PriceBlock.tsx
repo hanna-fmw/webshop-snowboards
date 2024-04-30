@@ -18,7 +18,8 @@ type PriceBlockProps = {
 const PriceBlock = ({ currency, product, conversionRateEur }: PriceBlockProps) => {
 	return (
 		<article className={styles.productPrice}>
-			<span>{currency === 'SEK' ? `${product.price} SEK` : `${product.price * conversionRateEur} EUR`}</span>
+			{/* <span>{currency === 'SEK' ? `${product.price} SEK` : `${product.price * conversionRateEur} EUR`}</span> */}
+			<span>{currency === 'SEK' ? product.price + '\u00A0SEK' : product.price * conversionRateEur + '\u00A0EUR'}</span>
 		</article>
 	);
 };
