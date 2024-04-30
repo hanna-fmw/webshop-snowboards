@@ -74,7 +74,7 @@ const CartPage = () => {
 												<article className={`${styles.productName} ${styles.product}`}>
 													<h3 className={styles.headingProduct}>Product:</h3>
 													<p className={styles.productName}>
-														{item.product?.name} - {selectedLength}
+														{item.product?.name} {selectedLength}
 													</p>
 												</article>
 
@@ -82,7 +82,8 @@ const CartPage = () => {
 													<h3 className={styles.headingPrice}>Price:</h3>
 													<p className={styles.amount}>
 														{/* {formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)} */}
-														{currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!}
+														{/* {currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!} */}
+														{currency === 'SEK' ? item.product?.price + '\u00A0SEK' : item.product?.price * conversionRateEur! + '\u00A0EUR'}
 													</p>
 												</article>
 
@@ -107,7 +108,10 @@ const CartPage = () => {
 												<article className={`${styles.subtotalContainer} ${styles.productSubtotal}`}>
 													<h3 className={styles.headingSubtotal}>Subtotal:</h3>
 													<p className={styles.amount}>
-														{currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)}
+														{/* {currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)} */}
+														{currency === 'SEK'
+															? item.quantity * item.product.price + '\u00A0SEK'
+															: item.quantity * (item.product.price * conversionRateEur) + '\u00A0EUR'}
 													</p>
 												</article>
 											</div>
@@ -147,7 +151,7 @@ const CartPage = () => {
 							<div className={styles.total}>
 								<h3>Total:</h3>
 								<p className={styles.amount}>
-									{`${currency} ${totalPrice}`} + SHIPPING COST (includes {`${currency} ${totalPrice * 0.2}`} Tax)
+									{`${currency} ${totalPrice}`} + SHIPPING COST (includes {`${currency} ${(totalPrice * 0.2).toFixed()}`} Tax)
 								</p>
 							</div>
 
