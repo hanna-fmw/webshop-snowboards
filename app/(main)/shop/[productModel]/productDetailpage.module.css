@@ -174,4 +174,12 @@
 	.chart {
 		width: 40vw;
 	}
+
+	.productImg {
+		width: 80%;
+	}
+
+	.thumbnails {
+		width: 80%;
+	}
 }

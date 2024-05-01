@@ -32,16 +32,14 @@ const Navbar = ({ children }: NavbarProps) => {
 	const [isMounted, setIsMounted] = useState(false);
 
 	useEffect(() => {
-		setIsMounted(true); // Component is mounted on the client side
+		setIsMounted(true); 
 	}, []);
 
 	return (
 		<main className={styles.navContainer}>
 			<nav className={styles.nav}>
 				<aside className={styles.li}>
-					<Link href='/'>
-						<Image src={logotype} width={157} height={26} alt='TUR Logotype' className={styles.logo} />
-					</Link>
+					<Link href='/'>{/* <Image src={logotype} width={157} height={26} alt='TUR Logotype' className={styles.logo} /> */}</Link>
 				</aside>
 
 				<section className={styles.navItems}>

@@ -129,7 +129,10 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											{/*@ts-ignore*/}
 											{/* <span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur, currency)}</span> */}
 											{/*@ts-ignore*/}
-											<span>{currency === 'SEK' ? product.price : product.price * conversionRateEur}</span>
+											{/* <span>{currency === 'SEK' ? product.price : product.price * conversionRateEur}</span> */}
+											<span>
+												{currency === 'SEK' ? Number(product.price) + '\u00A0SEK' : Number(product.price) * conversionRateEur + '\u00A0EUR'}
+											</span>
 										</div>
 									</article>
 
