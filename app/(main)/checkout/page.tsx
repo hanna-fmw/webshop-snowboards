@@ -188,7 +188,10 @@ const Checkout = () => {
 												currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!),
 												currency
 											)} */}
-											{currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)}
+											{/* {currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)} */}
+											{currency === 'SEK'
+												? item.quantity * item.product.price + '\u00A0SEK'
+												: item.quantity * (item.product.price * conversionRateEur) + '\u00A0EUR'}
 										</div>
 									</div>
 								</div>
@@ -207,9 +210,15 @@ const Checkout = () => {
 							}, 0),
 							currency
 						)} */}
-						{cartItems.reduce((total: number, item: any) => {
+						{/* {cartItems.reduce((total: number, item: any) => {
 							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
 							return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
+						}, 0)} */}
+						{cartItems.reduce((total: number, item: any) => {
+							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
+							const price = currency === 'SEK' ? Number(currItem?.product.price) : Number(currItem?.product.price) * conversionRateEur!;
+							const totalPriceForItem = (price || 0) * currItem.quantity;
+							return total + totalPriceForItem + (currency === 'SEK' ? '\u00A0SEK' : '\u00A0EUR');
 						}, 0)}
 					</div>
 				</div>
@@ -237,11 +246,16 @@ const Checkout = () => {
 						+ SHIPPING COST (includes xxx Tax)
 					</div> */}
 					<div className={styles.price}>
-						{cartItems.reduce((total: number, item: any) => {
+						{/* {cartItems.reduce((total: number, item: any) => {
 							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
 							return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
-						}, 0)}{' '}
-						+ SHIPPING COST (includes xxx Tax)
+						}, 0)}{' '} */}
+						{cartItems.reduce((total: number, item: any) => {
+							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
+							const price = currency === 'SEK' ? Number(currItem?.product.price) : Number(currItem?.product.price) * conversionRateEur!;
+							return total + (price || 0) * currItem.quantity + (currency === 'SEK' ? '\u00A0SEK' : '\u00A0EUR');
+						}, 0)}
+						<span>&nbsp;+ SHIPPING COST (includes xxx Tax)</span>
 					</div>
 				</div>
 				<h2 className={styles.formHeading}>CREDIT CARD</h2>
