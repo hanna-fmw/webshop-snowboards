@@ -13,7 +13,6 @@ const HeroSection = () => {
 		<>
 			<div className={styles.heroContainer}>
 				<Image src='/hero/hero_desktop.png' width={1440} height={937} className={heroImage} alt='Hero image' />
-
 				<div className={styles.heroContent}>
 					<div>
 						OUR LEGACY WORKSHOP X TUR <span style={{ display: 'block' }}>BUBO 150.4 / 154.4 CM</span>

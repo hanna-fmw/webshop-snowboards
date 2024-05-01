@@ -24,10 +24,6 @@
 	display: flex;
 }
 
-/* .productPrice {
-	color: var(--color-TUR-green);
-} */
-
 @media (min-width: 558px) {
 	.productGrid {
 		grid-template-columns: repeat(2, 1fr);

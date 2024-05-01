@@ -13,13 +13,11 @@
 .heroOverlay {
 	color: var(--color-white);
 	position: absolute;
-	left: 1rem;
-	bottom: 2rem;
+	top: 2rem;
+	left: 2rem;
 	width: 80%;
 }
 
-/* Use percentage, 90vw caused incorrect
-alignment in 768px view  */
 .header,
 .brandDetails {
 	width: 90%;
@@ -44,8 +42,9 @@ alignment in 768px view  */
 
 @media (min-width: 768px) {
 	.heroOverlay {
+		top: 2rem;
 		left: 2rem;
-		width: 40%;
+		width: 30%;
 	}
 
 	.containerGrid {
@@ -76,11 +75,15 @@ alignment in 768px view  */
 	}
 }
 
-@media (min-width: 1800px) {
-	.heroOverlay {
-		left: 20%;
-		width: 30%;
+@media (min-width: 1024px) {
+	.heroContainer {
+		width: 90vw;
+		margin: 0 auto;
+		margin-bottom: 3rem;
 	}
+}
+
+@media (min-width: 1800px) {
 	.brandDetails {
 		width: 60vw;
 	}

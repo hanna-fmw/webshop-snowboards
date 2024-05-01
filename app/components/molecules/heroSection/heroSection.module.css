@@ -6,45 +6,21 @@
 	object-fit: cover;
 	object-position: top;
 	width: 100%;
-	max-height: 100vh;
+	max-height: 90vh;
 }
 
 .heroContent {
 	color: var(--color-white);
 	position: absolute;
-	left: 2rem;
 	bottom: 2rem;
+	left: 2rem;
+
 	margin: 0 auto;
 }
 
-.sunLogo {
-	position: absolute;
-	top: 22%;
-	left: 25%;
-}
-
-@media (min-width: 768px) {
-	.sunLogo {
-		position: absolute;
-		top: 10%;
-		left: 30%;
-		width: 600px;
-		height: auto;
-		z-index: 30;
-	}
-
-	/* .heroImage {
-		height: 100vh;
-	} */
-}
-
-@media (min-width: 1800px) {
-	.heroContent {
-		left: 21%;
-		width: 60%;
-	}
-	.sunLogo {
-		width: 800px;
-		height: auto;
+@media (min-width: 1024px) {
+	.heroContainer {
+		width: 90vw;
+		margin: 0 auto;
 	}
 }
