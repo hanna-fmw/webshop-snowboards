@@ -1,19 +1,19 @@
-'use client'
-import React from 'react'
-import styles from './footer.module.css'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+'use client';
+import React from 'react';
+import styles from './footer.module.css';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type FooterProps = {
-	children?: React.ReactNode
-	addressBlock?: string
-	socialMediaBlock?: string
-	linkBlock?: string
-	customerInfoBlock?: string
-	customerSupportBlock?: string
-	copyrightInfo?: string
-	deliveryInfo?: string
-}
+	children?: React.ReactNode;
+	addressBlock?: string;
+	socialMediaBlock?: string;
+	linkBlock?: string;
+	customerInfoBlock?: string;
+	customerSupportBlock?: string;
+	copyrightInfo?: string;
+	deliveryInfo?: string;
+};
 
 const Footer = ({
 	addressBlock,
@@ -25,7 +25,7 @@ const Footer = ({
 	deliveryInfo,
 	children,
 }: FooterProps) => {
-	const pathName = usePathname()
+	const pathName = usePathname();
 	return (
 		<>
 			{pathName !== '/cart' && pathName !== '/checkout' ? (
@@ -71,19 +71,11 @@ const Footer = ({
 						<ul className={styles.copyrightInfo}>
 							<li>©TURSNOWBOARDS2024</li>
 						</ul>
-
-						{/* <div className={styles.addressBlock}>{addressBlock}</div>
-			<div className={styles.socialMediaBlock}>{socialMediaBlock}</div>
-			<div className={styles.linkBlock}>{linkBlock}</div>
-			<div className={styles.customerInfoBlock}>{customerInfoBlock}</div>
-			<div className={styles.customerSupportBlock}>{customerSupportBlock}</div>
-			<div className={styles.copyrightInfo}>{copyrightInfo}</div>
-			<div className={styles.deliveryInfo}>{deliveryInfo}</div> */}
 					</section>
 				</footer>
 			) : null}
 		</>
-	)
-}
+	);
+};
 
-export default Footer
+export default Footer;

@@ -126,14 +126,10 @@ const Cart = ({ children }: CartProps) => {
 									<section key={i} className={styles.productContainer}>
 										<div className={styles.productInfo}>
 											<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
-											{/* <section className={styles.texBlockHorizontal}> */}
+
 											<section>
 												<div>{item.product?.name}</div>
-												<span className={styles.price}>
-													{/* {formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)} */}
-													{currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!}
-												</span>
-												{/* <div style={{ marginTop: '0.5rem' }}>LENGTH: {item.product?.length}</div> */}
+												<span className={styles.price}>{currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!}</span>
 												<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
 												<article className={styles.btnContainer}>
 													<div className={styles.itemCountContainer}>
@@ -154,7 +150,6 @@ const Cart = ({ children }: CartProps) => {
 										</div>
 										<div>
 											<span>x{item.quantity} =</span>{' '}
-											{/* <span className={styles.totalItemsPrice}>{formatCurrency(item.product?.price * item.quantity, currency)}</span> */}
 											<span className={styles.totalItemsPrice}>
 												{formatCurrency(
 													currency === 'SEK' ? item.product?.price * item.quantity : item.product?.price * conversionRateEur! * item.quantity,
@@ -162,9 +157,6 @@ const Cart = ({ children }: CartProps) => {
 												)}
 											</span>
 										</div>
-
-										{/* När jag har fixat ProductCard - lagt in productImg och textblock i det, så kan jag bara skriva så här: */}
-										{/* <ProductCard {...item}/> */}
 									</section>
 								);
 							})}

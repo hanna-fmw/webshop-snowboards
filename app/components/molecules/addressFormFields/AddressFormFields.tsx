@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './adressFormFields.module.css'
+import React from 'react';
+import styles from './adressFormFields.module.css';
 
 const AddressFormFields = () => {
 	return (
@@ -11,7 +11,7 @@ const AddressFormFields = () => {
 			<h2>Company name (optional)</h2>
 			<input className={styles.inputField} />
 			<h2>Country /Region *</h2>
-			{/* DROPDOWN */}
+
 			<input className={styles.inputField} />
 			<h2>Street address *</h2>
 			<input className={styles.inputField} placeholder='House number and street name' />
@@ -25,7 +25,7 @@ const AddressFormFields = () => {
 			<h2>Email address *</h2>
 			<input className={styles.inputField} />
 		</>
-	)
-}
+	);
+};
 
-export default AddressFormFields
+export default AddressFormFields;
