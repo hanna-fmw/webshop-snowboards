@@ -7,7 +7,6 @@ import TextBlock from './components/atoms/textBlock/TextBlock';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import formatCurrency from './utilities/currencyFormatter';
 import { useCurrencyConversion } from './context/currencyContext';
 import ProductImg from './components/atoms/productImg/ProductImg';
 import PriceBlock from './components/molecules/priceBlock/PriceBlock';
@@ -60,8 +59,7 @@ export default function Home() {
 												detail={product.detail}
 												profile={product.profile}
 											/>
-											{/*// @ts-ignore*/}
-											{/* <PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} /> */}
+
 											{/*// @ts-ignore*/}
 											<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
 										</article>

@@ -1,5 +1,5 @@
 'use client';
-// @ts-nocheck
+
 import styles from './crafting.module.css';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
@@ -9,7 +9,6 @@ import ProductImg from '@/app/components/atoms/productImg/ProductImg';
 import products from '@/app/data/products.json';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import formatCurrency from '@/app/utilities/currencyFormatter';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
 import { useSelect } from 'downshift';
 import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
@@ -120,8 +119,7 @@ const Crafting = () => {
 				</div>
 
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
-					{/* 
-// @ts-ignore */}
+					{/* @ts-ignore */}
 					{sortProducts(products, selectedItem).map((product, i) => {
 						const isCategory = product?.productCategory.includes(category);
 
@@ -140,8 +138,6 @@ const Crafting = () => {
 													detail={product.detail}
 													profile={product.profile}
 												/>
-
-												{/* <PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} /> */}
 												<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
 											</article>
 										</ProductCard>

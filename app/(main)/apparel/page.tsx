@@ -10,29 +10,6 @@ const Apparel = () => {
 			<div className={styles.linkContainer}>
 				<FilterLinks />
 			</div>
-			{/* <ul className={styles.links}>
-				<li>
-					<Link href='/shop' className={styles.link}>
-						[b].ALL
-					</Link>
-				</li>
-				<li>
-					<Link href='/product-category/shapes' className={styles.link}>
-						[b].SHAPES
-					</Link>
-				</li>
-				<li>
-					<Link href='/apparel' className={styles.link}>
-						[b].APPAREL
-					</Link>
-				</li>
-				<li>
-					<Link href='/product-category/crafting' className={styles.link}>
-						[b].CRAFTING
-					</Link>
-				</li>
-			</ul> */}
-
 			<div>
 				<section className={styles.heroContainer}>
 					<Image src='/hero/hero_apparel.png' width={1440} height={937} alt='Apparel page hero image' className={styles.heroImage} />

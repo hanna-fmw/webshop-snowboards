@@ -98,7 +98,6 @@ const Shop = () => {
 									padding: '0',
 									margin: '0',
 								}}>
-								{/* Map over dropdown options */}
 								{isOpen &&
 									items.map((item, index) => (
 										<li
@@ -120,9 +119,7 @@ const Shop = () => {
 					</div>
 				</div>
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
-					{/* 
-// @ts-ignore */}
-
+					{/* @ts-ignore */}
 					{sortProducts(products, selectedItem).map((product, i) => {
 						return (
 							<motion.section key={i} variants={childrenVariants} className={styles.productCard}>
@@ -137,8 +134,6 @@ const Shop = () => {
 											detail={product.detail}
 											profile={product.profile}
 										/>
-
-										{/* <PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} /> */}
 										<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
 									</article>
 								</ProductCard>

@@ -98,7 +98,6 @@ const Shapes = () => {
 									padding: '0',
 									margin: '0',
 								}}>
-								{/* Map over dropdown options */}
 								{isOpen &&
 									items.map((item, index) => (
 										<li
@@ -139,8 +138,6 @@ const Shapes = () => {
 													detail={product.detail}
 													profile={product.profile}
 												/>
-
-												{/* <PriceBlock formatCurrency={formatCurrency} currency={currency} product={product} conversionRateEur={conversionRateEur} /> */}
 												<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
 											</article>
 										</ProductCard>

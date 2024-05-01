@@ -5,15 +5,10 @@ import Button from '@/app/components/atoms/button/Button';
 import { ImTruck } from 'react-icons/im';
 import { useCart } from '@/app/context/cartContext';
 import { useRouter } from 'next/navigation';
-// import formatCurrency from '@/app/utilities/currencyFormatter';
 import { RiArrowDownSFill } from 'react-icons/ri';
 import { RiArrowUpSFill } from 'react-icons/ri';
 import ProductImg from '@/app/components/atoms/productImg/ProductImg';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
-
-type CartProps = {
-	children?: React.ReactNode;
-};
 
 type Product = {
 	id: number;
@@ -81,8 +76,6 @@ const CartPage = () => {
 												<article className={`${styles.price} ${styles.productPrice}`}>
 													<h3 className={styles.headingPrice}>Price:</h3>
 													<p className={styles.amount}>
-														{/* {formatCurrency(currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!, currency)} */}
-														{/* {currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!} */}
 														{currency === 'SEK' ? item.product?.price + '\u00A0SEK' : item.product?.price * conversionRateEur! + '\u00A0EUR'}
 													</p>
 												</article>
@@ -93,20 +86,14 @@ const CartPage = () => {
 														<span className={styles.countNumber}>{item.quantity}</span>
 
 														<div className={styles.arrowBtnContainer}>
-															{/* <button onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown}> */}
 															<RiArrowUpSFill onClick={() => increaseCartQuantity(item.product)} className={styles.arrowUpDown} />
-															{/* </button> */}
-
-															{/* <button onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown}> */}
 															<RiArrowDownSFill onClick={() => decreaseCartQuantity(item.product)} className={styles.arrowUpDown} />
-															{/* </button> */}
 														</div>
 													</div>
 												</article>
 												<article className={`${styles.subtotalContainer} ${styles.productSubtotal}`}>
 													<h3 className={styles.headingSubtotal}>Subtotal:</h3>
 													<p className={styles.amount}>
-														{/* {currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)} */}
 														{currency === 'SEK'
 															? item.quantity * item.product.price + '\u00A0SEK'
 															: item.quantity * (item.product.price * conversionRateEur) + '\u00A0EUR'}

@@ -1,5 +1,4 @@
 'use client';
-import React, { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { RiArrowUpSLine } from 'react-icons/ri';
 import styles from './currencyDropdown.module.css';
@@ -56,11 +55,7 @@ function CurrencyDropdown() {
 				</ul>
 			</div>
 
-			{/* 
-// @ts-ignore */}
-
-			<div>{selectedItem === 'EUR' ? setCurrency('EUR') : setCurrency('SEK')}</div>
-			{/* <div>Current currency is: {currency}</div> */}
+			<>{selectedItem === 'EUR' ? setCurrency('EUR') : setCurrency('SEK')}</>
 		</div>
 	);
 }

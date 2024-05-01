@@ -98,7 +98,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 						<Image src={`/products/${currentProduct?.image}`} width={350} height={450} alt='Product Image' className={styles.productImg} />
 					)}
 
-					{/* Thumbnails */}
 					<motion.div className={styles.thumbnails} variants={parentVariants} initial='initial' animate='animate'>
 						{currentProduct?.thumbnails.map((thumbnail, i) => {
 							const thumbnailStyles = classnames(styles.thumbnailCard, {
@@ -132,10 +131,6 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 											lengthForModel={product.lengthForModel}
 										/>
 										<div className={styles.price}>
-											{/*@ts-ignore*/}
-											{/* <span>{formatCurrency(currency === 'SEK' ? product.price : product.price * conversionRateEur, currency)}</span> */}
-											{/*@ts-ignore*/}
-											{/* <span>{currency === 'SEK' ? product.price : product.price * conversionRateEur}</span> */}
 											<span>
 												{currency === 'SEK' ? Number(product.price) + '\u00A0SEK' : Number(product.price) * conversionRateEur + '\u00A0EUR'}
 											</span>

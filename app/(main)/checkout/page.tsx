@@ -7,17 +7,12 @@ import Button from '@/app/components/atoms/button/Button';
 import { ImTruck } from 'react-icons/im';
 import { useCart } from '@/app/context/cartContext';
 import { useRouter } from 'next/navigation';
-import formatCurrency from '@/app/utilities/currencyFormatter';
 import { useCurrencyConversion } from '@/app/context/currencyContext';
 import { useForm } from 'react-hook-form';
-import { z, ZodType } from 'zod';
+import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-type CartProps = {
-	children?: React.ReactNode;
-};
 
 type Product = {
 	id: number;
@@ -65,7 +60,6 @@ const Checkout = () => {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting },
-		reset,
 	} = useForm<OrderFormType>({
 		resolver: zodResolver(orderFormSchema),
 	});
@@ -79,9 +73,9 @@ const Checkout = () => {
 
 	const handleButtonClick = () => {
 		if (Object.keys(errors).length > 0) {
-			alert('Please complete the form'); // Display an alert if there are errors
+			alert('Please complete the form');
 		} else {
-			handleSubmit(submitData)(); // Submit the form if there are no errors
+			handleSubmit(submitData)();
 		}
 	};
 
@@ -193,11 +187,6 @@ const Checkout = () => {
 
 									<div className={styles.subtotal}>
 										<div className={styles.price}>
-											{/* {formatCurrency(
-												currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!),
-												currency
-											)} */}
-											{/* {currency === 'SEK' ? item.quantity * item.product.price : item.quantity * (item.product.price * conversionRateEur!)} */}
 											{currency === 'SEK'
 												? item.quantity * item.product.price + '\u00A0SEK'
 												: item.quantity * (item.product.price * conversionRateEur) + '\u00A0EUR'}
@@ -212,17 +201,6 @@ const Checkout = () => {
 				<div className={styles.subtotal}>
 					<h2>SUBTOTAL</h2>
 					<div className={styles.price}>
-						{/* {formatCurrency(
-							cartItems.reduce((total: number, item: any) => {
-								const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
-								return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
-							}, 0),
-							currency
-						)} */}
-						{/* {cartItems.reduce((total: number, item: any) => {
-							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
-							return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
-						}, 0)} */}
 						{cartItems.reduce((total: number, item: any) => {
 							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
 							const price = currency === 'SEK' ? Number(currItem?.product.price) : Number(currItem?.product.price) * conversionRateEur!;
@@ -244,21 +222,7 @@ const Checkout = () => {
 				</div>
 				<div className={styles.total}>
 					<div>TOTAL</div>
-					{/* <div className={styles.price}>
-						{formatCurrency(
-							cartItems.reduce((total: number, item: any) => {
-								const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
-								return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
-							}, 0),
-							currency
-						)}{' '}
-						+ SHIPPING COST (includes xxx Tax)
-					</div> */}
 					<div className={styles.price}>
-						{/* {cartItems.reduce((total: number, item: any) => {
-							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
-							return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity;
-						}, 0)}{' '} */}
 						{cartItems.reduce((total: number, item: any) => {
 							const currItem = cartItems.find((i: any) => i.product.id === item.product.id);
 							const price = currency === 'SEK' ? Number(currItem?.product.price) : Number(currItem?.product.price) * conversionRateEur!;
@@ -286,16 +250,6 @@ const Checkout = () => {
 					Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in
 					our privacy policy.
 				</p>
-
-				{/* {Object.keys(errors).length === 0 ? (
-					<button type='submit' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={notify}>
-						PLACE ORDER
-					</button>
-				) : (
-					<button type='submit' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={() => alert('Please complete the form')}>
-						PLACE ORDER
-					</button>
-				)} */}
 
 				<button type='button' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={handleButtonClick}>
 					PLACE ORDER
