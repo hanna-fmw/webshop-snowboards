@@ -72,9 +72,18 @@ const Checkout = () => {
 
 	const submitData = async (data: OrderFormType) => {
 		await new Promise((resolve) => setTimeout(resolve, 1000));
+		notify();
 	};
 
 	const notify = () => toast('Your order has been placed!');
+
+	const handleButtonClick = () => {
+		if (Object.keys(errors).length > 0) {
+			alert('Please complete the form'); // Display an alert if there are errors
+		} else {
+			handleSubmit(submitData)(); // Submit the form if there are no errors
+		}
+	};
 
 	return (
 		<form onSubmit={handleSubmit(submitData)} className={styles.container}>
@@ -278,9 +287,20 @@ const Checkout = () => {
 					our privacy policy.
 				</p>
 
-				<button type='submit' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={notify}>
+				{/* {Object.keys(errors).length === 0 ? (
+					<button type='submit' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={notify}>
+						PLACE ORDER
+					</button>
+				) : (
+					<button type='submit' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={() => alert('Please complete the form')}>
+						PLACE ORDER
+					</button>
+				)} */}
+
+				<button type='button' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={handleButtonClick}>
 					PLACE ORDER
 				</button>
+
 				<ToastContainer
 					position='bottom-right'
 					autoClose={5000}
