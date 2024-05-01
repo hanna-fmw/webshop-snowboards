@@ -204,6 +204,7 @@
 	background-color: var(--color-white);
 	color: var(--color-black);
 	font-weight: 500;
+	cursor: pointer;
 }
 
 .errorMessage {
