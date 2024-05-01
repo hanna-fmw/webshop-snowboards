@@ -146,7 +146,7 @@
 	color: var(--color-TUR-green);
 }
 
-@media (min-width: 750px) {
+@media (min-width: 768px) {
 	.greenBox {
 		flex-direction: row;
 		justify-content: space-between;
@@ -164,6 +164,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		column-gap: 2rem;
+		width: 80vw;
 	}
 
 	.chartContainer {
@@ -175,11 +176,22 @@
 		width: 40vw;
 	}
 
-	.productImg {
-		width: 80%;
+	.thumbnails {
+		width: 100%;
+	}
+}
+
+@media (min-width: 1024px) {
+	.container,
+	.techContainer {
+		width: 60vw;
 	}
 
-	.thumbnails {
-		width: 80%;
+	.chart {
+		width: 30vw;
+	}
+
+	.chart1 {
+		margin-right: 1rem;
 	}
 }

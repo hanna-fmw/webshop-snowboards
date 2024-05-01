@@ -87,7 +87,13 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 			<section className={styles.container}>
 				<section className={styles.productImgs}>
 					{isFullSize ? (
-						<ProductImg image={`/products/${currentProduct?.thumbnails[thumbnailIndex]}`} />
+						<Image
+							src={`/products/${currentProduct?.thumbnails[thumbnailIndex]}`}
+							width={350}
+							height={450}
+							alt='Product Image'
+							className={styles.productImg}
+						/>
 					) : (
 						<Image src={`/products/${currentProduct?.image}`} width={350} height={450} alt='Product Image' className={styles.productImg} />
 					)}
@@ -236,7 +242,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												width={350}
 												height={150}
 												alt='Technical Specifications'
-												className={styles.chart}
+												className={`${styles.chart} ${styles.chart1} `}
 											/>
 											<Image src={`/products/${product.chart}`} width={350} height={150} alt='Technical Specifications' className={styles.chart} />
 										</div>
