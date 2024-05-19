@@ -1,8 +1,7 @@
-import React from 'react';
-import styles from './apparel.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
-import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
+import React from 'react'
+import styles from './apparel.module.css'
+import Image from 'next/image'
+import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks'
 
 const Apparel = () => {
 	return (
@@ -20,7 +19,7 @@ const Apparel = () => {
 				</div>
 			</div>
 		</section>
-	);
-};
+	)
+}
 
-export default Apparel;
+export default Apparel

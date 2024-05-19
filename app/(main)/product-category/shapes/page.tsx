@@ -1,19 +1,18 @@
 //@ts-nocheck
-'use client';
-import styles from './shapes.module.css';
-import { RiArrowDownSLine } from 'react-icons/ri';
-import { RiArrowUpSLine } from 'react-icons/ri';
-import ProductCard from '@/app/components/molecules/productCard/ProductCard';
-import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
-import ProductImg from '@/app/components/atoms/productImg/ProductImg';
-import products from '@/app/data/products.json';
-import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
-import formatCurrency from '@/app/utilities/currencyFormatter';
-import { useCurrencyConversion } from '@/app/context/currencyContext';
-import { useSelect } from 'downshift';
-import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
-import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
+'use client'
+import styles from './shapes.module.css'
+import { RiArrowDownSLine } from 'react-icons/ri'
+import { RiArrowUpSLine } from 'react-icons/ri'
+import ProductCard from '@/app/components/molecules/productCard/ProductCard'
+import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
+import ProductImg from '@/app/components/atoms/productImg/ProductImg'
+import products from '@/app/data/products.json'
+import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
+import { useSelect } from 'downshift'
+import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks'
+import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock'
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -22,7 +21,7 @@ const parentVariants = {
 			staggerChildren: 0.2,
 		},
 	},
-};
+}
 
 const childrenVariants = {
 	initial: { opacity: 0 },
@@ -33,47 +32,47 @@ const childrenVariants = {
 			ease: 'easeIn',
 		},
 	},
-};
+}
 
 type Product = {
-	name: string;
-	designer: string;
-	boardType: string;
-	length: string;
-	detail: string;
-	profile: string;
-	price: number;
-	productCategory: string[];
-	image: string;
-	model: string;
-};
+	name: string
+	designer: string
+	boardType: string
+	length: string
+	detail: string
+	profile: string
+	price: number
+	productCategory: string[]
+	image: string
+	model: string
+}
 
-const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
+const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
 
 const Shapes = () => {
-	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
+	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
 
-	const { currency, conversionRateEur } = useCurrencyConversion();
+	const { currency, conversionRateEur } = useCurrencyConversion()
 
-	const router = useRouter();
+	const router = useRouter()
 
 	const sortProducts = (arr: Product[], sortView: string) => {
 		return arr.sort((a: Product, b: Product) => {
 			switch (sortView) {
 				case 'Default sorting':
-					return a.name.localeCompare(b.name);
+					return a.name.localeCompare(b.name)
 
 				case 'Sort by price: low to high':
-					return a.price - b.price;
+					return a.price - b.price
 				case 'Sort by price: high to low':
-					return b.price - a.price;
+					return b.price - a.price
 				default:
-					break;
+					break
 			}
-		});
-	};
+		})
+	}
 
-	const category = 'shapes';
+	const category = 'shapes'
 
 	return (
 		<main className={styles.main}>
@@ -121,7 +120,7 @@ const Shapes = () => {
 
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
 					{sortProducts(products, selectedItem).map((product, i) => {
-						const isCategory = product?.productCategory.includes(category.toLocaleLowerCase());
+						const isCategory = product?.productCategory.includes(category.toLocaleLowerCase())
 
 						return (
 							<>
@@ -144,13 +143,13 @@ const Shapes = () => {
 									</motion.div>
 								) : null}
 							</>
-						);
+						)
 					})}
 				</motion.section>
 				<div>{products.filter((cat) => cat.productCategory.includes(category)).length === 0 && <div>No items available</div>}</div>
 			</section>
 		</main>
-	);
-};
+	)
+}
 
-export default Shapes;
+export default Shapes

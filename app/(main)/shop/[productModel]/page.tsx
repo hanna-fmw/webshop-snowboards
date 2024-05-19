@@ -1,5 +1,4 @@
 'use client'
-import ProductImg from '@/app/components/atoms/productImg/ProductImg'
 import React from 'react'
 import products from '@/app/data/products.json'
 import styles from './productDetailpage.module.css'
@@ -11,7 +10,6 @@ import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { motion } from 'framer-motion'
 import { useCart } from '@/app/context/cartContext'
-// import formatCurrency from '@/app/utilities/currencyFormatter'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
 import { CartContextProps } from '@/app/context/cartContext'
 
@@ -112,7 +110,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 								<motion.div key={i} className={thumbnailStyles} onClick={() => handleClick(i)} variants={childrenVariants}>
 									<div className={`${styles.overlay} ${thumbnailStyles}`}></div>
 
-									<Image src={`/products/${thumbnail}`} width={50} height={50} alt='bild' className={styles.thumbnailImg} />
+									<Image src={`/products/${thumbnail}`} width={50} height={50} alt='Thumbnail' className={styles.thumbnailImg} />
 								</motion.div>
 							)
 						})}
@@ -163,7 +161,7 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 												if (selectedLength || !product.lengthOptions) {
 													increaseCartQuantity({
 														...product,
-														price: Number(product.price),
+														price: product.price,
 													})
 													addedToCart()
 													checkCartEmpty()

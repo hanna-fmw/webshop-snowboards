@@ -1,17 +1,16 @@
-'use client';
-import React from 'react';
-import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
-import { useSelect } from 'downshift';
-import styles from './sortDropdown.module.css';
-import { useSortDropdownContext } from '@/app/context/downShiftContext';
+'use client'
+import React from 'react'
+import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri'
+import styles from './sortDropdown.module.css'
+import { useSortDropdownContext } from '@/app/context/downShiftContext'
 
 type SortDropdownProps = {
-	items: string[];
-};
+	items: string[]
+}
 
 const SortDropdown: React.FC<SortDropdownProps> = ({ items }) => {
 	// @ts-ignore
-	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSortDropdownContext();
+	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSortDropdownContext()
 
 	return (
 		<div className={styles.dropdownContainer}>
@@ -51,7 +50,7 @@ const SortDropdown: React.FC<SortDropdownProps> = ({ items }) => {
 				</ul>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default SortDropdown;
+export default SortDropdown

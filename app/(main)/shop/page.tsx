@@ -1,21 +1,17 @@
-'use client';
-import styles from './shop.module.css';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import { RiArrowDownSLine } from 'react-icons/ri';
-import { RiArrowUpSLine } from 'react-icons/ri';
-import TextBlock from '@/app/components/atoms/textBlock/TextBlock';
-import ProductImg from '@/app/components/atoms/productImg/ProductImg';
-import products from '@/app/data/products.json';
-import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { useCurrencyConversion } from '@/app/context/currencyContext';
-import formatCurrency from '@/app/utilities/currencyFormatter';
-
-import { useSelect } from 'downshift';
-import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks';
-import ProductCard from '@/app/components/molecules/productCard/ProductCard';
-import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock';
+'use client'
+import styles from './shop.module.css'
+import { RiArrowDownSLine } from 'react-icons/ri'
+import { RiArrowUpSLine } from 'react-icons/ri'
+import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
+import ProductImg from '@/app/components/atoms/productImg/ProductImg'
+import products from '@/app/data/products.json'
+import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
+import { useCurrencyConversion } from '@/app/context/currencyContext'
+import { useSelect } from 'downshift'
+import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks'
+import ProductCard from '@/app/components/molecules/productCard/ProductCard'
+import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock'
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -24,7 +20,7 @@ const parentVariants = {
 			staggerChildren: 0.2,
 		},
 	},
-};
+}
 
 const childrenVariants = {
 	initial: { opacity: 0 },
@@ -35,44 +31,44 @@ const childrenVariants = {
 			ease: 'easeIn',
 		},
 	},
-};
+}
 
 type Product = {
-	name: string;
-	designer: string;
-	boardType: string;
-	length: string;
-	detail: string;
-	profile: string;
-	price: number;
-	productCategory: string[];
-	image: string;
-	model: string;
-};
+	name: string
+	designer: string
+	boardType: string
+	length: string
+	detail: string
+	profile: string
+	price: number
+	productCategory: string[]
+	image: string
+	model: string
+}
 
-const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low'];
+const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
 
 const Shop = () => {
-	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items });
+	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
 
-	const { conversionRateEur, currency } = useCurrencyConversion();
+	const { conversionRateEur, currency } = useCurrencyConversion()
 
-	const router = useRouter();
+	const router = useRouter()
 
 	const sortProducts = (arr: Product[], sortView: string) => {
 		return arr.sort((a, b) => {
 			switch (sortView) {
 				case 'Default sorting':
-					return a.name.localeCompare(b.name);
+					return a.name.localeCompare(b.name)
 				case 'Sort by price: low to high':
-					return a.price - b.price;
+					return a.price - b.price
 				case 'Sort by price: high to low':
-					return b.price - a.price;
+					return b.price - a.price
 				default:
-					return 0;
+					return 0
 			}
-		});
-	};
+		})
+	}
 
 	return (
 		<main className={styles.main}>
@@ -138,12 +134,12 @@ const Shop = () => {
 									</article>
 								</ProductCard>
 							</motion.section>
-						);
+						)
 					})}
 				</motion.section>
 			</section>
 		</main>
-	);
-};
+	)
+}
 
-export default Shop;
+export default Shop

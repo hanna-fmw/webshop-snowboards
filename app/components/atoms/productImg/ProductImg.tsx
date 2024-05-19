@@ -9,7 +9,7 @@ type ProductImgProps = {
 };
 
 const ProductImg = ({ image, children, onClick }: ProductImgProps) => {
-	return <>{image && <Image src={image} width={350} height={450} alt='placeholder' className={styles.productImg} onClick={onClick} />}</>;
+	return <>{image && <Image src={image} width={350} height={450} alt='Placeholder' className={styles.productImg} onClick={onClick} />}</>;
 };
 
 export default ProductImg;

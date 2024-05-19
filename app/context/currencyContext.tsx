@@ -24,10 +24,7 @@ export const CurrencyProvider = ({ children }: CurrencyProviderProps) => {
 	const getCurrency = async () => {
 		// const res = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/pair/SEK/EUR`);
 		const res = await fetch(`https://v6.exchangerate-api.com/v6/2a4546bd78627d32686a922f/pair/SEK/EUR`)
-		// 2a4546bd78627d32686a922f
-
 		const data = await res.json()
-		// console.log(data?.conversion_rate, typeof data?.conversion_rate);
 		setConversionRateEur((data?.conversion_rate).toFixed(2))
 	}
 
