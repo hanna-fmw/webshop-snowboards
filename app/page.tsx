@@ -1,15 +1,15 @@
-'use client';
-import products from './data/products.json';
-import HeroSection from './components/molecules/heroSection/HeroSection';
-import ProductCard from './components/molecules/productCard/ProductCard';
-import styles from './page.module.css';
-import TextBlock from './components/atoms/textBlock/TextBlock';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { useCurrencyConversion } from './context/currencyContext';
-import ProductImg from './components/atoms/productImg/ProductImg';
-import PriceBlock from './components/molecules/priceBlock/PriceBlock';
+'use client'
+import products from './data/products.json'
+import HeroSection from './components/molecules/heroSection/HeroSection'
+import ProductCard from './components/molecules/productCard/ProductCard'
+import styles from './page.module.css'
+import TextBlock from './components/atoms/textBlock/TextBlock'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
+import { useCurrencyConversion } from './context/currencyContext'
+import ProductImg from './components/atoms/productImg/ProductImg'
+import PriceBlock from './components/molecules/priceBlock/PriceBlock'
 
 const parentVariants = {
 	initial: { opacity: 1 },
@@ -18,7 +18,7 @@ const parentVariants = {
 			staggerChildren: 0.2,
 		},
 	},
-};
+}
 
 const childrenVariants = {
 	initial: { opacity: 0 },
@@ -29,11 +29,11 @@ const childrenVariants = {
 			ease: 'easeIn',
 		},
 	},
-};
+}
 
 export default function Home() {
-	const { currency, conversionRateEur } = useCurrencyConversion();
-	const router = useRouter();
+	const { currency, conversionRateEur } = useCurrencyConversion()
+	const router = useRouter()
 	return (
 		<>
 			<HeroSection />
@@ -44,7 +44,7 @@ export default function Home() {
 				</div>
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
 					{products.map((product, i) => {
-						const featured = product.featured === true;
+						const featured = product.featured === true
 						return (
 							<motion.div key={i} variants={childrenVariants}>
 								{featured ? (
@@ -66,10 +66,10 @@ export default function Home() {
 									</ProductCard>
 								) : null}
 							</motion.div>
-						);
+						)
 					})}
 				</motion.section>
 			</section>
 		</>
-	);
+	)
 }

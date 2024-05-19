@@ -8,27 +8,20 @@ export type CartContextProps = {
 	setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>
 	openCart: () => void
 	closeCart: () => void
-
 	getItemQuantity: (product: Product) => number
 	increaseCartQuantity: (product: Product) => void
 	decreaseCartQuantity: (product: Product) => void
 	removeFromCart: (product: Product) => void
-
 	setSelectedLength: React.Dispatch<React.SetStateAction<string>>
-
 	selectLength: (selectedOption: string) => void
 	selectedLength: null | string
-
 	checkCartEmpty: () => void
 	isCartEmpty: boolean
 	setIsCartEmpty: React.Dispatch<React.SetStateAction<boolean>>
-
 	addedToCart: () => void
 	isAddedToCart: boolean
 	setIsAddedToCart: React.Dispatch<React.SetStateAction<boolean>>
-
 	cartItems: CartItem[]
-
 	cartQuantity: number
 }
 
@@ -56,6 +49,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	const [isCartOpen, setIsCartOpen] = useState(false)
 	const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
 	const [selectedLength, setSelectedLength] = useLocalStorage<string>('selectedBoardLength', '')
+	const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', [])
+
+	const isCartEmptyDefault = (cartItems ?? []).length === 0 // Ensure cartItems is always an array
+	const [isCartEmpty, setIsCartEmpty] = useLocalStorage<boolean>('isCartEmpty', isCartEmptyDefault)
 
 	const selectLength = (selectedOption: string) => {
 		setSelectedLength(selectedOption)
@@ -74,17 +71,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 		setIsCartOpen(false)
 	}
 
-	const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', [])
-	const isCartEmptyDefault = cartItems ? cartItems.length === 0 : true
-	const [isCartEmpty, setIsCartEmpty] = useLocalStorage<boolean>('isCartEmpty', isCartEmptyDefault)
-
 	useEffect(() => {
-		setIsCartEmpty(cartItems.length === 0)
+		setIsCartEmpty((cartItems ?? []).length === 0)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [cartItems])
 
 	const checkCartEmpty = () => {
-		if (cartItems.length !== 0) {
+		if ((cartItems ?? []).length !== 0) {
 			setIsCartEmpty(false)
 		} else {
 			setIsCartEmpty(true)
@@ -93,17 +86,17 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	}
 
 	const getItemQuantity = (product: Product) => {
-		return cartItems.find((item) => item.product?.id === product.id)?.quantity || 0
+		return (cartItems ?? []).find((item) => item.product?.id === product.id)?.quantity || 0
 	}
 
-	const cartQuantity = cartItems?.reduce((quantity, item) => item.quantity + quantity, 0)
+	const cartQuantity = (cartItems ?? []).reduce((quantity, item) => item.quantity + quantity, 0)
 
 	const increaseCartQuantity = (product: Product) => {
 		setCartItems((currItems) => {
-			if (currItems.find((item) => item.product?.id === product?.id) == null) {
-				return [...currItems, { product, quantity: 1 }]
+			if ((currItems ?? []).find((item) => item.product?.id === product?.id) == null) {
+				return [...(currItems ?? []), { product, quantity: 1 }]
 			} else {
-				return currItems.map((item) => {
+				return (currItems ?? []).map((item) => {
 					if (item.product?.id === product?.id) {
 						return { ...item, quantity: item.quantity + 1 }
 					} else {
@@ -116,10 +109,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
 	const decreaseCartQuantity = (product: Product) => {
 		setCartItems((currItems) => {
-			if (currItems.find((item) => item.product?.id === product?.id)?.quantity === 1) {
-				return currItems.filter((item) => item.product?.id !== product?.id)
+			if ((currItems ?? []).find((item) => item.product?.id === product?.id)?.quantity === 1) {
+				return (currItems ?? []).filter((item) => item.product?.id !== product?.id)
 			} else {
-				return currItems.map((item) => {
+				return (currItems ?? []).map((item) => {
 					if (item.product?.id === product?.id) {
 						return { ...item, quantity: item.quantity - 1 }
 					} else {
@@ -134,7 +127,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 	const removeFromCart = (product: Product) => {
 		localStorage.removeItem('selectedBoardLength')
 		setCartItems((currItems) => {
-			return currItems.filter((item) => item.product.id !== product.id)
+			return (currItems ?? []).filter((item) => item.product.id !== product.id)
 		})
 		checkCartEmpty()
 	}
@@ -150,7 +143,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 				increaseCartQuantity,
 				decreaseCartQuantity,
 				removeFromCart,
-				cartItems: cartItems || [], // Ensure cartItems is always an array
+				cartItems: cartItems ?? [], // Ensure cartItems is always an array
 				checkCartEmpty,
 				isCartEmpty,
 				cartQuantity,
