@@ -70,13 +70,6 @@
 	--font-size-body: 0.8rem;
 }
 
-/* Spacing */
-:root {
-	--spacing-small: 0.5rem;
-	--spacing-medium: 1rem;
-	--spacing-large: 1.5rem;
-}
-
 /* Colors */
 :root {
 	--color-TUR-green: #00b140;
@@ -86,6 +79,15 @@
 	--color-white: #fff;
 	--color-active-link: rgba(35, 35, 35, 0.6);
 }
+
+/* Spacing */
+:root {
+	--spacing-small: 0.5rem;
+	--spacing-medium: 1rem;
+	--spacing-large: 1.5rem;
+}
+
+
 
 *,
 *::before,
