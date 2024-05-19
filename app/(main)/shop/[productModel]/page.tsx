@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 import classnames from 'classnames'
 import { motion } from 'framer-motion'
 import { useCart } from '@/app/context/cartContext'
-import formatCurrency from '@/app/utilities/currencyFormatter'
+// import formatCurrency from '@/app/utilities/currencyFormatter'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
 import { CartContextProps } from '@/app/context/cartContext'
 
