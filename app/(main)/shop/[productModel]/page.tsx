@@ -207,9 +207,11 @@ const ProductDetailPage = ({ params }: ProductDetailsProps) => {
 										<h2 className={styles.h2}>{product.narrativeHeading}</h2>
 										<div>{product.narrative}</div>
 										{product.preCutSkins ? (
-											<Button variant={'default'} onClick={() => router.push('/shop/skins')}>
-												ADD PRE-CUT SKINS
-											</Button>
+											<div style={{ marginBlock: '1rem' }}>
+												<Button variant={'default'} onClick={() => router.push('/shop/skins')}>
+													ADD PRE-CUT SKINS
+												</Button>
+											</div>
 										) : null}
 										<div className={styles.additionalInfo}>
 											{product.additionalInfo.map((infoLine, i) => (

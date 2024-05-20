@@ -4,7 +4,7 @@ import { RiArrowDownSLine } from 'react-icons/ri'
 import { RiArrowUpSLine } from 'react-icons/ri'
 import TextBlock from '@/app/components/atoms/textBlock/TextBlock'
 import ProductImg from '@/app/components/atoms/productImg/ProductImg'
-import products from '@/app/data/products.json'
+import productsData from '@/app/data/products.json'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useCurrencyConversion } from '@/app/context/currencyContext'
@@ -34,19 +34,47 @@ const childrenVariants = {
 }
 
 type Product = {
-	name: string
-	designer: string
-	boardType: string
-	length: string
-	detail: string
-	profile: string
-	price: number
+	id: number
 	productCategory: string[]
 	image: string
 	model: string
+	name: string
+	boardType: string
+	designer: string
+	detail: string
+	profile: string
+	length: string
+	price: string
+	lengthOptions: string[]
+	descriptionHeading: string
+	descriptionText: string
+	districtHeading: string
+	district: string
+	propertiesHeading: string
+	properties: {
+		length: string
+		features: string[]
+	}
+	narrativeHeading: string
+	narrative: string
+	preCutSkins: boolean
+	technicalSpecificationHeading: string
+	additionalInfo: string[]
+	technicalSpecification: string
+	chart: string
+	thumbnails: string[]
+	relatedProductsHeading: string
+	relatedProducts: string[]
+	featured: boolean
+}
+
+type ProductForPriceBlock = Omit<Product, 'price'> & {
+	price: number
 }
 
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
+
+const products = productsData as Product[]
 
 const Shop = () => {
 	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
@@ -61,9 +89,9 @@ const Shop = () => {
 				case 'Default sorting':
 					return a.name.localeCompare(b.name)
 				case 'Sort by price: low to high':
-					return a.price - b.price
+					return Number(a.price) - Number(b.price)
 				case 'Sort by price: high to low':
-					return b.price - a.price
+					return Number(b.price) - Number(a.price)
 				default:
 					return 0
 			}
@@ -117,6 +145,11 @@ const Shop = () => {
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
 					{/* @ts-ignore */}
 					{sortProducts(products, selectedItem).map((product, i) => {
+						// Convert price to number before passing to PriceBlock
+						const productForPriceBlock: ProductForPriceBlock = {
+							...product,
+							price: Number(product.price),
+						}
 						return (
 							<motion.section key={i} variants={childrenVariants} className={styles.productCard}>
 								<ProductCard>
@@ -130,7 +163,8 @@ const Shop = () => {
 											detail={product.detail}
 											profile={product.profile}
 										/>
-										<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
+
+										<PriceBlock currency={currency} product={productForPriceBlock} conversionRateEur={conversionRateEur} />
 									</article>
 								</ProductCard>
 							</motion.section>
