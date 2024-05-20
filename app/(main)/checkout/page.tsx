@@ -66,7 +66,9 @@ const Checkout = () => {
 
 	const submitData = async (data: OrderFormType) => {
 		await new Promise((resolve) => setTimeout(resolve, 1000))
-		notify()
+		if (Object.keys(errors).length === 0) {
+			notify()
+		}
 	}
 
 	const notify = () => toast('Your order has been placed!')
