@@ -201,8 +201,8 @@ const Checkout = () => {
 				<div className={styles.subtotal}>
 					<h2>SUBTOTAL</h2>
 					<div className={styles.price}>
-						{cartItems.reduce((total: number, item: any) => {
-							const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
+						{cartItems.reduce((total: number, item: CartItem) => {
+							const currItem = cartItems.find((i: CartItem) => i.product.id === item.product.id)
 							const price = currency === 'SEK' ? Number(currItem?.product.price) : Number(currItem?.product.price) * conversionRateEur!
 							const totalPriceForItem = (price || 0) * currItem.quantity
 							return total + totalPriceForItem + (currency === 'SEK' ? '\u00A0SEK' : '\u00A0EUR')
