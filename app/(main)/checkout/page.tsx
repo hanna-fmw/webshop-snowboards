@@ -223,8 +223,8 @@ const Checkout = () => {
 				<div className={styles.total}>
 					<div>TOTAL</div>
 					<div className={styles.price}>
-						{cartItems.reduce((total: number, item: any) => {
-							const currItem = cartItems.find((i: any) => i.product.id === item.product.id)
+						{cartItems.reduce((total: number, item: CartItem) => {
+							const currItem = cartItems.find((i: CartItem) => i.product.id === item.product.id)
 							const price = currency === 'SEK' ? Number(currItem?.product.price) : Number(currItem?.product.price) * conversionRateEur!
 							return total + (price || 0) * currItem.quantity + (currency === 'SEK' ? '\u00A0SEK' : '\u00A0EUR')
 						}, 0)}

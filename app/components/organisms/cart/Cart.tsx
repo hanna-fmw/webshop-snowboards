@@ -30,6 +30,7 @@ type CartItem = {
 }
 
 const Cart = ({ children }: CartProps) => {
+	
 	const {
 		closeCart,
 		increaseCartQuantity,
@@ -167,8 +168,8 @@ const Cart = ({ children }: CartProps) => {
 								<h3>SUBTOTAL</h3>
 								<div className={styles.price}>
 									{formatCurrency(
-										cartItems.reduce((total: number, item: any) => {
-											const currItem = cartItems.find((i: any) => i.product?.id === item.product?.id)
+										cartItems.reduce((total: number, item: CartItem) => {
+											const currItem = cartItems.find((i: CartItem) => i.product?.id === item.product?.id)
 											console.log(currItem)
 											return (
 												total +
