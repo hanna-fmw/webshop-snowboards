@@ -143,8 +143,7 @@ const Shop = () => {
 					</div>
 				</div>
 				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
-					{/* @ts-ignore */}
-					{sortProducts(products, selectedItem).map((product, i) => {
+					{sortProducts(products, selectedItem as string).map((product, i) => {
 						// Convert price to number before passing to PriceBlock
 						const productForPriceBlock: ProductForPriceBlock = {
 							...product,
