@@ -25,7 +25,7 @@ type CartItem = {
 }
 
 const CartPage = () => {
-	const { closeCart, isCartOpen, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, selectedLength, isCartEmpty }: any = useCart()
+	const { closeCart, isCartOpen, increaseCartQuantity, decreaseCartQuantity, cartItems, removeFromCart, selectedLength }: any = useCart()
 
 	const { currency, conversionRateEur } = useCurrencyConversion()
 
@@ -35,10 +35,10 @@ const CartPage = () => {
 		isCartOpen && closeCart()
 	}
 
-	const productIds = cartItems.map((item: any) => item.product.id)
+	const productIds = cartItems.map((item: CartItem) => item.product.id)
 
 	const totalPrice = productIds.reduce((total: number, productId: number) => {
-		const currItem = cartItems.find((item: any) => item.product.id === productId)
+		const currItem = cartItems.find((item: CartItem) => item.product.id === productId)
 		return total + (currency === 'SEK' ? currItem?.product.price : currItem?.product.price * conversionRateEur! || 0) * currItem.quantity
 	}, 0)
 
