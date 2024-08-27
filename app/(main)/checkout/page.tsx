@@ -38,6 +38,8 @@ const Checkout = () => {
 
 	const router = useRouter()
 
+	// Zod schema for order form validation
+	// Defines the structure and validation rules for the checkout form
 	const orderFormSchema = z.object({
 		firstName: z.string().min(1, { message: 'Please enter first name' }),
 		lastName: z.string().min(1, { message: 'Please enter last name' }),
@@ -87,7 +89,9 @@ const Checkout = () => {
 				<h2 className={styles.formHeading}>CHECKOUT</h2>
 				<div className={styles.couponFieldContent}>
 					<h2>HAVE A COUPON?</h2>
-					<span className={styles.couponCodeLink} onClick={() => setIsOpenCouponCodeField((prev) => !prev)}>
+					<span
+						className={styles.couponCodeLink}
+						onClick={() => setIsOpenCouponCodeField((prev) => !prev)}>
 						Click here to enter your code
 					</span>
 				</div>
@@ -134,7 +138,12 @@ const Checkout = () => {
 				/>
 				{errors.street1 && <p className={styles.errorMessage}>{errors.street1.message}</p>}
 
-				<input type='text' className={styles.addressField} placeholder='Apartment, suite, unit, etc. (optional)' {...register('street2')} />
+				<input
+					type='text'
+					className={styles.addressField}
+					placeholder='Apartment, suite, unit, etc. (optional)'
+					{...register('street2')}
+				/>
 				{errors.street2 && <p className={styles.errorMessage}>{errors.street2.message}</p>}
 
 				<h2 className={styles.h2form}>Postcode / ZIP *</h2>
@@ -154,7 +163,11 @@ const Checkout = () => {
 				{errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
 
 				<label className={styles.checkbox}>
-					<input type='checkbox' checked={isChecked} onChange={() => setIsChecked((prev) => !prev)} />
+					<input
+						type='checkbox'
+						checked={isChecked}
+						onChange={() => setIsChecked((prev) => !prev)}
+					/>
 					Ship to a different address?
 				</label>
 				{isChecked ? (
@@ -165,7 +178,11 @@ const Checkout = () => {
 
 				<div className={styles.textarea}>
 					<h2 className={styles.h2form}>Order notes (optional)</h2>
-					<textarea maxLength={50} className={styles.notesField} placeholder='Notes about your order, e.g. special notes for delivery.' />
+					<textarea
+						maxLength={50}
+						className={styles.notesField}
+						placeholder='Notes about your order, e.g. special notes for delivery.'
+					/>
 				</div>
 			</div>
 			<div className={styles.paymentFields}>
@@ -179,7 +196,13 @@ const Checkout = () => {
 					{cartItems.map((item: CartItem, i: number) => {
 						return (
 							<>
-								<div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid black' }}>
+								<div
+									key={i}
+									style={{
+										display: 'flex',
+										justifyContent: 'space-between',
+										borderBottom: '1px solid black',
+									}}>
 									<div className={styles.product}>
 										<div className={styles.productName}>
 											{item.product?.name} - {selectedLength}
@@ -205,7 +228,10 @@ const Checkout = () => {
 					<div className={styles.price}>
 						{cartItems.reduce((total: number, item: CartItem) => {
 							const currItem = cartItems.find((i: CartItem) => i.product.id === item.product.id)
-							const price = currency === 'SEK' ? Number(currItem?.product.price) : Number(currItem?.product.price) * conversionRateEur!
+							const price =
+								currency === 'SEK'
+									? Number(currItem?.product.price)
+									: Number(currItem?.product.price) * conversionRateEur!
 							const totalPriceForItem = (price || 0) * currItem.quantity
 							return total + totalPriceForItem + (currency === 'SEK' ? '\u00A0SEK' : '\u00A0EUR')
 						}, 0)}
@@ -217,7 +243,9 @@ const Checkout = () => {
 						<div>Schenker</div>
 					</div>
 
-					<div style={{ display: 'flex', justifyContent: 'flex-end' }}>Shipping options will be updated during checkout.</div>
+					<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+						Shipping options will be updated during checkout.
+					</div>
 					<div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.4rem' }}>
 						<span className={styles.calculateShipping}>Calculate shipping</span> <ImTruck />
 					</div>
@@ -227,8 +255,15 @@ const Checkout = () => {
 					<div className={styles.price}>
 						{cartItems.reduce((total: number, item: CartItem) => {
 							const currItem = cartItems.find((i: CartItem) => i.product.id === item.product.id)
-							const price = currency === 'SEK' ? Number(currItem?.product.price) : Number(currItem?.product.price) * conversionRateEur!
-							return total + (price || 0) * currItem.quantity + (currency === 'SEK' ? '\u00A0SEK' : '\u00A0EUR')
+							const price =
+								currency === 'SEK'
+									? Number(currItem?.product.price)
+									: Number(currItem?.product.price) * conversionRateEur!
+							return (
+								total +
+								(price || 0) * currItem.quantity +
+								(currency === 'SEK' ? '\u00A0SEK' : '\u00A0EUR')
+							)
 						}, 0)}
 						<span>&nbsp;+ SHIPPING COST (includes xxx Tax)</span>
 					</div>
@@ -237,23 +272,42 @@ const Checkout = () => {
 				<p>Pay with your credit card.</p>
 
 				<h2 className={styles.h2form}>Card Number *</h2>
-				<input type='text' className={styles.creditCardField} placeholder='1234 1234 1234 1234' {...register('cardNumber')} />
+				<input
+					type='text'
+					className={styles.creditCardField}
+					placeholder='1234 1234 1234 1234'
+					{...register('cardNumber')}
+				/>
 				{errors.cardNumber && <p className={styles.errorMessage}>{errors.cardNumber.message}</p>}
 
 				<h2 className={styles.h2form}>Expiry Date *</h2>
-				<input type='date' className={styles.creditCardField} placeholder='MM &#47; YY' {...register('expiryDate')} />
+				<input
+					type='date'
+					className={styles.creditCardField}
+					placeholder='MM &#47; YY'
+					{...register('expiryDate')}
+				/>
 				{errors.expiryDate && <p className={styles.errorMessage}>{errors.expiryDate.message}</p>}
 
 				<h2 className={styles.h2form}>Card Code (CVC) *</h2>
-				<input type='text' className={styles.creditCardField} placeholder='CVC' {...register('cardCode')} />
+				<input
+					type='text'
+					className={styles.creditCardField}
+					placeholder='CVC'
+					{...register('cardCode')}
+				/>
 				{errors.cardCode && <p className={styles.errorMessage}>{errors.cardCode.message}</p>}
 
 				<p style={{ marginTop: '5rem', marginBottom: '1.5rem' }}>
-					Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in
-					our privacy policy.
+					Your personal data will be used to process your order, support your experience throughout
+					this website, and for other purposes described in our privacy policy.
 				</p>
 
-				<button type='button' disabled={isSubmitting} className={styles.submitOrderBtn} onClick={handleButtonClick}>
+				<button
+					type='button'
+					disabled={isSubmitting}
+					className={styles.submitOrderBtn}
+					onClick={handleButtonClick}>
 					PLACE ORDER
 				</button>
 

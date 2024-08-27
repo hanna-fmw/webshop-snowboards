@@ -29,8 +29,10 @@ type CartItem = {
 	quantity: number
 }
 
+// Cart component: Manages the shopping cart functionality
+// Handles cart display, item management, and navigation to checkout
 const Cart = ({ children }: CartProps) => {
-	
+	// Destructure cart-related functions and state from useCart hook
 	const {
 		closeCart,
 		increaseCartQuantity,
@@ -48,6 +50,7 @@ const Cart = ({ children }: CartProps) => {
 	const router = useRouter()
 	const ref = useRef<HTMLDivElement>(null)
 
+	// Effect to close cart when clicking outside
 	useEffect(() => {
 		const checkIfClickedOutside = (e: MouseEvent) => {
 			if (isCartOpen && ref.current && !ref.current.contains(e.target as Node)) {
@@ -63,6 +66,7 @@ const Cart = ({ children }: CartProps) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isCartOpen])
 
+	// Effect to manage body scroll when cart is open
 	useEffect(() => {
 		document.body.style.overflowY = isCartOpen ? 'hidden' : 'auto'
 
@@ -72,17 +76,20 @@ const Cart = ({ children }: CartProps) => {
 		}
 	}, [closeCart, isCartOpen])
 
+	// Function to navigate to shop page
 	const startShopping = () => {
 		router.push('/shop')
 		isCartOpen && closeCart()
 		setIsAddedToCart(false)
 	}
 
+	// Function to navigate to cart page
 	const goToCart = () => {
 		router.push('/cart')
 		isCartOpen && closeCart()
 	}
 
+	// Function to navigate to checkout
 	const goToCheckout = () => {
 		router.push('/checkout')
 		isCartOpen && closeCart()
@@ -125,24 +132,40 @@ const Cart = ({ children }: CartProps) => {
 								return (
 									<section key={i} className={styles.productContainer}>
 										<div className={styles.productInfo}>
-											<Image src={`/products/${item.product?.image}`} width={65} height={80} alt='Product Image' onClick={backToProductDetail} />
+											<Image
+												src={`/products/${item.product?.image}`}
+												width={65}
+												height={80}
+												alt='Product Image'
+												onClick={backToProductDetail}
+											/>
 
 											<section>
 												<div>{item.product?.name}</div>
-												<span className={styles.price}>{currency === 'SEK' ? item.product?.price : item.product?.price * conversionRateEur!}</span>
+												<span className={styles.price}>
+													{currency === 'SEK'
+														? item.product?.price
+														: item.product?.price * conversionRateEur!}
+												</span>
 												<div style={{ marginTop: '0.5rem' }}>LENGTH: {selectedLength}</div>
 												<article className={styles.btnContainer}>
 													<div className={styles.itemCountContainer}>
-														<button onClick={() => decreaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+														<button
+															onClick={() => decreaseCartQuantity(item.product)}
+															className={styles.plusMinusBtn}>
 															-
 														</button>
 														<span style={{ margin: '0.5rem' }}>{item.quantity}</span>
-														<button onClick={() => increaseCartQuantity(item.product)} className={styles.plusMinusBtn}>
+														<button
+															onClick={() => increaseCartQuantity(item.product)}
+															className={styles.plusMinusBtn}>
 															+
 														</button>
 													</div>
 
-													<div onClick={() => removeFromCart(item.product)} className={styles.removeBtn}>
+													<div
+														onClick={() => removeFromCart(item.product)}
+														className={styles.removeBtn}>
 														REMOVE ITEM
 													</div>
 												</article>
@@ -152,7 +175,9 @@ const Cart = ({ children }: CartProps) => {
 											<span>x{item.quantity} =</span>{' '}
 											<span className={styles.totalItemsPrice}>
 												{formatCurrency(
-													currency === 'SEK' ? item.product?.price * item.quantity : item.product?.price * conversionRateEur! * item.quantity,
+													currency === 'SEK'
+														? item.product?.price * item.quantity
+														: item.product?.price * conversionRateEur! * item.quantity,
 													currency
 												)}
 											</span>
@@ -169,11 +194,16 @@ const Cart = ({ children }: CartProps) => {
 								<div className={styles.price}>
 									{formatCurrency(
 										cartItems.reduce((total: number, item: CartItem) => {
-											const currItem = cartItems.find((i: CartItem) => i.product?.id === item.product?.id)
+											const currItem = cartItems.find(
+												(i: CartItem) => i.product?.id === item.product?.id
+											)
 											console.log(currItem)
 											return (
 												total +
-												(currency === 'SEK' ? currItem?.product?.price : currItem?.product?.price * conversionRateEur! || 0) * currItem.quantity
+												(currency === 'SEK'
+													? currItem?.product?.price
+													: currItem?.product?.price * conversionRateEur! || 0) *
+													currItem.quantity
 											)
 										}, 0),
 										currency
@@ -192,7 +222,12 @@ const Cart = ({ children }: CartProps) => {
 							<article className={styles.creditCardIcons}>
 								<Image src={'/creditcardIcons/visa.svg'} width={25} height={25} alt='Visa icon' />
 								<Image src={'/creditcardIcons/amex.svg'} width={25} height={25} alt='Amex icon' />
-								<Image src={'/creditcardIcons/mastercard.svg'} width={25} height={25} alt='Mastercard icon' />
+								<Image
+									src={'/creditcardIcons/mastercard.svg'}
+									width={25}
+									height={25}
+									alt='Mastercard icon'
+								/>
 							</article>
 						</footer>
 					</section>

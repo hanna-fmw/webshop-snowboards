@@ -13,6 +13,8 @@ import FilterLinks from '@/app/components/atoms/filterLinks/FilterLinks'
 import ProductCard from '@/app/components/molecules/productCard/ProductCard'
 import PriceBlock from '@/app/components/molecules/priceBlock/PriceBlock'
 
+// Animation variants for the parent container
+// Used with Framer Motion to stagger the animation of child elements
 const parentVariants = {
 	initial: { opacity: 1 },
 	animate: {
@@ -22,6 +24,8 @@ const parentVariants = {
 	},
 }
 
+// Animation variants for child elements
+// Defines the initial and animate states for opacity transition
 const childrenVariants = {
 	initial: { opacity: 0 },
 	animate: {
@@ -33,6 +37,8 @@ const childrenVariants = {
 	},
 }
 
+// Defines the structure of a product object
+// Contains all details needed for product display and management
 type Product = {
 	id: number
 	productCategory: string[]
@@ -68,8 +74,27 @@ type Product = {
 	featured: boolean
 }
 
+// Modified Product type for use in PriceBlock component
+// Changes 'price' from string to number for easier calculations
 type ProductForPriceBlock = Omit<Product, 'price'> & {
 	price: number
+}
+
+// Sorts an array of products based on the selected sorting option
+// Options include default sorting, price low to high, and price high to low
+const sortProducts = (arr: Product[], sortView: string) => {
+	return arr.sort((a, b) => {
+		switch (sortView) {
+			case 'Default sorting':
+				return a.name.localeCompare(b.name)
+			case 'Sort by price: low to high':
+				return Number(a.price) - Number(b.price)
+			case 'Sort by price: high to low':
+				return Number(b.price) - Number(a.price)
+			default:
+				return 0
+		}
+	})
 }
 
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
@@ -82,21 +107,6 @@ const Shop = () => {
 	const { conversionRateEur, currency } = useCurrencyConversion()
 
 	const router = useRouter()
-
-	const sortProducts = (arr: Product[], sortView: string) => {
-		return arr.sort((a, b) => {
-			switch (sortView) {
-				case 'Default sorting':
-					return a.name.localeCompare(b.name)
-				case 'Sort by price: low to high':
-					return Number(a.price) - Number(b.price)
-				case 'Sort by price: high to low':
-					return Number(b.price) - Number(a.price)
-				default:
-					return 0
-			}
-		})
-	}
 
 	return (
 		<main className={styles.main}>
