@@ -34,36 +34,48 @@ const childrenVariants = {
 }
 
 type Product = {
-	name: string
-	designer: string
-	boardType: string
-	length: string
-	detail: string
-	profile: string
-	price: number
+	id: number
 	productCategory: string[]
 	image: string
 	model: string
+	name: string
+	designer: string
+	detail: string
+	profile: string
+	length: string
+	price: string
+	lengthOptions: string[]
+	descriptionHeading: string
+	boardType?: string
 }
+
+type Products = Product[]
 
 const items = ['Default sorting', 'Sort by price: low to high', 'Sort by price: high to low']
 
 const Crafting = () => {
-	const { isOpen, selectedItem, getToggleButtonProps, getMenuProps, highlightedIndex, getItemProps } = useSelect({ items: items })
+	const {
+		isOpen,
+		selectedItem,
+		getToggleButtonProps,
+		getMenuProps,
+		highlightedIndex,
+		getItemProps,
+	} = useSelect({ items: items })
 
 	const { currency, conversionRateEur } = useCurrencyConversion()
 
 	const router = useRouter()
 
-	const sortProducts = (arr: Product[], sortView: string) => {
-		return arr.sort((a: Product, b: Product) => {
+	const sortProducts = (arr: Products, sortView: string | null) => {
+		return [...arr].sort((a: Product, b: Product) => {
 			switch (sortView) {
 				case 'Default sorting':
 					return a.name.localeCompare(b.name)
 				case 'Sort by price: low to high':
-					return a.price - b.price
+					return Number(a.price) - Number(b.price)
 				case 'Sort by price: high to low':
-					return b.price - a.price
+					return Number(b.price) - Number(a.price)
 				default:
 					return 0
 			}
@@ -82,9 +94,15 @@ const Crafting = () => {
 						<button className={`${styles.dropdownBtn}`} {...getToggleButtonProps()}>
 							{selectedItem ?? 'Default sorting'}
 							{isOpen ? (
-								<RiArrowUpSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
+								<RiArrowUpSLine
+									size={18}
+									style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }}
+								/>
 							) : (
-								<RiArrowDownSLine size={18} style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }} />
+								<RiArrowDownSLine
+									size={18}
+									style={{ color: '#212121', marginLeft: '4rem', transform: 'translateY(10%)' }}
+								/>
 							)}
 						</button>
 						<div className={styles.dropdown}>
@@ -117,9 +135,12 @@ const Crafting = () => {
 					</div>
 				</div>
 
-				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
-					{/* @ts-ignore */}
-					{sortProducts(products, selectedItem).map((product, i) => {
+				<motion.section
+					className={styles.productGrid}
+					variants={parentVariants}
+					initial='initial'
+					animate='animate'>
+					{sortProducts(products as Products, selectedItem).map((product, i) => {
 						const isCategory = product?.productCategory.includes(category)
 
 						return (
@@ -127,7 +148,10 @@ const Crafting = () => {
 								{isCategory ? (
 									<motion.div key={i} variants={childrenVariants}>
 										<ProductCard>
-											<ProductImg image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
+											<ProductImg
+												image={`/products/${product.image}`}
+												onClick={() => router.push(`/shop/${product.model}`)}
+											/>
 											<article className={styles.productInfo}>
 												<TextBlock
 													model={product.model}
@@ -137,7 +161,15 @@ const Crafting = () => {
 													detail={product.detail}
 													profile={product.profile}
 												/>
-												<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
+												<PriceBlock
+													currency={currency}
+													product={{
+														...product,
+														boardType: product.boardType ?? '',
+														price: Number(product.price),
+													}}
+													conversionRateEur={conversionRateEur}
+												/>
 											</article>
 										</ProductCard>
 									</motion.div>
@@ -146,7 +178,10 @@ const Crafting = () => {
 						)
 					})}
 				</motion.section>
-				<div>{products.filter((cat) => cat.productCategory.includes(category.toLowerCase())).length === 0 && <div>No items available</div>}</div>
+				<div>
+					{products.filter((cat) => cat.productCategory.includes(category.toLowerCase())).length ===
+						0 && <div>No items available</div>}
+				</div>
 			</section>
 		</main>
 	)
