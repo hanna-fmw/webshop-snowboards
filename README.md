@@ -1,4 +1,26 @@
+# Snowboard Web Shop
+
 Web shop built using Next.js. Includes features such as navigation, sorting, filtering, cart feature, animations, API calls, currency conversion, etc.
+
+## Features
+
+- Responsive design
+- Product catalog with sorting and filtering
+- Shopping cart functionality
+- Currency conversion
+- Checkout process
+- Animations using Framer Motion
+
+## Project Structure
+
+- `/app`: Main application code
+- `/components`: Reusable React components
+- `/context`: React context providers
+- `/utilities`: Helper functions and utilities
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
