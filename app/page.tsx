@@ -11,15 +11,19 @@ import { useCurrencyConversion } from './context/currencyContext'
 import ProductImg from './components/atoms/productImg/ProductImg'
 import PriceBlock from './components/molecules/priceBlock/PriceBlock'
 
+// Animation variants for the parent container
+// Used with Framer Motion to stagger the animation of child elements
 const parentVariants = {
 	initial: { opacity: 1 },
 	animate: {
 		transition: {
-			staggerChildren: 0.2,
+			staggerChildren: 0.2, // Delay between each child animation
 		},
 	},
 }
 
+// Animation variants for child elements
+// Defines the initial and animate states for opacity transition
 const childrenVariants = {
 	initial: { opacity: 0 },
 	animate: {
@@ -42,14 +46,21 @@ export default function Home() {
 					<div>TUR SNOWBOARD PRODUCTS:</div>
 					<Link href='/shop'>&gt; SHOW ALL</Link>
 				</div>
-				<motion.section className={styles.productGrid} variants={parentVariants} initial='initial' animate='animate'>
+				<motion.section
+					className={styles.productGrid}
+					variants={parentVariants}
+					initial='initial'
+					animate='animate'>
 					{products.map((product, i) => {
 						const featured = product.featured === true
 						return (
 							<motion.div key={i} variants={childrenVariants}>
 								{featured ? (
 									<ProductCard>
-										<ProductImg image={`/products/${product.image}`} onClick={() => router.push(`/shop/${product.model}`)} />
+										<ProductImg
+											image={`/products/${product.image}`}
+											onClick={() => router.push(`/shop/${product.model}`)}
+										/>
 										<article className={styles.productInfo}>
 											<TextBlock
 												model={product.model}
@@ -60,8 +71,15 @@ export default function Home() {
 												profile={product.profile}
 											/>
 
-											{/*// @ts-ignore*/}
-											<PriceBlock currency={currency} product={product} conversionRateEur={conversionRateEur} />
+											<PriceBlock
+												currency={currency}
+												product={{
+													...product,
+													boardType: product.boardType ?? '',
+													price: Number(product.price),
+												}}
+												conversionRateEur={conversionRateEur}
+											/>
 										</article>
 									</ProductCard>
 								) : null}
